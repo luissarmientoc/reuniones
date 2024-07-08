@@ -190,11 +190,12 @@ a.article, a.article:hover {
   require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
   require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos 
   
- 
+ /*
  $sql="select nombre_perfil from perfiles where id_perfil='$user_perfil'";
  $query = mysqli_query($con, $sql);                      
  $row  = mysqli_fetch_array($query);
  $perfilU  = $row['nombre_perfil']; 
+ */
                       
   //MIRA LA CANTIDAD DE COMPRAS NUEVAS EN INTERNET
   /*  $sql="select count(*) as compras from pedidos_temporal where estadoPedido='G' group by id_temporal";   
@@ -203,11 +204,12 @@ a.article, a.article:hover {
   $row  = mysqli_fetch_array($query);
   $compras  = $row['compras'];  */ 
   
+  /*
   $sql="select count(*) as compras from alertas_ecommerce where estado='1' ";
   $query = mysqli_query($con, $sql);                      
   $row  = mysqli_fetch_array($query);
   $compras  = $row['compras']; 
-  
+  */
    
    $ip_add = $_SESSION['ip_add'];
   
