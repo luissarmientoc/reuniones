@@ -1,0 +1,30 @@
+* {
+  font-size: 14px;
+  font-family: 'Times New Roman';
+}
+
+
+.ticket {
+   width: 58mm;
+   max-width: 58mm;
+}
+
+img {
+  max-width: inherit;
+  width: inherit;
+}
+
+@media print{
+  .oculto-impresion, .oculto-impresion *{
+    display: none !important;
+  }
+  
+  
+  @media print {
+    .hidden-print,
+    .hidden-print * {
+        display: none !important;
+    }
+    
+    
+}

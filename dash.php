@@ -1,0 +1,484 @@
+ 
+<?php
+ session_start();
+ 
+                        $_SESSION['user_id'] = 1; //$result_row->user_id;
+		            	$_SESSION['user_name'] = "ADMIN.SISTEMA"; // $result_row->user_name;
+                        $_SESSION['user_email'] = "admin@admin.co"; //$result_row->user_email;
+                        $_SESSION['user_perfil'] = 1; //$result_row->perfil;
+                        $_SESSION['user_firstname'] = "USUARIO"; //$result_row->firstname;
+                        $_SESSION['user_lastname'] = "ADMINISTRADOR"; //$result_row->lastname;  
+                        
+                        $_SESSION['idUt'] = 99; //$result_row->idUt;
+                        $_SESSION['nombreUt'] = "UNP"; //$result_row->nombreUt;  
+                        
+                        $_SESSION['user_login_status'] = 1;
+                        
+                        if ($_SESSION['user_perfil']==1)
+                        {
+                            $_SESSION['nombre_perfil']="ADMINISTRADOR";
+                        }
+                        if ($_SESSION['user_perfil']==3)
+                        {
+                            $_SESSION['nombre_perfil']="JURIDICO";
+                        }
+                        if ($_SESSION['user_perfil']==4)
+                        {
+                            $_SESSION['nombre_perfil']="FINANCIERO";
+                        }
+                        if ($_SESSION['user_perfil']==5)
+                        {
+                            $_SESSION['nombre_perfil']="UT";
+                        }
+                        
+ $nomUusuario = $_SESSION['user_name'];
+ $emaiUsuario = $_SESSION['user_email'];
+ $nomUsuarioI = $_SESSION['user_firstname'];
+ $apeUsuarioI = $_SESSION['user_lastname'];      
+ $idBodega    = $_SESSION['laBodega'];    
+ $nomBodega   = $_SESSION['laTienda'];     
+  /*
+ echo "1.." . $nomUusuario;
+ echo '<br>';
+ echo "2.." . $emaiUsuario;
+ echo '<br>';
+ echo "3.." . $nomUsuarioI;
+ echo '<br>';
+ echo "5.." . $apeUsuarioI;
+ echo '<br>';
+ echo "6.." . $idBodega;
+ echo '<br>';
+ echo "7.." . $nomBodega;
+ echo '<br>';
+  */
+  $active_inicio="active";
+  $title="UNP| Inicio";
+   
+  
+  /* Connect To Database*/
+  require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
+  require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
+  include("head.php");
+  include("navbar.php");
+  $fechas ="HOY";
+  $fecha=strftime( "%Y-%m-%d", time() );
+  
+  //$fecha=date("Y-m-d",strtotime($s_fecha."- 1 days")); 
+  //sumo 1 día
+  $fMasUno =  date("Y-m-d",strtotime($s_fecha."+ 1 days")); 
+  
+  $_SESSION['fecha']  = $fecha;
+  $_SESSION['fecha1'] = $fMasUno;
+   
+  if(isset($_POST['consultar']))   
+  {
+    $s_fecIni = $_POST['fecIni'];
+    $s_fecFin = $_POST['fecFin'];
+    
+     $_SESSION['fecha']  = $s_fecIni;
+     $_SESSION['fecha1'] = $s_fecFin;
+    
+    if ($s_fecIni!="" and $s_fecFin!="")
+    {
+     $fechas = "Desde: " . $s_fecIni . " hasta ". $s_fecFin;
+    } 
+  }//consultar
+  
+  //$s_fecIni="2020-10-10";
+  //$s_fecFin="2024-10-10";
+  
+  
+  /**********************************************************
+   ********  AQUI INICIA EL COMENTARIO **********************
+   **********************************************************
+  //Reuniones convocadas por
+  $sqlConvocado = "SELECT count(*) as cuantosConvocado,  nombresParticipante FROM reu_reuniones a, reu_participante b 
+                   WHERE a.convocadaPor= b.numeroIdParticipante and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by a.convocadaPor ";
+  // echo "convocado..". $sqlConvocado;                     
+  // echo '<br>';               
+  
+  //Reuniones por entidad
+  $sqlReuniones = "SELECT count(*) as cuantosReuniones, nombreEntidad from reu_reuniones a, reu_entidades b where a.idEntidad = b.idEntidad and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by b.nombreEntidad";
+ // echo "reuniones..". $sqlReuniones;                     
+ //  echo '<br>';  
+
+  //Reuniones por dependencias
+  $sqlDependecias="select count(*) as cuantasDependencias, nombreDependencia from  reu_reuniones a, reu_dependencias b where a.idDependencia=b.idDependencia and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by b.nombreDependencia";
+ //  echo "reuniones..". $sqlDependecias;                     
+ //  echo '<br>';  
+
+  //Reuniones por grupos internos
+   $sqlGrupos = "select count(*) as cuantosGrupos, grupoInterno from reu_reuniones a, reu_grupos_internos b where a.idgrupo=b.idGrupoInterno and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by b.grupoInterno";
+ //echo "..". $sqlGrupos;                     
+ //  echo '<br>';  
+  
+  //Reuniones por categorias
+  $sqlCategorias ="select count(*) as cuantosCategorias,  categoriaReunion from reu_reuniones a, reu_categorias b where a.idCategoria=b.idCategoriaReunion and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by b.categoriaReunion";
+  //echo "..". $sqlCategorias;                     
+  // echo '<br>';  
+  
+
+  //Reuniones por subcategorias
+  $sqlSubCategorias="select count(*) as cunatosSubCategorias, subCategoriaReunion from reu_reuniones a, reu_sub_categorias b where idSubcategoria=idSubcategoriaReunion and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by b.subCategoriaReunion";
+  //echo "..". $sqlSubCategorias;                     
+  // echo '<br>'; 
+  
+  //Reuniones por participante
+  $sqlParticipante = "select count(*) as cuantosParticipante,  nombresParticipante FROM reu_reuniones a, reu_reuniones_participante b, reu_participante c
+                 WHERE a.idReunion = b.idReunion and b.numeroIdParticipante= c.numeroIdParticipante and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by c.nombresParticipante ";
+  //echo "..". $sqlParticipante;                     
+  // echo '<br>'; 
+  
+  
+  //Compromisos generadas por participante
+  //$sqlCompromisos = "select count(*) as cuantosCompromisos, nombresParticipante, estado from reu_compromisos a, reu_participante b 
+  //where  a.numeroIdParticipante= b.numeroIdParticipante and fechaInicialCompromiso between '$s_fecIni' AND  '$s_fecFin' group by b.nombresParticipante ";
+  
+  
+  
+  //Tareas realizadas por participante 
+  $sqlTareas = "select count(*) as cuantosTareas, nombresParticipante, terminada from reu_tareas_realizadas a, reu_participante b where  a.numeroIdParticipante= b.numeroIdParticipante and fechaTarea between '$s_fecIni' AND  '$s_fecFin' group by b.nombresParticipante ";
+ //echo "..". $sqlTareas;        
+  
+  
+  if ($s_fecIni!="" and $s_fecFin!="")
+  {
+    $sqlEntidades      = "select count(*) as cuantosEntidades from reu_entidades";
+    $sqlDependencias   = "select count(*) as cuantosDependencias from reu_dependencias";
+    $sqlGrupos         = "select count(*) as cuantosGrupos from reu_grupos_internos";
+    $sqlCategorias     = "select count(*) as cuantosCategorias from reu_categorias";
+    $sqlSubCategorias  = "select count(*) as cuantosSubCategorias from reu_sub_categorias";
+    $sqlPersonas       = "select count(*) as cuantosPersonas from reu_participante";
+   
+  }  
+  else
+  {   
+    $_SESSION['fecha']  = $fecha;
+    $_SESSION['fecha1'] = $fMasUno;
+    
+    $sqlEntidades      = "select count(*) as cuantosEntidades from reu_entidades";
+    $sqlDependencias   = "select count(*) as cuantosDependencias from reu_dependencias";
+    $sqlGrupos         = "select count(*) as cuantosGrupos from reu_grupos_internos";
+    $sqlCategorias     = "select count(*) as cuantosCategorias from reu_categorias";
+    $sqlSubCategorias  = "select count(*) as cuantosSubCategorias from reu_sub_categorias";
+    $sqlPersonas       = "select count(*) as cuantosPersonas from reu_participante";
+    
+  }
+  
+    $queryEntidades = mysqli_query($con, $sqlEntidades); 
+    $lineEntidades  = mysqli_fetch_array($queryEntidades );
+    $cantEntidades  = $lineEntidades  ['cuantosEntidades'];
+    
+    $queryDependencias = mysqli_query($con, $sqlDependencias); 
+    $lineDependencias  = mysqli_fetch_array($queryDependencias);
+    $cantDependencias  = $lineDependencias  ['cuantosDependencias'];
+  
+    $queryGrupos = mysqli_query($con, $sqlGrupos); 
+    $lineGrupos  = mysqli_fetch_array($queryGrupos );
+    $cantGrupos  = $lineGrupos  ['cuantosGrupos'];
+   
+    $queryCategorias    = mysqli_query($con, $sqlCategorias); 
+    $lineCategorias   = mysqli_fetch_array($queryCategorias);
+    $cantCategorias   = $lineCategorias  ['cuantosCategorias'];
+     
+    $querySubCategorias   = mysqli_query($con, $sqlSubCategorias); 
+    $lineSubCategorias  = mysqli_fetch_array($querySubCategorias);
+    $cantSubCategorias  = $lineSubCategorias ['cuantosSubCategorias'];
+    
+    $queryPersonas = mysqli_query($con, $sqlPersonas); 
+    $linePersonas  = mysqli_fetch_array($queryPersonas);
+    $cantPersonas  = $linePersonas  ['cuantosPersonas'];
+    
+    $queryPersonas = mysqli_query($con, $sqlPersonas); 
+    $linePersonas  = mysqli_fetch_array($queryPersonas);
+    $cantPersonas  = $linePersonas  ['cuantosPersonas'];
+    
+    $sqlCompromisosEstado1   = "select count(*) as cuantosCompromisos1, estado from reu_compromisos where estado=1 and fechaInicialCompromiso between '$s_fecIni' AND  '$s_fecFin' group by estado";
+    $queryCompromisosEstado1 = mysqli_query($con, $sqlCompromisosEstado1); 
+    $lineCompromisosEstado1  = mysqli_fetch_array($queryCompromisosEstado1);
+    $cantCompromisosEstado1  = $lineCompromisosEstado1 ['cuantosCompromisos1'];
+    
+    $sqlCompromisosEstado2   = "select count(*) as cuantosCompromisos2, estado from reu_compromisos where estado=2 and fechaInicialCompromiso between '$s_fecIni' AND  '$s_fecFin' group by estado";
+    $queryCompromisosEstado2 = mysqli_query($con, $sqlCompromisosEstado2); 
+    $lineCompromisosEstado2  = mysqli_fetch_array($queryCompromisosEstado2);
+    $cantCompromisosEstado2  = $lineCompromisosEstado2 ['cuantosCompromisos2'];
+    
+    $sqlTareasEstado1   = "select count(*) as cuantosTareas1, terminada from reu_tareas_realizadas where terminada!='S' and fechaTarea between '$s_fecIni' AND  '$s_fecFin' group by terminada";
+    $queryTareasEstado1 = mysqli_query($con, $sqlTareasEstado1); 
+    $lineTareasEstado1  = mysqli_fetch_array($queryTareasEstado1);
+    $cantTareasEstado1  = $lineTareasEstado1 ['cuantosTareas1'];
+    
+    $sqlTareasEstado2   = "select count(*) as cuantosTareas2, terminada from reu_tareas_realizadas where terminada='S' and fechaTarea between '$s_fecIni' AND  '$s_fecFin' group by terminada";
+    $queryTareasEstado2 = mysqli_query($con, $sqlTareasEstado2); 
+    $lineTareasEstado2  = mysqli_fetch_array($queryTareasEstado2);
+    $cantTareasEstado2  = $lineTareasEstado2 ['cuantosTareas2'];
+    
+    
+    ***************************************************************
+    ************** AQUI TERMNA EL COMENTARIO **********************/
+    
+    
+    
+    /*
+    echo '<br>';
+    echo "esquemas:.. " . $cantEsquemas;
+    echo '<br>';
+    echo "cantPersona:.. " . $cantPersona;
+    echo '<br>';
+    
+    echo '<br>';
+    echo "cantUt  :.. " . $cantUt ;
+    echo '<br>';
+    
+    echo '<br>';
+    echo "cantZonas :.. " . $cantZonas ;
+    echo '<br>';
+    
+    echo '<br>';
+    echo "cantAuditoriaPorIniciar :.. " . $cantAuditoriaPorIniciar ;
+    echo '<br>';
+    
+    echo '<br>';
+    echo "cantAuditoriaTerminada :.. " . $cantAuditoriaTerminada ;
+    echo '<br>';
+    */
+?>
+
+            <!-- Page Content Holder -->
+            <div id="content">  
+                     <!--- MENU CERRAR ---->
+                     <nav class="navbar navbar-default">
+                         <div class="container-fluid">
+                             <div class="navbar-header">
+                                 <button type="button" id="sidebarCollapse" class="btn btn-warning navbar-btn">
+                                     <i class="fas fa-arrows-alt-h"></i>
+                                     <span>Menú</span>                                
+                                 </button>                                          
+                             </div>
+                          </div>
+                     </nav>
+                     <!--- FIN MENU CERRAR ---->
+                
+                   
+                   <!--- BARRA DE TITULO ---->
+                     <div class="fondo"> 
+                       <div class="row">
+                          <div class="col-sm-7" ALIGN="left">
+                            <span align="center">UNIDAD DE PROTECCIÓN NACIONAL </span><br>
+                            <!-- <h3> <i class='fas fa-receipt' style="font-size:28px;color:#2980b9"></i>  FACTURACIÓN </h3> -->
+                            <h3> <i class="fas fa-chart-pie" style="font-size:28px;color:#2980b9"></i>  INICIO </h3>
+                            
+                          </div>  
+                     
+                          <div class="col-sm-5" ALIGN="left">
+                             <div class="panel-group">
+                                <div class="panel panel-default">
+                                  <div class="panel-heading">
+                                    <h4 class="panel-title"><span style='font-size:14px;color:#2980b9'> Consulta por fechas </span> 
+                                      <a data-toggle="collapse" href="#collapse1"> <i class='far fa-calendar-alt' style='font-size:14px;color:#2980b9'></i> </a>
+                                     </h4>
+                                     
+                                   </div>
+                                   
+                                   <div id="collapse1" class="panel-collapse collapse">
+                                     <div class="panel-body">
+                                       <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                           <span> Fecha Inicial: </span>
+                                           <input class="titDash2" type="date" name="fecIni" required><br><br>
+                                           
+                                           <span> Fecha Final: </span>
+                                           <input class="titDash2" type="date" name="fecFin" required><br><br>
+                                           
+                                           <button type="submit" name='consultar' class="btn btn-sm btn-success"><i class="glyphicon glyphicon-refresh"></i> Consultar </button>
+                                        </form>        
+                                      
+
+                                     </div>
+                                   </div>
+                                
+                                </div> <!-- default --> 
+                             </div> <!--panel group-->
+                             <div align="right">
+                               <p style="font-size:12px;"><i class="fas fa-building"></i> <?=$_SESSION['nombreUt'];?>  <i class="fas fa-user"></i> <?=$_SESSION['nombre_perfil']?> </p>
+                             </div>
+                           </div>
+                       </div>  
+                     </div>
+                     
+                                     
+                   <!--- FIN BARRA DE TITULO ----> 
+                   
+                   
+                    <!----------------------->
+                   <!-- DATOS DE CABECERA -->
+                   <!----------------------->
+                   
+                
+                  <div class="row"> <!-- row -->
+                       <div class="col-sm-4" ALIGN="CENTER">
+                         <div class="fondo"> 
+                           <i class='fas fa-building' style='font-size:20px;color:#3498db;'></i>
+                           <span class="titDash1"> Entidades </span></br>  
+                           <span class="titDash2"> <?=$fechas?> </span><br>   
+                           <span style="color:#16a085; font-size:14px;"> <a href="entidad0.php"> <?=$cantEntidades?> Registradas <i class="fas fa-link"></i></a> </span>                         
+                         </div>  
+                       </div>
+                       
+                        <div class="col-sm-4" ALIGN="CENTER">
+                         <div class="fondo"> 
+                           <i class="fas fa-gopuram" style='font-size:20px;color:#2f79b9'></i> 
+                           <span class="titDash1"> Dependencias </span></br>
+                           <span class="titDash2"> <?=$fechas?> </span><br>
+                           <span style="color:#2f79b9; font-size:14px;"> <a href="dependencia0.php">  <?=$cantDependencias?> Registradas <i class="fas fa-link"></i></a> </span>
+                         </div>  
+                       </div>   
+
+                      <div class="col-sm-4" ALIGN="CENTER">
+                         <div class="fondo"> 
+                           <i class="fas fa-project-diagram" style='font-size:20px;color:#e67e22'></i>
+                           <span class="titDash1"> Grupos Internos</span></br>  
+                           <span class="titDash2"> <?=$fechas?> </span><br>
+                           <span style="color:#e67e22; font-size:14px;"> <a href="grupos0.php">  <?=$cantGrupos?> Registrados <i class="fas fa-link"></i></a> </span>                          
+                         </div>  
+                       </div>   
+                   </div>  <!-- row -->             
+
+                   <div class="row"> <!-- row -->
+                       <div class="col-sm-4" ALIGN="CENTER">
+                         <div class="fondo"> 
+                           <i class='fas fa-stream' style='font-size:20px;color:#2980b9;'></i>  
+                             <span class="titDash1"> Categorías </span><br>
+                             <span class="titDash2"> <?=$fechas?> </span><br>
+                             <span style="color:#2980b9; font-size:14px;"> <a href="categorias0.php"> <?=$cantCategorias?> Registradas <i class="fas fa-link"></i> </a> </span>                           
+                         </div>
+                       </div>  
+                       
+                       
+                       <div class="col-sm-4" ALIGN="CENTER">
+                         <div class="fondo"> 
+                           <i class="fas fa-tasks" style='font-size:20px;color:#8e44ad'></i> 
+                           <span class="titDash1"> Sub Categorías</span></br>
+                           <span class="titDash2"> <?=$fechas?> </span><br>
+                           <span style="color:#8e44ad; font-size:14px;"> <a href="subcategorias0.php">   <?=$cantSubCategorias?> Registradas <i class="fas fa-link"></i></a> </span>
+                         </div>  
+                       </div>
+                       
+                       <div class="col-sm-4" ALIGN="CENTER">
+                         <div class="fondo"> 
+                           <i class="fas fa-user-friends" style='font-size:20px;color:#3498db'></i>
+                           <span class="titDash1"> Participantes </span></br>  
+                           <span class="titDash2"> <?=$fechas?> </span><br>
+                           <span style="color:#3498db; font-size:14px;"> <a href="cli00.php">  <?=$cantPersonas?> Registrados <i class="fas fa-link"></i></a> </span>                          
+                         </div>  
+                       </div>                         
+                  </div>  <!-- row -->
+                  
+  
+                  <!-------------------------->  
+                  <!-- FIN DATOS DE CABECERA -->
+                  <!-------------------------->
+                  
+                   
+             <!-------------------------->  
+             <!-- barras -->     
+             <!-------------------------->
+                    <div class="col-sm-12" ALIGN="CENTER">
+                         <div class="fondo" style="background-color: #fff;">    
+                           <h3>COMPROMISOS Y TAREAS</h3>
+                         </di> 
+                    </div>  
+                    
+                    <div class="col-sm-12" ALIGN="CENTER">
+                         <div class="fondo" style="background-color: #fff;">                           
+                           <i class="fas fa-cogs" aria-hidden="true"  style='font-size:16px;color:#16a085;'></i>
+                           <span style='font-size:16px;color:#2c3e50;'> Compromisos </span></br>                                                
+                           
+                           <span style="color:#c0392b; font-size:16px; font-family:verdana;"> ADQUIRIDOS: <?=number_format($cantCompromisosEstado1)?></span><br>
+                           <span style="color:#16a085; font-size:16px; font-family:verdana;"> CUMPLIDOS: <?=number_format($cantCompromisosEstado2)?></span>
+                      </div>  
+                       <div class="fondo" style="background-color: #fff;">         
+                           <?php
+                               include("barrasCompromisos.php");
+                          ?> 
+                        </div> 
+                     </div>    
+                     
+                     <div class="col-sm-12" ALIGN="CENTER">
+                         <div class="fondo" style="background-color: #fff;">                           
+                           <i class="fas fa-chart-line" aria-hidden="true"  style='font-size:16px;color:#16a085;'></i>
+                           <span style='font-size:16px;color:#2c3e50;'> Tareas </span></br>                                                
+                           
+                           <span style="color:#c0392b; font-size:16px; font-family:verdana;"> INICIADAS: <?=number_format($cantTareasEstado1)?></span><br>
+                           <span style="color:#16a085; font-size:16px; font-family:verdana;"> CUMPLIDAS: <?=number_format($cantTareasEstado2)?></span>
+                      </div>  
+                       <div class="fondo" style="background-color: #fff;">         
+                           <?php
+                               //include("barrasTareas.php");
+                          ?> 
+                        </div> 
+                     </div> 
+                     
+                     
+             
+             
+              <div class="container">
+                   
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <?php
+                              //include("barrasReuniones.php");
+                          ?> 
+                      </div>
+                      <div class="col-sm-6">
+                          <?php
+                               //include("barrasConvocadasPor.php");
+                          ?> 
+                      </div>
+                  </div>
+                  <br><br>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <?php
+                               //include("barrasDependencias.php");
+                          ?> 
+                      </div>
+                      <div class="col-sm-6">
+                          <?php
+                               //include("barrasGrupos.php");
+                          ?> 
+                      </div>
+                  </div> <!-- row -->
+                  
+                  <br><br>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <?php
+                               //include("barrasCategorias.php");
+                          ?> 
+                      </div>
+                      <div class="col-sm-6">
+                          <?php
+                            //include("barrasSubcategorias.php");
+                          ?> 
+                      </div>
+                  </div> <!--- row -- >
+              </div> <!-- container-->
+              
+              
+              
+  	              
+             </div>  <!-- container --> 	
+             
+              
+  	         
+  	         <!-------------------------->  
+             <!-- barras -->     
+             <!-------------------------->     
+                    
+                
+            <!--- complemento -->
+            <?php
+             include("complemento.html");             
+            ?>
+            <!--- fin complemento -->
+          </div> <!-- wrapper -->
