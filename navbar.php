@@ -239,13 +239,11 @@ a.article, a.article:hover {
                 -->
                 
                 <ul class="list-unstyled components">     
-                  <!--
-                  <span style="margin:5px;font-size:14px; color:#fff;">                    
-                    <i class="fas fa-user"></i> <?=$nomUsuarioI?>  <?=$apeUsuarioI?> <br>                    
-                    Perfil: <?=$_SESSION['nombre_perfil']?>    <br>
-                    
-                  </span>   
-                  -->
+                    <span style="margin-left:5px;font-size:12px; color:#fff;"><b>REUNIONES</b>
+                     <button type="button" id="sidebarCollapse" class="btn btn-link" style="color:#fff;">
+                       <i class="fa fa-reorder"></i>
+                      </button>  
+                    </span>                              
                   <li> 
                      <hr>
                         <a href="dash.php">
@@ -302,21 +300,9 @@ a.article, a.article:hover {
                              <li><a href="reu0"><i class='fas fa-sign-in-alt'></i>Reuniones</a></li>
                         </ul>
                    </li>
-                     
-                    <li>                        
-                        <a href="#pageUsuario" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-user"></i>
-                            <?=$nomUsuarioI?>  <?=$apeUsuarioI?>
-                        </a>
-                        <ul class="collapse list-unstyled" id="pageUsuario">
-                            <!--<li><a href="#"><i class='fa fa-calendar'></i> Ultimo Acceso: <?=$ip_add?></a></li>
-                            <li><a href="#"><i class='fas fa-server'></i> IP: <?=$ip_add?></a></li>
-                            <li><a href="perfil.php?LA=<?=$lVDX?>"><i class='fas fa-user'></i> Cambiar clave</a></li>
-                            <li><a href="#" target="_new"><i class='fas fa-bullhorn'></i> Ayuda</a></li>
-                            <li><a href="login.php?logout"><i class='glyphicon glyphicon-off'></i> Salir</a></li>-->
-                            <li><a href="http://ecosistemasesp.unp.gov.co/"><i class='glyphicon glyphicon-off'></i> Salir</a></li>
-                        </ul>
-                    </li>                                        
+                   
+                   <li><a href="http://ecosistemasesp.unp.gov.co/"><i  class='fas fa-sign-in-alt fa-rotate-180' style='color:#fff' ></i>  Salir</a></li>
+                    
                 </ul>                               
             </nav>
             

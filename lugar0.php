@@ -9,9 +9,9 @@
     exit;
   }
    
-  
   $active_marca="active";
-  $title="UNP | Entidades ";    
+  $title="UNP | Entidades ";  
+  $nombreUsuario = $_SESSION['user_firstname'] ." " .$_SESSION['user_lastname']; 
 ?>
 
 <!DOCTYPE html>
@@ -36,19 +36,19 @@
   
             <!-- Page Content Holder -->
             <div id="content">  
-                <!--- MENU CERRAR ---->
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                                <i class="fas fa-arrows-alt-h"></i>
-                                <span>Menú</span>                                
-                            </button>              
-                            
-                        </div>
-                     </div>
-                </nav>
+                <!--- MENU CERRAR 
+                     <nav class="navbar navbar-default">  ---->
+                     <nav>  
+                         <div class="container-fluid" style="background-color:#fff; padding:10px;">
+                             <div class="navbar-header">
+                                 <img src="img/usuario_ap.svg" class="img-circle" alt="Cinque Terre" width=40px; > 
+                                 <span style="color:#002857; font-size:1.3em; font-weight:600; "><?=$nombreUsuario?> </span>  
+                                 <p style="color:grey; font-size:14px; font-family:snas-serif:">Fecha de último ingreso: </p>
+                             </div>
+                          </div>
+                    <!-- </nav>  ---->
                 <!--- FIN MENU CERRAR ---->
+                <br>
                 
                 <!--- BARRA DE TITULO ---->
                 <div class="fondo"> 
