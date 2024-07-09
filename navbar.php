@@ -25,7 +25,7 @@
 #sidebar {
     min-width: 200px;
     max-width: 200px;
-    background: #2B81C7; 
+    background: #5A87C6; 
     color: #fff;
     transition: all 0.3s;
 }
@@ -211,7 +211,7 @@ a.article, a.article:hover {
   $compras  = $row['compras']; 
   */
    
-   $ip_add = $_SESSION['ip_add'];
+  // $ip_add = $_SESSION['ip_add'];
   
   //Administrador = 1  
   //Supervisor de seguimiento = 2
@@ -223,25 +223,29 @@ a.article, a.article:hover {
 ?>  
         <div class="wrapper">
             <!-- Sidebar Holder -->
+            
             <nav id="sidebar">
+                <!--
                 <div class="sidebar-header" align="center">
                   <h3>
-                    <!--<span align="center" style="font-size:24px; color:#55bfdf;"><i class="fas fa-chart-line"></i>  </span>  -->
+                     <span align="center" style="font-size:24px; color:#55bfdf;"><i class="fas fa-chart-line"></i>  </span>  
                     <span align="center" style="font-size:20px; color:#203864;"> UNIDAD DE PROTECCION NACIONAL</span>
                  </h3> 
                    <strong>UNP</strong>  
-                     <!--<span align="center" style="font-size:28px; color:#55bfdf;"><i class="fa fa-cogs"></i>  </span> -->                     
+                     <span align="center" style="font-size:28px; color:#55bfdf;"><i class="fa fa-cogs"></i>  </span>                      
                      <img src="img/logoUNP.png" width="60%"/><br>                       
                        
                 </div>
- 
+                -->
+                
                 <ul class="list-unstyled components">     
+                  <!--
                   <span style="margin:5px;font-size:14px; color:#fff;">                    
                     <i class="fas fa-user"></i> <?=$nomUsuarioI?>  <?=$apeUsuarioI?> <br>                    
                     Perfil: <?=$_SESSION['nombre_perfil']?>    <br>
                     
                   </span>   
-                  
+                  -->
                   <li> 
                      <hr>
                         <a href="dash.php">
@@ -261,12 +265,14 @@ a.article, a.article:hover {
                             Grupos
                         </a>
                          <ul class="collapse list-unstyled" id="grupos">
-                            <li><a href="entidad0.php"><i class='fas fa-building'></i> Entidades</a></li>
+                            
+                            <li><a href="entidad0.php"><i class='fas fa-building' title="sddsdsd"></i> Entidades</a></li>
                             <li><a href="dependencia0.php"><i class='fas fa-gopuram'></i> Dependencias </a></li>
                             <li><a href="lugar0.php"><i class='fas fa-map-marker-alt'></i> Lugares </a></li>
                             <li><a href="grupos0.php"><i class='fas fa-project-diagram'></i> Grupos Internos</a></li>
                             <li><a href="categorias0.php"><i class='fas fa-stream'></i> Categorías</a></li>
                             <li><a href="subcategorias0.php"><i class='fas fa-tasks'></i>Sub Categorías</a></li> 
+                             
                          </ul>
                       </li>
                     <?php
@@ -303,12 +309,11 @@ a.article, a.article:hover {
                             <?=$nomUsuarioI?>  <?=$apeUsuarioI?>
                         </a>
                         <ul class="collapse list-unstyled" id="pageUsuario">
-                            <li><a href="#"><i class='fa fa-calendar'></i> Ultimo Acceso: <?=$ip_add?></a></li>
+                            <!--<li><a href="#"><i class='fa fa-calendar'></i> Ultimo Acceso: <?=$ip_add?></a></li>
                             <li><a href="#"><i class='fas fa-server'></i> IP: <?=$ip_add?></a></li>
-                            
                             <li><a href="perfil.php?LA=<?=$lVDX?>"><i class='fas fa-user'></i> Cambiar clave</a></li>
                             <li><a href="#" target="_new"><i class='fas fa-bullhorn'></i> Ayuda</a></li>
-                            <!--<li><a href="login.php?logout"><i class='glyphicon glyphicon-off'></i> Salir</a></li>-->
+                            <li><a href="login.php?logout"><i class='glyphicon glyphicon-off'></i> Salir</a></li>-->
                             <li><a href="http://ecosistemasesp.unp.gov.co/"><i class='glyphicon glyphicon-off'></i> Salir</a></li>
                         </ul>
                     </li>                                        

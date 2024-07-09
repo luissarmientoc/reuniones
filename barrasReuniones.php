@@ -7,20 +7,25 @@
     $s_fecIni = $_SESSION['fecha'];
     $s_fecFin = $_SESSION['fecha1'];
     
+    /*
     $sqlReuniones = "SELECT count(*) as cuantosReuniones, nombreEntidad from reu_reuniones a, reu_entidades b 
                      where a.idEntidad = b.idEntidad and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by b.nombreEntidad";
     $queryReuniones = mysqli_query($con, $sqlReuniones); 
     $i=1;
+    */ 
     
-    while ($rowReu = mysqli_fetch_array($queryReuniones))
+    //while ($rowReu = mysqli_fetch_array($queryReuniones))
+    while ($i <= 10)
     {
-      $s_cuantosReuniones = $rowReu['cuantosReuniones'];
-      $nombreEntidad      = $rowReu['nombreEntidad'];    
+      $entidad[$i] = "ENT: " . $i;    
+      $s_cuantosReuniones = $i; //$rowReu['cuantosReuniones'];
+      $nombreEntidad      = $nombreEntidad;  //$rowReu['nombreEntidad'];    
      
-      $reu[$i]= "{ name:'".$nombreEntidad."', y:" . $s_cuantosReuniones."},";	  
+      $reu[$i]= "{ name:'".$entidad[$i]."', y:" . $s_cuantosReuniones."},";	  
+      //$reu[$i]= "{ name:'".$nombreEntidad."', y:" . $s_cuantosReuniones."},";	  
       $i=$i+1; 
     }//while valores       
-
+   
 
  ?>
  
