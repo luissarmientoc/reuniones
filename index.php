@@ -18,13 +18,15 @@
 <?php
 session_start();
 $buscar    = intval($_GET['id_user']);
+$buscar    = $_GET['id_user'];
 echo "Id enviado: " . $buscar;
 echo "<br>";
 
 
 //http://ecosistemasesp.unp.gov.co/usuarios/api/usuario/
 //URL de la API de lectura
-$url = 'https://softmakr.com/reuniones/config/usuarios.txt';
+//$url = 'https://softmakr.com/reuniones/config/usuarios.txt';
+$url = 'ecosistemasesp.unp.gov.co/reuniones/config/usuarios.txt';
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,$url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
