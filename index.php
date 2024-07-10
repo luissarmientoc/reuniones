@@ -18,7 +18,7 @@
 <?php
 session_start();
 $buscar    = intval($_GET['id_user']);
-$buscar    = $_GET['id_user'];
+//$buscar    = $_GET['id_user'];
 echo "Id enviado: " . $buscar;
 echo "<br>";
 
