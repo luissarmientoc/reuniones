@@ -31,12 +31,14 @@
     echo "Conectado: ";
     
     
-    /*
+     
     // Ejemplo de consulta SELECT
-    $stmt = $pdo->query('SELECT * FROM tabla');
+    $stmt = $pdo->query('SELECT * FROM reu_categorias');
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo "Nombre: {$row['nombre']}<br />";
     }
+    
+    /*
     
     // Ejemplo de inserción de datos
     $stmt = $pdo->prepare('INSERT INTO tabla (nombre, edad) VALUES (?, ?)');
