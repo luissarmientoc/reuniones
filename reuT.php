@@ -9,6 +9,7 @@
   
   $active_marca="active";  
   $title="UNP | Reuniones";    
+  $nombreUsuario = $_SESSION['user_firstname'] ." " .$_SESSION['user_lastname']; 
 ?>
 
 <!DOCTYPE html>
@@ -157,17 +158,16 @@
             <!-- Page Content Holder -->
             <div id="content">  
                   <!--- MENU CERRAR ---->
-                  <nav class="navbar navbar-default">
-                      <div class="container-fluid">
-                          <div class="navbar-header">
-                              <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                                  <i class="fas fa-arrows-alt-h"></i>
-                                  <span>Menú</span>                                
-                              </button>              
+                     <nav class="navbar navbar-default">  
+                         <div class="container-fluid" style="background-color:#fff;">
+                             <div class="navbar-header">
+                                 <img src="img/usuario_ap.svg" class="img-circle" alt="Cinque Terre" width=40px; > 
+                                 <span style="color:#002857; font-size:1.3em; font-weight:600; "><?=$nombreUsuario?> </span>  
+                                 <p style="color:grey; font-size:14px; font-family:snas-serif:">Fecha de último ingreso: </p>
+                             </div>
                           </div>
-                       </div>
-                  </nav>
-                  <!--- FIN MENU CERRAR ---->
+                    <!-- </nav>  ---->
+                <!--- FIN MENU CERRAR ---->
                   
                   <!--- BARRA DE TITULO ---->
                   <div class="fondo"> 

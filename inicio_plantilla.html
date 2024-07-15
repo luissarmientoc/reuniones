@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'sistema/css/menu_lateral.css' %}">
+
+  <!-- Estilos de Alertify -->
+  <link rel="stylesheet" href="{% static 'sistema/css/alertas/alertify.css' %}"/>
+  <link rel="stylesheet" href="{% static 'sistema/css/alertas/themes/bootstrap.css' %}"/>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <script src="https://kit.fontawesome.com/48301afa55.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous">
+  </script>
+    
+</head>
+
+  <body class="container-fluid">
+      
+    <div class="sidebar-bar-panel">
+
+      <div class="logo_details">
+        <div class="logo_name" style="padding-left: 15px; font-size: 15px;">SUBDIRECCIÓN ESPECIALIZADA</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+
+      <ul class="nav-list-panel">
+        <li>
+          <a href="{% url 'inicio:home'%}">
+            <i class='bx bx-home'></i>
+            <span class="link_name">Inicio</span>
+          </a>
+          <span class="tooltip">Inicio</span>
+        </li>
+        <li>
+          <a href="https://www.unp.gov.co/">
+            <i class='bx bx-link-alt'></i>
+            <span class="link_name">Unidad Nacional de Protección</span>
+          </a>
+          <span class="tooltip">Portal de la Unidad Nacional de Protección</span>
+        </li>
+        <li>
+          <a href="https://login.microsoftonline.com/common/oauth2/authorize?client_id=00000002-0000-0ff1-ce00-000000000000&redirect_uri=https%3a%2f%2foutlook.office365.com%2fowa%2f&resource=00000002-0000-0ff1-ce00-000000000000&response_mode=form_post&response_type=code+id_token&scope=openid&msafed=1&msaredir=1&client-request-id=f8488f2f-33b7-d769-3dc8-fe71d263f531&protectedtoken=true&claims=%7b%22id_token%22%3a%7b%22xms_cc%22%3a%7b%22values%22%3a%5b%22CP1%22%5d%7d%7d%7d&nonce=638372347486593361.36439678-d731-49f6-a49f-cc0594f2abb0&state=Dcs7EoAgDEVR0HE5kc8LCVkO4NBaun1T3NPdGEI4vcOL2Qkq6NAKVu7SDJByQxgm2ulRFGLbQsOltXIz3nXMmaO_V3q_kX4">
+            <i class='bx bx-envelope' ></i>
+            <span class="link_name">Acceso a correo institucional</span>
+          </a>
+          <span class="tooltip">Acceso a correo institucional</span>
+        </li>
+        <li>
+          <a href="http://intranet.unp.gov.co/">
+            <i class='bx bxl-redux'></i>
+            <span class="link_name">Acceso directo a Intranet</span>
+          </a>
+          <span class="tooltip">Acceso directo a Intranet</span>
+        </li>
+        <li>
+          <a href="https://mesadeservicios.unp.gov.co/HEAT/">
+            <i class='bx bx-error-circle'></i>
+            <span class="link_name">Mesa de servicios (UNP)</span>
+          </a>
+          <span class="tooltip">Mesa de servicios (UNP)</span>
+        </li>
+        <li>
+          {% if user.is_authenticated %}
+            <a href="{% url 'usuarios:actualizarcontrasena' user.id %}">
+              <i class='bx bx-lock-alt'></i>
+              <span class="link_name">Actualizar contraseña</span>
+            </a>
+            <span class="tooltip">Actualizar contraseña</span>
+          {% endif %}
+        </li>
+        <li>
+          {% if user.is_authenticated %}
+          <a href="http://ecosistemasesp.unp.gov.co/reuniones/?id_user={{ user.id }}">
+            <i class='bx bxs-analyse'></i>
+            <span class="link_name">Reuniones</span>
+          </a>
+          <span class="tooltip">Reuniones</span>
+          {% endif %}
+        </li>
+      
+        <li class="profile">
+          {% if user.is_authenticated %}
+            <a href="{% url 'inicio:salir' %}">
+              <i class="bx bx-log-out" id="log_out" style="padding-top: 9px; font-weight: 500;"></i>
+              <span class="link_name">Cerrar sesión / Salir </span>
+            </a>
+            <span class="tooltip">Cerrar sesión</span>
+          {% else %}  
+            <a href="{% url 'inicio:ingresar' %}";">
+              <i class="bx bx-log-in" id="log_out" style="padding-top: 9px; font-weight: 500;"></i>
+              <span class="link_name">Iniciar sesión / Ingresar</span>
+            </a>
+            <span class="tooltip">Iniciar sesión</span>
+          {% endif %}
+        </li>
+
+      </ul>
+    </div>
+
+<section class="home-section">
+
+{% block content %}
+{% endblock %}
+
+</section>
+        
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.js"></script>
+<script src="{% static 'inicio/js/inicio_plantilla.js' %}"></script>
+
+</html>
