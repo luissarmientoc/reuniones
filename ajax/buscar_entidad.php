@@ -123,10 +123,7 @@
 		*/
 		
 		
-		$stmt = $pdo->query('SELECT * FROM reu_categorias');
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "Nombre: {$row['des_categoriareunion']}<br />";
-    }
+		$pdo = new PDO($dsn);
 		//main query to fetch the data
 		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
 	    echo "sql..." . $sql;
