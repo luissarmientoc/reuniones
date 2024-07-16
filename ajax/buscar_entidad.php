@@ -77,7 +77,7 @@
             echo $fila['nombreentidad'];
             echo '<br>';
         }
-*/ 
+ 
            $sWhere = "";
 		    $sWhere = "WHERE (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
@@ -86,10 +86,8 @@
 			}
 			$sWhere = substr_replace( $sWhere, "", -3 );
 			$sWhere .= ')';
-		
-		  //if ($disenador>0){
-		  //    $sWhere .=" and idDisenador='$disenador'";
-		  // }	
+		*/
+		   	
 		 
 		$sWhere.=" order by nombreentidad";
 		include 'pagination.php'; //include pagination file
