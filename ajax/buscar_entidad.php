@@ -58,7 +58,7 @@
 		 $aColumns = array('nombreentidad');//Columnas de busqueda
 		 $sTable = "reu_entidades";
 		 $sWhere = "";
-		*/ 
+		
 		// Limpiar y obtener el valor de 'q' de la solicitud ($_REQUEST)
         $q = strip_tags($_REQUEST['q'], ENT_QUOTES);
         
@@ -77,7 +77,8 @@
             echo $fila['nombreentidad'];
             echo '<br>';
         }
-
+*/ 
+           $sWhere = "";
 		    $sWhere = "WHERE (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 			{
@@ -104,6 +105,9 @@
 		$count_query = $pdo->query($sql);
 		$row = $count_query->fetch(PDO::FETCH_ASSOC);
 		$numrows = $row['cuantos'];
+		echo '<br>';
+		echo "num_rows.." .  $numrows;
+		echo '<br>';
 		// Calcular el total de páginas
         $total_pages = ceil($numrows / $per_page);
         $reload = './marcas.php';
@@ -119,6 +123,7 @@
 		//main query to fetch the data
 		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
 	    echo "sql..." . $sql;
+	    echo '<br>';
 	    $stmt = $pdo->query($sql);
 	    
 		//$query = mysqli_query($con, $sql);
