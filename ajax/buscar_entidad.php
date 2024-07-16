@@ -53,12 +53,31 @@
 	}
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
-         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-                  
+		/*
+		 $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
 		 $aColumns = array('nombreentidad');//Columnas de busqueda
 		 $sTable = "reu_entidades";
 		 $sWhere = "";
-		 
+		*/ 
+		// Limpiar y obtener el valor de 'q' de la solicitud ($_REQUEST)
+        $q = strip_tags($_REQUEST['q'], ENT_QUOTES);
+        
+        // consulta preparada con PDO
+        $sql = "SELECT * FROM $sTable WHERE columna = :q";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':q', $q, PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Obtener resultados
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Iterar sobre los resultados (ejemplo)
+        foreach ($resultados as $fila) {
+            // Procesar cada fila
+            echo $fila['nombreentidad'];
+            echo '<br>';
+        }
+
 		    $sWhere = "WHERE (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 			{

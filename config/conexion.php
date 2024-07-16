@@ -21,9 +21,9 @@
       echo "try";
     // Cadena de conexión
     $dsn = "pgsql:host=$H;port=$P;dbname=$N;user=$U;password=$C";
-    echo '<br>';
-    echo "linea..uuuuu..." . $dsn;
-    echo '<br>';
+   // echo '<br>';
+  //    echo "linea..uuuuu..." . $dsn;
+//    echo '<br>';
     // Crear una nueva instancia de conexión PDO
 //    $pdo = new PDO($dsn);
     
