@@ -19,13 +19,10 @@
           $q = strip_tags($_REQUEST['q'], ENT_QUOTES);
         
         // consulta preparada con PDO
-        $sql = "SELECT * FROM $sTable WHERE columna = :q";
+        $sql = "SELECT * FROM $sTable WHERE columna = $q";
         echo $sql;
         
-        $stmt = $pdo->query('SELECT * FROM $sTable');
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-               echo "Nombre: {$row['nombrentidad']}<br />";
-        }
+        
         
 	}
 	
