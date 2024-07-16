@@ -11,9 +11,22 @@
 	if($action == 'ajax'){
 	
 		 //$q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-		 $aColumns = array('nombreentidad');//Columnas de busqueda
-		 $sTable = "reu_entidades";
-		 $sWhere = "";
+		 $ID=30;
+		 $ENT="TTTTTTTTT";
+		 
+		 $sql = "INSERT INTO reu_entidades (identidad, nombreentidad) VALUES (:identidad, :nombreentidad)";
+		 $stmt = $pdo->prepare($sql);
+		 
+		
+
+		 // Asignar valores a los marcadores de posición y ejecutar la consulta
+		 $stmt->bindParam(':identidad', $ID, PDO::PARAM_STR);
+		 $stmt->bindParam(':apellido', $ENT, PDO::PARAM_STR);
+		 $stmt->execute();
+		 
+		  
+		 
+		  
 		
 		// Limpiar y obtener el valor de 'q' de la solicitud ($_REQUEST)
           $q = strip_tags($_REQUEST['q'], ENT_QUOTES);
