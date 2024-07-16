@@ -122,10 +122,10 @@
 		$reload = './marcas.php';
 		*/
 		
-		
+	 
 		$pdo = new PDO($dsn);
 		//main query to fetch the data
-		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
+		$sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
 	    echo "sql..." . $sql;
 	    echo '<br>';
 	    $stmt = $pdo->query($sql);
