@@ -1,19 +1,23 @@
 <?php
-/*Datos de conexion a la base de datos*/
-/*
-define('DB_HOST', '181.49.245.26:3306');//DB_HOST: 181.49.245.26:3306  generalmente suele ser "127.0.0.1"
-define('DB_NAME', 'unp_reuniones');//Nombre de la base de datos
-define('DB_USER', 'usr_reuniones');//Usuario de tu base de datos
-define('DB_PASS', 'Odisea1520sql');//ContraseÃ±a del usuario de la base de datos
-*/
-?>
-
-<?php
+ 
 /*Datos de conexion a la base de datos*/
 
-define('DB_HOST', 'localhost');//DB_HOST:  generalmente suele ser "127.0.0.1"
-define('DB_USER', 'renacerv_usbd_seguimiento');//Usuario de tu base de datos
-define('DB_PASS', 'Sesp@2023$Seg%');//Contrase«Ða del usuario de la base de datos
-define('DB_NAME', 'renacerv_sesp_seguimiento');//Nombre de la base de datos
+  define('POSTGRESQL_HOST', '172.16.20.121');
+  define('POSTGRESQL_PORT', '5432');
+  define('POSTGRESQL_NAME', 'unp_reuniones');
+  define('POSTGRESQL_USER', 'usr_reuniones');
+  define('POSTGRESQL_PASS', 'Odisea1520sql');
+  
+  /*
+  echo "1.." . POSTGRESQL_HOST;
+  echo '<br>';
+  echo "2.." . POSTGRESQL_PORT;
+  echo '<br>';
+  echo "3.." . POSTGRESQL_NAME;
+  echo '<br>';
+  echo "4.." . POSTGRESQL_USER;
+  echo '<br>';
+  echo "5.." . POSTGRESQL_PASS;
+  */
 
 ?>

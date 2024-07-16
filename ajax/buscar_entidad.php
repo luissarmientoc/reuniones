@@ -6,11 +6,24 @@
  	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
  	 
 	if (isset($_GET['id'])){
+		
 		$id_identidad=intval($_GET['id']);
-		$query=mysqli_query($con, "select * from reu_reuniones where idEntidad='".$id_identidad."'");
+		/*
+		$query=mysqli_query($con, "select * from reu_reuniones where identidad='".$id_identidad."'");
 		$count=mysqli_num_rows($query);
+		
+		$sql = "SELECT * FROM reu_reuniones WHERE identidad = $id_identidad";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id_identidad', $id_identidad, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Contar el número de filas obtenidas
+        $count = $stmt->rowCount();
+        */
+        echo "cuantos.." . $count; 
+
 		if ($count==0){
-		    $borrar="DELETE FROM reu_entidades  WHERE idEntidad='".$id_identidad."'";
+		    $borrar="DELETE FROM reu_entidades  WHERE identidad='".$id_identidad."'";
 		    //echo $borrar;
 			if ($delete1=mysqli_query($con,$borrar)){
 			?>
@@ -37,16 +50,12 @@
 			</div>
 			<?php
 		}
-		
-		
-		
 	}
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-        //$disenador =intval($_REQUEST['id_disenador']); 
-                 
-		 $aColumns = array('nombreEntidad');//Columnas de busqueda
+                  
+		 $aColumns = array('nombreentidad');//Columnas de busqueda
 		 $sTable = "reu_entidades";
 		 $sWhere = "";
 		 
@@ -62,7 +71,7 @@
 		  //    $sWhere .=" and idDisenador='$disenador'";
 		  // }	
 		 
-		$sWhere.=" order by nombreEntidad";
+		$sWhere.=" order by nombreentidad";
 		include 'pagination.php'; //include pagination file
 		//pagination variables
 		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
@@ -70,16 +79,32 @@
 		$adjacents  = 4; //gap between pages after number of adjacents
 		$offset = ($page - 1) * $per_page;
 		//Count the total number of row in your table*/
+		
+		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$sql="SELECT COUNT(*) AS cuantos FROM reu_entidades";
+		$count_query = $pdo->query($sql);
+		$row = $count_query->fetch(PDO::FETCH_ASSOC);
+		$numrows = $row['cuantos'];
+		// Calcular el total de páginas
+        $total_pages = ceil($numrows / $per_page);
+        $reload = './marcas.php';
+		
+		/*
 		$count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM $sTable  $sWhere");
 		$row= mysqli_fetch_array($count_query);
 		$numrows = $row['numrows'];
 		$total_pages = ceil($numrows/$per_page);
 		$reload = './marcas.php';
+		*/
+		
 		//main query to fetch the data
 		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
-	    //echo "sql..." . $sql;
-		$query = mysqli_query($con, $sql);
+	    echo "sql..." . $sql;
+	    $stmt = $pdo->query($sql);
+	    
+		//$query = mysqli_query($con, $sql);
 		//loop through fetched data
+		
 		if ($numrows>0){
 			
 			?>
@@ -91,9 +116,10 @@
 					<th class='text-center'>Acciones</th>
 				</tr>
 				<?php
-				while ($row=mysqli_fetch_array($query)){
-						$idEntidad=$row['idEntidad'];
-						$nombreEntidad=$row['nombreEntidad'];
+				//while ($row=mysqli_fetch_array($query)){
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {    
+						$idEntidad=$row['identidad'];
+						$nombreEntidad=$row['nombreentidad'];
 						 
  					    $lv   = $idEntidad. "/MOD1234567890qwertyuiopasdfghjkl";
 					    $lVDX = base64_encode($lv);

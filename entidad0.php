@@ -31,10 +31,36 @@
    include("navbar.php");
   
   ////  trae cantidad de marcas registradas
+   /*
    $sql="select count(*) as cuantos from reu_entidades";
    $query = mysqli_query($con, $sql);  
    $row=mysqli_fetch_array($query);
    $s_cuantos = $row['cuantos'];
+  */
+  
+    // Crear una nueva instancia de conexión PDO
+    $pdo = new PDO($dsn);
+    
+    // Configurar el modo de error para excepciones
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    echo "Conectado: ";
+     
+    echo '<br>';
+    // Consulta SQL
+    $sql = "SELECT COUNT(*) AS cuantos FROM reu_entidades";
+    echo $sql;
+    echo '<br>';
+    // Ejecutar la consulta
+    $query = $pdo->query($sql);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $s_cuantos = $row['cuantos'];
+    echo '<br>';
+    echo 'cuantos..' . $s_cuantos;
+   
+   
   ?>
   
             <!-- Page Content Holder -->
