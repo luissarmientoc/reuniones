@@ -58,7 +58,7 @@
     // Guardar el resultado en una variable
     $s_cuantos = $row['cuantos'];
     echo '<br>';
-    echo 'cuantos..' . $s_cuantos;
+    echo 'cuantos..entidad..' . $s_cuantos;
    
    
   ?>

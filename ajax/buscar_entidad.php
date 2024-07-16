@@ -97,7 +97,8 @@
 		$adjacents  = 4; //gap between pages after number of adjacents
 		$offset = ($page - 1) * $per_page;
 		//Count the total number of row in your table*/
-		
+		// Crear una nueva instancia de conexión PDO
+        $pdo = new PDO($dsn);
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$sql="SELECT COUNT(*) AS cuantos FROM reu_entidades";
 		$count_query = $pdo->query($sql);
