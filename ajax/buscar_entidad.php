@@ -101,6 +101,9 @@
         $pdo = new PDO($dsn);
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$sql="SELECT COUNT(*) AS cuantos FROM reu_entidades";
+		echo '<br>';
+		echo "el sql ..". $sql;
+		echo '<br>';
 		$count_query = $pdo->query($sql);
 		$row = $count_query->fetch(PDO::FETCH_ASSOC);
 		$numrows = $row['cuantos'];
@@ -119,6 +122,11 @@
 		$reload = './marcas.php';
 		*/
 		
+		
+		$stmt = $pdo->query('SELECT * FROM reu_categorias');
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo "Nombre: {$row['des_categoriareunion']}<br />";
+    }
 		//main query to fetch the data
 		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
 	    echo "sql..." . $sql;
@@ -140,7 +148,8 @@
 				</tr>
 				<?php
 				//while ($row=mysqli_fetch_array($query)){
-				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {    
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "Nombre: {$row['nombreentidad']}<br />";   
 						$idEntidad=$row['identidad'];
 						$nombreEntidad=$row['nombreentidad'];
 						 
