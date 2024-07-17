@@ -104,9 +104,6 @@
         $s_maximo = $row['maximo'];
         
         $s_idEntidad     = $s_maximo+1;
-        echo '<br>';
-        echo "ww..." . $s_idEntidad;
-        echo '<br>';
         
         // Inserción de datos
         $stmt = $pdo->prepare('INSERT INTO reu_entidades (identidad, nombreentidad) VALUES (?, ?)');
