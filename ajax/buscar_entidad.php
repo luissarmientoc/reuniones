@@ -37,17 +37,25 @@
         
         if($action == 'ajax')
         {
-           
-           // Limpiar y escapar la cadena de texto (strip_tags y htmlentities)
-           $q = strip_tags($_REQUEST['q']);
-           $q = htmlentities($q, ENT_QUOTES, 'UTF-8');
+            // Limpiar y escapar la cadena de texto (strip_tags y htmlentities)
+            $q = strip_tags($_REQUEST['q']);
+            $q = htmlentities($q, ENT_QUOTES, 'UTF-8');
         
-         echo '<br>';
-         echo "la q..." . $q;
-         echo '<br>';
-         
-            
-            
+            echo '<br>';
+            echo "la q..." . $q;
+            echo '<br>';
+           
+            $aColumns = array('nombreentidad');//Columnas de busqueda
+            $sTable = "reu_entidades";
+		    $sWhere = "";
+		 
+		    $sWhere = "WHERE (";
+			for ( $i=0 ; $i<count($aColumns) ; $i++ )
+			{
+				$sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+		    }
+		    $sWhere = substr_replace( $sWhere, "", -3 );
+		    $sWhere .= ')';
             
            // Configurar el modo de error para excepciones
            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
