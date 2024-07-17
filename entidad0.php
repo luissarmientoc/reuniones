@@ -43,24 +43,15 @@
     
     // Configurar el modo de error para excepciones
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    echo "Conectado: ";
-     
-    echo '<br>';
+    //echo "Conectado: ";
     // Consulta SQL
     $sql = "SELECT COUNT(*) AS cuantos FROM reu_entidades";
-    echo $sql;
-    echo '<br>';
     // Ejecutar la consulta
     $query = $pdo->query($sql);
     // Obtener el resultado
     $row = $query->fetch(PDO::FETCH_ASSOC);
     // Guardar el resultado en una variable
     $s_cuantos = $row['cuantos'];
-    echo '<br>';
-    echo 'cuantos..entidad..' . $s_cuantos;
-   
-   
   ?>
   
             <!-- Page Content Holder -->

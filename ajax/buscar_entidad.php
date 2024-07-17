@@ -46,7 +46,9 @@
 				</tr>
     <?php
                 // Consulta tabla base
-               $sql="SELECT * FROM " . $sTable ;
+               //$sql="SELECT * FROM " . $sTable ;
+               
+               $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
                $stmt = $pdo->query($sql);
                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $idEntidad=$row['identidad'];
