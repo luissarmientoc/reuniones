@@ -11,7 +11,7 @@
       echo '<br>';
       echo "try";
       // Cadena de conexión
-      $dsn = "pgsql:host=$POSTGRESQL_HOST;port=$POSTGRESQL_PORT;dbname=$POSTGRESQL_NAME;user=$POSTGRESQL_USER;password=$POSTGRESQL_PASS";
+      //$dsn = "pgsql:host=$POSTGRESQL_HOST;port=$POSTGRESQL_PORT;dbname=$POSTGRESQL_NAME;user=$POSTGRESQL_USER;password=$POSTGRESQL_PASS";
        echo '<br>';  
        echo "linea.." . $dsn;
       echo '<br>';
