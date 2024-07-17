@@ -47,12 +47,12 @@
       $s_existe = 1;
       $boton  = "Actualizar";
       
-      $sql = "select * from reu_entidades where idEntidad=$s_idEntidad";
+      $sql = "select * from reu_entidades where identidad=$s_idEntidad";
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       //echo "Nombre: {$row['des_categoriareunion']}<br />";
-      $s_idEntidad     = $row['idEntidad'];
-      $s_nombreEntidad = $row['nombreEntidad'];
+      $s_idEntidad     = $row['identidad'];
+      $s_nombreEntidad = $row['nombreentidad'];
     
     }  
     else
