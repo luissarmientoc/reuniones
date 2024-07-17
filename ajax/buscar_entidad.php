@@ -71,7 +71,7 @@
 	       // Consulta SQL para contar las filas
            $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere";
            echo '<br>';
-           echo $sql;
+           echo "el primero..." . $sql;
            echo '<br>';
            $stmt = $pdo->query($sql);
            // Obtener el resultado (única fila)
@@ -96,6 +96,7 @@
                   //$sql="SELECT * FROM " . $sTable ;
                
                   $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
+                  echo "adentro.." . $sql;
                   $stmt = $pdo->query($sql);
                   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                        $idEntidad=$row['identidad'];
