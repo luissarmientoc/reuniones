@@ -1,14 +1,27 @@
 <?php
+    echo '<br>';
+    echo "entra a uno..";
+    echo '<br>';
  	//include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
- 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
- 	 
-	if (isset($_GET['id'])){
-		$id_identidad=intval($_GET['id']);
-	}
-	if($action == 'ajax'){
+ 	
+ 	try {
+      echo '<br>';
+      echo "try";
+      // Cadena de conexión
+      $dsn = "pgsql:host=$POSTGRESQL_HOST;port=$POSTGRESQL_PORT;dbname=$POSTGRESQL_NAME;user=$POSTGRESQL_USER;password=$POSTGRESQL_PASS";
+       echo '<br>';  
+       echo "linea.." . $dsn;
+      echo '<br>';
+       // Crear una nueva instancia de conexión PDO
+      $pdo = new PDO($dsn);
+    
+    // Configurar el modo de error para excepciones
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    echo "Conectado: ";
 	    $sTable = "reu_entidades";
 		$sWhere = "";
 		 
@@ -40,9 +53,12 @@
         }
         
         
+ 	}catch (PDOException $e) {
+    echo "Error de conexión: " . $e->getMessage();
+}
+
         
         
-        
-	}
+	
 	
 ?>

@@ -30,7 +30,6 @@
     
     echo "Conectado: ";
     
-    
      
     // Ejemplo de consulta SELECT
     $stmt = $pdo->query('SELECT * FROM reu_categorias');
@@ -55,7 +54,7 @@
     $id_entidad = 4;  // ID del usuario a actualizar
     $nuevo_nombre = 'Melbourne'; 
 
-    $sql = "UPDATE reu_entidades SET nombreentidad = :nombreentidad WHERE identidad = :$id_entidad";
+    $sql = "UPDATE reu_entidades SET nombreentidad = :nombreentidad WHERE identidad = :identidad";
     $stmt = $pdo->prepare($sql);
     
     // Vincular parámetros
