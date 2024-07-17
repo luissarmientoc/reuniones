@@ -80,10 +80,17 @@
       ///MODIFICA
       if ($s_existe == "1")  
       {
-        $sql="UPDATE reu_entidades SET nombreEntidad ='".$s_nombreEntidad."' WHERE idEntidad='".$s_idEntidad."'";
-        //$query_update = mysqli_query($con,$sql);  
+         $sql = "UPDATE reu_entidades SET nombreentidad = :nombreentidad WHERE identidad = :identidad";
+         $stmt = $pdo->prepare($sql);
+    
+         // Vincular parámetros
+         $stmt->bindParam(':nombreentidad', $s_nombreEntidad, PDO::PARAM_STR);
+         $stmt->bindParam(':identidad', $s_idEntidad, PDO::PARAM_INT);
+    
+         // Ejecutar la consulta
+         $stmt->execute();
         
-        $mensaje=" <b>Atención!</b> Actualización exitosa";
+         $mensaje=" <b>Atención!</b> Actualización exitosa";
       }  
       
       ///ADICIONA
