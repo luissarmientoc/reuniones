@@ -30,7 +30,7 @@
     // Configurar el modo de error para excepciones
 //    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    echo "Conectado: ";
+    //echo "Conectado: ";
     
     /*
      
