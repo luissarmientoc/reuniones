@@ -10,9 +10,7 @@
     
         // Configurar el modo de error para excepciones
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-        echo "Conectado: ";
-	    $sTable = "reu_entidades";
+        $sTable = "reu_entidades";
 		$sWhere = "";
 		 
 		$sWhere.=" order by nombreentidad";
