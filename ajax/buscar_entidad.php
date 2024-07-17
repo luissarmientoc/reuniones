@@ -5,6 +5,14 @@
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
  	
  	try {
+ 	    $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+	    if (isset($_GET['id'])){
+		   $id_identidad=intval($_GET['id']);
+		   echo '<br>';
+		   echo "la entidad..";
+		   echo '<br>';
+	    }   
+ 	    
         // Crear una nueva instancia de conexión PDO
         $pdo = new PDO($dsn);
     
