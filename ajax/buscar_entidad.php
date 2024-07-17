@@ -70,7 +70,7 @@
 		   $offset = ($page - 1) * $per_page;
 		
 	       // Consulta SQL para contar las filas
-           $sql = "SELECT COUNT(*) AS total_filas FROM $sTable";
+           $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere";
            $stmt = $pdo->query($sql);
            // Obtener el resultado (única fila)
            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
