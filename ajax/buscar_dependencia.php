@@ -133,7 +133,7 @@
                         //echo "Nombrexxxxxxx: {$row['nombreentidad']}<br />";
         ?>
                         <tr>	
-  		   			      <td><?php echo $nombreEntidad; ?></td>
+  		   			      <td><?php echo $nombreDependencia; ?></td>
 					   
    					      <td class='text-center'>
 					        <a href="dependencia1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar entidad' ><i class="glyphicon glyphicon-edit"></i></a> 
