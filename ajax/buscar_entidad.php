@@ -59,8 +59,7 @@
             
            // Configurar el modo de error para excepciones
            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		   $sWhere = "";
-		 
+		    
 		   $sWhere.=" order by nombreentidad";
 		   include 'pagination.php'; //include pagination file
 		   //paginación variables
@@ -71,6 +70,9 @@
 		
 	       // Consulta SQL para contar las filas
            $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere";
+           echo '<br>';
+           echo $sql;
+           echo '<br>';
            $stmt = $pdo->query($sql);
            // Obtener el resultado (única fila)
            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
