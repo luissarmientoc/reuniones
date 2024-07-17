@@ -23,7 +23,6 @@
                //borrar entidad
                // Consulta SQL de eliminación con marcador de posición
                $sql = "DELETE FROM $sTable WHERE identidad = :id_identidad";
-               echo "ww." .$sql;
                $stmt = $pdo->prepare($sql);
                // Vincular parámetro
                $stmt->bindParam(':id_identidad', $id_identidad, PDO::PARAM_INT);
@@ -33,13 +32,7 @@
                
                // Verificar el número de filas afectadas (opcional)
                //$count = $stmt->rowCount();
-               
-               
            }
-           
-           echo '<br>';
-		   echo "cuantos.." . $cuantos;
-		   echo '<br>';
 	    } 
         
     
@@ -94,7 +87,7 @@
 					   
 					   <td class='text-center'>
 					     <a href="entidad1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar entidad' ><i class="glyphicon glyphicon-edit"></i></a> 
-					     <a href="#" class='btn btn-default' title='Borrar grupo' onclick="eliminar('<?php echo $idEntidad; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
+					     <a href="#" class='btn btn-default' title='Borrar entidad' onclick="eliminar('<?php echo $idEntidad; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					    </td>
 					</tr>
     <?php

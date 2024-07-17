@@ -96,14 +96,17 @@
       ///ADICIONA
       if ($s_existe == "0")
       {
-        $sql1 = "select max(idEntidad) as maximo from reu_entidades ";
-        //$query1 = mysqli_query($con, $sql1);  
-        //$row1=mysqli_fetch_array($query1);
+        $sql = "SELECT max(identidad) as maximo FROM reu_entidades";
+        $stmt = $pdo->query($sql);
+        // Obtener el resultado (única fila)
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        $s_idEntidad     = $row1[maximo]+1;
-        $sql="INSERT INTO reu_entidades (idEntidad, nombreEntidad) VALUES ('$s_idEntidad', '$s_nombreEntidad' )";
+        $s_idEntidad     = $resultado[maximo]+1;
         
-        //$query_new_insert = mysqli_query($con,$sql);
+        // Inserción de datos
+        $stmt = $pdo->prepare('INSERT INTO reu_entidades (identidad, nombreentidad) VALUES (?, ?)');
+        $stmt->execute([$s_idEntidad, $s_nombreEntidad]);
+        
         $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
         
         $s_existe ="1";
@@ -157,7 +160,6 @@
         <?php 
             }
         ?>
-                  
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">			 
                <div class="panel-body">
                   <div class="row">

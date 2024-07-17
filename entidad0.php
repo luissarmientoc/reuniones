@@ -86,7 +86,7 @@
             <div class="panel panel-info">
 	          <div class="panel-heading">
         	    <div class="btn-group pull-right">        	    
-          	      <a href="entidad1?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nueva Entidad</a>
+          	      <a href="entidad1.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nueva Entidad</a>
 	            </div>
         	  <h4><i class='glyphicon glyphicon-search'></i> Buscar Entidad</h4>
 	        </div>
