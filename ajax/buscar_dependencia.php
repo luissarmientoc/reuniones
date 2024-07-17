@@ -116,15 +116,15 @@
                 <div class="table-responsive">
 			      <table class='tablaResponsive table table-striped table-bordered table-hover'>
 				    <tr  class="info">
-				   	   <th>Entidad</th>
+				   	   <th>Dependencia</th>
 					   <th class='text-center'>Acciones</th>
 				    </tr>
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $idDependencia=$row['idDependencia'];
-						$nombreDependencia=$row['nombreDependencia'];
+                        $idDependencia=$row['iddependencia'];
+						$nombreDependencia=$row['nombredependencia'];
 						 
  					    $lv   = $idDependencia. "/MOD1234567890qwertyuiopasdfghjkl";
 					    $lVDX = base64_encode($lv);
