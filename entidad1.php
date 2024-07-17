@@ -46,12 +46,14 @@
       $titulo = "MODIFICAR ENTIDAD";
       $s_existe = 1;
       $boton  = "Actualizar";
-    
-      $stmt = $pdo->query('select * from reu_entidades where idEntidad=$s_idEntidad');
+      
+      $sql = "select * from reu_entidades where idEntidad=$s_idEntidad";
+      $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
-        //echo "Nombre: {$row['des_categoriareunion']}<br />";
-        $s_idEntidad     = $row['idEntidad'];
-        $s_nombreEntidad = $row['nombreEntidad'];
+      //echo "Nombre: {$row['des_categoriareunion']}<br />";
+      $s_idEntidad     = $row['idEntidad'];
+      $s_nombreEntidad = $row['nombreEntidad'];
+    
     }  
     else
     {
@@ -74,19 +76,12 @@
      //$s_fecha  = date("Y-m-d",time());
      //$s_fecha  = date("Y/m/d H:i:s");
      $date_added=date("Y-m-d H:i:s");
-     
-      /////////////////////////////////////////////  
-      ////// VERIFICA A EXISTENCIA DE LA marca
-      /////////////////////////////////////////////
-      //$sql   = "SELECT count(*) AS cuantos FROM marcas WHERE id_marca = $s_id_marca";
-      //$query = mysqli_query($con, $sql);  
-      //$row   = mysqli_fetch_array($query);
       
       ///MODIFICA
       if ($s_existe == "1")  
       {
         $sql="UPDATE reu_entidades SET nombreEntidad ='".$s_nombreEntidad."' WHERE idEntidad='".$s_idEntidad."'";
-        $query_update = mysqli_query($con,$sql);  
+        //$query_update = mysqli_query($con,$sql);  
         
         $mensaje=" <b>Atención!</b> Actualización exitosa";
       }  
@@ -95,13 +90,13 @@
       if ($s_existe == "0")
       {
         $sql1 = "select max(idEntidad) as maximo from reu_entidades ";
-        $query1 = mysqli_query($con, $sql1);  
-        $row1=mysqli_fetch_array($query1);
+        //$query1 = mysqli_query($con, $sql1);  
+        //$row1=mysqli_fetch_array($query1);
         
         $s_idEntidad     = $row1[maximo]+1;
         $sql="INSERT INTO reu_entidades (idEntidad, nombreEntidad) VALUES ('$s_idEntidad', '$s_nombreEntidad' )";
         
-        $query_new_insert = mysqli_query($con,$sql);
+        //$query_new_insert = mysqli_query($con,$sql);
         $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
         
         $s_existe ="1";
