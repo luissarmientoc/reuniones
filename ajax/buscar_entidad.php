@@ -1,7 +1,4 @@
 <?php
-    echo '<br>';
-    echo "entra a uno..";
-    echo '<br>';
  	//include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
@@ -22,7 +19,7 @@
 		include 'pagination.php'; //include pagination file
 		//pagination variables
 		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-		$per_page = 10; //how much records you want to show
+		$per_page = 1; //how much records you want to show
 		$adjacents  = 4; //gap between pages after number of adjacents
 		$offset = ($page - 1) * $per_page;
 		
@@ -57,7 +54,7 @@
 				    $lv   = $idEntidad. "/MOD1234567890qwertyuiopasdfghjkl";
 				    $lVDX = base64_encode($lv);
                
-                   echo "Nombre: {$row['nombreentidad']}<br />";
+                   //echo "Nombrexxxxxxx: {$row['nombreentidad']}<br />";
     ?>
                     <tr>	
   					   <td><?php echo $nombreEntidad; ?></td>
