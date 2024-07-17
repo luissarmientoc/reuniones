@@ -8,20 +8,13 @@
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
  	
  	try {
-      echo '<br>';
-      echo "try";
-      // Cadena de conexión
-      //$dsn = "pgsql:host=$POSTGRESQL_HOST;port=$POSTGRESQL_PORT;dbname=$POSTGRESQL_NAME;user=$POSTGRESQL_USER;password=$POSTGRESQL_PASS";
-       echo '<br>';  
-       echo "linea.." . $dsn;
-      echo '<br>';
-       // Crear una nueva instancia de conexión PDO
-      $pdo = new PDO($dsn);
+        // Crear una nueva instancia de conexión PDO
+        $pdo = new PDO($dsn);
     
-    // Configurar el modo de error para excepciones
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Configurar el modo de error para excepciones
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    echo "Conectado: ";
+        echo "Conectado: ";
 	    $sTable = "reu_entidades";
 		$sWhere = "";
 		 
@@ -45,14 +38,50 @@
         
         echo "El número total de filas en la tabla es: $total_filas";
         
-        // Consulta tabla base
-        $sql="SELECT * FROM " . $sTable ;
-        $stmt = $pdo->query($sql);
-           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-               echo "Nombre: {$row['nombreentidad']}<br />";
-        }
-        
-        
+        if ($total_filas>0)
+        {
+    ?>
+            <div class="table-responsive">
+			  <table class='tablaResponsive table table-striped table-bordered table-hover'>
+				<tr  class="info">
+					<th>Entidad</th>
+					<th class='text-center'>Acciones</th>
+				</tr>
+    <?php
+                // Consulta tabla base
+               $sql="SELECT * FROM " . $sTable ;
+               $stmt = $pdo->query($sql);
+               while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $idEntidad=$row['identidad'];
+				    $nombreEntidad=$row['nombreentidad'];
+				    $lv   = $idEntidad. "/MOD1234567890qwertyuiopasdfghjkl";
+				    $lVDX = base64_encode($lv);
+               
+                   echo "Nombre: {$row['nombreentidad']}<br />";
+    ?>
+                    <tr>	
+  					   <td><?php echo $nombreEntidad; ?></td>
+					   
+					   <td class='text-center'>
+					     <a href="entidad1?LA=<?=$lVDX?>" class='btn btn-default' title='Editar entidad' ><i class="glyphicon glyphicon-edit"></i></a> 
+					     <a href="#" class='btn btn-default' title='Borrar grupo' onclick="eliminar('<?php echo $idEntidad; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
+					    </td>
+					</tr>
+    <?php
+            }//while
+    ?>        
+                    <tr>
+					   <td colspan="2">
+					      <span class="pull-right">
+					         <?php
+					           echo paginate($reload, $page, $total_pages, $adjacents);
+					         ?>
+					       </span>
+					   </td>
+				    </tr>
+			  </table>
+	<?php		  
+        }//if
  	}catch (PDOException $e) {
     echo "Error de conexión: " . $e->getMessage();
 }
