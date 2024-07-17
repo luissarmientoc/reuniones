@@ -33,7 +33,8 @@
         echo "El número total de filas en la tabla es: $total_filas";
         
         // Consulta tabla base
-        $stmt = $pdo->query('SELECT * FROM $sTable');
+        $sql="SELECT * FROM " . $sTable ;
+        $stmt = $pdo->query($sql);
            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                echo "Nombre: {$row['nombreentidad']}<br />";
         }
