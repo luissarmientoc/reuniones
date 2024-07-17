@@ -121,6 +121,7 @@
 				    </tr>
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
+                    echo $sql;
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $idDependencia=$row['iddependencia'];
