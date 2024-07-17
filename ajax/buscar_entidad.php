@@ -60,7 +60,7 @@
            // Configurar el modo de error para excepciones
            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    
-		   $sWhere.=" order by nombreentidad";
+		   $sWhere.=" group by nombreentidad order by nombreentidad";
 		   include 'pagination.php'; //include pagination file
 		   //paginación variables
 		   $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;

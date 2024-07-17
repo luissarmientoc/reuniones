@@ -98,7 +98,7 @@
         	       
         	       <div class='col-md-4'>
          		   <label>Filtrar por nombre de la entidad</label>
-	         	   <input type="text" class="form-control" id="q" placeholder="Entidad" onkeyup='load(1);'>
+	         	   <input type="text" text-transform="uppercase" class="form-control" id="q" placeholder="Entidad" onkeyup='load(1);'>
          		</div>
 	             						
         	      
