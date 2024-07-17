@@ -41,9 +41,10 @@
             $q = strip_tags($_REQUEST['q']);
             $q = htmlentities($q, ENT_QUOTES, 'UTF-8');
         
-            echo '<br>';
+            /*echo '<br>';
             echo "la q..." . $q;
-            echo '<br>';
+            echo '<br>';*/
+            $q = strtoupper($q);
            
             $aColumns = array('nombreentidad');//Columnas de busqueda
             $sTable = "reu_entidades";
@@ -70,9 +71,6 @@
 		
 	       // Consulta SQL para contar las filas
            $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere";
-           echo '<br>';
-           echo "el primero..." . $sql;
-           echo '<br>';
            $stmt = $pdo->query($sql);
            // Obtener el resultado (única fila)
            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -96,7 +94,6 @@
                   //$sql="SELECT * FROM " . $sTable ;
                
                   $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
-                  echo "adentro.." . $sql;
                   $stmt = $pdo->query($sql);
                   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                        $idEntidad=$row['identidad'];
