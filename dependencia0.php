@@ -36,7 +36,7 @@
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "Conectado: ";
     // Consulta SQL
-    $sql = "SELECT COUNT(*) AS cuantos FROM reu_dependenciaes";
+    $sql = "SELECT COUNT(*) AS cuantos FROM reu_dependencias";
     // Ejecutar la consulta
     $query = $pdo->query($sql);
     // Obtener el resultado
