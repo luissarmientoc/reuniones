@@ -96,12 +96,17 @@
       ///ADICIONA
       if ($s_existe == "0")
       {
-        $sql = "SELECT max(identidad) as maximo FROM reu_entidades";
-        $stmt = $pdo->query($sql);
-        // Obtener el resultado (única fila)
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "select * from reu_entidades where identidad=$s_idEntidad";
         
-        $s_idEntidad     = $resultado[maximo]+1;
+        $sql = "SELECT MAX(identidad) AS maximo FROM reu_entidades";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
+        
+        $s_idEntidad     = $s_maximo+1;
+        echo '<br>';
+        echo "ww..." . $s_idEntidad;
+        echo '<br>';
         
         // Inserción de datos
         $stmt = $pdo->prepare('INSERT INTO reu_entidades (identidad, nombreentidad) VALUES (?, ?)');
