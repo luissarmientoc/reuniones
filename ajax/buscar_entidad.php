@@ -7,18 +7,26 @@
 	
 	
  	try {
+ 	    // Crear una nueva instancia de conexión PDO
+        $pdo = new PDO($dsn);
+        $sTable = "reu_entidades";
+ 	    
  	    if (isset($_GET['id'])){
 		   $id_identidad=intval($_GET['id']);
-		   echo '<br>';
-		   echo "la entidad.." . $id_identidad;
+		   $sql = "SELECT COUNT(*) AS cuantos FROM $sTable";
+           $stmt = $pdo->query($sql);
+           // Obtener el resultado (única fila)
+           $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+           // Número total de filas
+           $cuantos = $resultado['cuantos'];
+           echo '<br>';
+		   echo "cuantos.." . $cuantos;
 		   echo '<br>';
 	    } 
-        // Crear una nueva instancia de conexión PDO
-        $pdo = new PDO($dsn);
+        
     
         // Configurar el modo de error para excepciones
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sTable = "reu_entidades";
 		$sWhere = "";
 		 
 		$sWhere.=" order by nombreentidad";
