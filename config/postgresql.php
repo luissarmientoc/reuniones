@@ -38,14 +38,42 @@
         echo "Nombre: {$row['des_categoriareunion']}<br />";
     }
     
-    /*
     
     // Ejemplo de inserción de datos
-    $stmt = $pdo->prepare('INSERT INTO tabla (nombre, edad) VALUES (?, ?)');
-    $stmt->execute(['Juan', 30]);
+    $ID=30;
+	$ENT="TTTTTTTTT";
+    $stmt = $pdo->prepare('INSERT INTO reu_entidades (identidad, nombreentidad) VALUES (?, ?)');
+    $stmt->execute([$ID, $ENT]);
     
+    echo '<br>';
     echo "Datos insertados correctamente.";
-    */
+    echo '<br>';
+    
+    // Ejmplo de modificación de datos
+    
+    // Consulta SQL de actualización con marcadores de posición
+    $id_entidad = 4;  // ID del usuario a actualizar
+    $nuevo_nombre = 'Melbourne'; 
+
+    $sql = "UPDATE reu_entidades SET nombreentidad = :nombreentidad WHERE identidad = :$id_entidad";
+    $stmt = $pdo->prepare($sql);
+    
+    // Vincular parámetros
+    $stmt->bindParam(':nombreentidad', $nuevo_nombre, PDO::PARAM_STR);
+    $stmt->bindParam(':identidad', $id_entidad, PDO::PARAM_INT);
+    
+    // Ejecutar la consulta
+    $stmt->execute();
+    
+    // Verificar el número de filas afectadas (opcional)
+    $count = $stmt->rowCount();
+    
+    echo "Se actualizó el apellido correctamente.";
+    
+    
+    
+    
+    
     
 } catch (PDOException $e) {
     echo "Error de conexión: " . $e->getMessage();

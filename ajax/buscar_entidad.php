@@ -9,31 +9,36 @@
 		$id_identidad=intval($_GET['id']);
 	}
 	if($action == 'ajax'){
-	
-		 //$q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-		 $ID=30;
-		 $ENT="TTTTTTTTT";
+	    $sTable = "reu_entidades";
+		$sWhere = "";
 		 
-		 $sql = "INSERT INTO reu_entidades (identidad, nombreentidad) VALUES (:identidad, :nombreentidad)";
-		 $stmt = $pdo->prepare($sql);
-		 
+		$sWhere.=" order by nombreentidad";
+		include 'pagination.php'; //include pagination file
+		//pagination variables
+		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+		$per_page = 10; //how much records you want to show
+		$adjacents  = 4; //gap between pages after number of adjacents
+		$offset = ($page - 1) * $per_page;
 		
-
-		 // Asignar valores a los marcadores de posición y ejecutar la consulta
-		 $stmt->bindParam(':identidad', $ID, PDO::PARAM_STR);
-		 $stmt->bindParam(':apellido', $ENT, PDO::PARAM_STR);
-		 $stmt->execute();
-		 
-		  
-		 
-		  
-		
-		// Limpiar y obtener el valor de 'q' de la solicitud ($_REQUEST)
-          $q = strip_tags($_REQUEST['q'], ENT_QUOTES);
+	    // Consulta SQL para contar las filas
+        $sql = "SELECT COUNT(*) AS total_filas FROM $sTable";
+        $stmt = $pdo->query($sql);
+        // Obtener el resultado (única fila)
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Número total de filas
+        $total_filas = $resultado['total_filas'];
+        $total_pages = ceil($total_filas / $per_page);
+        $reload = './marcas.php';
         
-        // consulta preparada con PDO
-        $sql = "SELECT * FROM $sTable WHERE columna = $q";
-        echo $sql;
+        echo "El número total de filas en la tabla es: $total_filas";
+        
+        // Consulta tabla base
+        $stmt = $pdo->query('SELECT * FROM $sTable');
+           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+               echo "Nombre: {$row['nombreentidad']}<br />";
+        }
+        
+        
         
         
         
