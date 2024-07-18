@@ -131,9 +131,6 @@
 				    </tr>
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
-                    echo '<br>';
-            echo "adentro.." .$sql;
-            echo '<br>';
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $numeroIdParticipante=$row['numeroidparticipante'];
@@ -147,7 +144,7 @@
   					    $cargo=$row['cargo'];
   					    
   					    //trae entidad
-					    $sqlEnt  ="select * from reu_entidades where idEntidad='$entidad'";
+					    $sqlEnt  ="select * from reu_entidades where identidad='$entidad'";
 					    $stmtEnt = $pdo->query($sqlEnt);
 					    $rowEnt  = $stmtEnt->fetch(PDO::FETCH_ASSOC);
 					    $ent     = $lineEnt['nombreentidad'];
