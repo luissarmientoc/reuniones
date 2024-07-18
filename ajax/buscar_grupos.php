@@ -1,4 +1,5 @@
 <?php
+ 	/*Version jul 18*/ 
  	//include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
