@@ -78,7 +78,7 @@
             echo '<br>';*/
             $q = strtoupper($q);
            
-            $aColumns = array('numeroidparticipante', 'nombresparticipante');//Columnas de busqueda
+            $aColumns = array('nombresparticipante');//Columnas de busqueda
             $sTable = "reu_participante";
 		    $sWhere = "";
 		 
