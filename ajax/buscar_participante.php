@@ -93,7 +93,7 @@
 		    // Configurar el modo de error para excepciones
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    
-		    $sWhere.=" group by tipodocumento, numeroidparticipante, nombresparticipante order by nombresparticipante";
+		    $sWhere.=" group by tipodocumento, numeroidparticipante, nombresparticipante, celularparticipante, correoparticipante, departamento, ciudad, entidad, dependencia, cargo order by nombresparticipante";
 		    include 'pagination.php'; //include pagination file
 		    //paginación variables
 		    $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
