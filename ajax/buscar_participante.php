@@ -130,6 +130,7 @@
 					   <th class='text-center'>Acciones</th>
 				    </tr>
         <?php    
+         //aaa
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -145,10 +146,10 @@
   					    
   					    //trae entidad
 					    $sqlEnt  ="select * from reu_entidades where identidad='$entidad'";
-					    echo $sqlEnt;
+					   // echo $sqlEnt;
 					    $stmtEnt = $pdo->query($sqlEnt);
 					    $rowEnt  = $stmtEnt->fetch(PDO::FETCH_ASSOC);
-					    $ent     = $lineEnt['nombreentidad'];
+					    $ent     = $rowEnt['nombreentidad'];
 					    
 					    //trae dependencia
 					    $sqlDep  ="select * from reu_dependencias where iddependencia='$dependencia'";
