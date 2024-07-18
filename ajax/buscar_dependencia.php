@@ -12,7 +12,7 @@
  	    
  	    if (isset($_GET['id'])){
 		   $id_idDependencia=intval($_GET['id']);
-		   $sql = "SELECT COUNT(*) AS cuantos FROM $sTable where identidad=$id_idDependencia";
+		   $sql = "SELECT COUNT(*) AS cuantos FROM $sTable where iddependencia=$id_idDependencia";
            $stmt = $pdo->query($sql);
            // Obtener el resultado (única fila)
            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -29,11 +29,21 @@
   <?php  
    include("navbar.php");
   
-  ////  trae cantidad de marcas registradas
-   $sql="select count(*) as cuantos from reu_sub_categorias";
-   $query = mysqli_query($con, $sql);  
-   $row=mysqli_fetch_array($query);
-   $s_cuantos = $row['cuantos'];
+   // Crear una nueva instancia de conexión PDO
+    $pdo = new PDO($dsn);
+    
+    // Configurar el modo de error para excepciones
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //echo "Conectado: ";
+    // Consulta SQL
+    $sql = "SELECT COUNT(*) AS cuantos FROM reu_sub_categorias";
+    // Ejecutar la consulta
+    $query = $pdo->query($sql);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $s_cuantos = $row['cuantos'];
+   
   ?>
   
             <!-- Page Content Holder -->
@@ -71,7 +81,7 @@
                 <div class="panel panel-info">
 	          <div class="panel-heading">
         	    <div class="btn-group pull-right">        	    
-          	      <a href="subcategorias1?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nueva Categoría</a>
+          	      <a href="subcategorias1.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nueva Categoría</a>
 	            </div>
         	  <h4><i class='glyphicon glyphicon-search'></i> Buscar Sub Categoría</h4>
 	        </div>

@@ -3,12 +3,13 @@
 <?php
  
   session_start();
+  /*
   if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) 
   {
     header("location: login.php");
     exit;
   }
-   
+  */
   
   $active_marca="active";
   $title="UNP | Participantes";    
@@ -27,12 +28,22 @@
   
   <?php  
    include("navbar.php");
-  
-  ////  trae cantidad de marcas registradas
-   $sql="select count(*) as cuantos from reu_participante";
-   $query = mysqli_query($con, $sql);  
-   $row=mysqli_fetch_array($query);
-   $s_cuantos = $row['cuantos'];
+   
+   // Crear una nueva instancia de conexión PDO
+    $pdo = new PDO($dsn);
+    
+    // Configurar el modo de error para excepciones
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //echo "Conectado: ";
+    // Consulta SQL
+    $sql = "SELECT COUNT(*) AS cuantos FROM reu_participante";
+    // Ejecutar la consulta
+    $query = $pdo->query($sql);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $s_cuantos = $row['cuantos'];
+ 
   ?>
   
             <!-- Page Content Holder -->

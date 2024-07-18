@@ -4,121 +4,160 @@
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
  	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
- 	 
-	if (isset($_GET['id'])){
-		$id_categoria=intval($_GET['id']);
-		$query=mysqli_query($con, "select * from reu_reuniones where idCategoria='".$id_categoria."'");
-		$count=mysqli_num_rows($query);
-		if ($count==0){
-		    $borrar="DELETE FROM reu_categorias  WHERE idCategoriaReunion='".$id_categoria."'";
-		    //echo $borrar;
-			if ($delete1=mysqli_query($con,$borrar)){
-			?>
-			<div class="alert alert-success alert-dismissible" role="alert">
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Atención!</strong> Datos eliminados exitosamente.
-			</div>
-			<?php 
-		}else {
-			?>
-			<div class="alert alert-danger alert-dismissible" role="alert">
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
-			</div>
-			<?php
-			
-		}
-			
-		} else {
-			?>
-			<div class="alert alert-danger alert-dismissible" role="alert">
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Error!</strong> No se pudo eliminar ésta categoría. Existen registros vinculados a ésta categoría. 
-			</div>
-			<?php
-		}
-		
-		
-		
-	}
-	if($action == 'ajax'){
-		// escaping, additionally removing everything that could be (html/javascript-) code
-        $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-        //$disenador =intval($_REQUEST['id_disenador']); 
-                 
-		 $aColumns = array('categoriaReunion');//Columnas de busqueda
-		 $sTable = "reu_categorias";
-		 $sWhere = "";
+ 	
+ 	try {
+ 	    // Crear una nueva instancia de conexión PDO
+        $pdo = new PDO($dsn);
+        $sTable = "reu_categorias";
+ 	    
+ 	    if (isset($_GET['id'])){
+		   $id_categoria=intval($_GET['id']);
+		   $sql = "SELECT COUNT(*) AS cuantos FROM $sTable where idcategoriareunion=$id_categoria";
+           $stmt = $pdo->query($sql);
+           // Obtener el resultado (única fila)
+           $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+           // Número total de filas
+           $cuantos = $resultado['cuantos'];
+           if ($cuantos>0){
+               //valida que no haya reuniones asignadas a la dependencia
+               $sqlReu = "SELECT COUNT(*) AS cuantosReu FROM reu_reuniones where idcategoria=$id_categoria";
+               $stmtReu = $pdo->query($sqlReu);
+               $resReu  = $stmtReu->fetch(PDO::FETCH_ASSOC);
+               $cuantosReu = $resReu['cuantosReu'];
+               
+               if ($cuantosReu>0)
+               {
+        ?>           
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+			            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			             <strong>Error!</strong> No se pudo eliminar ésta categoría. Existen registros vinculados a ésta categoría. 
+			        </div>
+		<?php	        
+               }
+               else
+               {
+                  //borrar dependencia
+                  // Consulta SQL de eliminación con marcador de posición
+                  $sql = "DELETE FROM $sTable WHERE idcategoriareunion = :id_categoria"; 
+                  $stmt = $pdo->prepare($sql);
+                  // Vincular parámetro
+                  $stmt->bindParam(':id_categoria', $id_categoria, PDO::PARAM_INT);
+                  // Ejecutar la consulta
+                  $stmt->execute();
+                  // Verificar el número de filas afectadas (opcional)
+                  $borradas = $stmt->rowCount();
+                  if ($borradas>0){
+        ?>
+                      <div class="alert alert-success alert-dismissible" role="alert">
+			                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			                <strong>Atención!</strong> Datos eliminados exitosamente.
+			           </div>
+        <?php
+                  }
+                  else{
+        ?>              
+                     <div class="alert alert-danger alert-dismissible" role="alert">
+			           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			           <strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
+			         </div> 
+		<?php	
+                  }
+                  
+               } 
+           }//cuantos>0
+	    }
+	    //aqui va ajax
+	    if($action == 'ajax'){
+	        // Limpiar y escapar la cadena de texto (strip_tags y htmlentities)
+            $q = strip_tags($_REQUEST['q']);
+            $q = htmlentities($q, ENT_QUOTES, 'UTF-8');
+        
+            /*echo '<br>';
+            echo "la q..." . $q;
+            echo '<br>';*/
+            $q = strtoupper($q);
+           
+            $aColumns = array('descategoriareunion');//Columnas de busqueda
+            $sTable = "reu_categorias";
+		    $sWhere = "";
 		 
 		    $sWhere = "WHERE (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 			{
 				$sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
-			}
-			$sWhere = substr_replace( $sWhere, "", -3 );
-			$sWhere .= ')';
+		    }
+		    $sWhere = substr_replace( $sWhere, "", -3 );
+		    $sWhere .= ')'; 
+		    
+		    // Configurar el modo de error para excepciones
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		    
+		    $sWhere.=" group by idcategoriareunion, descategoriareunion order by descategoriareunion";
+		    include 'pagination.php'; //include pagination file
+		    //paginación variables
+		    $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+		    $per_page = 10; //cuantos registros desea mostrar
+		    $adjacents  = 4; //gap entre paginas despues del número de adyacentes
+		    $offset = ($page - 1) * $per_page;
 		
-		  //if ($disenador>0){
-		  //    $sWhere .=" and idDisenador='$disenador'";
-		  // }	
-		 
-		$sWhere.=" order by categoriaReunion";
-		include 'pagination.php'; //include pagination file
-		//pagination variables
-		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-		$per_page = 10; //how much records you want to show
-		$adjacents  = 4; //gap between pages after number of adjacents
-		$offset = ($page - 1) * $per_page;
-		//Count the total number of row in your table*/
-		$count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM $sTable  $sWhere");
-		$row= mysqli_fetch_array($count_query);
-		$numrows = $row['numrows'];
-		$total_pages = ceil($numrows/$per_page);
-		$reload = './marcas.php';
-		//main query to fetch the data
-		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
-	    // echo "sql..." . $sql;
-		$query = mysqli_query($con, $sql);
-		//loop through fetched data
-		if ($numrows>0){
-			
-			?>
-			<div class="table-responsive">
-
-			  <table class='tablaResponsive table table-striped table-bordered table-hover'>
-				<tr  class="info">
-					<th>Categoria</th>
-					<th class='text-center'>Acciones</th>
-				</tr>
-				<?php
-				while ($row=mysqli_fetch_array($query)){
-						$idCategoriaReunion=$row['idCategoriaReunion'];
-						$categoriaReunion=$row['categoriaReunion'];
+	        // Consulta SQL para contar las filas
+            $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere";
+            $stmt = $pdo->query($sql);
+            // Obtener el resultado (única fila)
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+            // Número total de filas
+            $total_filas = $resultado['total_filas'];
+            $total_pages = ceil($total_filas / $per_page);
+            $reload = './marcas.php';
+            //echo "El número total de filas en la tabla es: $total_filas";
+            if ($total_filas>0)
+            {
+        ?>        
+                <div class="table-responsive">
+			      <table class='tablaResponsive table table-striped table-bordered table-hover'>
+				    <tr  class="info">
+				   	   <th>Categorías</th>
+					   <th class='text-center'>Acciones</th>
+				    </tr>
+        <?php    
+                    $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
+                    echo $sql;
+                    $stmt = $pdo->query($sql);
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $idCategoria=$row['idcategoriareunion'];
+						$nombreCategoria=$row['descategoriareunion'];
 						 
- 					    $lv   = $idCategoriaReunion. "/MOD1234567890qwertyuiopasdfghjkl";
+ 					    $lv   = $idCategoria. "/MOD1234567890qwertyuiopasdfghjkl";
 					    $lVDX = base64_encode($lv);
-						
-					?>
-					<tr>	
-  					   <td><?php echo $categoriaReunion; ?></td>
+               
+         ?>
+                        <tr>	
+  		   			      <td><?php echo $nombreCategoria; ?></td>
 					   
-					   <td class='text-center'>
-					     <a href="categorias1?LA=<?=$lVDX?>" class='btn btn-default' title='Editar zona' ><i class="glyphicon glyphicon-edit"></i></a> 
-					     <a href="#" class='btn btn-default' title='Borrar grupo' onclick="eliminar('<?php echo $idCategoriaReunion; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
-					    </td>
-					</tr>
-					<?php
-				}
-				?>
-				<tr>
-					<td colspan="2"><span class="pull-right">
-					<?php
-					 echo paginate($reload, $page, $total_pages, $adjacents);
-					?></span></td>
-				</tr>
-			  </table>
-			</div>
-			<?php
-		}
-	}
+   					      <td class='text-center'>
+					        <a href="categorias1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar categoría' ><i class="glyphicon glyphicon-edit"></i></a> 
+					        <a href="#" class='btn btn-default' title='Borrar categoría' onclick="eliminar('<?php echo $idCategoria; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
+					       </td>
+					   </tr>
+        <?php
+                    }//while
+        ?>
+                       <tr>
+					      <td colspan="2">
+					         <span class="pull-right">
+					            <?php
+					              echo paginate($reload, $page, $total_pages, $adjacents);
+					            ?>
+					          </span>
+					      </td>
+				       </tr>
+			     </table>
+        <?php
+            }// if>0
+	    }//ajax
+ 	}catch (PDOException $e) {
+    echo "Error de conexión: " . $e->getMessage();
+}    
+
 ?>
+ 	
