@@ -297,7 +297,7 @@ a.article, a.article:hover {
                         </a>
                         
                         <ul class="collapse list-unstyled" id="reuniones">
-                             <li><a href="reu0"><i class='fas fa-sign-in-alt'></i>Reuniones</a></li>
+                             <li><a href="reu0.php"><i class='fas fa-sign-in-alt'></i>Reuniones</a></li>
                         </ul>
                    </li>
                    
