@@ -145,6 +145,7 @@
   					    
   					    //trae entidad
 					    $sqlEnt  ="select * from reu_entidades where identidad='$entidad'";
+					    echo $sqlEnt;
 					    $stmtEnt = $pdo->query($sqlEnt);
 					    $rowEnt  = $stmtEnt->fetch(PDO::FETCH_ASSOC);
 					    $ent     = $lineEnt['nombreentidad'];
