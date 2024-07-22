@@ -146,7 +146,7 @@
                       FROM reu_reuniones a 
                       JOIN reu_categorias b ON a.idcategoria = b.idcategoriareunion 
                       WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
-                      GROUP BY b.categoriareunion";
+                      GROUP BY b.descategoriareunion";
     echo '<br>';
     echo "..Categorias". $sqlCategorias;                     
     echo '<br>'; 

@@ -47,7 +47,7 @@
       $s_existe = 1;
       $boton  = "Actualizar";
       
-      $sql = "select * from reu_lugares where identidad=$s_idEntidad";
+      $sql = "select * from reu_lugares where idlugar=$s_idLugar";
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       $s_idLugar     = $row['idlugar'];
