@@ -103,7 +103,7 @@
             $q2 = strtoupper($q2);
             $q3 = strtoupper($q3);
             
-            $aColumns = array('');//Columnas de busqueda
+            $aColumns = array('fechareunion');//Columnas de busqueda
 		    $sTable = "reu_reuniones";
 		    $sWhere = "";
 		 
@@ -129,7 +129,8 @@
 		    // Configurar el modo de error para excepciones
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    
-		    $sWhere.=" order by idreunion";
+		    $sWhere.=" order by fechareunion desc";
+		    $sWhere1.=" group by fechareunion ";
 		    include 'pagination.php'; //include pagination file
 		    //paginación variables
 		    $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
@@ -138,7 +139,7 @@
 		    $offset = ($page - 1) * $per_page;
 		
 	        // Consulta SQL para contar las filas
-            $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere";
+            $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
             echo '<br>';
             echo "sql cts.." . $sql;
             echo '<br>';
