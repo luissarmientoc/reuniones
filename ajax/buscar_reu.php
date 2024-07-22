@@ -11,6 +11,10 @@
         $pdo = new PDO($dsn);
         $sTable = "reu_reuniones";
         
+        echo '<br>';
+        echo "entra 1..";
+        echo '<br>';
+        
         if (isset($_GET['id'])){
 		   $id_reunion=intval($_GET['id']);
 		   $sql = "SELECT COUNT(*) AS cuantos FROM $sTable where idreunion=$id_reunion";
@@ -135,6 +139,10 @@
 		
 	        // Consulta SQL para contar las filas
             $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere";
+            echo '<br>';
+            echo "sql cts.." . $sql;
+            echo '<br>';
+            
             $stmt = $pdo->query($sql);
             // Obtener el resultado (única fila)
             $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -157,7 +165,9 @@
 					<th class='text-center' colspan="3">Acciones</th>
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
-                    
+                    echo '<br>';
+            echo "sql cpnsulta..." . $sql;
+            echo '<br>';
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $idReunion=$row['idreunion'];
