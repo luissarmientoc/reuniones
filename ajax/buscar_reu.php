@@ -103,7 +103,7 @@
             $q2 = strtoupper($q2);
             $q3 = strtoupper($q3);
             
-            $aColumns = array('idreunion');//Columnas de busqueda
+            $aColumns = array('');//Columnas de busqueda
 		    $sTable = "reu_reuniones";
 		    $sWhere = "";
 		 
