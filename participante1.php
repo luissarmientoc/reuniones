@@ -239,7 +239,8 @@
          
     //============================= CONSULTA LOS DEPARTAMENTOS
     //============================================================================ 
-    $stmt = $pdo->query('SELECT * FROM reu_municipios group by coddepto');
+    $stmt = $pdo->query('SELECT coddepto, nomdepto  FROM reu_municipios GROUP BY coddepto, nomdepto;');
+  
     $i=0;
     while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
     {
