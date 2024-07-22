@@ -110,7 +110,8 @@
 		    $sWhere = "WHERE (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 			{
-				$sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+				//$sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+				$sWhere .= $aColumns[$i]." = ".$q." OR ";
 			}
 			$sWhere = substr_replace( $sWhere, "", -3 );
 			$sWhere .= ')';
