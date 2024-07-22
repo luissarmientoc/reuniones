@@ -103,7 +103,14 @@
             $q2 = strtoupper($q2);
             $q3 = strtoupper($q3);
             
-            $aColumns = array('fechareunion');//Columnas de busqueda
+            if ($q!="")
+            {
+              $aColumns = array('fechareunion');//Columnas de busqueda
+            }
+            else
+            {
+             $aColumns = "";
+            }
 		    $sTable = "reu_reuniones";
 		    $sWhere = "";
 		 
