@@ -64,8 +64,8 @@
    if(isset($_POST['grabar']))
    {   
      $s_idCategoriaReunion = $_POST['idCategoriaReunion'];
-     $s_categoriaReunion   = $_POST['categoriaReunion'];
-     $s_categoriaReunion = strtoupper($s_categoriaReunion);
+     $s_descategoriaReunion   = $_POST['descategoriaReunion'];
+     $s_descategoriaReunion = strtoupper($s_descategoriaReunion);
    
      $s_existe         = $_POST['existe'];
      $s_yaGrabo        = $_POST['yaGrabo'];
@@ -78,11 +78,11 @@
       ///MODIFICA
       if ($s_existe == "1")  
       {
-        $sql = "UPDATE reu_categorias SET categoriareunion = :categoriareunion WHERE idcategoriareunion = :idcategoriareunion";
+        $sql = "UPDATE reu_categorias SET descategoriareunion = :descategoriareunion WHERE idcategoriareunion = :idcategoriareunion";
         $stmt = $pdo->prepare($sql);
     
          // Vincular parámetros
-         $stmt->bindParam(':categoriareunion', $s_categoriaReunion, PDO::PARAM_STR);
+         $stmt->bindParam(':descategoriareunion', $s_descategoriaReunion, PDO::PARAM_STR);
          $stmt->bindParam(':idcategoriareunion', $s_idCategoriaReunion, PDO::PARAM_INT);
     
          // Ejecutar la consulta
@@ -102,8 +102,8 @@
         $s_idCategoriaReunion     = $s_maximo+1;
         
         // Inserción de datos
-        $stmt = $pdo->prepare('INSERT INTO reu_categorias (idcategoriareunion, categoriareunion) VALUES (?, ?)');
-        $stmt->execute([$s_idCategoriaReunion, $s_categoriaReunion]);
+        $stmt = $pdo->prepare('INSERT INTO reu_categorias (idcategoriareunion, descategoriareunion) VALUES (?, ?)');
+        $stmt->execute([$s_idCategoriaReunion, $s_descategoriaReunion]);
         
         $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
         
@@ -170,7 +170,7 @@
                          <tbody>
                           <tr>
                               <td class='col-md-3' align="right"> Nombre de la categoría: </td>
-                              <td> <textarea class="form-control" id="categoriaReunion" name="categoriaReunion" required style="text-transform:uppercase;"><?=$s_categoriaReunion?></textarea> </td>
+                              <td> <textarea class="form-control" id="categoriaReunion" name="categoriaReunion" required style="text-transform:uppercase;"><?=$s_descategoriaReunion?></textarea> </td>
                           </tr> 
                          </tbody>
                         </table>			

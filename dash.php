@@ -139,11 +139,13 @@
     $cantGrupos = $row['cuantosGrupos'];
      
     //Reuniones por categorias
-    $sqlCategorias = "SELECT count(*) as cuantosCategorias, b.categoriareunion 
+    $sqlCategorias = "SELECT count(*) as cuantosCategorias, b.descategoriareunion 
                       FROM reu_reuniones a 
                       JOIN reu_categorias b ON a.idcategoria = b.idcategoriareunion 
                       WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
                       GROUP BY b.categoriareunion";
+    echo "..". $sqlGrupos;                     
+    echo '<br>'; 
     
      // Ejecutar la consulta
     $query = $pdo->query($sqlCategorias);
