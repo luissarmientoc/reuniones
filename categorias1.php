@@ -51,7 +51,7 @@
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       //echo "Nombre: {$row['des_categoriareunion']}<br />";
       $s_idCategoriaReunion = $row['idcategoriareunion'];
-      $s_categoriaReunion   = $row['categoriareunion'];
+      $s_descategoriaReunion   = $row['descategoriareunion'];
     }  
     else
     {

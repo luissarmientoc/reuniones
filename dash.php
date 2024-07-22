@@ -79,8 +79,8 @@
                      JOIN reu_participante b ON a.convocadapor = b.numeroidparticipante 
                      WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
                      GROUP BY a.convocadapor, b.nombresparticipante";
-    echo "convocado..". $sqlConvocado;                     
-     echo '<br>'; 
+    //echo "convocado..". $sqlConvocado;                     
+    // echo '<br>'; 
     
     // Ejecutar la consulta
     $query = $pdo->query($sqlConvocado);
@@ -96,6 +96,7 @@
                      JOIN reu_entidades b ON a.identidad = b.identidad 
                      WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
                      GROUP BY b.nombreentidad";
+     echo '<br>'; 
      echo "reuniones..". $sqlReuniones;                     
      echo '<br>';  
     
@@ -112,8 +113,9 @@
                      JOIN reu_dependencias b ON a.iddependencia = b.iddependencia 
                      WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin'  
                      GROUP BY b.nombredependencia";
-    //  echo "reuniones..". $sqlDependecias;                     
-    //  echo '<br>'; 
+    echo '<br>'; 
+      echo "Dependecias..". $sqlDependecias;                     
+      echo '<br>'; 
     
     // Ejecutar la consulta
     $query = $pdo->query($sqlDependecias);
@@ -128,7 +130,8 @@
                   JOIN reu_grupos_internos b ON a.idgrupo = b.idgrupointerno 
                   WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
                   GROUP BY b.grupointerno";
-    echo "..". $sqlGrupos;                     
+    echo '<br>'; 
+    echo "grupos". $sqlGrupos;                     
     echo '<br>'; 
     
      // Ejecutar la consulta
@@ -144,7 +147,8 @@
                       JOIN reu_categorias b ON a.idcategoria = b.idcategoriareunion 
                       WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
                       GROUP BY b.categoriareunion";
-    echo "..". $sqlGrupos;                     
+    echo '<br>';
+    echo "..Categorias". $sqlCategorias;                     
     echo '<br>'; 
     
      // Ejecutar la consulta
@@ -160,7 +164,8 @@
                          JOIN reu_sub_categorias b ON a.idsubcategoria = b.idsubcategoriareunion 
                          WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
                          GROUP BY b.subcategoriareunion";
-    echo "..". $sqlSubCategorias;                     
+    echo '<br>';
+    echo "subcategotia". $sqlSubCategorias;                     
     echo '<br>'; 
     
     // Ejecutar la consulta
@@ -177,7 +182,8 @@
                         JOIN reu_participante c ON b.numeroidparticipante = c.numeroidparticipante 
                         WHERE a.fechaReunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
                         GROUP BY c.nombresparticipante";
-    echo "..". $sqlParticipante;                     
+    echo '<br>';
+    echo "participanye". $sqlParticipante;                     
     echo '<br>';
     
     // Ejecutar la consulta
@@ -193,7 +199,8 @@
                        JOIN reu_participante b ON a.numeroidparticipante = b.numeroidparticipante
                        WHERE a.fechaInicialcompromiso BETWEEN '$s_fecIni' AND '$s_fecFin'
                        GROUP BY b.nombresparticipante, a.estado";
-    echo "..". $sqlCompromisos;                     
+    echo '<br>';
+    echo "compromiso". $sqlCompromisos;                     
     echo '<br>'; 
     
      // Ejecutar la consulta
@@ -210,8 +217,8 @@
                   JOIN reu_participante b ON a.numeroidparticipante = b.numeroidparticipante
                   WHERE a.fechatarea BETWEEN '$s_fecIni' AND '$s_fecFin'
                   GROUP BY b.nombresparticipante, a.terminada";
-
-    echo "..". $sqlTareas;   
+    echo '<br>';
+    echo 'tareas'. $sqlTareas;   
     echo '<br>'; 
     
     // Ejecutar la consulta
@@ -228,7 +235,8 @@
                               AND fechainicialcompromiso BETWEEN '$s_fecIni' AND '$s_fecFin' 
                               GROUP BY estado";
                               
-    echo "..". $sqlCompromisosEstado1;   
+    echo '<br>';
+    echo "CompromisosEstado1". $sqlCompromisosEstado1;   
     echo '<br>'; 
     
     // Ejecutar la consulta
@@ -244,8 +252,8 @@
                               WHERE estado = 2 
                               AND fechainicialcompromiso BETWEEN '$s_fecIni' AND '$s_fecFin' 
                               GROUP BY estado";
-
-    echo "..". $sqlCompromisosEstado2;   
+echo '<br>'; 
+    echo "CompromisosEstado2". $sqlCompromisosEstado2;   
     echo '<br>'; 
     
     // Ejecutar la consulta
@@ -262,7 +270,8 @@
                          AND fechatarea BETWEEN '$s_fecIni' AND '$s_fecFin' 
                          GROUP BY terminada";
 
-    echo "..". $sqlTareasEstado1;   
+    echo '<br>'; 
+    echo "TareasEstado1". $sqlTareasEstado1;   
     echo '<br>'; 
     
     // Ejecutar la consulta
@@ -278,8 +287,8 @@
                          WHERE terminada = 'S' 
                          AND fechatarea BETWEEN '$s_fecIni' AND '$s_fecFin' 
                          GROUP BY terminada";
-
-    echo "..". $sqlTareasEstado2;   
+    echo '<br>';
+    echo "TareasEstado2". $sqlTareasEstado2;   
     echo '<br>'; 
     
     // Ejecutar la consulta
