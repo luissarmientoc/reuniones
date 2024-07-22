@@ -78,7 +78,7 @@
             echo '<br>';*/
             $q = strtoupper($q);
            
-            $aColumns = array('descategoriareunion');//Columnas de busqueda
+            $aColumns = array('categoriareunion');//Columnas de busqueda
             $sTable = "reu_categorias";
 		    $sWhere = "";
 		 
@@ -93,7 +93,7 @@
 		    // Configurar el modo de error para excepciones
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    
-		    $sWhere.=" group by idcategoriareunion, descategoriareunion order by descategoriareunion";
+		    $sWhere.=" group by idcategoriareunion, categoriareunion order by categoriareunion";
 		    include 'pagination.php'; //include pagination file
 		    //paginación variables
 		    $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
@@ -126,7 +126,7 @@
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $idCategoria=$row['idcategoriareunion'];
-						$nombreCategoria=$row['descategoriareunion'];
+						$nombreCategoria=$row['categoriareunion'];
 						 
  					    $lv   = $idCategoria. "/MOD1234567890qwertyuiopasdfghjkl";
 					    $lVDX = base64_encode($lv);

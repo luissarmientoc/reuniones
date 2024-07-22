@@ -28,7 +28,7 @@
   
   <?php  
    include("navbar.php");
-    // Crear una nueva instancia de conexi贸n PDO
+    // Crear una nueva instancia de conexión PDO
     $pdo = new PDO($dsn);
     
     // Configurar el modo de error para excepciones
@@ -95,13 +95,13 @@
          	                 <label>Convocada por</label>
          	                 <select class='form-control' id='q1' onchange="load(1);">
             		            <option value="">Buscar por quien convoca</option>
-	         	                  <?php 
-			                         $query_convoca=mysqli_query($con,"select * from reu_participante order by nombresParticipante");
-			                         while($rw=mysqli_fetch_array($query_convoca))	{
-			                      ?>
-                                       <option value="<?php echo $rw['numeroIdParticipante'];?>"><?php echo $rw['nombresParticipante'];?></option>			
-			                      <?php
-			                         }
+            		              <?php
+            		                $stmt = $pdo->query('select * from reu_participante order by nombresparticipante');
+            		                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            		              ?>
+            		                  <option value="<?php echo $row['numeroidparticipante'];?>"><?php echo $row['nombresparticipante'];?></option>			
+            		              <?php
+            		                 }
 			                      ?>  
 			                 </select>  
 			              </div>
@@ -110,14 +110,14 @@
          	                 <label>Dependencia</label>
          	                 <select class='form-control' id='q2' onchange="load(1);">
             		           <option value="">Buscar por dependencia</option>
-	         	                 <?php 
-			                       $query_depende=mysqli_query($con,"select * from reu_dependencias order by nombreDependencia");
-			                       while($rw=mysqli_fetch_array($query_depende))	{
-			                     ?>
-                                  <option value="<?php echo $rw['idDependencia'];?>"><?php echo $rw['nombreDependencia'];?></option>			
-			                     <?php
-			                      }
-			                     ?>  
+            		             <?php
+            		                $stmtDepende = $pdo->query('select * from reu_dependencias order by nombredependencia');
+            		                while ($rowDepende = $stmtDepende->fetch(PDO::FETCH_ASSOC)) {
+            		              ?>
+            		                  <option value="<?php echo $rowDepende['iddependencia'];?>"><?php echo $rowDepende['nombredependencia'];?></option>			
+            		              <?php
+            		                 }
+			                      ?> 
 			                  </select>  
          	              </div>
          	      
@@ -125,14 +125,14 @@
          	                 <label>Grupo</label>
          	                 <select class='form-control' id='q3' onchange="load(1);">
             		           <option value="">Buscar por grupo</option>
-	         	                 <?php 
-			                       $query_grupo=mysqli_query($con,"select * from reu_grupos_internos order by grupoInterno");
-			                       while($rw=mysqli_fetch_array($query_grupo))	{
-			                     ?>
-                                  <option value="<?php echo $rw['idGrupoInterno'];?>"><?php echo $rw['grupoInterno'];?></option>			
-			                     <?php
-			                      }
-			                     ?>  
+            		             <?php
+            		                $stmtGrupo = $pdo->query('select * from reu_grupos_internos order by grupoInterno');
+            		                while ($rowGrupo = $stmtGrupo->fetch(PDO::FETCH_ASSOC)) {
+            		              ?>
+            		                  <option value="<?php echo $rowGrupo['idgrupointerno'];?>"><?php echo $rowGrupo['grupointerno'];?></option>			
+            		              <?php
+            		                 }
+			                      ?>  
 			                  </select>  
          	              </div>
 	             						

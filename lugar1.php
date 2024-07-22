@@ -26,6 +26,8 @@
   
   <?php  
    include("navbar.php");
+   // Crear una nueva instancia de conexión PDO
+   $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
@@ -44,14 +46,12 @@
       $titulo = "MODIFICAR LUGAR";
       $s_existe = 1;
       $boton  = "Actualizar";
-    
-      $sql = "select * from reu_lugares where idLugar=$s_idLugar";
-       
-      $query = mysqli_query($con, $sql);  
-      $row=mysqli_fetch_array($query);
-    
-      $s_idLugar     = $row['idLugar'];
-      $s_nombreLugar = $row['nombreLugar'];
+      
+      $sql = "select * from reu_lugares where identidad=$s_idEntidad";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      $s_idLugar     = $row['idlugar'];
+      $s_nombreLugar = $row['nombrelugar'];
     }  
     else
     {
@@ -85,9 +85,15 @@
       ///MODIFICA
       if ($s_existe == "1")  
       {
-        $sql="UPDATE reu_lugares SET nombreLugar ='".$s_nombreLugar."' WHERE idLugar='".$s_idLugar."'";
-        echo $sql;
-        $query_update = mysqli_query($con,$sql);  
+         $sql = "UPDATE reu_lugares SET nombrelugar = :nombrelugar WHERE idlugar = :idlugar";
+         $stmt = $pdo->prepare($sql);
+    
+         // Vincular parámetros
+         $stmt->bindParam(':nombrelugar', $s_nombreEntidad, PDO::PARAM_STR);
+         $stmt->bindParam(':idlugar', $s_idLugar, PDO::PARAM_INT);
+    
+         // Ejecutar la consulta
+         $stmt->execute();
         
         $mensaje=" <b>Atención!</b> Actualización exitosa";
       }  
@@ -95,14 +101,17 @@
       ///ADICIONA
       if ($s_existe == "0")
       {
-        $sql1 = "select max(idLugar) as maximo from reu_lugares ";
-        $query1 = mysqli_query($con, $sql1);  
-        $row1=mysqli_fetch_array($query1);
+        $sql = "SELECT MAX(idlugar) AS maximo FROM reu_lugares";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
         
-        $s_idLugar     = $row1[maximo]+1;
-        $sql="INSERT INTO reu_lugares (idLugar, nombreLugar) VALUES ('$s_idLugar', '$s_nombreLugar' )";
+        $s_idLugar     = $s_maximo+1;
         
-        $query_new_insert = mysqli_query($con,$sql);
+        // Inserción de datos
+        $stmt = $pdo->prepare('INSERT INTO reu_lugares (idlugar, nombrelugar) VALUES (?, ?)');
+        $stmt->execute([$s_idLugar, $s_nombreLugar]);
+        
         $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
         
         $s_existe ="1";

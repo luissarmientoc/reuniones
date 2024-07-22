@@ -25,6 +25,8 @@
   
   <?php  
    include("navbar.php");
+   // Crear una nueva instancia de conexión PDO
+   $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
@@ -43,15 +45,13 @@
       $titulo = "MODIFICAR CATEGORIA";
       $s_existe = 1;
       $boton  = "Actualizar";
-    
-      $sql = "select * from reu_categorias where idCategoriaReunion=$s_idCategoriaReunion";
-       
-      $query = mysqli_query($con, $sql);  
-      $row=mysqli_fetch_array($query);
-    
-      $s_idCategoriaReunion   = $row['idCategoriaReunion'];
-      $s_categoriaReunion     = $row['categoriaReunion'];
-            
+      
+      $sql = "select * from reu_categorias where idcategoriareunion=$s_idCategoriaReunion";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      //echo "Nombre: {$row['des_categoriareunion']}<br />";
+      $s_idCategoriaReunion = $row['idcategoriareunion'];
+      $s_categoriaReunion   = $row['categoriareunion'];
     }  
     else
     {
@@ -65,7 +65,6 @@
    {   
      $s_idCategoriaReunion = $_POST['idCategoriaReunion'];
      $s_categoriaReunion   = $_POST['categoriaReunion'];
-     
      $s_categoriaReunion = strtoupper($s_categoriaReunion);
    
      $s_existe         = $_POST['existe'];
@@ -75,19 +74,19 @@
      //$s_fecha  = date("Y-m-d",time());
      //$s_fecha  = date("Y/m/d H:i:s");
      $date_added=date("Y-m-d H:i:s");
-     
-      /////////////////////////////////////////////  
-      ////// VERIFICA A EXISTENCIA DE LA marca
-      /////////////////////////////////////////////
-      //$sql   = "SELECT count(*) AS cuantos FROM marcas WHERE id_marca = $s_id_marca";
-      //$query = mysqli_query($con, $sql);  
-      //$row   = mysqli_fetch_array($query);
       
       ///MODIFICA
       if ($s_existe == "1")  
       {
-        $sql="UPDATE reu_categorias SET categoriaReunion='".$s_categoriaReunion."' WHERE idCategoriaReunion='".$s_idCategoriaReunion."'";
-        $query_update = mysqli_query($con,$sql);  
+        $sql = "UPDATE reu_categorias SET categoriareunion = :categoriareunion WHERE idcategoriareunion = :idcategoriareunion";
+        $stmt = $pdo->prepare($sql);
+    
+         // Vincular parámetros
+         $stmt->bindParam(':categoriareunion', $s_categoriaReunion, PDO::PARAM_STR);
+         $stmt->bindParam(':idcategoriareunion', $s_idCategoriaReunion, PDO::PARAM_INT);
+    
+         // Ejecutar la consulta
+         $stmt->execute();
         
         $mensaje=" <b>Atención!</b> Actualización exitosa";
       }  
@@ -95,14 +94,17 @@
       ///ADICIONA
       if ($s_existe == "0")
       {
-        $sql1 = "select max(idCategoriaReunion) as maximo from reu_categorias ";
-        $query1 = mysqli_query($con, $sql1);  
-        $row1=mysqli_fetch_array($query1);
+        $sql = "SELECT MAX(idcategoriareunion) AS maximo FROM reu_categorias";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
         
-        $s_idCategoriaReunion     = $row1[maximo]+1;
+        $s_idCategoriaReunion     = $s_maximo+1;
         
-        $sql="INSERT INTO reu_categorias ( idCategoriaReunion,  categoriaReunion) VALUES ('$s_idCategoriaReunion', '$s_categoriaReunion' )";
-        $query_new_insert = mysqli_query($con,$sql);
+        // Inserción de datos
+        $stmt = $pdo->prepare('INSERT INTO reu_categorias (idcategoriareunion, categoriareunion) VALUES (?, ?)');
+        $stmt->execute([$s_idCategoriaReunion, $s_categoriaReunion]);
+        
         $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
         
         $s_existe ="1";

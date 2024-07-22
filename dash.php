@@ -25,8 +25,255 @@
 
  $nombreUsuario=$nomUsuarioI . " " . $apeUsuarioI;
  
+ require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
+ require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
  include("head.php");
  include("navbar.php");
+ 
+  $fechas ="HOY";
+  $fecha=strftime( "%Y-%m-%d", time() );
+  
+  //$fecha=date("Y-m-d",strtotime($s_fecha."- 1 days")); 
+  //sumo 1 día
+  $fMasUno =  date("Y-m-d",strtotime($s_fecha."+ 1 days")); 
+  
+  $_SESSION['fecha']  = $fecha;
+  $_SESSION['fecha1'] = $fMasUno;
+   
+  if(isset($_POST['consultar']))   
+  {
+    $s_fecIni = $_POST['fecIni'];
+    $s_fecFin = $_POST['fecFin'];
+    
+     $_SESSION['fecha']  = $s_fecIni;
+     $_SESSION['fecha1'] = $s_fecFin;
+    
+    if ($s_fecIni!="" and $s_fecFin!="")
+    {
+     $fechas = "Desde: " . $s_fecIni . " hasta ". $s_fecFin;
+    } 
+  }//consultar
+  
+  //Reuniones convocadas por
+  
+  // Crear una nueva instancia de conexión PDO
+    $pdo = new PDO($dsn);
+    // Configurar el modo de error para excepciones
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                  
+    //Reuniones convocadas por
+    $sqlConvocado = "SELECT count(*) as cuantosConvocado, b.nombresparticipante 
+                     FROM reu_reuniones a 
+                     JOIN reu_participante b ON a.convocadapor = b.numeroidparticipante 
+                     WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
+                     GROUP BY a.convocadapor, b.nombresparticipante";
+    echo "convocado..". $sqlConvocado;                     
+     echo '<br>'; 
+    
+    // Ejecutar la consulta
+    $query = $pdo->query($sqlConvocado);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $s_cuantos = $row['cuantosConvocado'];
+    
+  
+    //Reuniones por entidad
+    $sqlReuniones = "SELECT count(*) as cuantosReuniones, b.nombreentidad 
+                     FROM reu_reuniones a 
+                     JOIN reu_entidades b ON a.identidad = b.identidad 
+                     WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
+                     GROUP BY b.nombreentidad";
+     echo "reuniones..". $sqlReuniones;                     
+     echo '<br>';  
+    
+    // Ejecutar la consulta
+    $query = $pdo->query($sqlReuniones);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantEntidades = $row['cuantosReuniones'];
+    
+    //Reuniones por dependencias
+    $sqlDependecias="SELECT count(*) as cuantasDependencias, nombredependencia 
+                     FROM  reu_reuniones a
+                     JOIN reu_dependencias b ON a.iddependencia = b.iddependencia 
+                     WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin'  
+                     GROUP BY b.nombredependencia";
+    //  echo "reuniones..". $sqlDependecias;                     
+    //  echo '<br>'; 
+    
+    // Ejecutar la consulta
+    $query = $pdo->query($sqlDependecias);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantDependencias = $row['cuantasDependencias'];
+    
+    //Reuniones por grupos internos
+    $sqlGrupos = "SELECT count(*) as cuantosGrupos, b.grupointerno 
+                  FROM reu_reuniones a 
+                  JOIN reu_grupos_internos b ON a.idgrupo = b.idgrupointerno 
+                  WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
+                  GROUP BY b.grupointerno";
+    echo "..". $sqlGrupos;                     
+    echo '<br>'; 
+    
+     // Ejecutar la consulta
+    $query = $pdo->query($sqlGrupos);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantGrupos = $row['cuantosGrupos'];
+     
+    //Reuniones por categorias
+    $sqlCategorias = "SELECT count(*) as cuantosCategorias, b.categoriareunion 
+                      FROM reu_reuniones a 
+                      JOIN reu_categorias b ON a.idcategoria = b.idcategoriareunion 
+                      WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
+                      GROUP BY b.categoriareunion";
+    
+     // Ejecutar la consulta
+    $query = $pdo->query($sqlCategorias);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantCategorias = $row['cuantosCategorias'];                      
+
+    //Reuniones por subcategorias
+    $sqlSubCategorias= "SELECT count(*) as cuantosSubCategorias, b.subcategoriareunion 
+                         FROM reu_reuniones a 
+                         JOIN reu_sub_categorias b ON a.idsubcategoria = b.idsubcategoriareunion 
+                         WHERE a.fechareunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
+                         GROUP BY b.subcategoriareunion";
+    echo "..". $sqlSubCategorias;                     
+    echo '<br>'; 
+    
+    // Ejecutar la consulta
+    $query = $pdo->query($sqlSubCategorias);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantSubCategorias = $row['cuantosSubCategorias'];  
+     
+    //Reuniones por participante
+    $sqlParticipante = "SELECT count(*) as cuantosParticipante, c.nombresparticipante 
+                        FROM reu_reuniones a 
+                        JOIN reu_reuniones_participante b ON a.idreunion = b.idreunion 
+                        JOIN reu_participante c ON b.numeroidparticipante = c.numeroidparticipante 
+                        WHERE a.fechaReunion BETWEEN '$s_fecIni' AND '$s_fecFin' 
+                        GROUP BY c.nombresparticipante";
+    echo "..". $sqlParticipante;                     
+    echo '<br>';
+    
+    // Ejecutar la consulta
+    $query = $pdo->query($sqlParticipante);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantPersonas = $row['cuantosParticipante'];
+    
+    //Compromisos generadas por participante
+    $sqlCompromisos = "SELECT count(*) as cuantosCompromisos, b.nombresparticipante, a.estado
+                       FROM reu_compromisos a
+                       JOIN reu_participante b ON a.numeroidparticipante = b.numeroidparticipante
+                       WHERE a.fechaInicialcompromiso BETWEEN '$s_fecIni' AND '$s_fecFin'
+                       GROUP BY b.nombresparticipante, a.estado";
+    echo "..". $sqlCompromisos;                     
+    echo '<br>'; 
+    
+     // Ejecutar la consulta
+    $query = $pdo->query($sqlCompromisos);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantCompromisos = $row['cuantosCompromisos'];
+    
+    
+    //Tareas realizadas por participante 
+    $sqlTareas = "SELECT count(*) as cuantosTareas, b.nombresparticipante, a.terminada
+                  FROM reu_tareas_realizadas a
+                  JOIN reu_participante b ON a.numeroidparticipante = b.numeroidparticipante
+                  WHERE a.fechatarea BETWEEN '$s_fecIni' AND '$s_fecFin'
+                  GROUP BY b.nombresparticipante, a.terminada";
+
+    echo "..". $sqlTareas;   
+    echo '<br>'; 
+    
+    // Ejecutar la consulta
+    $query = $pdo->query($sqlTareas);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantTareas = $row['cuantosTareas'];
+    
+    //Compromisos Estado = 1
+    $sqlCompromisosEstado1 = "SELECT COUNT(*) AS cuantosCompromisos1, estado 
+                              FROM reu_compromisos 
+                              WHERE estado = 1 
+                              AND fechainicialcompromiso BETWEEN '$s_fecIni' AND '$s_fecFin' 
+                              GROUP BY estado";
+                              
+    echo "..". $sqlCompromisosEstado1;   
+    echo '<br>'; 
+    
+    // Ejecutar la consulta
+    $query = $pdo->query($sqlCompromisosEstado1);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantCompromisosEstado1 = $row['cuantosCompromisos1'];                              
+    
+    //Compromisos Estado = 2
+    $sqlCompromisosEstado2 = "SELECT COUNT(*) AS cuantosCompromisos2, estado 
+                              FROM reu_compromisos 
+                              WHERE estado = 2 
+                              AND fechainicialcompromiso BETWEEN '$s_fecIni' AND '$s_fecFin' 
+                              GROUP BY estado";
+
+    echo "..". $sqlCompromisosEstado2;   
+    echo '<br>'; 
+    
+    // Ejecutar la consulta
+    $query = $pdo->query($sqlCompromisosEstado2);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantCompromisosEstado2 = $row['cuantosCompromisos2'];
+    
+    //Tareas Estado = 1
+    $sqlTareasEstado1 = "SELECT COUNT(*) AS cuantosTareas1, terminada 
+                         FROM reu_tareas_realizadas 
+                         WHERE terminada <> 'S' 
+                         AND fechatarea BETWEEN '$s_fecIni' AND '$s_fecFin' 
+                         GROUP BY terminada";
+
+    echo "..". $sqlTareasEstado1;   
+    echo '<br>'; 
+    
+    // Ejecutar la consulta
+    $query = $pdo->query($sqlTareasEstado1);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantTareasEstado1 = $row['cuantosTareas1'];
+  
+    //Tareas Estado = 2
+    $sqlTareasEstado2 = "SELECT COUNT(*) AS cuantosTareas2, terminada 
+                         FROM reu_tareas_realizadas 
+                         WHERE terminada = 'S' 
+                         AND fechatarea BETWEEN '$s_fecIni' AND '$s_fecFin' 
+                         GROUP BY terminada";
+
+    echo "..". $sqlTareasEstado2;   
+    echo '<br>'; 
+    
+    // Ejecutar la consulta
+    $query = $pdo->query($sqlTareasEstado2);
+    // Obtener el resultado
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    // Guardar el resultado en una variable
+    $cantTareasEstado2 = $row['cuantosTareas2'];
 ?>
 
 
@@ -91,12 +338,12 @@
                    
                    <!--- DATOS DE CABECERA ---->
                    <?php
-                   $cantEntidades = 10;
+                   /*$cantEntidades = 10;
                    $cantDependencias = 3;
                    $cantGrupos = 4;
                    $cantCategorias = 9;
                    $cantSubCategorias = 8;
-                   $cantPersonas = 7;
+                   $cantPersonas = 7;*/
                    ?>
                     <div class="row"> <!-- row -->
                        <div class="col-sm-4" ALIGN="CENTER">
@@ -241,24 +488,15 @@
                       </div>
                   </div> <!--- row -- >
               </div> <!-- container-->
-              
-              
-              
-  	              
+                  
              </div>  <!-- container --> 	
              
-              
-  	         
-  	         <!-------------------------->  
+             <!-------------------------->  
              <!-- barras -->     
              <!-------------------------->   
-                  
-                  
-                   
-                   
-            
-<?php
-                      include("complemento.html");
-                    ?> 
+             
+            <?php
+                include("complemento.html");
+            ?> 
  </div> 
             

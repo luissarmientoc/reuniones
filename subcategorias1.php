@@ -26,6 +26,8 @@
   
   <?php  
    include("navbar.php");
+   // Crear una nueva instancia de conexión PDO
+   $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
@@ -45,13 +47,12 @@
       $s_existe = 1;
       $boton  = "Actualizar";
     
-      $sql = "select * from reu_sub_categorias where idSubCategoriaReunion=$s_idSubCategoriaReunion";
-       
-      $query = mysqli_query($con, $sql);  
-      $row=mysqli_fetch_array($query);
-    
-      $s_idSubCategoriaReunion   = $row['idSubCategoriaReunion'];
-      $s_subCategoriaReunion     = $row['subCategoriaReunion'];
+      $sql = "select * from reu_sub_categorias where idsubcategoriareunion=$s_idSubCategoriaReunion";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      //echo "Nombre: {$row['des_categoriareunion']}<br />";
+      $s_idSubCategoriaReunion  = $row['idsubcategoriareunion'];
+      $s_subCategoriaReunion    = $row['subcategoriareunion'];
             
     }  
     else
@@ -87,8 +88,15 @@
       ///MODIFICA
       if ($s_existe == "1")  
       {
-        $sql="UPDATE reu_sub_categorias SET subCategoriaReunion='".$s_subCategoriaReunion."' WHERE idSubCategoriaReunion='".$s_idSubCategoriaReunion."'";
-        $query_update = mysqli_query($con,$sql);  
+         $sql = "UPDATE reu_sub_categorias SET subcategoriareunion = :subcategoriareunion WHERE idsubcategoriareunion = :idsubcategoriareunion";
+         $stmt = $pdo->prepare($sql);
+    
+         // Vincular parámetros
+         $stmt->bindParam(':subcategoriareunion', $s_subCategoriaReunion, PDO::PARAM_STR);
+         $stmt->bindParam(':idsubcategoriareunion', $s_idSubCategoriaReunion, PDO::PARAM_INT);
+    
+         // Ejecutar la consulta
+         $stmt->execute();
         
         $mensaje=" <b>Atención!</b> Actualización exitosa";
       }  
@@ -96,14 +104,17 @@
       ///ADICIONA
       if ($s_existe == "0")
       {
-        $sql1 = "select max(idSubCategoriaReunion) as maximo from reu_sub_categorias ";
-        $query1 = mysqli_query($con, $sql1);  
-        $row1=mysqli_fetch_array($query1);
+        $sql = "SELECT MAX(idsubcategoriareunion) AS maximo FROM reu_sub_categorias";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
         
-        $s_idSubCategoriaReunion     = $row1[maximo]+1;
+        $s_idSubCategoriaReunion = $s_maximo+1;
         
-        $sql="INSERT INTO reu_sub_categorias ( idSubCategoriaReunion,  subCategoriaReunion) VALUES ('$s_idSubCategoriaReunion', '$s_subCategoriaReunion' )";
-        $query_new_insert = mysqli_query($con,$sql);
+        // Inserción de datos
+        $stmt = $pdo->prepare('INSERT INTO reu_sub_categorias (idsubcategoriareunion, subcategoriareunion) VALUES (?, ?)');
+        $stmt->execute([$s_idSubCategoriaReunion, $s_subCategoriaReunion]);
+        
         $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
         
         $s_existe ="1";

@@ -33,48 +33,51 @@
         $s_idReunion   = $partir[0];
         $tipAccion     = $partir[1];
     
-        $sql = "select * from reu_reuniones where idReunion=$s_idReunion";
-        $query = mysqli_query($con, $sql);  
-        $row=mysqli_fetch_array($query);
-    
-        $s_idReunion       = $row['idReunion'];
-        $s_fechaReunion    = $row['fechaReunion'];
-        $s_horaReunion     = $row['horaReunion'];
-        $s_lugarReunion    = $row['lugarReunion'];
-        $s_convocadaPor    = $row['convocadaPor'];
-        $s_idEntidad       = $row['idEntidad'];
-        $s_idDependencia   = $row['idDependencia'];
-        $s_idGrupo         = $row['idGrupo'];
-        $s_idCategoria     = $row['idCategoria'];
-        $s_idSubCategoria  = $row['idSubCategoria'];
-        $s_detalleReunion  = $row['detalleReunion'];
-        $s_desarrolloReunion  = $row['desarrolloReunion'];
-        $s_estadoReunion   = $row['estadoReunion'];
-        $s_fechaEstado     = $row['fechaEstado'];
+        $sql = "select * from reu_reuniones where idreunion=$s_idReunion";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
         
+        $s_idReunion       = $row['idreunion'];
+        $s_fechaReunion    = $row['fechareunion'];
+        $s_horaReunion     = $row['horareunion'];
+        $s_lugarReunion    = $row['lugarreunion'];
+        $s_convocadaPor    = $row['convocadapor'];
+        $s_idEntidad       = $row['identidad'];
+        $s_idDependencia   = $row['iddependencia'];
+        $s_idGrupo         = $row['idgrupo'];
+        $s_idCategoria     = $row['idcategoria'];
+        $s_idSubCategoria  = $row['idsubcategoria'];
+        $s_detalleReunion  = $row['detallereunion'];
+        $s_desarrolloReunion  = $row['desarrolloreunion'];
+        $s_estadoReunion   = $row['estadoreunion'];
+        $s_fechaEstado     = $row['fecharstado'];
         
         $lv   = $s_idReunion. "/MOD1234567890qwertyuiopasdfghjkl";
 		$lVDX = base64_encode($lv);
 					    
-        $sqlLugar   = "select nombreLugar from reu_lugares where idLugar=$s_lugarReunion";
-        $queryLugar = mysqli_query($con, $sqlLugar);  
-        $rowLugar   = mysqli_fetch_array($queryLugar);
-        $nombreLugar = $rowLugar['nombreLugar'];
+        //trae lugar
+		$sqlLugar  ="select nombrelugar from reu_lugares where idlugar=$s_lugarReunion";
+		$stmtLugar = $pdo->query($sqlLugar);
+		$rowLugar  = $stmtLugar->fetch(PDO::FETCH_ASSOC);
+		$nombreLugar = $rowLugar['nombrelugar'];
 
-        $sqlResponsable   = "select nombresParticipante from reu_participante where numeroIdParticipante=$s_convocadaPor";
-        $queryResponsable = mysqli_query($con, $sqlResponsable);  
-        $rowResponsable   = mysqli_fetch_array($queryResponsable);
-        $responsable      = $rowResponsable['nombresParticipante'];
-
-        $query=mysqli_query($con, "select * from reu_reuniones_participante where idReunion='".$id_reunion."'");
-		$count=mysqli_num_rows($query);
+        //trae persona
+		$sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$convocadaPor";
+		$stmtResponsable = $pdo->query($sqlResponsable);
+		$rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
+		$responsable     = $rowPer['nombresparticipante'];
+        
+        $sqlC = "SELECT count(*) AS cuantos FROM reu_reuniones_participante where idreunion=$id_reunion";
+        $stmtC = $pdo->query($sqlC);
+        $rowC  = $stmtC->fetch(PDO::FETCH_ASSOC);
+        $count = $rowC['cuantos'];
+        
 		if ($count==0)
 		{
 		  $mesg="La reunión no tiene participantes registrados";    
 		}    
 		
-		//trae el lugar
-        /*
+         /*
         echo "1.." . $mesg;
         echo '<br>';
         echo "2.." . $s_idReunion;
@@ -174,16 +177,18 @@
                 <td width="45%"><b>RESPONSABLE</b></td>
             </tr>
             <?php
-              $sqlCompromiso ="select * from reu_compromisos where idReunion=$s_idReunion order by numeroIdParticipante";
-    		  $queryCompromiso = mysqli_query($con, $sqlCompromiso); 
+              $sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion order by numeroidparticipante";
+		      $stmtCompromiso = $pdo->query($sqlCompromiso);
+		      $rowCompromiso  = $stmtCompromiso->fetch(PDO::FETCH_ASSOC);
+		      
     		  $i=1;
-    		  while ($rowCompromiso=mysqli_fetch_array($queryCompromiso)){
-			     $numeroIdParticipante   = $rowCompromiso['numeroIdParticipante'];
-			     $idCompromiso           = $rowCompromiso['idCompromiso']; 
-			     $fechaInicialCompromiso = $rowCompromiso['fechaInicialCompromiso']; 
-			     $fechaFinalCompromiso   = $rowCompromiso['fechaFinalCompromiso'];
-			     $compromisoAdquirido    = $rowCompromiso['compromisoAdquirido'];
-			     $tareasRealizadas       = $rowCompromiso['tareasRealizadas'];
+    		  while ($rowCompromiso  = $stmtCompromiso->fetch(PDO::FETCH_ASSOC)){
+			     $numeroIdParticipante   = $rowCompromiso['numeroidparticipante'];
+			     $idCompromiso           = $rowCompromiso['idcompromiso']; 
+			     $fechaInicialCompromiso = $rowCompromiso['fechainicialcompromiso']; 
+			     $fechaFinalCompromiso   = $rowCompromiso['fechafinalcompromiso'];
+			     $compromisoAdquirido    = $rowCompromiso['compromisoadquirido'];
+			     $tareasRealizadas       = $rowCompromiso['tareasrealizadas'];
 			     $estado                 = $rowCompromiso['estado'];
 			     
 			     if ($estado==1){$s_estado="Asignado";}
@@ -191,12 +196,11 @@
 			     if ($estado==3){$s_estado="Cumplido";}
 			     if ($estado==4){$s_estado="Incumplido";}
 			     
-			     
-			     $sqlResponsable   = "select nombresParticipante from reu_participante where numeroIdParticipante=$numeroIdParticipante";
-                 $queryResponsable = mysqli_query($con, $sqlResponsable);  
-                 $rowResponsable   = mysqli_fetch_array($queryResponsable);
-                 $responsableC  = $rowResponsable['nombresParticipante'];
-			      
+			     //trae persona
+		         $sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$convocadaPor";
+		         $stmtResponsable = $pdo->query($sqlResponsable);
+		         $rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
+		         $responsable     = $rowPer['nombresparticipante'];
             ?>
             <tr>	
   			  <td align="center"><?php echo $idCompromiso; ?></td>
@@ -229,43 +233,47 @@
 			   </tr>
 			   
             <?php
-              $sql="select * from  reu_reuniones_participante where idReunion = $s_idReunion";
-              $query = mysqli_query($con, $sql);     
+              $sql  ="select * from  reu_reuniones_participante where idreunion = $s_idReunion";
+              $stmt = $pdo->query($sql);
               
               $i=1;
-			  while ($row=mysqli_fetch_array($query)){
-			     $numeroIdParticipante=$row['numeroIdParticipante'];
+			  while ($row  = $stmt->fetch(PDO::FETCH_ASSOC)){
+			     $numeroIdParticipante=$row['numeroidparticipante'];
  			                 
-			     $sql_par  = "SELECT * FROM reu_participante where numeroIdParticipante=$numeroIdParticipante";
-			     $query_par = mysqli_query($con, $sql_par);
-                 $row_par  = mysqli_fetch_array($query_par);
+			     $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$numeroIdParticipante";
+			     $stmt_par = $pdo->query($sql_par);
+			     $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
 			     
-			     $nombre              = $row_par['nombresParticipante']; 
-			     $celularParticipante = $row_par['celularParticipante']; 
-			     $correoParticipante  = $row_par['correoParticipante']; 
+			     $nombre              = $row_par['nombresparticipante']; 
+			     $celularParticipante = $row_par['celularparticipante']; 
+			     $correoParticipante  = $row_par['correoparticipante']; 
 			     $entidad             = $row_par['entidad']; 
 			     $dependencia         = $row_par['dependencia']; 
 			     $departamento        = $row_par['departamento']; 
 			     $ciudad              = $row_par['ciudad']; 
 			     $cargo               = $row_par['cargo']; 
-			     
+			     /*
 			     //ciudad
 			     $sql1="select * from sl_municipios where codDepto=$departamento and codMunicipio=$ciudad ";
 			     $query1 = mysqli_query($con, $sql1);
                  $row1   = mysqli_fetch_array($query1);
 			     $nomMunicipio = $row1['nomMunicipio']; 
+			     */
 			     
-			     //entidad
-			     $sql2="select * from reu_entidades where idEntidad=$entidad ";
-			     $query2 = mysqli_query($con, $sql2);
-                 $row2   = mysqli_fetch_array($query2);
-                 $nombreEntidad = $row2['nombreEntidad']; 
+			    //trae entidad
+				$sqlEnt  ="select * from reu_entidades where identidad='$entidad'";
+				// echo $sqlEnt;
+				$stmtEnt = $pdo->query($sqlEnt);
+				$rowEnt  = $stmtEnt->fetch(PDO::FETCH_ASSOC);
+				$nombreEntidad     = $rowEnt['nombreentidad'];
+                  
 			     
-			     //dependencia
-			     $sql3="select * from reu_dependencias where idDependencia=$dependencia ";
-			     $query3 = mysqli_query($con, $sql3);
-                 $row3   = mysqli_fetch_array($query3);
-			     $nombreDependencia = $row3['nombreDependencia']; 
+			    //trae dependencia
+				$sqlDep  ="select * from reu_dependencias where iddependencia=$dependencia";
+				$stmtDep = $pdo->query($sqlDep);
+				$rowDep  = $stmtDep->fetch(PDO::FETCH_ASSOC);
+    			$nombreDependencia     = $rowDep['nombredependencia'];
+			      
 			     
 			?>   
 			

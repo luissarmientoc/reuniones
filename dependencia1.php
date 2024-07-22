@@ -27,6 +27,8 @@
   
   <?php  
    include("navbar.php");
+   // Crear una nueva instancia de conexión PDO
+   $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
@@ -45,14 +47,12 @@
       $titulo = "MODIFICAR DEPENDENCIA";
       $s_existe = 1;
       $boton  = "Actualizar";
-    
-      $sql = "select * from reu_dependencias where idDependencia=$s_idDependencia";
-       echo $sql;
-      $query = mysqli_query($con, $sql);  
-      $row=mysqli_fetch_array($query);
-    
-      $s_idDependencia     = $row['idDependencia'];
-      $s_nombreDependencia = $row['nombreDependencia'];
+      
+      $sql = "select * from reu_dependencias where iddependencia=$s_idDependencia";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      $s_idDependencia     = $row['iddependencia'];
+      $s_nombreDependencia = $row['nombredependencia'];
     }  
     else
     {
@@ -60,7 +60,6 @@
       $s_existe = 0;
       $boton="Grabar";
     }  
-    
     
    if(isset($_POST['grabar']))
    {   
@@ -76,18 +75,18 @@
      //$s_fecha  = date("Y/m/d H:i:s");
      $date_added=date("Y-m-d H:i:s");
      
-      /////////////////////////////////////////////  
-      ////// VERIFICA A EXISTENCIA DE LA marca
-      /////////////////////////////////////////////
-      //$sql   = "SELECT count(*) AS cuantos FROM marcas WHERE id_marca = $s_id_marca";
-      //$query = mysqli_query($con, $sql);  
-      //$row   = mysqli_fetch_array($query);
-      
       ///MODIFICA
       if ($s_existe == "1")  
       {
-        $sql="UPDATE reu_dependencias SET nombreDependencia ='".$s_nombreDependencia."' WHERE idDependencia='".$s_idDependencia."'";
-        $query_update = mysqli_query($con,$sql);  
+        $sql = "UPDATE reu_dependencias SET nombredependencia = :nombredependencia WHERE iddependencia = :iddependencia";
+        $stmt = $pdo->prepare($sql);
+    
+         // Vincular parámetros
+         $stmt->bindParam(':nombredependencia', $s_nombreDependencia, PDO::PARAM_STR);
+         $stmt->bindParam(':iddependencia', $s_idDependencia, PDO::PARAM_INT);
+    
+         // Ejecutar la consulta
+         $stmt->execute();
         
         $mensaje=" <b>Atención!</b> Actualización exitosa";
       }  
@@ -99,10 +98,17 @@
         $query1 = mysqli_query($con, $sql1);  
         $row1=mysqli_fetch_array($query1);
         
-        $s_idDependencia     = $row1[maximo]+1;
-        $sql="INSERT INTO reu_dependencias (idDependencia, nombreDependencia) VALUES ('$s_idDependencia', '$s_nombreDependencia' )";
+        $sql = "SELECT MAX(iddependencia) AS maximo FROM reu_dependencias";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
         
-        $query_new_insert = mysqli_query($con,$sql);
+        $s_idDependencia = $s_maximo+1;
+        
+        // Inserción de datos
+        $stmt = $pdo->prepare('INSERT INTO reu_dependencias (iddependencia, nombredependencia) VALUES (?, ?)');
+        $stmt->execute([$s_idDependencia, $s_nombreDependencia]);
+
         $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
         
         $s_existe ="1";

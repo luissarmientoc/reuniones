@@ -26,6 +26,8 @@
   
   <?php  
    include("navbar.php");
+   // Crear una nueva instancia de conexión PDO
+   $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
@@ -45,15 +47,11 @@
       $s_existe = 1;
       $boton  = "Actualizar";
     
-      $sql = "select * from reu_grupos_internos where idGrupoInterno=$s_idGrupoInterno";
-       
-      $query = mysqli_query($con, $sql);  
-      $row=mysqli_fetch_array($query);
-    
-      $s_idGrupoInterno     = $row['idGrupoInterno'];
-      $s_grupoInterno = $row['grupoInterno'];
-            
-      
+      $sql = "select * from reu_grupos_internos where idgrupointerno=$s_idGrupoInterno";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      $s_idGrupoInterno = $row['idgrupointerno'];
+      $s_grupoInterno   = $row['grupointerno'];
     }  
     else
     {
@@ -78,18 +76,18 @@
      //$s_fecha  = date("Y/m/d H:i:s");
      $date_added=date("Y-m-d H:i:s");
      
-      /////////////////////////////////////////////  
-      ////// VERIFICA A EXISTENCIA DE LA marca
-      /////////////////////////////////////////////
-      //$sql   = "SELECT count(*) AS cuantos FROM marcas WHERE id_marca = $s_id_marca";
-      //$query = mysqli_query($con, $sql);  
-      //$row   = mysqli_fetch_array($query);
-      
       ///MODIFICA
       if ($s_existe == "1")  
       {
-        $sql="UPDATE reu_grupos_internos SET grupoInterno='".$s_grupoInterno."' WHERE idGrupoInterno='".$s_idGrupoInterno."'";
-        $query_update = mysqli_query($con,$sql);  
+        $sql = "UPDATE reu_grupos_internos SET grupointerno = :grupointerno WHERE idgrupointerno = :idgrupointerno";
+        $stmt = $pdo->prepare($sql);
+    
+        // Vincular parámetros
+        $stmt->bindParam(':grupointerno', $s_grupoInterno, PDO::PARAM_STR);
+        $stmt->bindParam(':idgrupointerno', $s_idGrupoInterno, PDO::PARAM_INT);
+    
+        // Ejecutar la consulta
+        $stmt->execute();
         
         $mensaje=" <b>Atención!</b> Actualización exitosa";
       }  
@@ -97,14 +95,17 @@
       ///ADICIONA
       if ($s_existe == "0")
       {
-        $sql1 = "select max(idGrupoInterno) as maximo from reu_grupos_internos ";
-        $query1 = mysqli_query($con, $sql1);  
-        $row1=mysqli_fetch_array($query1);
+        $sql = "SELECT MAX(idgrupointerno) AS maximo FROM reu_grupos_internos";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
         
-        $s_idGrupoInterno     = $row1[maximo]+1;
+        $s_idGrupoInterno     = $s_maximo+1;
         
-        $sql="INSERT INTO reu_grupos_internos ( idGrupoInterno,  grupoInterno) VALUES ('$s_idGrupoInterno', '$s_grupoInterno' )";
-        $query_new_insert = mysqli_query($con,$sql);
+        // Inserción de datos
+        $stmt = $pdo->prepare('INSERT INTO reu_grupos_internos (idgrupointerno, grupointerno) VALUES (?, ?)');
+        $stmt->execute([$s_idGrupoInterno, $s_grupoInterno]);
+        
         $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
         
         $s_existe ="1";

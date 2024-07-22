@@ -63,53 +63,64 @@
         $s_yaGrabo      = $_POST['yaGrabo'];
         $s_existe       = $_POST['existe']; 
         $s_fechaFinalCompromiso = $_POST['fechaFinalCompromiso']; 
-        
-        echo "3..". $compromisoP ;
-        echo '<br>';
-        
+       
         $partir  = explode ("-", $compromisoP);   
         $s_idReunion     = $partir[0];
-        $s_participante     = $partir[1];
+        $s_participante  = $partir[1];
         
         date_default_timezone_set('America/Bogota');
         //$s_fecha  = date("Y-m-d",time());
         //$s_fecha  = date("Y/m/d H:i:s");
         $date_added=date("Y-m-d");
         
-         $sql1 = "select max(idCompromiso) as maximo from reu_compromisos ";
-         $query1 = mysqli_query($con, $sql1) ;  
-         $row1=mysqli_fetch_array($query1);
+        $sql = "SELECT MAX(idcompromiso) AS maximo FROM reu_compromisos";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
         
-          $s_idCompromiso     = $row1[maximo]+1;
+        $s_idCompromiso     = $s_maximo+1;
         
         //estado ->1:Iniciado, 2:EnCurso, 3:Cumplido, 4:Incumplido 
         $s_estado = 1;
-        $sql="insert into reu_compromisos (idReunion, numeroIdParticipante, idCompromiso, fechaInicialCompromiso, fechaFinalCompromiso, compromisoAdquirido, tareasRealizadas, estado) 
-                                   VALUES ('$s_idReunion', '$s_participante', '$s_idCompromiso', '$date_added', '$s_fechaFinalCompromiso', '$s_compromiso', '', '$s_estado')";
-         $query_new_insert = mysqli_query($con,$sql);
-         
+        // Inserción de datos
+        $stmt = $pdo->prepare('INSERT INTO reu_compromisos (idreunion, numeroidparticipante, idcompromiso, fechainicialcompromiso, fechafinalcompromiso, compromisoadquirido, tareasrealizadas, estado) 
+                                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$s_idReunion, $s_participante, $s_idCompromiso, $date_added, $s_fechaFinalCompromiso, $s_compromiso, '', $s_estado]);
         
     }
     
     if(isset($_POST['borrarCompromiso']))
     {
-        echo "entrararara";
        $borrarComp  = $_POST['borrarCompromiso'];
        $partir  = explode ("-", $borrarComp);   
        $reu     = $partir[0];
        $par     = $partir[1];
        $comp    = $partir[2];
        
-       $sqlTarea = "select count(*) as ctsTareas from reu_tareas_realizadas where idReunion=$s_idReunion and numeroIdParticipante=$par and idCompromiso=$comp";
-       echo $sqlTarea;
-       $queryTarea = mysqli_query($con, $sqlTarea); 
-       $rowTarea  = mysqli_fetch_array($queryTarea);
-       $ctsTareas   = $rowTarea['ctsTareas']; 
+       $sql = "SELECT count(*) as ctsTareas from reu_tareas_realizadas where idreunion=$s_idReunion and numeroidparticipante=$par and idcompromiso=$comp";
+       $stmt = $pdo->query($sql);
+       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+       $ctsTareas = $row['ctsTareas'];
        
        if ($ctsTareas==0)
        {
-         $sqlDel  = "DELETE FROM reu_compromisos WHERE  idReunion=$reu and numeroIdParticipante= $par and idCompromiso=$comp";
-         $delete1 = mysqli_query($con,$sqlDel);
+         // Consulta preparada con marcadores de posición
+         $sql = "DELETE FROM reu_compromisos WHERE idreunion = :idReunion AND numeroidparticipante = :numeroIdParticipante AND idcompromiso = :idCompromiso";
+        
+         // Preparar la consulta
+         $stmt = $pdo->prepare($sql);
+        
+         // Asignar valores a los marcadores de posición
+         $stmt->bindParam(':idreunion', $idReunion, PDO::PARAM_INT);
+         $stmt->bindParam(':numeroidparticipante', $numeroIdParticipante, PDO::PARAM_INT);
+         $stmt->bindParam(':idcompromiso', $idCompromiso, PDO::PARAM_INT);
+
+         // Ejecutar la consulta
+         if ($stmt->execute()) {
+             echo "Se eliminó el registro correctamente.";
+         } else {
+             echo "Error al intentar eliminar el registro.";
+         }
        }
        else
        {
@@ -130,17 +141,22 @@
      $par     = $partir[1];
      
      $s_existe=0;
-     $sqlExisteComp = "select count(*) as existe from reu_compromisos 
-                       where  idReunion=$reu and numeroIdParticipante=$par";
-     $query1 = mysqli_query($con, $sqlExisteComp);  
-     $row1=mysqli_fetch_array($query1);
+     $sql = "select count(*) as existe from reu_compromisos where idreunion=$reu and numeroidparticipante=$par";
+     $stmt = $pdo->query($sql);
+     $row  = $stmt->fetch(PDO::FETCH_ASSOC);
      $s_existe     = $row1["existe"];
      
-      
      if($s_existe==0)
      {
-       $sqlDel  = "DELETE FROM reu_reuniones_participante WHERE  idReunion=$reu and numeroIdParticipante= $par";
-       $delete1 = mysqli_query($con,$sqlDel);
+       // Consulta preparada con marcadores de posición
+       $sql  = "DELETE FROM reu_reuniones_participante WHERE idreunion =:reu and numeroidparticipante =:par";
+       
+       // Preparar la consulta
+       $stmt = $pdo->prepare($sql);
+        
+       // Asignar valores a los marcadores de posición
+       $stmt->bindParam(':idreunion', $idReunion, PDO::PARAM_INT);
+       $stmt->bindParam(':numeroidparticipante', $numeroIdParticipante, PDO::PARAM_INT);
      }
      else
      {
@@ -159,8 +175,11 @@
         $s_yaGrabo      = $_POST['yaGrabo'];
         $s_existe       = $_POST['existe']; 
         
-        $sql="insert into reu_reuniones_participante (idReunion, numeroIdParticipante) VALUES ('$s_idReunion', '$s_participante')";
-        $query_new_insert = mysqli_query($con,$sql);
+        // Inserción de datos
+        $stmt = $pdo->prepare('INSERT INTO reu_reuniones_participante (idreunion, numeroidparticipante) VALUES (?, ?)');
+        $stmt->execute([$s_idReunion, $s_participante]);
+        
+        $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
     }
     
     if ( $s_idReunion != "" )
@@ -171,24 +190,24 @@
       $s_existe = 1;
       $boton  = "Actualizar";
     
-      $sql = "select * from reu_reuniones where idReunion=$s_idReunion";
-      $query = mysqli_query($con, $sql);  
-      $row=mysqli_fetch_array($query);
+      $sql = "select * from reu_reuniones where idreunion=$s_idReunion";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
     
-        $s_idReunion       = $row['idReunion'];
-        $s_fechaReunion    = $row['fechaReunion'];
-        $s_horaReunion     = $row['horaReunion'];
-        $s_lugarReunion    = $row['lugarReunion'];
-        $s_convocadaPor    = $row['convocadaPor'];
-        $s_idEntidad       = $row['idEntidad'];
-        $s_idDependencia   = $row['idDependencia'];
-        $s_idGrupo         = $row['idGrupo'];
-        $s_idCategoria     = $row['idCategoria'];
-        $s_idSubCategoria  = $row['idSubCategoria'];
-        $s_detalleReunion  = $row['detalleReunion'];
-        $s_desarrolloReunion = $row['desarrolloReunion'];
-        $s_estadoReunion   = $row['estadoReunion'];
-        $s_fechaEstado     = $row['fechaEstado'];
+      $s_idReunion       = $row['idreunion'];
+      $s_fechaReunion    = $row['fechareunion'];
+      $s_horaReunion     = $row['horareunion'];
+      $s_lugarReunion    = $row['lugarreunion'];
+      $s_convocadaPor    = $row['convocadapor'];
+      $s_idEntidad       = $row['identidad'];
+      $s_idDependencia   = $row['iddependencia'];
+      $s_idGrupo         = $row['idgrupo'];
+      $s_idCategoria     = $row['idcategoria'];
+      $s_idSubCategoria  = $row['idsubcategoria'];
+      $s_detalleReunion  = $row['detallereunion'];
+      $s_desarrolloReunion = $row['desarrolloreunion'];
+      $s_estadoReunion   = $row['estadoreunion'];
+      $s_fechaEstado     = $row['fechaestado'];
         
         /*
         echo "1.." . $s_idReunion;
@@ -262,35 +281,58 @@
      //$s_fecha  = date("Y/m/d H:i:s");
      $date_added=date("Y-m-d");
      
-      /////////////////////////////////////////////  
-      ////// VERIFICA A EXISTENCIA DE LA marca
-      /////////////////////////////////////////////
-      //$sql   = "SELECT count(*) AS cuantos FROM marcas WHERE id_marca = $s_id_marca";
-      //$query = mysqli_query($con, $sql);  
-      //$row   = mysqli_fetch_array($query);
-      
-      ///MODIFICA
-      if ($s_existe == "1")  
-      {
-         $query_update = mysqli_query($con,$sql); 
-        
-         $sql= "UPDATE reu_reuniones SET  fechaReunion='$s_fechaReunion', horaReunion='$s_horaReunion', lugarReunion='$s_lugarReunion', convocadaPor='$s_convocadaPor', 
-                                         idEntidad='$s_idEntidad', idDependencia='$s_idDependencia', idGrupo='$s_idGrupo', idCategoria='$s_idCategoria', idSubCategoria='$s_idSubCategoria', 
-                                         detalleReunion='$s_detalleReunion', desarrolloReunion='$s_desarrolloReunion' 
-                        WHERE idReunion='$s_idReunion'";
-        //  echo $sql;
-         $query_new_update = mysqli_query($con,$sql);
-         $mensaje=" <b>Atención!</b> Actualización exitosa";
-      }  
+     ///MODIFICA
+     if ($s_existe == "1")  
+     {
+        // Consulta preparada con marcadores de posición
+        $sql = "UPDATE reu_reuniones SET  
+                    fechareunion = :fechaReunion, 
+                    horareunion = :horaReunion, 
+                    lugarreunion = :lugarReunion, 
+                    convocadapor = :convocadaPor, 
+                    identidad = :idEntidad, 
+                    iddependencia = :idDependencia, 
+                    idgrupo = :idGrupo, 
+                    idcategoria = :idCategoria, 
+                    idsubcategoria = :idSubCategoria, 
+                    detallereunion = :detalleReunion, 
+                    desarrolloreunion = :desarrolloReunion 
+                WHERE idreunion = :idReunion";
+
+        // Preparar la consulta
+        $stmt = $pdo->prepare($sql);
+
+        // Asignar valores a los marcadores de posición
+        $stmt->bindParam(':fechareunion', $s_fechaReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':horareunion', $s_horaReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':lugarreunion', $s_lugarReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':convocadapor', $s_convocadaPor, PDO::PARAM_STR);
+        $stmt->bindParam(':identidad', $s_idEntidad, PDO::PARAM_INT);
+        $stmt->bindParam(':iddependencia', $s_idDependencia, PDO::PARAM_INT);
+        $stmt->bindParam(':idgrupo', $s_idGrupo, PDO::PARAM_INT);
+        $stmt->bindParam(':idcategoria', $s_idCategoria, PDO::PARAM_INT);
+        $stmt->bindParam(':idsubcategoria', $s_idSubCategoria, PDO::PARAM_INT);
+        $stmt->bindParam(':detallereunion', $s_detalleReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':desarrolloreunion', $s_desarrolloReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
+
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            $mensaje=" <b>Atención!</b> Actualización exitosa";
+        } else {
+            $mensaje=" Error al intentar actualizar la reunión.";
+        } 
+     }  
       
       ///ADICIONA
       if ($s_existe == "0")
       {
-        $sql1 = "select max(idReunion) as maximo from reu_reuniones ";
-        $query1 = mysqli_query($con, $sql1);  
-        $row1=mysqli_fetch_array($query1);
+        $sql = "SELECT MAX(idreunion) AS maximo FROM reu_reuniones";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
         
-        $s_idReunion     = $row1[maximo]+1;
+        $s_idReunion     = $s_maximo+1;
          
         $sql= "INSERT INTO reu_reuniones (idReunion, fechaReunion, horaReunion, lugarReunion, convocadaPor, 
                                          idEntidad, idDependencia, idGrupo, idCategoria, idSubCategoria, 
@@ -301,8 +343,43 @@
 
          //echo $sql;
          $query_new_insert = mysqli_query($con,$sql);
-        $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
-        
+         
+        // Consulta preparada con marcadores de posición
+        $sql = "INSERT INTO reu_reuniones 
+                (idreunion, fechareunion, horareunion, lugarreunion, convocadapor, 
+                 identidad, iddependencia, idgrupo, idcategoria, idsubcategoria, 
+                 detallereunion, desarrolloreunion, estadoreunion, fechaestado) 
+                VALUES 
+                (:idReunion, :fechaReunion, :horaReunion, :lugarReunion, :convocadaPor, 
+                 :idEntidad, :idDependencia, :idGrupo, :idCategoria, :idSubCategoria, 
+                 :detalleReunion, :desarrolloReunion, :estadoReunion, :fechaEstado)";
+
+        // Preparar la consulta
+        $stmt = $pdo->prepare($sql);
+
+        // Asignar valores a los marcadores de posición
+        $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
+        $stmt->bindParam(':fechareunion', $s_fechaReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':horareunion', $s_horaReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':lugarreunion', $s_lugarReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':convocadapor', $s_convocadaPor, PDO::PARAM_STR);
+        $stmt->bindParam(':identidad', $s_idEntidad, PDO::PARAM_INT);
+        $stmt->bindParam(':iddependencia', $s_idDependencia, PDO::PARAM_INT);
+        $stmt->bindParam(':idgrupo', $s_idGrupo, PDO::PARAM_INT);
+        $stmt->bindParam(':idcategoria', $s_idCategoria, PDO::PARAM_INT);
+        $stmt->bindParam(':idsubcategoria', $s_idSubCategoria, PDO::PARAM_INT);
+        $stmt->bindParam(':detallereunion', $s_detalleReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':desarrolloreunion', $s_desarrolloReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':estadoreunion', $s_estadoReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':fechaestado', $date_added, PDO::PARAM_STR);
+
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            $mensaje=" <b>Atención!</b> Grabación exitosa de la reunión ¡";
+        } else {
+            $mensaje=" <b>Atención!</b> Error al intentar insertar la reunión.";
+            echo "Error al intentar insertar la reunión.";
+        }
         $s_existe ="1";
       }
       $s_tocoBoton = "S";  
@@ -311,156 +388,130 @@
    
    //============================= CONSULTA EL PERSONAL
   //============================================================================ 
-  $query_participante=mysqli_query($con,"select * from reu_participante order by nombresParticipante");
-  $i=0;
-   while ($line = mysqli_fetch_array($query_participante))
-   {
-    if ($i==0)
+  
+    $stmt = $pdo->query('SELECT * from reu_participante order by nombresparticipante');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
         $comboParticipante .=" <option value=''>".'- Seleccione el participante -'."</option>";
       }
-
-      if ($line['numeroIdParticipante']==$s_convocadaPor)
+      if ($line['numeroidparticipante']==$s_entidad)
       {
-        $comboParticipante .=" <option value='".$line['numeroIdParticipante']."' selected>".$line['nombresParticipante']." </option>"; 
+        $comboParticipante .=" <option value='".$line['numeroidparticipante']."' selected>".$line['nombresparticipante']." </option>"; 
       }
-      else
-      {
-       $comboParticipante .=" <option value='".$line['numeroIdParticipante']."'>".$line['nombresParticipante']."</option>"; 
-      }
-    $i++; 
-   }
+      $comboParticipante .=" <option value='".$line['numeroidparticipante']."'>".$line['nombresparticipante']."</option>"; 
+      $i++; 
+    }
    
    //============================= CONSULTA LA ENTIDAD
   //============================================================================ 
-  $query_entidad=mysqli_query($con,"select * from reu_entidades order by nombreEntidad");
-  $i=0;
-   while ($line = mysqli_fetch_array($query_entidad))
-   {
-    if ($i==0)
+  $stmt = $pdo->query('SELECT * FROM reu_entidades order by nombreentidad');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
         $comboEntidad .=" <option value=''>".'- Seleccione la entidad -'."</option>";
       }
-
-      if ($line['idEntidad']==$s_idEntidad)
+      if ($line['identidad']==$s_entidad)
       {
-        $comboEntidad .=" <option value='".$line['idEntidad']."' selected>".$line['nombreEntidad']." </option>"; 
+        $comboEntidad .=" <option value='".$line['identidad']."' selected>".$line['nombreentidad']." </option>"; 
       }
-    
-      $comboEntidad .=" <option value='".$line['idEntidad']."'>".$line['nombreEntidad']."</option>"; 
-    
-    $i++; 
-   }
+      $comboEntidad .=" <option value='".$line['identidad']."'>".$line['nombreentidad']."</option>"; 
+      $i++; 
+    }
    
   //============================= CONSULTA LA DEPENDENCIA
   //============================================================================ 
-  $query_dependencia=mysqli_query($con,"select * from reu_dependencias order by nombreDependencia");
-  $i=0;
-   while ($line = mysqli_fetch_array($query_dependencia))
-   {
-    if ($i==0)
+    $stmt = $pdo->query('SELECT * FROM reu_dependencias order by nombredependencia');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
         $comboDependencia .=" <option value=''>".'- Seleccione la dependencia -'."</option>";
       }
-
-      if ($line['idDependencia']==$s_idDependencia)
+      if ($line['iddependencia']==$s_dependencia)
       {
-        $comboDependencia .=" <option value='".$line['idDependencia']."' selected>".$line['nombreDependencia']." </option>"; 
+        $comboDependencia .=" <option value='".$line['iddependencia']."' selected>".$line['nombredependencia']." </option>"; 
       }
-    
-      $comboDependencia .=" <option value='".$line['idDependencia']."'>".$line['nombreDependencia']."</option>"; 
-    
-    $i++; 
-   } 
+      $comboDependencia .=" <option value='".$line['iddependencia']."'>".$line['nombredependencia']."</option>"; 
+      $i++; 
+    }
    
    //============================= CONSULTA el LUGAR
-  //============================================================================ 
-  $query_dependencia=mysqli_query($con,"select * from reu_lugares order by nombreLugar");
-  $i=0;
-   while ($line = mysqli_fetch_array($query_dependencia))
-   {
-    if ($i==0)
+   //============================================================================ 
+    $stmt = $pdo->query('SELECT * FROM reu_lugares order by nombrelugar');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
-        $comboLugar .=" <option value=''>".'- Seleccione la ubicación -'."</option>";
+        $comboLugar .=" <option value=''>".'- Seleccione el lugar -'."</option>";
       }
-
-      if ($line['idLugar']==$s_lugarReunion)
+      if ($line['idlugar']==$s_lugarReunion)
       {
-        $comboLugar .=" <option value='".$line['idLugar']."' selected>".$line['nombreLugar']." </option>"; 
+        $comboLugar .=" <option value='".$line['idlugar']."' selected>".$line['nombrelugar']." </option>"; 
       }
-      else
-      {
-       $comboLugar .=" <option value='".$line['idLugar']."'>".$line['nombreLugar']."</option>"; 
-      }
-    $i++; 
-   } 
+      $comboLugar .=" <option value='".$line['idlugar']."'>".$line['nombrelugar']."</option>"; 
+      $i++; 
+    }
    
   //============================= CONSULTA grupo interno
   //============================================================================ 
-  $query_grupo=mysqli_query($con,"select * from reu_grupos_internos order by grupoInterno");
-  $i=0;
-   while ($line = mysqli_fetch_array($query_grupo))
-   {
-    if ($i==0)
+    $stmt = $pdo->query('SELECT * FROM reu_grupos_internos order by grupointerno');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
-        $comboGrupo .=" <option value=''>".'- Seleccione el grupo interno -'."</option>";
+        $comboGrupo .=" <option value=''>".'-  Seleccione el grupo interno -'."</option>";
       }
-
-      if ($line['idGrupoInterno']==$s_idGrupo)
+      if ($line['idgrupointerno']==$s_idGrupo)
       {
-        $comboGrupo .=" <option value='".$line['idGrupoInterno']."' selected>".$line['grupoInterno']." </option>"; 
+        $comboGrupo .=" <option value='".$line['idgrupointerno']."' selected>".$line['grupointerno']." </option>"; 
       }
-      else
-      {
-       $comboGrupo .=" <option value='".$line['idGrupoInterno']."'>".$line['grupoInterno']."</option>"; 
-      }
-    $i++; 
-   }
+      $comboGrupo .=" <option value='".$line['idgrupointerno']."'>".$line['grupointerno']."</option>"; 
+      $i++; 
+    }
    
    //============================= CONSULTA categorias
   //============================================================================ 
-  $query_categoria=mysqli_query($con,"select * from reu_categorias order by categoriaReunion");
-  $i=0;
-   while ($line = mysqli_fetch_array($query_categoria))
-   {
-    if ($i==0)
+   $stmt = $pdo->query('SELECT * from reu_categorias order by categoriareunion');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
-        $comboCategoria .=" <option value=''>".'- Seleccione la categoría -'."</option>";
+        $comboCategoria .=" <option value=''>".'-  Seleccione el grupo interno -'."</option>";
       }
-
-      if ($line['idCategoriaReunion']==$s_idCategoria)
+      if ($line['idcategoriareunion']==$s_idCategoria)
       {
-        $comboCategoria .=" <option value='".$line['idCategoriaReunion']."' selected>".$line['categoriaReunion']." </option>"; 
+        $comboCategoria .=" <option value='".$line['idcategoriareunion']."' selected>".$line['categoriareunion']." </option>"; 
       }
-      else
-      {
-       $comboCategoria .=" <option value='".$line['idCategoriaReunion']."'>".$line['categoriaReunion']."</option>"; 
-      }
-    $i++; 
-   }
-   
+      $comboCategoria .=" <option value='".$line['idcategoriareunion']."'>".$line['categoriareunion']."</option>"; 
+      $i++; 
+    }
+  
     //============================= CONSULTA sub categorias
-  //============================================================================ 
-  $query_subcategoria=mysqli_query($con,"select * from reu_sub_categorias order by subCategoriaReunion");
-  $i=0;
-   while ($line = mysqli_fetch_array($query_subcategoria))
-   {
-    if ($i==0)
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT * from reu_sub_categorias order by subcategoriareunion');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
-        $comboSubCategoria .=" <option value=''>".'- Seleccione la sub categoría -'."</option>";
+        $comboSubCategoria .=" <option value=''>".'-  Seleccione el grupo interno -'."</option>";
       }
-
-      if ($line['idSubCategoriaReunion']==$s_idSubCategoria)
+      if ($line['idsubcategoriaReunion']==$s_idSubCategoria)
       {
-        $comboSubCategoria .=" <option value='".$line['idSubCategoriaReunion']."' selected>".$line['subCategoriaReunion']." </option>"; 
+        $comboSubCategoria .=" <option value='".$line['idsubcategoriaReunion']."' selected>".$line['subcategoriareunion']." </option>"; 
       }
-      else
-      {
-       $comboSubCategoria .=" <option value='".$line['idSubCategoriaReunion']."'>".$line['subCategoriaReunion']."</option>"; 
-      }
-    $i++; 
-   }
-   
+      $comboSubCategoria .=" <option value='".$line['idsubcategoriaReunion']."'>".$line['subcategoriareunion']."</option>"; 
+      $i++; 
+    }
   ?>
    
   
@@ -636,21 +687,22 @@
                       
                       <hr>
                       <?php
-                       $sql="select * from  reu_reuniones_participante where idReunion = $s_idReunion";
-                       $query = mysqli_query($con, $sql);     
+                       $sql="select * from  reu_reuniones_participante where idreunion = $s_idReunion";
+                       $stmt = $pdo->query($sql);
                       ?>
                       
                       <div class="panel-group" id="accordion">
                         <div class="panel panel-info" >
 			              <?php
 			                $i=1;
-			                while ($row=mysqli_fetch_array($query)){
-			                  $numeroIdParticipante=$row['numeroIdParticipante'];
+			                while ($row  = $stmt->fetch(PDO::FETCH_ASSOC)){
+			                 $numeroIdParticipante=$row['numeroidparticipante'];
  			                 
-			                 $sql_par  = "SELECT * FROM reu_participante where numeroIdParticipante=$numeroIdParticipante";
-			                 $query_par = mysqli_query($con, $sql_par);
-                             $row_par  = mysqli_fetch_array($query_par);
-			                 $nombre   = $row_par['nombresParticipante']; 
+ 			                 $sql_par="SELECT * FROM reu_participante where numeroidparticipante=$numeroIdParticipante";
+			                 $stmt_par = $pdo->query($sql_par);
+			                 $row_par  = $stmt->fetch(PDO::FETCH_ASSOC);
+			                 
+			                 $nombre   = $row_par['nombresparticipante']; 
 			                 
 			                 $borrarP = $s_idReunion . "-" . $numeroIdParticipante ;
 			                 $compromisoP = $s_idReunion . "-" . $numeroIdParticipante ;
@@ -736,14 +788,15 @@
 					    			        <th class='text-center'>Acciones</th>
 				    			          </tr>   
     			                          <?php
-    			                             $sqlCompromiso ="select * from reu_compromisos where idReunion=$s_idReunion and numeroIdParticipante=$numeroIdParticipante ";
-    			                             $queryCompromiso = mysqli_query($con, $sqlCompromiso); 
-    			                             while ($rowCompromiso=mysqli_fetch_array($queryCompromiso)){
-			                                  $numeroIdParticipante   = $rowCompromiso['numeroIdParticipante'];
-			                                  $idCompromiso           = $rowCompromiso['idCompromiso']; 
-			                                  $fechaInicialCompromiso = $rowCompromiso['fechaInicialCompromiso']; 
-			                                  $fechaFinalCompromiso   = $rowCompromiso['fechaFinalCompromiso'];
-			                                  $compromisoAdquirido    = $rowCompromiso['compromisoAdquirido'];
+    			                             $sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion and numeroidparticipante=$numeroIdParticipante ";
+    			                             $stmtCompromiso = $pdo->query($sql);
+                                             
+                                             while ($rowCompromiso  = $stmtCompromiso->fetch(PDO::FETCH_ASSOC)){
+			                                  $numeroIdParticipante   = $rowCompromiso['numeroidparticipante'];
+			                                  $idCompromiso           = $rowCompromiso['idcompromiso']; 
+			                                  $fechaInicialCompromiso = $rowCompromiso['fechainicialcompromiso']; 
+			                                  $fechaFinalCompromiso   = $rowCompromiso['fechafinalcompromiso'];
+			                                  $compromisoAdquirido    = $rowCompromiso['compromisoadquirido'];
 			                                  //$tareasRealizadas       = $rowCompromiso['tareasRealizadas'];
 			                                  $estado                 = $rowCompromiso['estado'];
 			                                  

@@ -12,7 +12,6 @@
   $nombreUsuario = $_SESSION['user_firstname'] ." " .$_SESSION['user_lastname']; 
   
   include("ciudades.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +26,8 @@
   
   <?php  
     include("navbar.php");
+    // Crear una nueva instancia de conexión PDO
+    $pdo = new PDO($dsn);
     
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
@@ -36,7 +37,6 @@
     $s_numeroIdParticipante   = $partir[0];
     $tipAccion                = $partir[1];
     
-    
     if ( $s_numeroIdParticipante != "" )
     {  
       ///////////////////////////////////////////////////////  
@@ -44,17 +44,18 @@
       $titulo   = "MODIFICAR PARTICIPANTE";
       $s_existe = 1;
       $boton    = "Actualizar";
-    
-      $sql = "select * from reu_participante where numeroIdParticipante=$s_numeroIdParticipante";
-      $query = mysqli_query($con, $sql);  
-      $row=mysqli_fetch_array($query);
-    
-      $s_idGrupoInterno       = $row['idGrupoInterno'];
-      $s_tipoDocumento        = $row['tipoDocumento'];
-      $s_numeroIdParticipante = $row['numeroIdParticipante'];
-      $s_nombresParticipante  = $row['nombresParticipante'];
-      $s_celularParticipante  = $row['celularParticipante'];
-      $s_correoParticipante   = $row['correoParticipante'];
+      
+      $sql = "select * from reu_participante where numeroidparticipante=$s_numeroIdParticipante";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      //echo "Nombre: {$row['des_categoriareunion']}<br />";
+      
+      $s_idGrupoInterno       = $row['idgrupointerno'];
+      $s_tipoDocumento        = $row['tipodocumento'];
+      $s_numeroIdParticipante = $row['numeroidparticipante'];
+      $s_nombresParticipante  = $row['nombresparticipante'];
+      $s_celularParticipante  = $row['celularparticipante'];
+      $s_correoParticipante   = $row['correoparticipante'];
       $s_departamento         = $row['departamento'];
       $s_ciudad               = $row['ciudad'];
       $s_codCiudad            = $row['ciudad'];
@@ -65,7 +66,7 @@
       $s_nombresParticipante = strtoupper($s_nombresParticipante);
       $s_cargo = strtoupper($s_cargo);
       $s_correoParticipante = strtolower($s_correoParticipante);
-      
+      /*
       //TRAE NOMBRES DE CIUDAD Y DEPARTAMENTO
       $sqlDepto="select nomDepto from sl_municipios where codDepto=$s_departamento group by nomDepto ";
       $queryDepto = mysqli_query($con, $sqlDepto);  
@@ -77,6 +78,7 @@
       $queryMpio = mysqli_query($con, $sqlMpio);  
       $rowMpio=mysqli_fetch_array($queryMpio);
       $s_nomCiudad = $rowMpio['nomMunicipio'];
+      */
 
     }  
     else
@@ -138,24 +140,36 @@
       ///MODIFICA
       if ($s_existe == "1")  
       {
-        $sql= "UPDATE reu_participante SET tipoDocumento = '$s_tipoDocumento', nombresParticipante = '$s_nombresParticipante', 
-                      celularParticipante = '$s_celularParticipante', correoParticipante = '$s_correoParticipante', departamento = '$s_departamento', 
-                      ciudad = '$s_ciudad', entidad = '$s_entidad', dependencia = '$s_dependencia', cargo = '$s_cargo' WHERE numeroIdParticipante = '$s_numeroIdParticipante'";
-       // echo $sql;
-        $query_new_insert = mysqli_query($con,$sql);
-        $mensaje=" <b>Atención!</b> Actualización exitosa";
+        $sql= "UPDATE reu_participante SET tipodocumento = :tipodocumento, nombresparticipante = :nombresparticipante, 
+                                           celularparticipante = :celularparticipante, correoparticipante = :correoparticipante, 
+                                           departamento = :departamento, ciudad = :ciudad, entidad = :entidad, dependencia = :dependencia, 
+                                           cargo = :cargo WHERE numeroidparticipante = :numeroidparticipante";
+        $stmt = $pdo->prepare($sql);
+    
+        // Vincular parámetros
+        $stmt->bindParam(':tipodocumento', $s_tipoDocumento, PDO::PARAM_INT);
+        $stmt->bindParam(':nombresparticipante', $s_nombresParticipante, PDO::PARAM_STR);
+        $stmt->bindParam(':celularparticipante', $s_celularParticipante, PDO::PARAM_STR);
+        $stmt->bindParam(':correoparticipante', $s_correoParticipante, PDO::PARAM_STR);
+        $stmt->bindParam(':departamento', $s_departamento, PDO::PARAM_STR);
+        $stmt->bindParam(':ciudad', $s_ciudad, PDO::PARAM_STR);
+        $stmt->bindParam(':entidad', $s_entidad, PDO::PARAM_STR);
+        $stmt->bindParam(':dependencia', $s_dependencia, PDO::PARAM_STR);
+        $stmt->bindParam(':cargo', $s_cargo, PDO::PARAM_STR);
+        $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);;
+        
+        // Ejecutar la consulta
+         $stmt->execute();
       }  
       
       ///ADICIONA
       if ($s_existe == "0")
       {
-        $sql= "INSERT INTO reu_participante (tipoDocumento, numeroIdParticipante, nombresParticipante, celularParticipante, 
-                           correoParticipante, departamento, ciudad, entidad, dependencia, cargo) 
-              VALUES ('$s_tipoDocumento', '$s_numeroIdParticipante', '$s_nombresParticipante', '$s_celularParticipante', '$s_correoParticipante', 
-              '$s_departamento', '$s_ciudad', '$s_entidad', '$s_dependencia', '$s_cargo')";
-        //echo $sql;
+        $stmt = $pdo->prepare('INSERT INTO reu_participante (tipodocumento, numeroidparticipante, nombresparticipante, celularparticipante, 
+                           correoparticipante, departamento, ciudad, entidad, dependencia, cargo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$s_tipoDocumento, $s_numeroIdParticipante, $s_nombresParticipante, $s_celularParticipante, $s_correoParticipante, 
+              $s_departamento, $s_ciudad, $s_entidad, $s_dependencia, $s_cargo]);
         
-        $query_new_insert = mysqli_query($con,$sql);
         $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
         
         $s_existe ="1";
@@ -168,101 +182,86 @@
    
    //============================= CONSULTA EL tipo de documento
   //============================================================================ 
-  $query_tipodoc=mysqli_query($con,"select * from tipo_documento order by idDocumento");
+   
+  $stmt = $pdo->query('select * from tipo_documento order by iddocumento');
   $i=0;
-   while ($line = mysqli_fetch_array($query_tipodoc))
-   {
-    if ($i==0)
+  
+  while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
         $comboTipoDoc .=" <option value=''>".'- Seleccione el tipo de documento -'."</option>";
       }
-
-      if ($line['idDocumento']==$s_tipoDocumento)
+      if ($line['iddocumento']==$s_tipoDocumento)
       {
-        $comboTipoDoc .=" <option value='".$line['idDocumento']."' selected>".$line['nombre']." </option>"; 
+        $comboTipoDoc .=" <option value='".$line['iddocumento']."' selected>".$line['nombre']." </option>"; 
       }
-    
-      $comboTipoDoc .=" <option value='".$line['idDocumento']."'>".$line['nombre']."</option>"; 
-    
-    $i++; 
-   }
-   
+      $comboTipoDoc .=" <option value='".$line['iddocumento']."'>".$line['nombre']."</option>"; 
+      $i++; 
+    }
+  
     //============================= CONSULTA LA ENTIDAD
-  //============================================================================ 
-  $query_entidad=mysqli_query($con,"select * from reu_entidades order by nombreEntidad");
-  $i=0;
-   while ($line = mysqli_fetch_array($query_entidad))
-   {
-    if ($i==0)
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT * FROM reu_entidades order by nombreentidad');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
         $comboEntidad .=" <option value=''>".'- Seleccione la entidad -'."</option>";
       }
-
-      if ($line['idEntidad']==$s_entidad)
+      if ($line['identidad']==$s_entidad)
       {
-        $comboEntidad .=" <option value='".$line['idEntidad']."' selected>".$line['nombreEntidad']." </option>"; 
+        $comboEntidad .=" <option value='".$line['identidad']."' selected>".$line['nombreentidad']." </option>"; 
       }
+      $comboEntidad .=" <option value='".$line['identidad']."'>".$line['nombreentidad']."</option>"; 
+      $i++; 
+    }
     
-      $comboEntidad .=" <option value='".$line['idEntidad']."'>".$line['nombreEntidad']."</option>"; 
-    
-    $i++; 
-   }
-   
-     //============================= CONSULTA LA DEPENDENCIA
-  //============================================================================ 
-  $query_dependencia=mysqli_query($con,"select * from reu_dependencias order by nombreDependencia");
-  $i=0;
-   while ($line = mysqli_fetch_array($query_dependencia))
-   {
-    if ($i==0)
+    //============================= CONSULTA LA DEPENDENCIA
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT * FROM reu_dependencias order by nombredependencia');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
         $comboDependencia .=" <option value=''>".'- Seleccione la dependencia -'."</option>";
       }
-
-      if ($line['idDependencia']==$s_dependencia)
+      if ($line['iddependencia']==$s_dependencia)
       {
-        $comboDependencia .=" <option value='".$line['idDependencia']."' selected>".$line['nombreDependencia']." </option>"; 
+        $comboDependencia .=" <option value='".$line['iddependencia']."' selected>".$line['nombredependencia']." </option>"; 
       }
-    
-      $comboDependencia .=" <option value='".$line['idDependencia']."'>".$line['nombreDependencia']."</option>"; 
-    
-    $i++; 
-   }
-   
-   
- 
+      $comboDependencia .=" <option value='".$line['iddependencia']."'>".$line['nombredependencia']."</option>"; 
+      $i++; 
+    }
          
-     //============================= CONSULTA LOS DEPARTAMENTOS
-  //============================================================================ 
-  
-  $query=mysqli_query($con,"SELECT * FROM sl_municipios group by codDepto");
-  $i=0;
-   while ($line = mysqli_fetch_array($query))
-   {
-    if ($i==0)
+    //============================= CONSULTA LOS DEPARTAMENTOS
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT * FROM reu_municipios group by coddepto');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
       {
         $comboDepto .=" <option value=''>".'- Seleccione el departamento -'."</option>";
       }
-
-      if ($line['codDepto']==$s_departamento)
+      if ($line['coddepto']==$s_entidad)
       {
-        $comboDepto .=" <option value='".$line['codDepto']."' selected>".$line['nomDepto']." </option>"; 
+        $comboDepto .=" <option value='".$line['coddepto']."' selected>".$line['nomdepto']." </option>"; 
       }
+      $comboDepto .=" <option value='".$line['coddepto']."'>".$line['nomdepto']."</option>"; 
+      $i++; 
+    }
     
-      $comboDepto .=" <option value='".$line['codDepto']."'>".$line['nomDepto']."</option>"; 
-    
-    $i++; 
-   }
-   
-   
-   //TRAE NOMBRES DE CIUDAD Y DEPARTAMENTO
-   if ($s_ciudad>0)
-   {
-    $sqlMpio="select codMunicipio, nomMunicipio from sl_municipios where codDepto='$s_departamento' and codMunicipio='$s_ciudad'";
-    $queryMpio = mysqli_query($con, $sqlMpio);  
-    $rowMpio=mysqli_fetch_array($queryMpio);
-    $s_nomCiudad = $rowMpio['nomMunicipio'];
-   }
+    //TRAE NOMBRES DE CIUDAD Y DEPARTAMENTO
+    if ($s_ciudad>0)
+    {
+      $sql = "select codmunicipio, nommunicipio from reu_municipios where coddepto='$s_departamento' and codmunicipio='$s_ciudad'";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      $s_nomCiudad = $row['nommunicipio'];
+    }
    
   ?>  
               <!-- Page Content Holder -->
