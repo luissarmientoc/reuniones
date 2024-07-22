@@ -54,6 +54,18 @@
     } 
   }//consultar
   
+  if ($s_fecIni!="" and $s_fecFin!="")
+  {
+      
+  }    
+  else
+  {   
+    $_SESSION['fecha']  = $fecha;
+    $_SESSION['fecha1'] = $fMasUno;
+    $s_fecIni= $fecha;
+    $s_fecFin= $fMasUno;
+  }
+  
   //Reuniones convocadas por
   
   // Crear una nueva instancia de conexión PDO
