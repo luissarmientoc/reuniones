@@ -82,12 +82,13 @@
       */
       
       //Entidades registradas
-      $stmt = $pdo->query('SELECT count(*) as cuantos FROM reu_entidades');
+      $sql = 'SELECT count(*) as cuantos FROM reu_entidades';
+      $stmt = $pdo->query($sql);
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       $cantEntidades = $row['cuantos'];
          echo "Cuantossss: " . $cantEntidades;
        
-      
+      /*
            $sql = "SELECT COUNT(*) AS cuantasEntidades FROM reu_entidades";
            $stmt = $pdo->query($sql);
            // Obtener el resultado (única fila)
@@ -101,6 +102,7 @@
       echo '<br>';
       echo "cant entidades .." . $cantEntidades;
       echo '<br>';
+      */
      }catch (PDOException $e) {
       echo "Error de conexión: " . $e->getMessage();
     }
