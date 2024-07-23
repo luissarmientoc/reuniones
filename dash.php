@@ -311,7 +311,7 @@
                       </div>
                       <div class="col-sm-6">
                           <?php
-                               //include("barrasConvocadasPor.php");
+                             include("barrasConvocadasPor.php");
                           ?> 
                       </div>
                   </div>

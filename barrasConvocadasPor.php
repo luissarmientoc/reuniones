@@ -7,15 +7,21 @@
     $s_fecIni = $_SESSION['fecha'];
     $s_fecFin = $_SESSION['fecha1'];
     
-    $sqlConvocado = "SELECT count(*) as cuantosConvocado,  nombresParticipante FROM reu_reuniones a, reu_participante b 
-                   WHERE a.convocadaPor= b.numeroIdParticipante and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by a.convocadaPor ";
-                   
-    $queryConovocados = mysqli_query($con, $sqlConvocado); 
+    $sqlConvocado = "SELECT count(*) as cuantosConvocado,  nombresParticipante 
+                     FROM reu_reuniones a, reu_participante b 
+                     WHERE a.convocadaPor= b.numeroIdParticipante 
+                     AND fechaReunion between '$s_fecIni' AND  '$s_fecFin' 
+                     GROUPB BY a.convocadaPor, nombresParticipante";
+   echo $sqlConvocado;                     
+    $stmt = $pdo->query($sqlConvocado);
+    $rowCon = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    
     $i=1;
-    while ($rowCon = mysqli_fetch_array($queryConovocados))
+    while ($rowCon = $stmt->fetch(PDO::FETCH_ASSOC))
     {
       $s_cuantosConvocado = $rowCon['cuantosConvocado'];
-      $nombresParticipante = $rowCon['nombresParticipante'];    
+      $nombresParticipante = $rowCon['nombresparticipante'];    
       
       $reu[$i]= "{ name:'".$nombresParticipante."', y:" . $s_cuantosConvocado."},";	  
       $alf[$i]= "{ name:'".$nombresParticipante."', y:" . $s_cuantosConvocado."},";
