@@ -254,20 +254,20 @@
                            <i class="fas fa-user-friends" style='font-size:20px;color:#3498db'></i>
                            <span class="titDash1"> Participantes </span></br>  
                            <span class="titDash2"> <?=$fechas?> </span><br>
-                           <span style="color:#3498db; font-size:14px;"> <a href="cli00.php">  <?=$cantPersonas?> Registrados <i class="fas fa-link"></i></a> </span>                          
+                           <span style="color:#3498db; font-size:14px;"> <a href="participante0.php">  <?=$cantPersonas?> Registrados <i class="fas fa-link"></i></a> </span>                          
                          </div>  
                        </div>                         
                   </div>  <!-- row -->
                   
                   <!--- FIN DATOS DE CABECERA --->
                   
-                  <!--- barras --->     
+                  <!--- barras --->  
+                  <!-------------------------------
                     <div class="col-sm-12" ALIGN="CENTER">
                          <div class="fondo" style="background-color: #fff;">    
                            <h3>COMPROMISOS Y TAREAS</h3>
                          </di> 
                     </div>  
-                    
                     <div class="col-sm-12" ALIGN="CENTER">
                          <div class="fondo" style="background-color: #fff;">                           
                            <i class="fas fa-cogs" aria-hidden="true"  style='font-size:16px;color:#16a085;'></i>
@@ -290,14 +290,14 @@
                            
                            <span style="color:#c0392b; font-size:16px; font-family:verdana;"> INICIADAS: <?=number_format($cantTareasEstado1)?></span><br>
                            <span style="color:#16a085; font-size:16px; font-family:verdana;"> CUMPLIDAS: <?=number_format($cantTareasEstado2)?></span>
-                      </div>  
-                       <div class="fondo" style="background-color: #fff;">         
+                         </div>  
+                        <div class="fondo" style="background-color: #fff;">         
                            <?php
                                //include("barrasTareas.php");
                           ?> 
-                        </div> 
+                         </div> 
                      </div> 
-                     
+                     ---------------------->
                      
              
              
