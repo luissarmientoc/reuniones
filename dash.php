@@ -319,8 +319,9 @@
               <div class="container">
                   <div class="row">
                       <div class="col-sm-12">
-                        <div class="fondo">
-                            DATOS DESDE: <?=$s_fecIni?> HASTA: <?=$s_fecIni?>
+                        <div class="fondo" align="center">
+                            <h2>DATOS DESDE: <b><?=$s_fecIni?></b> HASTA: <b><?=$s_fecFin?></b></h2>
+                            
                         </div>             
                       </div>
                   </div>
