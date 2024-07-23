@@ -7,16 +7,16 @@
     $s_fecIni = $_SESSION['fecha'];
     $s_fecFin = $_SESSION['fecha1'];
     
-    $sqlSubCategorias="select count(*) as cunatosSubCategorias, subCategoriaReunion from reu_reuniones a, reu_sub_categorias b 
-    where idSubcategoria=idSubcategoriaReunion and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by b.subCategoriaReunion";
+    $sqlSubCategorias="select count(*) as cunatossubcategorias, subcategoriareunion 
+                       from reu_reuniones a, reu_sub_categorias b 
+                       where idsubcategoria=idsubcategoriareunion and fechareunion between '$s_fecIni' AND  '$s_fecFin' group by b.subcategoriareunion";
+    $stmt = $pdo->query($sqlSubCategorias);
     
-    $querySubCategorias = mysqli_query($con, $sqlSubCategorias); 
     $i=1;
-    
-    while ($rowSubCat = mysqli_fetch_array($querySubCategorias))
+    while ($rowSubCat = $stmt->fetch(PDO::FETCH_ASSOC))
     {
-      $cuantosSubCategorias = $rowSubCat['cunatosSubCategorias'];
-      $subCategoriaReunion  = $rowSubCat['subCategoriaReunion'];    
+      $cuantosSubCategorias = $rowSubCat['cunatossubcategorias'];
+      $subCategoriaReunion  = $rowSubCat['subcategoriareunion'];    
      
       $subCat[$i]= "{ name:'".$subCategoriaReunion."', y:" . $cuantosSubCategorias."},";	  
       $i=$i+1; 

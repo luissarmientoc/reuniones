@@ -347,7 +347,7 @@
                       <div class="col-sm-6">
                         <div class="fondo">  
                           <?php
-                            //include("barrasSubcategorias.php");
+                             include("barrasSubcategorias.php");
                           ?> 
                         </div>  
                       </div>
