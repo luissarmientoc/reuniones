@@ -13,18 +13,19 @@
     $s_fecIni = $_SESSION['fecha'];
     $s_fecFin = $_SESSION['fecha1'];
 
-    $sql="SELECT count(*) as cuantosConvocado,  nombresParticipante 
+    $sql="SELECT count(*) as cuantosConvocado,  nombresparticipante 
                      FROM reu_reuniones a, reu_participante b 
-                     WHERE a.convocadaPor= b.numeroIdParticipante 
-                     AND fechaReunion between '$s_fecIni' AND  '$s_fecFin' 
-                     GROUP BY a.convocadaPor, nombresParticipante";
+                     WHERE a.convocadapor= b.numeroidparticipante 
+                     AND fechareunion between '$s_fecIni' AND  '$s_fecFin' 
+                     GROUP BY a.convocadapor, nombresparticipante";
 echo "sql.." . $sql;                     
 echo '<br>';
                      
     $stmt = $pdo->query($sql);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "Cantidad: {$row['cuantosConvocado']}<br />";
-        echo "Nombre: {$row['nombresParticipante']}<br />";
+        echo "Cantidad: " . $row['cuantosConvocado'];
+        echo'<br>';
+        echo "Nombre: " . $row['nombresparticipante'];
     }
 
  ?>                   
