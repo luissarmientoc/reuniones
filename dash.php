@@ -305,9 +305,11 @@
                    
                   <div class="row">
                       <div class="col-sm-6">
+                        <div class="fondo">   
                           <?php
                              include("barrasReuniones.php");
                           ?> 
+                        </div>  
                       </div>
                       <div class="col-sm-6">
                           <?php
@@ -318,9 +320,11 @@
                   <br><br>
                   <div class="row">
                       <div class="col-sm-6">
+                        <div class="fondo">   
                           <?php
-                               //include("barrasDependencias.php");
+                               include("barrasDependencias.php");
                           ?> 
+                        </div>  
                       </div>
                       <div class="col-sm-6">
                           <?php

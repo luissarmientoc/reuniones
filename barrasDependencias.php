@@ -6,17 +6,18 @@
     
     $s_fecIni = $_SESSION['fecha'];
     $s_fecFin = $_SESSION['fecha1'];
-    
-    $sqlDependecias="select count(*) as cuantasDependencias, nombreDependencia from  reu_reuniones a, reu_dependencias b 
-                     where a.idDependencia=b.idDependencia and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by b.nombreDependencia";
                      
-    $queryDependencias = mysqli_query($con, $sqlDependecias); 
-    $i=1;
+    $sqlDependecias="select count(*) as cuantasdependencias, nombredependencia 
+                     from  reu_reuniones a, reu_dependencias b 
+                     where a.iddependencia=b.iddependencia and fechareunion between '$s_fecIni' AND  '$s_fecFin' group by b.nombredependencia";
+                     
+    $stmt = $pdo->query($sqlDependecias);
     
-    while ($rowDep = mysqli_fetch_array($queryDependencias))
-    {
-      $cuantasDependencias     = $rowDep['cuantasDependencias'];
-      $nombreDependencia      = $rowDep['nombreDependencia'];    
+    $i=1;
+    while ($rowDep = $stmt->fetch(PDO::FETCH_ASSOC))
+    {             
+      $cuantasDependencias    = $rowDep['cuantasdependencias'];
+      $nombreDependencia      = $rowDep['nombredependencia'];    
      
       $dep[$i]= "{ name:'".$nombreDependencia."', y:" . $cuantasDependencias."},";	  
       $i=$i+1; 
