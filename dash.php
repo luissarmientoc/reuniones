@@ -306,7 +306,7 @@
                   <div class="row">
                       <div class="col-sm-6">
                           <?php
-                               include("barrasReuniones.php");
+                             //  include("barrasReuniones.php");
                           ?> 
                       </div>
                       <div class="col-sm-6">
