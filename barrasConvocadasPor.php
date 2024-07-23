@@ -11,7 +11,6 @@
                      WHERE a.convocadapor= b.numeroidparticipante 
                      AND fechareunion between '$s_fecIni' AND  '$s_fecFin' 
                      GROUP BY a.convocadapor, nombresparticipante";
-    echo $sqlConvocado;                     
     $stmt = $pdo->query($sqlConvocado);
     
     
@@ -47,10 +46,10 @@ Highcharts.chart('container2', {
     },
     
     title: {
-        text: 'CONVOCADAS POR'
+        text: 'REUNIONES'
     },
     subtitle: {
-        text: 'REUNIONES'
+        text: 'CONVOCADAS POR'
     },
     xAxis: {
         type: 'category'
