@@ -14,8 +14,6 @@
                      GROUP BY a.convocadaPor, nombresParticipante";
     echo $sqlConvocado;                     
     $stmt = $pdo->query($sqlConvocado);
-    $rowCon = $stmt->fetch(PDO::FETCH_ASSOC);
-    
     
     $i=1;
     while ($rowCon = $stmt->fetch(PDO::FETCH_ASSOC))
@@ -33,7 +31,7 @@
       
       $reu[$i]= "{ name:'".$nombresParticipante."', y:" . $s_cuantosConvocado."},";	  
       $alf[$i]= "{ name:'".$nombresParticipante."', y:" . $s_cuantosConvocado."},";
-      $i=$i+1; 
+      $i=$i+1;
     }//while valores       
 
 
