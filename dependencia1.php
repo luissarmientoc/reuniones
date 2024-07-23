@@ -94,10 +94,6 @@
       ///ADICIONA
       if ($s_existe == "0")
       {
-        $sql1 = "select max(idDependencia) as maximo from reu_dependencias ";
-        $query1 = mysqli_query($con, $sql1);  
-        $row1=mysqli_fetch_array($query1);
-        
         $sql = "SELECT MAX(iddependencia) AS maximo FROM reu_dependencias";
         $stmt = $pdo->query($sql);
         $row  = $stmt->fetch(PDO::FETCH_ASSOC);

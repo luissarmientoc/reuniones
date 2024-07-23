@@ -89,11 +89,12 @@
          $stmt = $pdo->prepare($sql);
     
          // Vincular parámetros
-         $stmt->bindParam(':nombrelugar', $s_nombreEntidad, PDO::PARAM_STR);
+         $stmt->bindParam(':nombrelugar', $s_nombreLugar, PDO::PARAM_STR);
          $stmt->bindParam(':idlugar', $s_idLugar, PDO::PARAM_INT);
     
          // Ejecutar la consulta
          $stmt->execute();
+        
         
         $mensaje=" <b>Atención!</b> Actualización exitosa";
       }  

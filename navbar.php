@@ -161,8 +161,6 @@ a.article, a.article:hover {
  $emaiUsuario = $_SESSION['user_email'];
  $nomUsuarioI = $_SESSION['user_firstname'];
  $apeUsuarioI = $_SESSION['user_lastname'];   
- $idBodega    = $_SESSION['laBodega'];    
- $nomBodega   = $_SESSION['laTienda']; 
  $user_perfil = $_SESSION['user_perfil'];
  $idUt        = $_SESSION['idUt'];
  $nombreUt    = $_SESSION['nombreUt'];     
@@ -253,8 +251,8 @@ a.article, a.article:hover {
                    </li>
                     
                     <?php
-                      if ($user_perfil==1 or $user_perfil==2)
-                      {
+                     // if ($user_perfil==1 or $user_perfil==2)
+                     // {
                     ?>  
                      <li>
                         <!--<li class="active">-->
@@ -274,7 +272,7 @@ a.article, a.article:hover {
                          </ul>
                       </li>
                     <?php
-                     }
+                    // }
                     ?>
                     
                      <li>

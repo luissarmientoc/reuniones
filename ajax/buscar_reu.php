@@ -84,7 +84,7 @@
             $q2 = htmlentities($q, ENT_QUOTES, 'UTF-8');
             $q3 = strip_tags($_REQUEST['q']);
             $q3 = htmlentities($q, ENT_QUOTES, 'UTF-8');
-            /* 
+             
              echo '<br>';
              echo "q: " . $q;
              echo '<br>';
@@ -96,12 +96,13 @@
              echo '<br>';
              echo "q4: " . $q4;
              echo '<br>';
-            */      
+                  
             
-            $q = strtoupper($q);
+            //$q = strtoupper($q);
             $q1 = strtoupper($q1);
             $q2 = strtoupper($q2);
             $q3 = strtoupper($q3);
+            
             
             if ($q!="")
             {
@@ -111,18 +112,23 @@
             {
              $aColumns = "";
             }
-		    $sTable = "reu_reuniones";
+            
+            $sTable = "reu_reuniones";
 		    $sWhere = "";
 		 
 		    $sWhere = "WHERE (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 			{
-				//$sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
-				$sWhere .= $aColumns[$i]." = ".$q." OR ";
+				$sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+				//$sWhere .= $aColumns[$i]." = ".$q." OR ";
 			}
 			$sWhere = substr_replace( $sWhere, "", -3 );
 			$sWhere .= ')';
 		
+		  	if ($q!=""){
+		        $sWhere .=" fechareunion ='$q'";
+		    }
+		    
 		  	if ($q1>0){
 		        $sWhere .=" and convocadapor ='$q1'";
 		    }
@@ -133,7 +139,6 @@
 		        $sWhere .=" and idgrupo ='$q3'";
 		    }
            
-            
 		    // Configurar el modo de error para excepciones
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    
@@ -149,7 +154,7 @@
 	        // Consulta SQL para contar las filas
             $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
             echo '<br>';
-            echo "sql cts.." . $sql;
+            echo "sql cts..en sql.." . $sql;
             echo '<br>';
             
             $stmt = $pdo->query($sql);
