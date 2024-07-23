@@ -7,17 +7,17 @@
     $s_fecIni = $_SESSION['fecha'];
     $s_fecFin = $_SESSION['fecha1'];
                
-    $sqlGrupos = "select count(*) as cuantosGrupos, grupoInterno 
+    $sqlGrupos = "select count(*) as cuantosgrupos, grupointerno 
                   from reu_reuniones a, reu_grupos_internos b 
-                  where a.idgrupo=b.idGrupoInterno and fechaReunion between '$s_fecIni' AND  '2$s_fecFin' group by b.grupoInterno";            
+                  where a.idgrupo=b.idgrupointerno and fechareunion between '$s_fecIni' AND  '2$s_fecFin' group by b.grupointerno";            
                  
     $stmt = $pdo->query($sqlGrupos);
     
     $i=1;
     while ($rowGru = $stmt->fetch(PDO::FETCH_ASSOC))
     {
-      $cuantosGrupos     = $rowGru['cuantosGrupos'];
-      $grupoInterno      = $rowGru['grupoInterno'];    
+      $cuantosGrupos     = $rowGru['cuantosgrupos'];
+      $grupoInterno      = $rowGru['grupointerno'];    
      
       $gru[$i]= "{ name:'".$grupoInterno."', y:" . $cuantosGrupos."},";	  
       $i=$i+1; 
