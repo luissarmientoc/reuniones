@@ -2,8 +2,6 @@
  
 <?php
  session_start();
-
-                        
  $nomUusuario = $_SESSION['user_name'];
  $emaiUsuario = $_SESSION['user_email'];
  $nomUsuarioI = $_SESSION['user_firstname'];
@@ -77,6 +75,13 @@
     // Guardar el resultado en una variable
     $cantEntidades = $row['cuantasEntidades'];
     
+    echo '<br>';
+    echo "entidades .." . $sqlEntidades;
+    echo '<br>';
+    echo '<br>';
+    echo "cant entidades .." . $cantEntidades;
+    echo '<br>';
+    
     //Dependencias registradas  
     $sqlDependencias = "select COUNT(*) as cuantasDependencias from reu_dependencias"; 
     // Ejecutar la consulta
@@ -85,6 +90,13 @@
     $row = $query->fetch(PDO::FETCH_ASSOC);
     // Guardar el resultado en una variable
     $cantDependencias = $row['cuantasDependencias'];
+    
+    echo '<br>';
+    echo "dependencias .." . $sqlDependencias;
+    echo '<br>';
+    echo '<br>';
+    echo "cant dependencias .." . $cantDependencias;
+    echo '<br>';
     
     //Grupos Internos registradas  
     $sqlGruposInternos = "select COUNT(*) as cuantosGrupos from reu_grupos_internos";  
@@ -95,6 +107,13 @@
     // Guardar el resultado en una variable
     $cantGrupos = $row['cuantosGrupos'];
     
+    echo '<br>';
+    echo "grupos .." . $sqlGruposInternos;
+    echo '<br>';
+    echo '<br>';
+    echo "cant grupos .." . $cantGrupos;
+    echo '<br>';
+    
     //Categorias registradas  
     $sqlCategorias = "select COUNT(*) as cuantasCategorias from reu_categorias"; 
     // Ejecutar la consulta
@@ -103,6 +122,13 @@
     $row = $query->fetch(PDO::FETCH_ASSOC);
     // Guardar el resultado en una variable
     $cantCategorias = $row['cuantasCategorias'];
+    
+    echo '<br>';
+    echo "CATEGORIAS .." . $sqlCategorias;
+    echo '<br>';
+    echo '<br>';
+    echo "cant CATEGORIAS .." . $cantCategorias;
+    echo '<br>';
    
     //Subcategorias registradas   
     $sqlSubCategorias = "select COUNT(*) as cuantasSubCategorias from reu_sub_categorias";
@@ -113,6 +139,13 @@
     // Guardar el resultado en una variable
     $cantSubCategorias = $row['cuantasSubCategorias'];
     
+    echo '<br>';
+    echo "sub CATEGORIAS .." . $sqlSubCategorias;
+    echo '<br>';
+    echo '<br>';
+    echo "cant sub CATEGORIAS .." . $cantSubCategorias;
+    echo '<br>';
+    
     //Participantes registrados  
     $sqlParticipantes = "select COUNT(*) as cuantosParticipantes from reu_reuniones_participante group by numeroidparticipante";
     // Ejecutar la consulta
@@ -122,6 +155,16 @@
     // Guardar el resultado en una variable
     $cantPersonas = $row['cuantosParticipantes'];
     
+    
+    echo '<br>';
+    echo "sub Participantes .." . $sqlParticipantes;
+    echo '<br>';
+    echo '<br>';
+    echo "cant sub Participantes .." . $cantPersonas;
+    echo '<br>';
+    
+    
+    
     //LugaresSalas registradas  
     $sqlLugares = "select COUNT(*) as cuantosLugares from reu_lugares";  
     // Ejecutar la consulta
@@ -130,6 +173,14 @@
     $row = $query->fetch(PDO::FETCH_ASSOC);
     // Guardar el resultado en una variable
     $cantLugares = $row['cuantosLugares'];
+    
+    
+    echo '<br>';
+    echo "lugares .." . $sqlLugares;
+    echo '<br>';
+    echo '<br>';
+    echo "cant sub lugares .." . $cantLugares;
+    echo '<br>';
   
 ?>
 
@@ -212,7 +263,7 @@
                          </div>  
                        </div>
                        
-                        <div class="col-sm-4" ALIGN="CENTER">
+                        <div class="col-sm-3" ALIGN="CENTER">
                          <div class="fondo"> 
                            <i class="fas fa-gopuram" style='font-size:20px;color:#2f79b9'></i> 
                            <span class="titDash1"> Dependencias </span></br>
@@ -221,7 +272,7 @@
                          </div>  
                        </div>   
                        
-                       <div class="col-sm-4" ALIGN="CENTER">
+                       <div class="col-sm-3" ALIGN="CENTER">
                          <div class="fondo"> 
                            <i class="fas fa-map-marker-alt" style='font-size:20px;color:#2f79b9'></i> 
                            <span class="titDash1"> Lugares/Salas </span></br>
@@ -230,7 +281,7 @@
                          </div>  
                        </div>   
 
-                      <div class="col-sm-4" ALIGN="CENTER">
+                      <div class="col-sm-3" ALIGN="CENTER">
                          <div class="fondo"> 
                            <i class="fas fa-project-diagram" style='font-size:20px;color:#e67e22'></i>
                            <span class="titDash1"> Grupos Internos</span></br>  
