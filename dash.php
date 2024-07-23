@@ -86,23 +86,16 @@
       $stmt = $pdo->query($sql);
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       $cantEntidades = $row['cuantos'];
-         echo "Cuantossss: " . $cantEntidades;
-       
-      /*
-           $sql = "SELECT COUNT(*) AS cuantasEntidades FROM reu_entidades";
-           $stmt = $pdo->query($sql);
-           // Obtener el resultado (única fila)
-           $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-           // Número total de filas
-           $cantEntidades = $resultado['cuantasEntidades'];
+        
+      //Dependencias registradas
+      $sql = 'SELECT count(*) as cuantos FROM reu_dependencias';
+      $stmt = $pdo->query($sql);
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $cantDependencias = $row['cuantos'];
     
-      echo '<br>';
-      echo "entidades .." . $sql;
-      echo '<br>';
-      echo '<br>';
-      echo "cant entidades .." . $cantEntidades;
-      echo '<br>';
-      */
+    
+       
+      
      }catch (PDOException $e) {
       echo "Error de conexión: " . $e->getMessage();
     }
