@@ -104,6 +104,7 @@
       $cts = 0;
       $cantPersonas = 0;
       $sql = 'SELECT count(*) as cuantos FROM reu_reuniones_participante group by numeroidparticipante';
+      $stmt = $pdo->query($sql);
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $cts = $row['cuantos'];
         $cantPersonas =$cantPersonas+$cts;
