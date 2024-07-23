@@ -30,6 +30,7 @@
  include("navbar.php");
  // Crear una nueva instancia de conexión PDO
  $pdo = new PDO($dsn);
+ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  
   $fechas ="HOY";
   $fecha=strftime( "%Y-%m-%d", time() );
