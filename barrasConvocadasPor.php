@@ -12,7 +12,7 @@
                      WHERE a.convocadaPor= b.numeroIdParticipante 
                      AND fechaReunion between '$s_fecIni' AND  '$s_fecFin' 
                      GROUP BY a.convocadaPor, nombresParticipante";
-   echo $sqlConvocado;                     
+    echo $sqlConvocado;                     
     $stmt = $pdo->query($sqlConvocado);
     $rowCon = $stmt->fetch(PDO::FETCH_ASSOC);
     
@@ -22,6 +22,14 @@
     {
       $s_cuantosConvocado = $rowCon['cuantosConvocado'];
       $nombresParticipante = $rowCon['nombresparticipante'];    
+      
+      echo '<br>';
+      echo "cts...".$s_cuantosConvocado;
+      echo '<br>';
+      
+      echo '<br>';
+      echo "nom...".$nombresParticipante;
+      echo '<br>';
       
       $reu[$i]= "{ name:'".$nombresParticipante."', y:" . $s_cuantosConvocado."},";	  
       $alf[$i]= "{ name:'".$nombresParticipante."', y:" . $s_cuantosConvocado."},";
