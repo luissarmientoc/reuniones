@@ -53,6 +53,7 @@
   echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
   
   //$fecha=date("Y-m-d",strtotime($s_fecha."- 1 days")); 
+  $fecha=$fecha_modificada;
   //sumo 1 día
   $fMasUno =  date("Y-m-d",strtotime($s_fecha."+ 1 days")); 
   //$fMasUno = $fecha_modificada;
@@ -320,13 +321,11 @@
                   <div class="row">
                       <div class="col-sm-12">
                         <div class="fondo" align="center">
-                            <h2>DATOS DESDE: <b><?=$s_fecIni?></b> HASTA: <b><?=$s_fecFin?></b></h2>
-                            
+                            <h3>Datos desde: <b><?=$s_fecIni?></b> Hasta: <b><?=$s_fecFin?></b></h3>
                         </div>             
                       </div>
                   </div>
-             </div>      
-              
+              </div>      
              
               <div class="container">
                    
