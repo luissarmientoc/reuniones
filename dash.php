@@ -81,6 +81,12 @@
       
       */
       
+      // Ejemplo de consulta SELECT
+      $stmt = $pdo->query('SELECT * FROM reu_categorias');
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+         echo "Nombre: {$row['descategoriareunion']}<br />";
+       }
+      
            $sql = "SELECT COUNT(*) AS cuantasEntidades FROM reu_entidades";
            $stmt = $pdo->query($sql);
            // Obtener el resultado (única fila)
