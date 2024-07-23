@@ -17,6 +17,18 @@
     echo $sqlConvocado;                     
     $stmt = $pdo->query($sqlConvocado);
     
+    
+    $stmt = $pdo->query("SELECT count(*) as cuantosConvocado,  nombresParticipante 
+                     FROM reu_reuniones a, reu_participante b 
+                     WHERE a.convocadaPor= b.numeroIdParticipante 
+                     AND fechaReunion between '$s_fecIni' AND  '$s_fecFin' 
+                     GROUP BY a.convocadaPor, nombresParticipante");
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo "Cantidad: {$row['cuantosConvocado']}<br />";
+        echo "Nombre: {$row['nombresParticipante']}<br />";
+    }
+    
+    
     $i=1;
     while ($rowCon = $stmt->fetch(PDO::FETCH_ASSOC))
     {
