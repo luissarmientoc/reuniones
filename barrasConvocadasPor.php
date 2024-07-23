@@ -3,8 +3,12 @@
     /* Connect To Database*/
     require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
     require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
-          echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
-    ECHO "ENTRA..!";
+     
+     // Crear una nueva instancia de conexión PDO
+     $pdo = new PDO($dsn);
+     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     ECHO "ENTRA..!";
+     echo'<br>';
 
     $s_fecIni = $_SESSION['fecha'];
     $s_fecFin = $_SESSION['fecha1'];
