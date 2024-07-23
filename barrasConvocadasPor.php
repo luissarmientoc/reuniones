@@ -27,7 +27,7 @@
       
       echo '<br>';
       echo "nom...".$nombresParticipante;
-      echo '<br>';
+      echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
       
       $reu[$i]= "{ name:'".$nombresParticipante."', y:" . $s_cuantosConvocado."},";	  
       $alf[$i]= "{ name:'".$nombresParticipante."', y:" . $s_cuantosConvocado."},";
