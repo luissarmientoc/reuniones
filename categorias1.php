@@ -170,7 +170,7 @@
                          <tbody>
                           <tr>
                               <td class='col-md-3' align="right"> Nombre de la categoría: </td>
-                              <td> <textarea class="form-control" id="categoriaReunion" name="categoriaReunion" required style="text-transform:uppercase;"><?=$s_descategoriaReunion?></textarea> </td>
+                              <td> <textarea class="form-control" id="descategoriaReunion" name="descategoriaReunion" required style="text-transform:uppercase;"><?=$s_descategoriaReunion?></textarea> </td>
                           </tr> 
                          </tbody>
                         </table>			

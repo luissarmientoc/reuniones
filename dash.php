@@ -29,6 +29,8 @@
  require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
  include("head.php");
  include("navbar.php");
+ // Crear una nueva instancia de conexión PDO
+ $pdo = new PDO($dsn);
  
   $fechas ="HOY";
   $fecha=strftime( "%Y-%m-%d", time() );
