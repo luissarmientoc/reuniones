@@ -10,13 +10,13 @@
     $sqlReuniones = "SELECT count(*) as cuantosreuniones, nombreentidad 
                       FROM reu_reuniones a, reu_entidades b 
                       WHERE a.identidad = b.identidad and fechareunion between '$s_fecIni' AND  '$s_fecFin' group by b.nombreentidad";
-    $stmt = $pdo->query($sqlReunion);
+    $stmt = $pdo->query($sqlReuniones);
     
     $i=1;
-    while ($rowCon = $stmt->fetch(PDO::FETCH_ASSOC))
+    while ($rowReu = $stmt->fetch(PDO::FETCH_ASSOC))
     {
-      $s_cuantosReuniones = $rowReu['cuantosReuniones'];
-      $nombreEntidad      = $rowReu['nombreEntidad'];    
+      $s_cuantosReuniones = $rowReu['cuantosreuniones'];
+      $nombreEntidad      = $rowReu['nombreentidad'];    
       
       $reu[$i]= "{ name:'".$nombreEntidad."', y:" . $s_cuantosReuniones."},";	  
       $i=$i+1; 
