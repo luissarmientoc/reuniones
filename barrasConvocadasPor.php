@@ -3,9 +3,6 @@
     /* Connect To Database*/
     require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
     require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
-          echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
-    ECHO "ENTRA..!";
-
     $s_fecIni = $_SESSION['fecha'];
     $s_fecFin = $_SESSION['fecha1'];
     
@@ -23,14 +20,6 @@
     {
       $s_cuantosConvocado = $rowCon['cuantosconvocado'];
       $nombresParticipante = $rowCon['nombresparticipante'];    
-      
-      echo '<br>';
-      echo "cts...".$s_cuantosConvocado;
-      echo '<br>';
-      
-      echo '<br>';
-      echo "nom...".$nombresParticipante;
-      echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
       
       $reu[$i]= "{ name:'".$nombresParticipante."', y:" . $s_cuantosConvocado."},";	  
       $alf[$i]= "{ name:'".$nombresParticipante."', y:" . $s_cuantosConvocado."},";
