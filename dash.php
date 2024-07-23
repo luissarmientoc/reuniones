@@ -81,11 +81,12 @@
       
       */
       
-      // Ejemplo de consulta SELECT
+      //Entidades registradas
       $stmt = $pdo->query('SELECT count(*) as cuantos FROM reu_entidades');
-      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-         echo "Cuantos: {$row['cuantos']}<br />";
-       }
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $cantEntidades = $row['cuantos'];
+         echo "Cuantossss: " . $cantEntidades;
+       
       
            $sql = "SELECT COUNT(*) AS cuantasEntidades FROM reu_entidades";
            $stmt = $pdo->query($sql);
