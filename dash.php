@@ -66,21 +66,25 @@
     $s_fecFin= $fMasUno;
   }
 
-    //Entidades registradas  
-    $sqlEntidades = "select COUNT(*) as cuantasEntidades from reu_entidades"; 
-    // Ejecutar la consulta
-    $query = $pdo->query($sqlEntidades);
-    // Obtener el resultado
-    $row = $query->fetch(PDO::FETCH_ASSOC);
-    // Guardar el resultado en una variable
-    $cantEntidades = $row['cuantasEntidades'];
+   try {
+      //Entidades registradas  
+      $sqlEntidades = "select COUNT(*) as cuantasEntidades from reu_entidades"; 
+      // Ejecutar la consulta
+      $query = $pdo->query($sqlEntidades);
+      // Obtener el resultado
+      $row = $query->fetch(PDO::FETCH_ASSOC);
+      // Guardar el resultado en una variable
+      $cantEntidades = $row['cuantasEntidades'];
     
-    echo '<br>';
-    echo "entidades .." . $sqlEntidades;
-    echo '<br>';
-    echo '<br>';
-    echo "cant entidades .." . $cantEntidades;
-    echo '<br>';
+      echo '<br>';
+      echo "entidades .." . $sqlEntidades;
+      echo '<br>';
+      echo '<br>';
+      echo "cant entidades .." . $cantEntidades;
+      echo '<br>';
+     }catch (PDOException $e) {
+      echo "Error de conexión: " . $e->getMessage();
+    }
     
     //Dependencias registradas  
     $sqlDependencias = "select COUNT(*) as cuantasDependencias from reu_dependencias"; 
