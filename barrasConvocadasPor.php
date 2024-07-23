@@ -11,7 +11,7 @@
                      FROM reu_reuniones a, reu_participante b 
                      WHERE a.convocadaPor= b.numeroIdParticipante 
                      AND fechaReunion between '$s_fecIni' AND  '$s_fecFin' 
-                     GROUPB BY a.convocadaPor, nombresParticipante";
+                     GROUP BY a.convocadaPor, nombresParticipante";
    echo $sqlConvocado;                     
     $stmt = $pdo->query($sqlConvocado);
     $rowCon = $stmt->fetch(PDO::FETCH_ASSOC);
