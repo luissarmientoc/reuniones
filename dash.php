@@ -47,11 +47,6 @@
   // Obtenemos la fecha modificada en formato deseado (YYYY-MM-DD)
   $fecha_modificada = $fecha_obj->format('Y-m-d');
 
-  echo "Fecha original: " . $fecha_actual . "<br>";
-  echo "Fecha modificada (restado 1 año): " . $fecha_modificada;
-  
-  echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
-  
   //$fecha=date("Y-m-d",strtotime($s_fecha."- 1 days")); 
   $fecha=$fecha_modificada;
   //sumo 1 día
