@@ -340,7 +340,7 @@
                       <div class="col-sm-6">
                         <div class="fondo">  
                           <?php
-                               //include("barrasCategorias.php");
+                             include("barrasCategorias.php");
                           ?> 
                         </div>  
                       </div>

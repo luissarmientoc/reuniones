@@ -7,16 +7,17 @@
     $s_fecIni = $_SESSION['fecha'];
     $s_fecFin = $_SESSION['fecha1'];
     
-    $sqlCategorias ="select count(*) as cuantosCategorias,  categoriaReunion from reu_reuniones a, reu_categorias b 
-                     where a.idCategoria=b.idCategoriaReunion and fechaReunion between '$s_fecIni' AND  '$s_fecFin' group by b.categoriaReunion";
+    $sqlCategorias =" select count(*) as cuantoscategorias,  descategoriareunion 
+                      from reu_reuniones a, reu_categorias b 
+                      where a.idCategoria=b.idcategoriareunion and fechareunion between '$s_fecIni' AND  '2024-12-31' group by b.idcategoriareunion";                      
     
-    $queryCategorias = mysqli_query($con, $sqlCategorias); 
+    $stmt = $pdo->query($sqlCategorias);
+    
     $i=1;
-    
-    while ($rowCat = mysqli_fetch_array($queryCategorias))
+    while ($rowCat = $stmt->fetch(PDO::FETCH_ASSOC))
     {
-      $cuantosCategorias = $rowCat['cuantosCategorias'];
-      $categoriaReunion  = $rowCat['categoriaReunion'];    
+      $cuantosCategorias = $rowCat['cuantoscategorias'];
+      $categoriaReunion  = $rowCat['descategoriareunion'];    
      
       $cat[$i]= "{ name:'".$categoriaReunion."', y:" . $cuantosCategorias."},";	  
       $i=$i+1; 
