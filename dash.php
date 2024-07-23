@@ -25,6 +25,7 @@
  
  require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
  require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
+
  include("head.php");
  include("navbar.php");
  // Crear una nueva instancia de conexión PDO
@@ -67,6 +68,7 @@
   }
 
    try {
+     /*
       //Entidades registradas  
       $sqlEntidades = "select COUNT(*) as cuantasEntidades from reu_entidades"; 
       // Ejecutar la consulta
@@ -75,9 +77,18 @@
       $row = $query->fetch(PDO::FETCH_ASSOC);
       // Guardar el resultado en una variable
       $cantEntidades = $row['cuantasEntidades'];
+      
+      */
+      
+           $sql = "SELECT COUNT(*) AS cuantasEntidades FROM reu_entidades";
+           $stmt = $pdo->query($sql);
+           // Obtener el resultado (única fila)
+           $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+           // Número total de filas
+           $cantEntidades = $resultado['cuantasEntidades'];
     
       echo '<br>';
-      echo "entidades .." . $sqlEntidades;
+      echo "entidades .." . $sql;
       echo '<br>';
       echo '<br>';
       echo "cant entidades .." . $cantEntidades;
