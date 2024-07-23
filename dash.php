@@ -69,18 +69,7 @@
   }
 
    try {
-     /*
-      //Entidades registradas  
-      $sqlEntidades = "select COUNT(*) as cuantasEntidades from reu_entidades"; 
-      // Ejecutar la consulta
-      $query = $pdo->query($sqlEntidades);
-      // Obtener el resultado
-      $row = $query->fetch(PDO::FETCH_ASSOC);
-      // Guardar el resultado en una variable
-      $cantEntidades = $row['cuantasEntidades'];
-      
-      */
-      
+     
       //Entidades registradas
       $sql = 'SELECT count(*) as cuantos FROM reu_entidades';
       $stmt = $pdo->query($sql);
@@ -92,10 +81,40 @@
       $stmt = $pdo->query($sql);
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       $cantDependencias = $row['cuantos'];
-    
-    
-       
       
+      //Grupos internos registrados
+      $sql = 'SELECT count(*) as cuantos FROM reu_grupos_internos';
+      $stmt = $pdo->query($sql);
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $cantGrupos = $row['cuantos'];
+    
+      //Categorias registradas  
+      $sql = 'SELECT count(*) as cuantos FROM reu_categorias';
+      $stmt = $pdo->query($sql);
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $cantCategorias = $row['cuantos'];
+      
+      //Subcategorias registradas   
+      $sql = 'SELECT count(*) as cuantos FROM reu_sub_categorias';
+      $stmt = $pdo->query($sql);
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $cantSubCategorias = $row['cuantos'];
+      
+      //Participantes registrados 
+      $cts = 0;
+      $cantPersonas = 0;
+      $sql = 'SELECT count(*) as cuantos FROM reu_reuniones_participante group by numeroidparticipante';
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $cts = $row['cuantos'];
+        $cantPersonas =$cantPersonas+$cts;
+       }
+       
+      //Subcategorias registradas   
+      $sql = 'SELECT count(*) as cuantos FROM reu_lugares';
+      $stmt = $pdo->query($sql);
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $cantLugares = $row['cuantos'];
+       
      }catch (PDOException $e) {
       echo "Error de conexión: " . $e->getMessage();
     }
@@ -174,7 +193,7 @@
                    $cantPersonas = 7;*/
                    ?>
                     <div class="row"> <!-- row -->
-                       <div class="col-sm-4" ALIGN="CENTER">
+                       <div class="col-sm-3" ALIGN="CENTER">
                          <div class="fondo"> 
                            <i class='fas fa-building' style='font-size:20px;color:#3498db;'></i>
                            <span class="titDash1"> Entidades </span></br>  
