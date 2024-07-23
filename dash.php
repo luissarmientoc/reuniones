@@ -327,23 +327,29 @@
                         </div>  
                       </div>
                       <div class="col-sm-6">
+                        <div class="fondo">
                           <?php
-                               //include("barrasGrupos.php");
+                            include("barrasGrupos.php");
                           ?> 
+                        </div>  
                       </div>
                   </div> <!-- row -->
                   
                   <br><br>
                   <div class="row">
                       <div class="col-sm-6">
+                        <div class="fondo">  
                           <?php
                                //include("barrasCategorias.php");
                           ?> 
+                        </div>  
                       </div>
                       <div class="col-sm-6">
+                        <div class="fondo">  
                           <?php
                             //include("barrasSubcategorias.php");
                           ?> 
+                        </div>  
                       </div>
                   </div> <!--- row -- >
               </div> <!-- container-->
