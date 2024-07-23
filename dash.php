@@ -317,6 +317,7 @@
                       <div class="col-sm-12">
                         <div class="fondo" align="center">
                             <h3>Datos desde: <b><?=$s_fecIni?></b> Hasta: <b><?=$s_fecFin?></b></h3>
+                            <h5>Para consultar mas fechas toque la opción en el panel de Consultar por fehas de la parte superior <i class='fas fa-arrow-circle-up'></i></h5>
                         </div>             
                       </div>
                   </div>
