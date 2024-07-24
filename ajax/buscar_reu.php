@@ -88,15 +88,6 @@
             $q3_str = isset($_REQUEST['q3']) ? strip_tags($_REQUEST['q3']) : ''; 
             $q3 = intval($q3_str); // Convierte $q3_str a entero
             
-            
-            if (q!="" and $q1=0 and $q2=0 and $q3=0 ) {
-                $sWhere = "";
-            }
-            else
-            {
-                $sWhere = "where ";
-            }
-  
              echo '<br>';
              echo "q: " . $q;
              
@@ -107,6 +98,14 @@
              echo '<br>';
              echo "q3: " . $q3;
              echo '<br>';
+             
+             if ($q!="" and $q1=0 and $q2=0 and $q3=0 ) {
+                $sWhere = "";
+            }
+            else
+            {
+                $sWhere = "where ";
+            }
              
             /*  
             if ($q!="")
