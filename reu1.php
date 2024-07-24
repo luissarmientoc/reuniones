@@ -268,11 +268,11 @@
         $s_estadoReunion   = $_POST['estadoReunion'];
         $s_fechaEstado     = $_POST['fechaEstado'];
         
+        /*
         echo "1.." . $s_idReunion;
         echo '<br>';
         echo "2.." . $s_fechaReunion;
         echo '<br>';
-        /*
         echo "3.." . $s_horaReunion;
         echo '<br>';
         echo "4.." . $s_lugarReunion;
@@ -380,25 +380,15 @@
         
         $s_idReunion     = $s_maximo+1;
          
-        $sql= "INSERT INTO reu_reuniones (idReunion, fechaReunion, horaReunion, lugarReunion, convocadaPor, 
-                                         idEntidad, idDependencia, idGrupo, idCategoria, idSubCategoria, 
-                                         detalleReunion, desarrolloReunion, estadoReunion, fechaEstado) 
-               VALUES ('$s_idReunion', '$s_fechaReunion', '$s_horaReunion', '$s_lugarReunion', '$s_convocadaPor', 
-                    '$s_idEntidad', '$s_idDependencia', '$s_idGrupo', '$s_idCategoria', '$s_idSubCategoria', 
-                    '$s_detalleReunion', '$s_desarrolloReunion', '$s_estadoReunion', '$date_added')";
-
-         //echo $sql;
-         $query_new_insert = mysqli_query($con,$sql);
-         
         // Consulta preparada con marcadores de posición
         $sql = "INSERT INTO reu_reuniones 
                 (idreunion, fechareunion, horareunion, lugarreunion, convocadapor, 
                  identidad, iddependencia, idgrupo, idcategoria, idsubcategoria, 
                  detallereunion, desarrolloreunion, estadoreunion, fechaestado) 
                 VALUES 
-                (:idReunion, :fechaReunion, :horaReunion, :lugarReunion, :convocadaPor, 
-                 :idEntidad, :idDependencia, :idGrupo, :idCategoria, :idSubCategoria, 
-                 :detalleReunion, :desarrolloReunion, :estadoReunion, :fechaEstado)";
+                (:idreunion, :fechareunion, :horareunion, :lugarreunion, :convocadapor, 
+                 :identidad, :iddependencia, :idgrupo, :idcategoria, :idsubcategoria, 
+                 :detallereunion, :desarrolloreunion, :estadoreunion, :fechaestado)";
 
         // Preparar la consulta
         $stmt = $pdo->prepare($sql);
