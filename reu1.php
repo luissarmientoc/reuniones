@@ -44,6 +44,8 @@
   
   <?php  
    include("navbar.php");
+    // Crear una nueva instancia de conexión PDO
+    $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
