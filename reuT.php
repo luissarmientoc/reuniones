@@ -99,6 +99,19 @@
       $s_idCompromiso         = $_POST['idCompromiso']; 
       $s_tareaRealizada       = $_POST['tareaRealizada'];
       
+      ECHO "grabar..";
+      ECHO '<BR>';
+      
+      echo "1. " . $s_idReunion;
+      ECHO '<BR>';
+      echo "2. " . $s_numeroIdParticipante; 
+      ECHO '<BR>';
+      echo "3. " . $s_idCompromiso; 
+      ECHO '<BR>';
+      echo "4. " . $s_tareaRealizada;
+      ECHO '<BR>';
+      
+      
       date_default_timezone_set('America/Bogota');
       //$s_fecha  = date("Y-m-d",time());
       //$s_fecha  = date("Y/m/d H:i:s");
@@ -115,6 +128,7 @@
       
       $sql="INSERT INTO reu_tareas_realizadas (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
                     VALUES (?, ?, ?, ?, ?, ?)";
+                     echo "insert.." . $sql;
       //echo $sql;
       $stmt = $pdo->prepare($sql);
       $stmt->execute([$s_idTarea , $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added]);
