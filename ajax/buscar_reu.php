@@ -78,11 +78,11 @@
 	        // Limpiar y escapar la cadena de texto (strip_tags y htmlentities)
             $q = strip_tags($_REQUEST['q']);
             $q = htmlentities($q, ENT_QUOTES, 'UTF-8');
-            $q1 = strip_tags($_REQUEST['q']);
+            $q1 = strip_tags($_REQUEST['q1']);
             $q1 = htmlentities($q, ENT_QUOTES, 'UTF-8');
-            $q2 = strip_tags($_REQUEST['q']);
+            $q2 = strip_tags($_REQUEST['q2']);
             $q2 = htmlentities($q, ENT_QUOTES, 'UTF-8');
-            $q3 = strip_tags($_REQUEST['q']);
+            $q3 = strip_tags($_REQUEST['q3']);
             $q3 = htmlentities($q, ENT_QUOTES, 'UTF-8');
              
              echo '<br>';
@@ -129,6 +129,7 @@
 		
 		  	if ($q!=""){
 		        $sWhere .=" fechareunion ='$q'";
+		        $sWhere1 .=" fechareunion ='$q'";
 		    }
 		    
 		  	if ($q1>0){
