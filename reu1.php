@@ -481,19 +481,19 @@
    
    //============================= CONSULTA categorias
   //============================================================================ 
-   $stmt = $pdo->query('SELECT * from reu_categorias order by categoriareunion');
+   $stmt = $pdo->query('SELECT * from reu_categorias order by descategoriareunion');
     $i=0;
     while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
     {
       if ($i==0)
       {
-        $comboCategoria .=" <option value=''>".'-  Seleccione el grupo interno -'."</option>";
+        $comboCategoria .=" <option value=''>".'-  Seleccione la categoria -'."</option>";
       }
       if ($line['idcategoriareunion']==$s_idCategoria)
       {
-        $comboCategoria .=" <option value='".$line['idcategoriareunion']."' selected>".$line['categoriareunion']." </option>"; 
+        $comboCategoria .=" <option value='".$line['idcategoriareunion']."' selected>".$line['descategoriareunion']." </option>"; 
       }
-      $comboCategoria .=" <option value='".$line['idcategoriareunion']."'>".$line['categoriareunion']."</option>"; 
+      $comboCategoria .=" <option value='".$line['idcategoriareunion']."'>".$line['descategoriareunion']."</option>"; 
       $i++; 
     }
   
@@ -505,13 +505,13 @@
     {
       if ($i==0)
       {
-        $comboSubCategoria .=" <option value=''>".'-  Seleccione el grupo interno -'."</option>";
+        $comboSubCategoria .=" <option value=''>".'-  Seleccione la subcategoria -'."</option>";
       }
       if ($line['idsubcategoriaReunion']==$s_idSubCategoria)
       {
-        $comboSubCategoria .=" <option value='".$line['idsubcategoriaReunion']."' selected>".$line['subcategoriareunion']." </option>"; 
+        $comboSubCategoria .=" <option value='".$line['idsubcategoriareunion']."' selected>".$line['subcategoriareunion']." </option>"; 
       }
-      $comboSubCategoria .=" <option value='".$line['idsubcategoriaReunion']."'>".$line['subcategoriareunion']."</option>"; 
+      $comboSubCategoria .=" <option value='".$line['idsubcategoriareunion']."'>".$line['subcategoriareunion']."</option>"; 
       $i++; 
     }
   ?>
