@@ -115,7 +115,8 @@
             
             $sTable = "reu_reuniones";
 		    $sWhere = "";
-		 
+		   
+		    /*
 		    $sWhere = "WHERE (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 			{
@@ -124,6 +125,7 @@
 			}
 			$sWhere = substr_replace( $sWhere, "", -3 );
 			$sWhere .= ')';
+			*/
 		
 		  	if ($q!=""){
 		        $sWhere .=" fechareunion ='$q'";
