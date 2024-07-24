@@ -840,7 +840,7 @@
     			                             echo "compromiso: " .$sqlCompromiso;
     			                             echo '<br>';
     			                             
-    			                             $stmtCompromiso = $pdo->query($sql);
+    			                             $stmtCompromiso = $pdo->query($sqlCompromiso);
                                              
                                              while ($rowCompromiso  = $stmtCompromiso->fetch(PDO::FETCH_ASSOC)){
 			                                  $numeroIdParticipante   = $rowCompromiso['numeroidparticipante'];
