@@ -211,7 +211,7 @@
       $s_estadoReunion   = $row['estadoreunion'];
       $s_fechaEstado     = $row['fechaestado'];
         
-        /*
+         
         echo "1.." . $s_idReunion;
         echo '<br>';
         echo "2.." . $s_fechaReunion;
@@ -240,7 +240,7 @@
         echo '<br>';
         echo "13.." . $s_fechaEstado;
         echo '<br>';
-        */
+         
         
     }  
     else
@@ -252,7 +252,7 @@
     
     
    if(isset($_POST['grabar']))
-   {   
+   { 
         $s_idReunion       = $_POST['idReunion'];
         $s_fechaReunion    = $_POST['fechaReunion'];
         $s_horaReunion     = $_POST['horaReunion'];
@@ -267,6 +267,35 @@
         $s_desarrolloReunion = $_POST['desarrolloReunion'];
         $s_estadoReunion   = $_POST['estadoReunion'];
         $s_fechaEstado     = $_POST['fechaEstado'];
+        
+        echo "1.." . $s_idReunion;
+        echo '<br>';
+        echo "2.." . $s_fechaReunion;
+        echo '<br>';
+        echo "3.." . $s_horaReunion;
+        echo '<br>';
+        echo "4.." . $s_lugarReunion;
+        echo '<br>';
+        echo "5.." . $s_convocadaPor;
+        echo '<br>';
+        echo "6.." . $s_idEntidad;
+        echo '<br>';
+        echo "7.." . $s_idDependencia;
+        echo '<br>';
+        echo "8.." . $s_idGrupo;
+        echo '<br>';
+        echo "9.." . $s_idCategoria;
+        echo '<br>';
+        echo "10.." . $s_idSubCategoria;
+        echo '<br>';
+        echo "11.." . $s_detalleReunion;
+        echo '<br>';
+        echo "11 a.." . $s_desarrolloReunion;
+        echo '<br>';
+        echo "12.." . $s_estadoReunion;
+        echo '<br>';
+        echo "13.." . $s_fechaEstado;
+        echo '<br>';
    
         $s_existe         = $_POST['existe'];
         $s_yaGrabo        = $_POST['yaGrabo'];
