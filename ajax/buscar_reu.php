@@ -101,23 +101,23 @@
             
             if ($q=="")
             {
-              if ($q1==0)
-              {
-                if($q2==0)
-                {
-                    if($q3==0)
+               if ($q1==0)
+               {
+                    if($q2==0)
                     {
-                        $sWhere = "";
-                        $sWhere1 = "";
-                    }
-                    else
-                    {
-                        $sWhere = "where ";
-                        $sWhere1 = "where ";
+                        if($q3==0)
+                        {
+                          $sWhere = "";
+                          $sWhere1 = "";
+                        }
+                        else
+                        {
+                           $sWhere = "where ";
+                           $sWhere1 = "where ";
+                        }
                     }
                 }
-              }
-                  
+            }      
              
             if ($q=="" and $q1==0 and $q2==0 and $q3==0 ) {
                 $sWhere = "";
