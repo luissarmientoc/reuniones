@@ -182,8 +182,8 @@
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
                     echo '<br>';
-            echo "sql cpnsulta..." . $sql;
-            echo '<br>';
+                    echo "sql cpnsulta..." . $sql;
+                    echo '<br>';
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $idReunion=$row['idreunion'];
@@ -201,8 +201,10 @@
 					    $persona     = $rowPer['nombresparticipante'];
 						
 			            //trae entidad
-					    $sqlEnt  ="select * from reu_entidades where identidad='$entidad'";
-					    // echo $sqlEnt;
+					    $sqlEnt  ="select * from reu_entidades where identidad=$entidad";
+					    ECHO '<BR>';
+					    echo $sqlEnt;
+					    ECHO '<BR>';
 					    $stmtEnt = $pdo->query($sqlEnt);
 					    $rowEnt  = $stmtEnt->fetch(PDO::FETCH_ASSOC);
 					    $ent     = $rowEnt['nombreentidad'];

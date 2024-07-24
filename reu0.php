@@ -88,7 +88,7 @@
                         <div class="form-group row">
         	              <div class='col-md-3'>
          		             <label>Filtrar por número de reunión</label>
-         		             <input type="date" class="form-control" id="q" placeholder="Fecha de reunión" onkeyup='load(1);'>
+         		             <input type="date" class="form-control" id="q" placeholder="Fecha de reunión" onchange='load(1);'>
          		     
 	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
          		          </div>
