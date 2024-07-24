@@ -64,7 +64,7 @@
     $nombre   = $row_par['nombresparticipante']; 
     
 	$sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion and numeroidparticipante=$s_numeroIdParticipante and idcompromiso=$s_idCompromiso";
-    $stmt_com = $pdo->query($sql_com);
+    $stmt_com = $pdo->query($sqlCompromiso);
     $row_com  = $stmt_com->fetch(PDO::FETCH_ASSOC);
     $nombre   = $row_com['compromisoadquirido']; 
     
