@@ -79,6 +79,14 @@
             $q = strip_tags($_REQUEST['q']);
             $q = htmlentities($q, ENT_QUOTES, 'UTF-8');
             
+            
+            $q1 = isset($_REQUEST['q1']) ? strip_tags($_REQUEST['q1']) : ''; // Asegúrate de que q1 esté definido y elimina etiquetas HTML
+$q1_int = intval($q1); // Convierte $q1 a entero
+
+// Ahora $q1_int contiene el valor de q1 como entero
+
+            
+            
             $q1_str = isset($_REQUEST['q1']) ? strip_tags($_REQUEST['q1']) : ''; 
             $q1 = intval($q1_str); // Convierte $q1_str a entero
             
@@ -90,8 +98,12 @@
   
              echo '<br>';
              echo "q: " . $q;
+             
              echo '<br>';
-             echo "q1_int: " . $q1_int;
+             echo "q enter: " .$q1_int;
+             
+             echo '<br>';
+             echo "q1_int: " . $q1;
              echo '<br>';
              echo "q2: " . $q2;
              echo '<br>';
