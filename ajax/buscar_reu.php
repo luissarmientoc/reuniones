@@ -99,7 +99,7 @@
              echo "q3: " . $q3;
              echo '<br>';
              
-             if ($q!="" and $q1=0 and $q2=0 and $q3=0 ) {
+             if ($q=="" and $q1==0 and $q2==0 and $q3==0 ) {
                 $sWhere = "";
             }
             else
