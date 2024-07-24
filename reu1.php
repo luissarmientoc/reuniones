@@ -139,8 +139,14 @@
     {
      $borrar  = $_POST['borrar'];
      $partir  = explode ("-", $borrar);   
-     $reu     = $partir[0];
-     $par     = $partir[1];
+     $idReunion     = $partir[0];
+     $numeroIdParticipante     = $partir[1];
+     
+     echo '<br>';
+     echo "reu.." . $idReunion;
+     echo '<br>';
+     echo "part.." . $numeroIdParticipante;
+     echo '<br>';
      
      $s_existe=0;
      $sql = "select count(*) as existe from reu_compromisos where idreunion=$reu and numeroidparticipante=$par";
@@ -152,7 +158,7 @@
      if($s_existe==0)
      {
        // Consulta preparada con marcadores de posición
-       $sql  = "DELETE FROM reu_reuniones_participante WHERE idreunion =:reu and numeroidparticipante =:par";
+       $sql  = "DELETE FROM reu_reuniones_participante WHERE idreunion =:idreunion and numeroidparticipante =:numeroidparticipante";
        echo '<br>';
        echo "borrar .." . $sql;
        echo '<br>';
