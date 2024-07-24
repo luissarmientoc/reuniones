@@ -140,12 +140,15 @@
 		    
 		  	if ($q1>0){
 		        $sWhere .=" and convocadapor ='$q1'";
+		        $sWhere1 .=" and convocadapor ='$q1'";
 		    }
 		    if ($q2>0){
 		        $sWhere .=" and iddependencia ='$q2'";
+		        $sWhere1 .=" and iddependencia ='$q2'";
 		    }
 		    if ($q3>0){
 		        $sWhere .=" and idgrupo ='$q3'";
+		        $sWhere1 .=" and idgrupo ='$q3'";
 		    }
            
 		    // Configurar el modo de error para excepciones
@@ -239,17 +242,17 @@
   					       <td><?php echo $fechaReunion; ?></td>
   					       <td><?php echo $persona; ?></td>
   					       <td><?php echo $depen; ?></td>
-  					       <!--<td><?php echo $grupo; ?></td>
-  					       <td><?php echo $detalleReunion; ?></td>-->
+  					       <td><?php echo $grupo; ?></td>
+  					       <!--<td><?php echo $detalleReunion; ?></td>-->
   					       <td><?php echo $estadoReunion; ?></td>
  
 					       <td class='text-center'>
-					         <a href="reu1?LA=<?=$lVDX?>" class='btn btn-default' title='Editar reunión' ><i class="glyphicon glyphicon-edit"></i></a> 
+					         <a href="reu1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar reunión' ><i class="glyphicon glyphicon-edit"></i></a> 
 					       </td>  
 					       <td class='text-center'>  
 					         <a href="reuI.php?LA=<?=$lVDX?>" class='btn btn-default' title='Imprimir acta' ><i class="glyphicon glyphicon-print"></i></a> 
 					        </td>
-					        <td class='text-center'>  
+					        <td class='text-center' colspan="6">  
 					         <a href="#" class='btn btn-default'title='Borrar reunión' onclick="eliminar('<?php echo $idReunion; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					        </td> 
 					   </tr>
