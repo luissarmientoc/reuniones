@@ -79,22 +79,15 @@
             $q = strip_tags($_REQUEST['q']);
             $q = htmlentities($q, ENT_QUOTES, 'UTF-8');
             
+            $q1_str = isset($_REQUEST['q1']) ? strip_tags($_REQUEST['q1']) : ''; 
+            $q1 = intval($q1_str); // Convierte $q1_str a entero
             
+            $q2_str = isset($_REQUEST['q2']) ? strip_tags($_REQUEST['q2']) : ''; 
+            $q2 = intval($q2_str); // Convierte $q2_str a entero
             
-            $q1 = isset($_REQUEST['q1']) ? strip_tags($_REQUEST['q1']) : ''; // Asegúrate de que q1 esté definido y elimina etiquetas HTML
-            $q1_int = intval($q1); // Convierte $q1 a entero
-
-            // Ahora $q1_int contiene el valor de q1 como entero
-
-            
-            
-            
-            
-            $q2 = strip_tags($_REQUEST['q2']);
-            $q2 = htmlentities($q, ENT_QUOTES, 'UTF-8');
-            $q3 = strip_tags($_REQUEST['q3']);
-            $q3 = htmlentities($q, ENT_QUOTES, 'UTF-8');
-             
+            $q3_str = isset($_REQUEST['q3']) ? strip_tags($_REQUEST['q3']) : ''; 
+            $q3 = intval($q3_str); // Convierte $q3_str a entero
+  
              echo '<br>';
              echo "q: " . $q;
              echo '<br>';
@@ -104,16 +97,8 @@
              echo '<br>';
              echo "q3: " . $q3;
              echo '<br>';
-             echo "q4: " . $q4;
-             echo '<br>';
-                  
-            
-            //$q = strtoupper($q);
-            $q1 = strtoupper($q1);
-            $q2 = strtoupper($q2);
-            $q3 = strtoupper($q3);
-            
-            
+             
+            /*  
             if ($q!="")
             {
               $aColumns = array('fechareunion');//Columnas de busqueda
@@ -122,9 +107,10 @@
             {
              $aColumns = "";
             }
+            */
             
             $sTable = "reu_reuniones";
-		    $sWhere = "";
+		    $sWhere = "where ";
 		   
 		    /*
 		    $sWhere = "WHERE (";
