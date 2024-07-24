@@ -99,7 +99,12 @@
        $par     = $partir[1];
        $comp    = $partir[2];
        
-       $sql = "SELECT count(*) as ctsTareas from reu_tareas_realizadas where idreunion=$s_idReunion and numeroidparticipante=$par and idcompromiso=$comp";
+       $sql = "SELECT count(*) as ctsTareas from reu_tareas_realizadas 
+               WHERE idreunion=$s_idReunion and numeroidparticipante=$par and idcompromiso=$comp";
+        echo '<br>';
+        echo "cuantos compro..." . $sql;
+        echo '<br>';
+        
        $stmt = $pdo->query($sql);
        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
        $ctsTareas = $row['ctsTareas'];
@@ -107,7 +112,7 @@
        if ($ctsTareas==0)
        {
          // Consulta preparada con marcadores de posición
-         $sql = "DELETE FROM reu_compromisos WHERE idreunion = :idReunion AND numeroidparticipante = :numeroIdParticipante AND idcompromiso = :idCompromiso";
+         $sql = "DELETE FROM reu_compromisos WHERE idreunion = :idreunion AND numeroidparticipante = :numeroidparticipante AND idcompromiso = :idcompromiso";
         
          // Preparar la consulta
          $stmt = $pdo->prepare($sql);
@@ -150,7 +155,6 @@
      
      $s_existe=0;
      $sql = "select count(*) as existe from reu_compromisos where idreunion=$idReunion and numeroidparticipante=$numeroIdParticipante";
-     echo "cuats .. " .$sql;
      $stmt = $pdo->query($sql);
      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
      $s_existe     = $row["existe"];
