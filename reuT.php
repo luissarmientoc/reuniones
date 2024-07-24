@@ -47,6 +47,9 @@
    // Crear una nueva instancia de conexión PDO
    $pdo = new PDO($dsn);
    
+   echo '<br>';
+   echo "aqui...";
+   echo '<br>';
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
    
