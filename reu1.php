@@ -95,12 +95,12 @@
     {
        $borrarComp  = $_POST['borrarCompromiso'];
        $partir  = explode ("-", $borrarComp);   
-       $reu     = $partir[0];
-       $par     = $partir[1];
-       $comp    = $partir[2];
+       $idReunion     = $partir[0];
+       $numeroIdParticipante     = $partir[1];
+       $idCompromiso    = $partir[2];
        
        $sql = "SELECT count(*) as ctsTareas from reu_tareas_realizadas 
-               WHERE idreunion=$s_idReunion and numeroidparticipante=$par and idcompromiso=$comp";
+               WHERE idreunion=$idReunion and numeroidparticipante=$numeroIdParticipante and idcompromiso=$idCompromiso";
         echo '<br>';
         echo "cuantos compro..." . $sql;
         echo '<br>';
