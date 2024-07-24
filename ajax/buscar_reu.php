@@ -101,10 +101,12 @@
              
              if ($q=="" and $q1==0 and $q2==0 and $q3==0 ) {
                 $sWhere = "";
+                $sWhere1 = "";
             }
             else
             {
                 $sWhere = "where ";
+                $sWhere1 = "where ";
             }
              
             /*  
@@ -159,7 +161,7 @@
 		    $offset = ($page - 1) * $per_page;
 		
 	        // Consulta SQL para contar las filas
-            $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere";
+            $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
             echo '<br>';
             echo "sql cts..en sql.." . $sql;
             echo '<br>';
