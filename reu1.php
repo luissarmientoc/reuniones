@@ -747,16 +747,9 @@
 			                 $numeroIdParticipante=$row['numeroidparticipante'];
  			                 
  			                 $sql_par="SELECT * FROM reu_participante where numeroidparticipante=$numeroIdParticipante";
- 			                 echo '<br>';
- 			                 echo "sql_par .." . $sql_par;
- 			                 echo '<br>';
-			                 $stmt_par = $pdo->query($sql_par);
-			                 $row_par  = $stmt->fetch(PDO::FETCH_ASSOC);
-			                 
+ 			                 $stmt_par = $pdo->query($sql_par);
+			                 $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
 			                 $nombre   = $row_par['nombresparticipante']; 
-			                 echo '<br>';
- 			                 echo "nombre .." . $nombre;
- 			                 echo '<br>';
 			                 
 			                 $borrarP = $s_idReunion . "-" . $numeroIdParticipante ;
 			                 $compromisoP = $s_idReunion . "-" . $numeroIdParticipante ;
