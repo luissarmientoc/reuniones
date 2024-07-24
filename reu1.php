@@ -169,6 +169,12 @@
        // Asignar valores a los marcadores de posición
        $stmt->bindParam(':idreunion', $idReunion, PDO::PARAM_INT);
        $stmt->bindParam(':numeroidparticipante', $numeroIdParticipante, PDO::PARAM_INT);
+       
+       // Ejecutar la consulta
+       $stmt->execute();
+    
+       // Verificar el número de filas afectadas (opcional)
+       $count = $stmt->rowCount();
      }
      else
      {
