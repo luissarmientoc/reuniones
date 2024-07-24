@@ -144,6 +144,7 @@
      
      $s_existe=0;
      $sql = "select count(*) as existe from reu_compromisos where idreunion=$reu and numeroidparticipante=$par";
+     echo "cuats .. " .$sql;
      $stmt = $pdo->query($sql);
      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
      $s_existe     = $row1["existe"];
@@ -152,6 +153,9 @@
      {
        // Consulta preparada con marcadores de posición
        $sql  = "DELETE FROM reu_reuniones_participante WHERE idreunion =:reu and numeroidparticipante =:par";
+       echo '<br>';
+       echo "borrar .." . $sql;
+       echo '<br>';
        
        // Preparar la consulta
        $stmt = $pdo->prepare($sql);
