@@ -159,16 +159,41 @@
 		    }
 		    
 		  	if ($q1>0){
-		        $sWhere .=" and convocadapor ='$q1'";
-		        $sWhere1 .=" and convocadapor ='$q1'";
+		        if ($q!="")
+		        {
+		            $sWhere .=" and convocadapor ='$q1'";
+		            $sWhere1 .=" and convocadapor ='$q1'";
+		        }
+		        else
+		        {
+		          $sWhere .=" convocadapor ='$q1'";
+		          $sWhere1 .=" convocadapor ='$q1'";
+		        }      
 		    }
+		    
 		    if ($q2>0){
-		        $sWhere .=" and iddependencia ='$q2'";
-		        $sWhere1 .=" and iddependencia ='$q2'";
+		        if ($q1>0)
+		        {
+		          $sWhere .=" and iddependencia ='$q2'";
+		          $sWhere1 .=" and iddependencia ='$q2'";    
+		        }
+		        else
+		        {
+		          $sWhere .=" iddependencia ='$q2'";
+		          $sWhere1 .=" iddependencia ='$q2'";
+		        }    
 		    }
 		    if ($q3>0){
-		        $sWhere .=" and idgrupo ='$q3'";
-		        $sWhere1 .=" and idgrupo ='$q3'";
+		        if ($q2>0)
+		        {
+		          $sWhere .=" and idgrupo ='$q3'";
+		          $sWhere1 .=" and idgrupo ='$q3'";    
+		        }
+		        else
+		        {
+		            $sWhere .=" idgrupo ='$q3'";
+		            $sWhere1 .="idgrupo ='$q3'";
+		        }
 		    }
            
 		    // Configurar el modo de error para excepciones
