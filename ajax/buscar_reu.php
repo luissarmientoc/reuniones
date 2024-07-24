@@ -11,10 +11,6 @@
         $pdo = new PDO($dsn);
         $sTable = "reu_reuniones";
         
-        echo '<br>';
-        echo "entra 1..";
-        echo '<br>';
-        
         if (isset($_GET['id'])){
 		   $id_reunion=intval($_GET['id']);
 		   $sql = "SELECT COUNT(*) AS cuantos FROM $sTable where idreunion=$id_reunion";
@@ -205,7 +201,7 @@
 		    include 'pagination.php'; //include pagination file
 		    //paginación variables
 		    $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-		    $per_page = 10; //cuantos registros desea mostrar
+		    $per_page = 1; //cuantos registros desea mostrar
 		    $adjacents  = 4; //gap entre paginas despues del número de adyacentes
 		    $offset = ($page - 1) * $per_page;
 		
@@ -296,7 +292,7 @@
                     }//while
         ?>
                        <tr>
-					      <td colspan="7">
+					      <td colspan="8">
 					         <span class="pull-right">
 					            <?php
 					              echo paginate($reload, $page, $total_pages, $adjacents);
