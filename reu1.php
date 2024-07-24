@@ -153,7 +153,7 @@
      echo "cuats .. " .$sql;
      $stmt = $pdo->query($sql);
      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
-     $s_existe     = $row1["existe"];
+     $s_existe     = $row["existe"];
      
      if($s_existe==0)
      {
