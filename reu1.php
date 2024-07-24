@@ -288,22 +288,24 @@
      {
         // Consulta preparada con marcadores de posición
         $sql = "UPDATE reu_reuniones SET  
-                    fechareunion = :fechaReunion, 
-                    horareunion = :horaReunion, 
-                    lugarreunion = :lugarReunion, 
-                    convocadapor = :convocadaPor, 
-                    identidad = :idEntidad, 
-                    iddependencia = :idDependencia, 
-                    idgrupo = :idGrupo, 
-                    idcategoria = :idCategoria, 
-                    idsubcategoria = :idSubCategoria, 
-                    detallereunion = :detalleReunion, 
-                    desarrolloreunion = :desarrolloReunion 
-                WHERE idreunion = :idReunion";
+                    fechareunion = :fechareunion, 
+                    horareunion = :horareunion, 
+                    lugarreunion = :lugarreunion, 
+                    convocadapor = :convocadapor, 
+                    identidad = :identidad, 
+                    iddependencia = :iddependencia, 
+                    idgrupo = :idgrupo, 
+                    idcategoria = :idcategoria, 
+                    idsubcategoria = :idsubCategoria, 
+                    detallereunion = :detallereunion, 
+                    desarrolloreunion = :desarrolloreunion 
+                WHERE idreunion = :idreunion";
+                
+        echo "el update.." .$sql;        
 
         // Preparar la consulta
         $stmt = $pdo->prepare($sql);
-
+        
         // Asignar valores a los marcadores de posición
         $stmt->bindParam(':fechareunion', $s_fechaReunion, PDO::PARAM_STR);
         $stmt->bindParam(':horareunion', $s_horaReunion, PDO::PARAM_STR);
