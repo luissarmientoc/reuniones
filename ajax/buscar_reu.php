@@ -79,14 +79,6 @@
             $q = strip_tags($_REQUEST['q']);
             $q = htmlentities($q, ENT_QUOTES, 'UTF-8');
             
-            
-            $q1 = isset($_REQUEST['q1']) ? strip_tags($_REQUEST['q1']) : ''; // Asegúrate de que q1 esté definido y elimina etiquetas HTML
-$q1_int = intval($q1); // Convierte $q1 a entero
-
-// Ahora $q1_int contiene el valor de q1 como entero
-
-            
-            
             $q1_str = isset($_REQUEST['q1']) ? strip_tags($_REQUEST['q1']) : ''; 
             $q1 = intval($q1_str); // Convierte $q1_str a entero
             
@@ -95,15 +87,21 @@ $q1_int = intval($q1); // Convierte $q1 a entero
             
             $q3_str = isset($_REQUEST['q3']) ? strip_tags($_REQUEST['q3']) : ''; 
             $q3 = intval($q3_str); // Convierte $q3_str a entero
+            
+            
+            if (q!="" and $q1=0 and $q2=0 and $q3=0 ) {
+                $sWhere = "";
+            }
+            else
+            {
+                $sWhere = "where ";
+            }
   
              echo '<br>';
              echo "q: " . $q;
              
              echo '<br>';
-             echo "q enter: " .$q1_int;
-             
-             echo '<br>';
-             echo "q1_int: " . $q1;
+             echo "q1: " . $q1;
              echo '<br>';
              echo "q2: " . $q2;
              echo '<br>';
@@ -122,9 +120,8 @@ $q1_int = intval($q1); // Convierte $q1 a entero
             */
             
             $sTable = "reu_reuniones";
+            /*
 		    $sWhere = "where ";
-		   
-		    /*
 		    $sWhere = "WHERE (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 			{
