@@ -1,12 +1,13 @@
 <?php
  
   session_start();
+  /*
   if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) 
   {
     header("location: login.php");
     exit;
   }
-  
+  */
   $active_marca="active";  
   $title="UNP | Reuniones";    
   $nombreUsuario = $_SESSION['user_firstname'] ." " .$_SESSION['user_lastname']; 
@@ -43,6 +44,8 @@
   
  <?php
    include("navbar.php");
+   // Crear una nueva instancia de conexión PDO
+   $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
@@ -55,15 +58,15 @@
     $s_idCompromiso         = $partir[2];
     $tipAccion              = $partir[3];  
     
-    $sql_par  = "SELECT * FROM reu_participante where numeroIdParticipante=$s_numeroIdParticipante";
-	$query_par = mysqli_query($con, $sql_par);
-    $row_par  = mysqli_fetch_array($query_par);
-	$nombre   = $row_par['nombresParticipante']; 
-	
-	$sqlCompromiso ="select * from reu_compromisos where idReunion=$s_idReunion and numeroIdParticipante=$s_numeroIdParticipante and idCompromiso=$s_idCompromiso";
-    $queryCompromiso = mysqli_query($con, $sqlCompromiso); 
-    $rowCompromiso=mysqli_fetch_array($queryCompromiso);
-    $compromiso  = $rowCompromiso['compromisoAdquirido'];  
+    $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$s_numeroIdParticipante";
+    $stmt_par = $pdo->query($sql_par);
+    $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
+    $nombre   = $row_par['nombresparticipante']; 
+    
+	$sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion and numeroidparticipante=$s_numeroIdParticipante and idcompromiso=$s_idCompromiso";
+    $stmt_com = $pdo->query($sql_com);
+    $row_com  = $stmt_com->fetch(PDO::FETCH_ASSOC);
+    $nombre   = $row_com['compromisoadquirido']; 
     
     /*
     echo "1.." . $s_idReunion;
@@ -104,37 +107,46 @@
       $s_existe         = $_POST['existe'];
       $s_yaGrabo        = $_POST['yaGrabo'];
       
-      $sql1 = "select max(idTarea) as maximo from reu_tareas_realizadas ";
-      $query1 = mysqli_query($con, $sql1);  
-      $row1=mysqli_fetch_array($query1);
-      $s_idTarea     = $row1[maximo]+1;
+      $sql = "select max(idtarea) as maximo from reu_tareas_realizadas ";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      $s_maximo  = $row['maximo'];
+      $s_idTarea = $s_maximo+1;
       
-      $sql="INSERT INTO reu_tareas_realizadas (idTarea, idReunion, numeroIdParticipante, idCompromiso, tareaRealizada, fechaTarea) 
-                                  VALUES ('$s_idTarea', '$s_idReunion', '$s_numeroIdParticipante', '$s_idCompromiso', '$s_tareaRealizada', '$date_added')";
+      $sql="INSERT INTO reu_tareas_realizadas (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
+                    VALUES (?, ?, ?, ?, ?, ?)";
       //echo $sql;
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([$s_idTarea , $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added]);
       
-      $query_new_insert = mysqli_query($con,$sql);
       $mensaje=" <b>Atención!</b> Grabación exitosa";
       
       $s_existe ="1";
       $s_tocoBoton = "S";
-      
     }  
     
     if(isset($_POST['borrarTarea']))
     {
-     $borrar  = $_POST['borrarTarea'];
-     $partir  = explode ("-", $borrar);   
-     $reu     = $partir[0];
-     $par     = $partir[1];
-     $comp    = $partir[2];
-     $tar     = $partir[3];
+     $borrar               = $_POST['borrarTarea'];
+     $partir               = explode ("-", $borrar);   
+     $idReunion            = $partir[0];
+     $numeroIdParticipante = $partir[1];
+     $idCompromiso         = $partir[2];
+     $idTarea              = $partir[3];
      
      $borrarTarea=$s_idReunion."-".$s_numeroIdParticipante."-".$idCompromiso."-".$s_idCompromiso ."-" .$idTarea;
      
-      $sqlDel  = "DELETE FROM reu_tareas_realizadas WHERE  idReunion=$reu and numeroIdParticipante= $par and idCompromiso = $comp and idTarea = $tar ";
-     // echo $sqlDel;
-      $delete1 = mysqli_query($con,$sqlDel);
+     // Consulta preparada con marcadores de posición
+     $sql = "DELETE FROM reu_tareas_realizadas WHERE idreunion = :idreunion AND numeroidparticipante = :numeroidparticipante AND idcompromiso = :idcompromiso AND  idtarea = idtarea";
+        
+     // Preparar la consulta
+     $stmt = $pdo->prepare($sql);
+        
+     // Asignar valores a los marcadores de posición
+     $stmt->bindParam(':idreunion', $idReunion, PDO::PARAM_INT);
+     $stmt->bindParam(':numeroidparticipante', $numeroIdParticipante, PDO::PARAM_INT);
+     $stmt->bindParam(':idcompromiso', $idCompromiso, PDO::PARAM_INT);
+     $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
    }     
 
    if(isset($_POST['terminarTarea']))
@@ -143,14 +155,21 @@
      echo "borrar.." . $borrar;
      echo '<br>';
      $partir  = explode ("-", $borrar);   
-     $reu     = $partir[0];
-     $par     = $partir[1];
-     $comp    = $partir[2];
-     $tar     = $partir[3];
-      
-    $sqlDel  = "UPDATE reu_tareas_realizadas set terminada='S' WHERE  idReunion=$reu and numeroIdParticipante= $par and idCompromiso = $comp and idTarea = $tar ";
-   // echo $sqlDel;
-    $delete1 = mysqli_query($con,$sqlDel);
+     
+     $idReunion             = $partir[0];
+     $numeroIdParticipante  = $partir[1];
+     $idCompromiso          = $partir[2];
+     $idTarea               = $partir[3];
+     
+     $sql = "UPDATE reu_tareas_realizadas SET terminado =:terminado, 
+             WHERE idreunion = :idreunion AND numeroidparticipante = :numeroidparticipante AND idcompromiso = :idcompromiso AND idtarea =:idtarea";  
+     
+     // Preparar la consulta
+     $stmt = $pdo->prepare($sql);
+     $stmt->bindParam(':idreunion', $idReunion, PDO::PARAM_STR);
+     $stmt->bindParam(':numeroidparticipante', $numeroIdParticipante, PDO::PARAM_STR);
+     $stmt->bindParam(':idcompromiso', $idCompromiso, PDO::PARAM_STR);
+     $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_STR);
    }          
      
      
@@ -255,16 +274,17 @@
             	 <?php  
             	    if ($s_tocoBoton=="S")
                	    {
-                     	 $sqlCompromiso ="select * from reu_tareas_realizadas where idReunion=$s_idReunion and numeroIdParticipante=$s_numeroIdParticipante and idCompromiso=$s_idCompromiso";
-                     	// echo $sqlCompromiso;
-    			  	     $queryCompromiso = mysqli_query($con, $sqlCompromiso); 
-    			  	     while ($rowCompromiso=mysqli_fetch_array($queryCompromiso)){
-    			     	   $idTarea= $rowCompromiso['idTarea'];
-    			      	   $idReunion= $rowCompromiso['idReunion'];
-    			      	   $idCompromiso= $rowCompromiso['idCompromiso'];
-    			      	   $tareaRealizada= $rowCompromiso['tareaRealizada'];
+                       $sql="select * from reu_tareas_realizadas where idreunion=$s_idReunion and numeroidparticipante=$s_numeroIdParticipante and idcompromiso=$s_idCompromiso";
+                       $stmt = $pdo->query($sql);
+                       
+                       $i=1;
+			           while ($rowCompromiso  = $stmt->fetch(PDO::FETCH_ASSOC)){
+                           $idTarea= $rowCompromiso['idtarea'];
+    			      	   $idReunion= $rowCompromiso['idreunion'];
+    			      	   $idCompromiso= $rowCompromiso['idcompromiso'];
+    			      	   $tareaRealizada= $rowCompromiso['tarearealizada'];
     			      	   $terminada= $rowCompromiso['terminada'];
-    			      	   $fechaTarea= $rowCompromiso['fechaTarea'];
+    			      	   $fechaTarea= $rowCompromiso['fechatarea'];
     			      	     
     			      	   if ($terminada=='S')
     			      	   {
