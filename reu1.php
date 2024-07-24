@@ -316,6 +316,7 @@
      if ($s_existe == "1")  
      {
         // Consulta preparada con marcadores de posición
+        /*
         $sql = "UPDATE reu_reuniones SET  
                     fechareunion = :fechareunion, 
                     horareunion = :horareunion, 
@@ -329,12 +330,24 @@
                     detallereunion = :detallereunion, 
                     desarrolloreunion = :desarrolloreunion 
                 WHERE idreunion = :idreunion";
+         */       
+                
+        $sql = "UPDATE reu_reuniones SET  
+                    idcategoria = :idcategoria, 
+                    detallereunion = :detallereunion, 
+                    desarrolloreunion = :desarrolloreunion 
+                WHERE idreunion = :idreunion";        
                 
         echo "el update.." .$sql;        
 
         // Preparar la consulta
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':idcategoria', $s_idCategoria, PDO::PARAM_INT);
+        $stmt->bindParam(':detallereunion', $s_detalleReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':desarrolloreunion', $s_desarrolloReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
         
+        /*
         // Asignar valores a los marcadores de posición
         $stmt->bindParam(':fechareunion', $s_fechaReunion, PDO::PARAM_STR);
         $stmt->bindParam(':horareunion', $s_horaReunion, PDO::PARAM_STR);
@@ -348,6 +361,7 @@
         $stmt->bindParam(':detallereunion', $s_detalleReunion, PDO::PARAM_STR);
         $stmt->bindParam(':desarrolloreunion', $s_desarrolloReunion, PDO::PARAM_STR);
         $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
+        */
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
