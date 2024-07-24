@@ -332,7 +332,13 @@
                 WHERE idreunion = :idreunion";
          */       
                 
-        $sql = "UPDATE reu_reuniones SET  
+        $sql = "UPDATE reu_reuniones SET 
+                    horareunion = :horareunion, 
+                    lugarreunion = :lugarreunion, 
+                    convocadapor = :convocadapor, 
+                    identidad = :identidad, 
+                    iddependencia = :iddependencia, 
+                    idgrupo = :idgrupo, 
                     idcategoria = :idcategoria, 
                     detallereunion = :detallereunion, 
                     desarrolloreunion = :desarrolloreunion 
@@ -342,6 +348,12 @@
 
         // Preparar la consulta
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':horareunion', $s_horaReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':lugarreunion', $s_lugarReunion, PDO::PARAM_STR);
+        $stmt->bindParam(':convocadapor', $s_convocadaPor, PDO::PARAM_STR);
+        $stmt->bindParam(':identidad', $s_idEntidad, PDO::PARAM_INT);
+        $stmt->bindParam(':iddependencia', $s_idDependencia, PDO::PARAM_INT);
+        $stmt->bindParam(':idgrupo', $s_idGrupo, PDO::PARAM_INT);
         $stmt->bindParam(':idcategoria', $s_idCategoria, PDO::PARAM_INT);
         $stmt->bindParam(':detallereunion', $s_detalleReunion, PDO::PARAM_STR);
         $stmt->bindParam(':desarrolloreunion', $s_desarrolloReunion, PDO::PARAM_STR);
