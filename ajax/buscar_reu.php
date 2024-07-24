@@ -98,8 +98,28 @@
              echo '<br>';
              echo "q3: " . $q3;
              echo '<br>';
+            
+            if ($q=="")
+            {
+              if ($q1==0)
+              {
+                if($q2==0)
+                {
+                    if($q3==0)
+                    {
+                        $sWhere = "";
+                        $sWhere1 = "";
+                    }
+                    else
+                    {
+                        $sWhere = "where ";
+                        $sWhere1 = "where ";
+                    }
+                }
+              }
+                  
              
-             if ($q=="" and $q1==0 and $q2==0 and $q3==0 ) {
+            if ($q=="" and $q1==0 and $q2==0 and $q3==0 ) {
                 $sWhere = "";
                 $sWhere1 = "";
             }
@@ -186,7 +206,7 @@
 					<th>Fecha</th>
 					<th>Convocada por</th>
 					<th>Dependencia</th>
-					<!--<th>Grupo</th>-->
+					<th>Grupo</th> 
 					<th>Estado</th>
 					<th class='text-center' colspan="3">Acciones</th>
         <?php    
@@ -215,9 +235,6 @@
 						
 			            //trae entidad
 					    $sqlEnt  ="select * from reu_entidades where identidad=$entidad";
-					    ECHO '<BR>';
-					    echo $sqlEnt;
-					    ECHO '<BR>';
 					    $stmtEnt = $pdo->query($sqlEnt);
 					    $rowEnt  = $stmtEnt->fetch(PDO::FETCH_ASSOC);
 					    $ent     = $rowEnt['nombreentidad'];
@@ -229,10 +246,10 @@
     				    $depen     = $rowDep['nombredependencia'];
     				    
     				    //trae grupo
-					    $sqlGrupo  ="select * from reu_grupos_internos where idgrupoInterno=$idGrupo";
+					    $sqlGrupo  ="select * from reu_grupos_internos where idgrupointerno=$idGrupo";
 					    $stmtGrupo = $pdo->query($sqlGrupo);
 					    $rowGrupo  = $stmtGrupo->fetch(PDO::FETCH_ASSOC);
-    				    $grupo  = $rowGrupo['grupoInterno']; 
+    				    $grupo  = $rowGrupo['grupointerno']; 
  
  					    $lv   = $idReunion. "/MOD1234567890qwertyuiopasdfghjkl";
 					    $lVDX = base64_encode($lv);
@@ -252,7 +269,7 @@
 					       <td class='text-center'>  
 					         <a href="reuI.php?LA=<?=$lVDX?>" class='btn btn-default' title='Imprimir acta' ><i class="glyphicon glyphicon-print"></i></a> 
 					        </td>
-					        <td class='text-center' colspan="6">  
+					        <td class='text-center'>  
 					         <a href="#" class='btn btn-default'title='Borrar reunión' onclick="eliminar('<?php echo $idReunion; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					        </td> 
 					   </tr>
@@ -260,7 +277,7 @@
                     }//while
         ?>
                        <tr>
-					      <td colspan="2">
+					      <td colspan="6">
 					         <span class="pull-right">
 					            <?php
 					              echo paginate($reload, $page, $total_pages, $adjacents);
