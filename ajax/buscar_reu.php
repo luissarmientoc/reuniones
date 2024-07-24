@@ -78,8 +78,18 @@
 	        // Limpiar y escapar la cadena de texto (strip_tags y htmlentities)
             $q = strip_tags($_REQUEST['q']);
             $q = htmlentities($q, ENT_QUOTES, 'UTF-8');
-            $q1 = strip_tags($_REQUEST['q1']);
-            $q1 = htmlentities($q, ENT_QUOTES, 'UTF-8');
+            
+            
+            
+            $q1 = isset($_REQUEST['q1']) ? strip_tags($_REQUEST['q1']) : ''; // Asegúrate de que q1 esté definido y elimina etiquetas HTML
+            $q1_int = intval($q1); // Convierte $q1 a entero
+
+            // Ahora $q1_int contiene el valor de q1 como entero
+
+            
+            
+            
+            
             $q2 = strip_tags($_REQUEST['q2']);
             $q2 = htmlentities($q, ENT_QUOTES, 'UTF-8');
             $q3 = strip_tags($_REQUEST['q3']);
@@ -88,7 +98,7 @@
              echo '<br>';
              echo "q: " . $q;
              echo '<br>';
-             echo "q1: " . $q1;
+             echo "q1_int: " . $q1_int;
              echo '<br>';
              echo "q2: " . $q2;
              echo '<br>';
