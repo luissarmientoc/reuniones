@@ -399,7 +399,7 @@
       {
         $comboParticipante .=" <option value=''>".'- Seleccione el participante -'."</option>";
       }
-      if ($line['numeroidparticipante']==$s_entidad)
+      if ($line['numeroidparticipante']==$s_convocadaPor)
       {
         $comboParticipante .=" <option value='".$line['numeroidparticipante']."' selected>".$line['nombresparticipante']." </option>"; 
       }
@@ -417,7 +417,7 @@
       {
         $comboEntidad .=" <option value=''>".'- Seleccione la entidad -'."</option>";
       }
-      if ($line['identidad']==$s_entidad)
+      if ($line['identidad']==$s_idEntidad)
       {
         $comboEntidad .=" <option value='".$line['identidad']."' selected>".$line['nombreentidad']." </option>"; 
       }
@@ -435,7 +435,7 @@
       {
         $comboDependencia .=" <option value=''>".'- Seleccione la dependencia -'."</option>";
       }
-      if ($line['iddependencia']==$s_dependencia)
+      if ($line['iddependencia']==$s_idDependencia)
       {
         $comboDependencia .=" <option value='".$line['iddependencia']."' selected>".$line['nombredependencia']." </option>"; 
       }
@@ -507,7 +507,7 @@
       {
         $comboSubCategoria .=" <option value=''>".'-  Seleccione la subcategoria -'."</option>";
       }
-      if ($line['idsubcategoriaReunion']==$s_idSubCategoria)
+      if ($line['idsubcategoriareunion']==$s_idSubCategoria)
       {
         $comboSubCategoria .=" <option value='".$line['idsubcategoriareunion']."' selected>".$line['subcategoriareunion']." </option>"; 
       }
