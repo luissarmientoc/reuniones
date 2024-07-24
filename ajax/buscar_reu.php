@@ -154,7 +154,7 @@
 		    $offset = ($page - 1) * $per_page;
 		
 	        // Consulta SQL para contar las filas
-            $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
+            $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere";
             echo '<br>';
             echo "sql cts..en sql.." . $sql;
             echo '<br>';
@@ -193,6 +193,9 @@
 						$idGrupo=$row['idgrupo'];
 						$detalleReunion=$row['detallereunion'];
 						$estadoReunion=$row['estadoreunion'];
+						$entidad=$row['identidad'];
+						$dependencia=$row['iddependencia'];
+						$idGrupo=$row['idgrupo'];
 						
 						//trae persona
 						$sqlPer   = "select * from reu_participante where numeroidparticipante=$convocadaPor";
