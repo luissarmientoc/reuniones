@@ -149,7 +149,7 @@
      echo '<br>';
      
      $s_existe=0;
-     $sql = "select count(*) as existe from reu_compromisos where idreunion=$reu and numeroidparticipante=$par";
+     $sql = "select count(*) as existe from reu_compromisos where idreunion=$idReunion and numeroidparticipante=$numeroIdParticipante";
      echo "cuats .. " .$sql;
      $stmt = $pdo->query($sql);
      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
