@@ -342,6 +342,7 @@
                     iddependencia = :iddependencia, 
                     idgrupo = :idgrupo, 
                     idcategoria = :idcategoria, 
+                    idsubcategoria = :idsubcategoria,
                     detallereunion = :detallereunion, 
                     desarrolloreunion = :desarrolloreunion 
                 WHERE idreunion = :idreunion";        
@@ -356,26 +357,11 @@
         $stmt->bindParam(':iddependencia', $s_idDependencia, PDO::PARAM_INT);
         $stmt->bindParam(':idgrupo', $s_idGrupo, PDO::PARAM_INT);
         $stmt->bindParam(':idcategoria', $s_idCategoria, PDO::PARAM_INT);
-        $stmt->bindParam(':detallereunion', $s_detalleReunion, PDO::PARAM_STR);
-        $stmt->bindParam(':desarrolloreunion', $s_desarrolloReunion, PDO::PARAM_STR);
-        $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
-        
-        /*
-        // Asignar valores a los marcadores de posición
-        $stmt->bindParam(':fechareunion', $s_fechaReunion, PDO::PARAM_STR);
-        $stmt->bindParam(':horareunion', $s_horaReunion, PDO::PARAM_STR);
-        $stmt->bindParam(':lugarreunion', $s_lugarReunion, PDO::PARAM_STR);
-        $stmt->bindParam(':convocadapor', $s_convocadaPor, PDO::PARAM_STR);
-        $stmt->bindParam(':identidad', $s_idEntidad, PDO::PARAM_INT);
-        $stmt->bindParam(':iddependencia', $s_idDependencia, PDO::PARAM_INT);
-        $stmt->bindParam(':idgrupo', $s_idGrupo, PDO::PARAM_INT);
-        $stmt->bindParam(':idcategoria', $s_idCategoria, PDO::PARAM_INT);
         $stmt->bindParam(':idsubcategoria', $s_idSubCategoria, PDO::PARAM_INT);
         $stmt->bindParam(':detallereunion', $s_detalleReunion, PDO::PARAM_STR);
         $stmt->bindParam(':desarrolloreunion', $s_desarrolloReunion, PDO::PARAM_STR);
         $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
-        */
-
+       
         // Ejecutar la consulta
         if ($stmt->execute()) {
             $mensaje=" <b>Atención!</b> Actualización exitosa";
