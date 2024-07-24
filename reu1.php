@@ -159,10 +159,6 @@
      {
        // Consulta preparada con marcadores de posición
        $sql  = "DELETE FROM reu_reuniones_participante WHERE idreunion =:idreunion and numeroidparticipante =:numeroidparticipante";
-       echo '<br>';
-       echo "borrar .." . $sql;
-       echo '<br>';
-       
        // Preparar la consulta
        $stmt = $pdo->prepare($sql);
         
@@ -751,10 +747,16 @@
 			                 $numeroIdParticipante=$row['numeroidparticipante'];
  			                 
  			                 $sql_par="SELECT * FROM reu_participante where numeroidparticipante=$numeroIdParticipante";
+ 			                 echo '<br>';
+ 			                 echo "sql_par .." . $sql_par;
+ 			                 echo '<br>';
 			                 $stmt_par = $pdo->query($sql_par);
 			                 $row_par  = $stmt->fetch(PDO::FETCH_ASSOC);
 			                 
 			                 $nombre   = $row_par['nombresparticipante']; 
+			                 echo '<br>';
+ 			                 echo "nombre .." . $nombre;
+ 			                 echo '<br>';
 			                 
 			                 $borrarP = $s_idReunion . "-" . $numeroIdParticipante ;
 			                 $compromisoP = $s_idReunion . "-" . $numeroIdParticipante ;
@@ -841,6 +843,10 @@
 				    			          </tr>   
     			                          <?php
     			                             $sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion and numeroidparticipante=$numeroIdParticipante ";
+    			                             echo '<br>';
+    			                             echo "compromiso: " .$sqlCompromiso;
+    			                             echo '<br>';
+    			                             
     			                             $stmtCompromiso = $pdo->query($sql);
                                              
                                              while ($rowCompromiso  = $stmtCompromiso->fetch(PDO::FETCH_ASSOC)){
