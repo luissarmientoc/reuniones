@@ -211,7 +211,7 @@
       $s_estadoReunion   = $row['estadoreunion'];
       $s_fechaEstado     = $row['fechaestado'];
         
-         
+      /*     
         echo "1.." . $s_idReunion;
         echo '<br>';
         echo "2.." . $s_fechaReunion;
@@ -240,7 +240,7 @@
         echo '<br>';
         echo "13.." . $s_fechaEstado;
         echo '<br>';
-         
+       */  
         
     }  
     else
@@ -272,6 +272,7 @@
         echo '<br>';
         echo "2.." . $s_fechaReunion;
         echo '<br>';
+        /*
         echo "3.." . $s_horaReunion;
         echo '<br>';
         echo "4.." . $s_lugarReunion;
@@ -296,7 +297,7 @@
         echo '<br>';
         echo "13.." . $s_fechaEstado;
         echo '<br>';
-   
+   */
         $s_existe         = $_POST['existe'];
         $s_yaGrabo        = $_POST['yaGrabo'];
         $s_estadoReunion         = "A";
@@ -333,6 +334,7 @@
          */       
                 
         $sql = "UPDATE reu_reuniones SET 
+                    fechareunion = :fechareunion, 
                     horareunion = :horareunion, 
                     lugarreunion = :lugarreunion, 
                     convocadapor = :convocadapor, 
@@ -343,11 +345,10 @@
                     detallereunion = :detallereunion, 
                     desarrolloreunion = :desarrolloreunion 
                 WHERE idreunion = :idreunion";        
-                
-        echo "el update.." .$sql;        
-
+       
         // Preparar la consulta
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':fechareunion', $s_fechaReunion, PDO::PARAM_STR);
         $stmt->bindParam(':horareunion', $s_horaReunion, PDO::PARAM_STR);
         $stmt->bindParam(':lugarreunion', $s_lugarReunion, PDO::PARAM_STR);
         $stmt->bindParam(':convocadapor', $s_convocadaPor, PDO::PARAM_STR);
