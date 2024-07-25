@@ -169,18 +169,18 @@
       $s_numeroIdParticipante = $partir[1];
       $s_idCompromiso         = $partir[2];
       $idTarea              = $partir[3];
-      $s_terminado ='S';
+      $s_terminada ='S';
      
      
      // Consulta preparada con marcadores de posición
-     $sql = "UPDTE reu_tareas_realizadas terminado =:terminado 
+     $sql = "UPDTE reu_tareas_realizadas terminada =:terminada 
                    WHERE idreunion = :idreunion AND 
                          numeroidparticipante = :numeroidparticipante AND 
                          idcompromiso = :idcompromiso AND  
                          idtarea = :idtarea";
      
      // Preparar la consulta
-     $stmt->bindParam(':terminado', $s_terminado, PDO::PARAM_STR);
+     $stmt->bindParam(':terminada', $s_terminada, PDO::PARAM_STR);
      $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
      $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
      $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
