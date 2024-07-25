@@ -115,6 +115,53 @@
       $s_tocoBoton = "S";
     }  
     
+    if(isset($_POST['borrarTarea']))
+    {
+     $borrar               = $_POST['borrarTarea'];
+     $partir               = explode ("-", $borrar);   
+     $idReunion            = $partir[0];
+     $numeroIdParticipante = $partir[1];
+     $idCompromiso         = $partir[2];
+     $idTarea              = $partir[3];
+     
+     $borrarTarea=$s_idReunion."-".$s_numeroIdParticipante."-".$idCompromiso."-".$s_idCompromiso ."-" .$idTarea;
+     
+     // Consulta preparada con marcadores de posición
+     $sql = "DELETE FROM reu_tareas_realizadas WHERE idreunion = :idreunion AND numeroidparticipante = :numeroidparticipante AND idcompromiso = :idcompromiso AND  idtarea = idtarea";
+        
+     // Preparar la consulta
+     $stmt = $pdo->prepare($sql);
+        
+     // Asignar valores a los marcadores de posición
+     $stmt->bindParam(':idreunion', $idReunion, PDO::PARAM_INT);
+     $stmt->bindParam(':numeroidparticipante', $numeroIdParticipante, PDO::PARAM_INT);
+     $stmt->bindParam(':idcompromiso', $idCompromiso, PDO::PARAM_INT);
+     $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
+   }     
+
+   if(isset($_POST['terminarTarea']))
+    {
+     $borrar  = $_POST['terminarTarea'];
+     echo "borrar.." . $borrar;
+     echo '<br>';
+     $partir  = explode ("-", $borrar);   
+     
+     $idReunion             = $partir[0];
+     $numeroIdParticipante  = $partir[1];
+     $idCompromiso          = $partir[2];
+     $idTarea               = $partir[3];
+     
+     $sql = "UPDATE reu_tareas_realizadas SET terminado =:terminado, 
+             WHERE idreunion = :idreunion AND numeroidparticipante = :numeroidparticipante AND idcompromiso = :idcompromiso AND idtarea =:idtarea";  
+     
+     // Preparar la consulta
+     $stmt = $pdo->prepare($sql);
+     $stmt->bindParam(':idreunion', $idReunion, PDO::PARAM_STR);
+     $stmt->bindParam(':numeroidparticipante', $numeroIdParticipante, PDO::PARAM_STR);
+     $stmt->bindParam(':idcompromiso', $idCompromiso, PDO::PARAM_STR);
+     $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_STR);
+   }    
+    
     
     $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$s_numeroIdParticipante";
     $stmt_par = $pdo->query($sql_par);
