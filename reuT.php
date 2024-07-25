@@ -129,10 +129,7 @@
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       $s_maximo  = $row['maximo'];
       $s_idTarea = $s_maximo+1;
-      try
-      {
-          
-      
+     
        $sql = "INSERT INTO reu_tareas_realizadas 
                 (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
                 VALUES 
@@ -150,9 +147,7 @@
         
         $s_existe ="1";
         $s_tocoBoton = "S";
-      } catch (PDOException $e) {
-    echo "Error de conexión: " . $e->getMessage();
-}
+       
     }  
     
     if(isset($_POST['borrarTarea']))
