@@ -187,7 +187,18 @@
      $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
      $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
      
-      $stmt->execute();
+     // Ejecutar la consulta
+     try {
+          $stmt->execute();
+          echo "Registro actualizado correctamente.";
+        } catch (PDOException $e) {
+          echo "Error al actualizar el registro: " . $e->getMessage();
+     }
+     $stmt->execute();
+    
+     // Verificar el número de filas afectadas (opcional)
+     $count = $stmt->rowCount();
+      
    }    
     
     $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$s_numeroIdParticipante";
