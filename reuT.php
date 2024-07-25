@@ -132,9 +132,13 @@
      
        $sql = "INSERT INTO reu_tareas_realizadas 
                 (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
-                VALUES 
+                VALUES (?,?,?,?,?)";
+       $stmt->execute([$s_idTarea, $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added ]);
+             
+       /* 
+        Preparar la consulta
+         //VALUES 
                 (:idtarea, :idreunion, :numeroidparticipante, :idcompromiso, :tarearealizada, :fechatarea)";
-         // Preparar la consulta
         $stmt = $pdo->prepare($sql);
 
         // Asignar valores a los marcadores de posición
@@ -144,6 +148,8 @@
         $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
         $stmt->bindParam(':tarearealizada', $s_tareaRealizada, PDO::PARAM_STR);
         $stmt->bindParam(':fechatarea', $date_added, PDO::PARAM_STR);
+        */
+        
         
         $s_existe ="1";
         $s_tocoBoton = "S";
