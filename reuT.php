@@ -96,15 +96,21 @@
       $s_maximo  = $row['maximo'];
       $s_idTarea = $s_maximo+1;
       
-      $sql="INSERT INTO reu_tareas_realizadas (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
-                     echo "insert.." . $sql;
-       echo $sql;
-      $stmt = $pdo->prepare($sql);
-      $stmt->execute([$s_idTarea , $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added]);
-      
-      $mensaje=" <b>Atención!</b> Grabación exitosa";
-      
+       $sql = "INSERT INTO reu_tareas_realizadas 
+                (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
+                VALUES 
+                (:idtarea, :idreunion, :numeroidparticipante, :idcompromiso, :tarearealizada, :fechatarea)";
+         // Preparar la consulta
+        $stmt = $pdo->prepare($sql);
+
+        // Asignar valores a los marcadores de posición
+        $stmt->bindParam(':idtarea', $s_idReunion, PDO::PARAM_INT);
+        $stmt->bindParam(':idreunion', $s_fechaReunion, PDO::PARAM_INT);
+        $stmt->bindParam(':numeroidparticipante', $s_horaReunion, PDO::PARAM_INT);
+        $stmt->bindParam(':idcompromiso', $s_lugarReunion, PDO::PARAM_INT);
+        $stmt->bindParam(':tarearealizada', $s_convocadaPor, PDO::PARAM_STR);
+        $stmt->bindParam(':fechatarea', $s_idEntidad, PDO::PARAM_STR);
+        
       $s_existe ="1";
       $s_tocoBoton = "S";
     }  
