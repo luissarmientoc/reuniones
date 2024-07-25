@@ -178,6 +178,8 @@
                AND numeroidparticipante = :numeroidparticipante 
                AND idcompromiso = :idcompromiso 
                AND idtarea = :idtarea";
+               
+     $stmt = $pdo->prepare($sql);           
      // Preparar la consulta
      $stmt->bindParam(':terminada', $s_terminada, PDO::PARAM_STR);
      $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
