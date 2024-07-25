@@ -128,7 +128,8 @@
      $s_numeroIdParticipante = $partir[1];
      $s_idCompromiso         = $partir[2];
      $idTarea              = $partir[3];
-      
+     
+     /* 
      echo "reu.." . $s_idReunion;
      echo '<br>';
      echo "par.." . $s_numeroIdParticipante;
@@ -137,6 +138,7 @@
      echo '<br>';
      echo "tar.." . $idTarea;
      echo '<br>';
+     */
       
      $borrarTarea=$s_idReunion."-".$s_numeroIdParticipante."-".$s_idCompromiso ."-" .$idTarea;
      
@@ -151,35 +153,40 @@
      $stmt = $pdo->prepare($sql);
         
      // Asignar valores a los marcadores de posición
-     $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
      $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
      $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
      $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
+     $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
      
       $stmt->execute();
    }     
 
    if(isset($_POST['terminarTarea']))
     {
-     $borrar  = $_POST['terminarTarea'];
-     echo "borrar.." . $borrar;
-     echo '<br>';
-     $partir  = explode ("-", $borrar);   
+      $borrar               = $_POST['borrarTarea'];
+      $partir               = explode ("-", $borrar);   
+      $s_idReunion            = $partir[0];
+      $s_numeroIdParticipante = $partir[1];
+      $s_idCompromiso         = $partir[2];
+      $idTarea              = $partir[3];
+      $s_terminado ='S';
      
-     $idReunion             = $partir[0];
-     $numeroIdParticipante  = $partir[1];
-     $idCompromiso          = $partir[2];
-     $idTarea               = $partir[3];
      
-     $sql = "UPDATE reu_tareas_realizadas SET terminado =:terminado, 
-             WHERE idreunion = :idreunion AND numeroidparticipante = :numeroidparticipante AND idcompromiso = :idcompromiso AND idtarea =:idtarea";  
+     // Consulta preparada con marcadores de posición
+     $sql = "UPDTE reu_tareas_realizadas terminado =:terminado 
+                   WHERE idreunion = :idreunion AND 
+                         numeroidparticipante = :numeroidparticipante AND 
+                         idcompromiso = :idcompromiso AND  
+                         idtarea = :idtarea";
      
      // Preparar la consulta
-     $stmt = $pdo->prepare($sql);
-     $stmt->bindParam(':idreunion', $idReunion, PDO::PARAM_STR);
-     $stmt->bindParam(':numeroidparticipante', $numeroIdParticipante, PDO::PARAM_STR);
-     $stmt->bindParam(':idcompromiso', $idCompromiso, PDO::PARAM_STR);
-     $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_STR);
+     $stmt->bindParam(':idreunion', $s_terminado, PDO::PARAM_STR);
+     $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
+     $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
+     $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
+     $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
+     
+      $stmt->execute();
    }    
     
     $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$s_numeroIdParticipante";
