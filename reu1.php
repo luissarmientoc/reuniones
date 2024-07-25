@@ -85,13 +85,12 @@
         //estado ->1:Iniciado, 2:EnCurso, 3:Cumplido, 4:Incumplido 
         $s_estado = 1;
         // Inserción de datos
-       
+        $stmt = $pdo->prepare('INSERT INTO reu_compromisos (idreunion, numeroidparticipante, idcompromiso, fechainicialcompromiso, fechafinalcompromiso, compromisoadquirido, tareasrealizadas, estado) 
+                                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$s_idReunion, $s_participante, $s_idCompromiso, $date_added, $s_fechaFinalCompromiso, $s_compromiso, '', $s_estado]);
+        
         $terminada="N";
-        $sql = "INSERT INTO reu_tareas_realizadas 
-                (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea, terminada) 
-                VALUES (?,?,?,?,?,?,?)";
-        $stmt = $pdo->prepare($sql);                 
-        $stmt->execute([$s_idTarea, $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added,  $terminada ]);
+    
     }
     
     if(isset($_POST['borrarCompromiso']))
