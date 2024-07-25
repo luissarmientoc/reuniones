@@ -127,23 +127,36 @@
     {
      $borrar               = $_POST['borrarTarea'];
      $partir               = explode ("-", $borrar);   
-     $idReunion            = $partir[0];
-     $numeroIdParticipante = $partir[1];
-     $idCompromiso         = $partir[2];
+     $s_idReunion            = $partir[0];
+     $s_numeroIdParticipante = $partir[1];
+     $s_idCompromiso         = $partir[2];
      $idTarea              = $partir[3];
      
-     $borrarTarea=$s_idReunion."-".$s_numeroIdParticipante."-".$idCompromiso."-".$s_idCompromiso ."-" .$idTarea;
+     echo "reu.." . $s_idReunion;
+     echo '<br>';
+     echo "par.." . $numeroIdParticipante;
+     echo '<br>';
+     echo "comp.." . $s_idCompromiso;
+     echo '<br>';
+     echo "comp.." . $idTarea;
+     echo '<br>';
+     
+     $borrarTarea=$s_idReunion."-".$s_numeroIdParticipante."-".$s_idCompromiso ."-" .$idTarea;
      
      // Consulta preparada con marcadores de posición
-     $sql = "DELETE FROM reu_tareas_realizadas WHERE idreunion = :idreunion AND numeroidparticipante = :numeroidparticipante AND idcompromiso = :idcompromiso AND  idtarea = idtarea";
+     $sql = "DELETE FROM reu_tareas_realizadas WHERE 
+                         idreunion = :idreunion AND 
+                         numeroidparticipante = :numeroidparticipante AND 
+                         idcompromiso = :idcompromiso AND  
+                         idtarea = idtarea";
         
      // Preparar la consulta
      $stmt = $pdo->prepare($sql);
         
      // Asignar valores a los marcadores de posición
-     $stmt->bindParam(':idreunion', $idReunion, PDO::PARAM_INT);
-     $stmt->bindParam(':numeroidparticipante', $numeroIdParticipante, PDO::PARAM_INT);
-     $stmt->bindParam(':idcompromiso', $idCompromiso, PDO::PARAM_INT);
+     $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
+     $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
+     $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
      $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
    }     
 
