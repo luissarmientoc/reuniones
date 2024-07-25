@@ -99,7 +99,7 @@
       $sql="INSERT INTO reu_tareas_realizadas (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
                     VALUES (?, ?, ?, ?, ?, ?)";
                      echo "insert.." . $sql;
-      //echo $sql;
+       echo $sql;
       $stmt = $pdo->prepare($sql);
       $stmt->execute([$s_idTarea , $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added]);
       
@@ -172,7 +172,7 @@
                           $lv   = $s_idReunion. "/MOD1234567890qwertyuiopasdfghjkl";
 					      $lVDX = base64_encode($lv);
                          ?>
-                         <a href="reu1?LA=<?=$lVDX?>" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
+                         <a href="reu1.php?LA=<?=$lVDX?>" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
                         </div>                
                       </div>
                   </div>
@@ -231,7 +231,7 @@
             <table class='tablaResponsive table table-striped table-bordered table-hover'>
                <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SE LF']; ?>">
     			 <tr> 
-    			   <td colspan="6" align="center">TAREAS DE: <b><?=$nombre?></b></td>
+    			   <td colspan="6" align="center">TAREAS DE: <b><?=$compromiso?></b></td>
     			 </tr>
     			 <tr class="info">
     			     <th>No.Tarea</th>
