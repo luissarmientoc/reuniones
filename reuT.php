@@ -47,9 +47,6 @@
    // Crear una nueva instancia de conexión PDO
    $pdo = new PDO($dsn);
    
-   echo '<br>';
-   echo "aqui...";
-   echo '<br>';
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
     
@@ -131,7 +128,7 @@
      $s_numeroIdParticipante = $partir[1];
      $s_idCompromiso         = $partir[2];
      $idTarea              = $partir[3];
-     /*
+      
      echo "reu.." . $s_idReunion;
      echo '<br>';
      echo "par.." . $s_numeroIdParticipante;
@@ -140,7 +137,7 @@
      echo '<br>';
      echo "tar.." . $idTarea;
      echo '<br>';
-     */
+      
      $borrarTarea=$s_idReunion."-".$s_numeroIdParticipante."-".$s_idCompromiso ."-" .$idTarea;
      
      // Consulta preparada con marcadores de posición
@@ -158,6 +155,8 @@
      $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
      $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
      $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
+     
+      $stmt->execute();
    }     
 
    if(isset($_POST['terminarTarea']))
