@@ -1,5 +1,5 @@
 <?php
- echo "algo";  echo "algo";  echo "algo";  echo "algo";  echo "algo";  echo "algo";  echo "algo"; 
+  
   $POSTGRESQL_HOST='172.16.20.121';
   $POSTGRESQL_PORT='5432';
   $POSTGRESQL_NAME='unp_reuniones';
@@ -20,7 +20,7 @@
     $s_idReunion=100;
     $s_numeroIdParticipante=79451305;
     $s_idCompromiso=12;
-    $s_tareaRealizada=13;
+    $s_tareaRealizada="TRAER TRAER TRAER TRAER TRAER TRAER";
     $date_added=date("Y-m-d");
     $date_added="2024-01-01";
     $terminada="S";
