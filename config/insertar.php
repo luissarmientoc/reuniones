@@ -28,7 +28,10 @@
     $sql = "INSERT INTO reu_tareas_realizadas 
                 (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea, terminada) 
                 VALUES (?,?,?,?,?,?)";
-       $stmt->execute([$s_idTarea, $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added,  $terminada ]);
+    $stmt = $pdo->prepare($sql);                 
+    $stmt->execute([$s_idTarea, $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added,  $terminada ]);
+        
+    
     
     echo '<br>';
     echo "Datos insertados correctamente.";
