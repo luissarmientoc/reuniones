@@ -20,13 +20,13 @@
   
   try {
     
-    $s_idTarea=99;
+    $s_idTarea=34;
     $s_idReunion=100;
     $s_numeroIdParticipante=79451305;
     $s_idCompromiso=12;
     $s_tareaRealizada="TRAER TRAER TRAER TRAER TRAER TRAER";
     $date_added=date("Y-m-d");
-    $date_added="2024-01-01";
+   
     $terminada="S";
     
     $sql = "INSERT INTO reu_tareas_realizadas 
