@@ -134,7 +134,7 @@
      
      echo "reu.." . $s_idReunion;
      echo '<br>';
-     echo "par.." . $numeroIdParticipante;
+     echo "par.." . $s_numeroIdParticipante;
      echo '<br>';
      echo "comp.." . $s_idCompromiso;
      echo '<br>';
