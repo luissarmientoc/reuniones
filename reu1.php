@@ -101,10 +101,6 @@
        
        $sql = "SELECT count(*) as ctsTareas from reu_tareas_realizadas 
                WHERE idreunion=$idReunion and numeroidparticipante=$numeroIdParticipante and idcompromiso=$idCompromiso";
-        echo '<br>';
-        echo "cuantos compro..." . $sql;
-        echo '<br>';
-        
        $stmt = $pdo->query($sql);
        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
        $ctsTareas = $row['ctsTareas'];
@@ -146,12 +142,6 @@
      $partir  = explode ("-", $borrar);   
      $idReunion     = $partir[0];
      $numeroIdParticipante     = $partir[1];
-     
-     echo '<br>';
-     echo "reu.." . $idReunion;
-     echo '<br>';
-     echo "part.." . $numeroIdParticipante;
-     echo '<br>';
      
      $s_existe=0;
      $sql = "select count(*) as existe from reu_compromisos where idreunion=$idReunion and numeroidparticipante=$numeroIdParticipante";
@@ -840,10 +830,6 @@
 				    			          </tr>   
     			                          <?php
     			                             $sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion and numeroidparticipante=$numeroIdParticipante ";
-    			                             echo '<br>';
-    			                             echo "compromiso: " .$sqlCompromiso;
-    			                             echo '<br>';
-    			                             
     			                             $stmtCompromiso = $pdo->query($sqlCompromiso);
                                              
                                              while ($rowCompromiso  = $stmtCompromiso->fetch(PDO::FETCH_ASSOC)){
