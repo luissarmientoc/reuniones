@@ -61,41 +61,6 @@
     $s_idCompromiso         = $partir[2];
     $tipAccion              = $partir[3];  
     
-    $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$s_numeroIdParticipante";
-    $stmt_par = $pdo->query($sql_par);
-    $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
-    $nombre   = $row_par['nombresparticipante']; 
-    
-	$sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion and numeroidparticipante=$s_numeroIdParticipante and idcompromiso=$s_idCompromiso";
-    $stmt_com = $pdo->query($sqlCompromiso);
-    $row_com  = $stmt_com->fetch(PDO::FETCH_ASSOC);
-    $compromiso   = $row_com['compromisoadquirido']; 
-    
-    
-    echo "1.." . $s_idReunion;
-    echo '<br>';
-    echo "2.." . $s_numeroIdParticipante;
-    echo '<br>';
-    echo "3.." . $s_idCompromiso;
-    echo '<br>';
-     
-    if ( $s_idReunion != "" )
-    {  
-      ///////////////////////////////////////////////////////  
-      ////// REALIZA LA CONSULTA DE LA marca SELECCIONADA 
-      $titulo = "MODIFICAR TAREA";
-      $s_existe = 1;
-      $boton  = "Actualizar";
-      $s_tocoBoton="S";
-    }
-    else
-    {
-      $titulo = "NUEVA TAREA";
-      $s_existe = 0;
-      $boton="Grabar";
-    }  
-    
-    
     if(isset($_POST['grabar']))
     {   
       $s_idReunion            = $_POST['idReunion'];
@@ -204,6 +169,44 @@
      $stmt->bindParam(':idcompromiso', $idCompromiso, PDO::PARAM_STR);
      $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_STR);
    }    
+    
+    $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$s_numeroIdParticipante";
+    $stmt_par = $pdo->query($sql_par);
+    $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
+    $nombre   = $row_par['nombresparticipante']; 
+    
+	$sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion and numeroidparticipante=$s_numeroIdParticipante and idcompromiso=$s_idCompromiso";
+    $stmt_com = $pdo->query($sqlCompromiso);
+    $row_com  = $stmt_com->fetch(PDO::FETCH_ASSOC);
+    $compromiso   = $row_com['compromisoadquirido']; 
+    
+    
+    echo "1.." . $s_idReunion;
+    echo '<br>';
+    echo "2.." . $s_numeroIdParticipante;
+    echo '<br>';
+    echo "3.." . $s_idCompromiso;
+    echo '<br>';
+     
+    if ( $s_idReunion != "" )
+    {  
+      ///////////////////////////////////////////////////////  
+      ////// REALIZA LA CONSULTA DE LA marca SELECCIONADA 
+      $titulo = "MODIFICAR TAREA";
+      $s_existe = 1;
+      $boton  = "Actualizar";
+      $s_tocoBoton="S";
+    }
+    else
+    {
+      $titulo = "NUEVA TAREA";
+      $s_existe = 0;
+      $boton="Grabar";
+    }  
+    
+    
+    
+    
     
     
     
