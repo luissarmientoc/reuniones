@@ -130,10 +130,12 @@
       $s_maximo  = $row['maximo'];
       $s_idTarea = $s_maximo+1;
      
-       $sql = "INSERT INTO reu_tareas_realizadas 
-                (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
-                VALUES (?,?,?,?,?)";
-       $stmt->execute([$s_idTarea, $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added ]);
+        $sql = "INSERT INTO reu_tareas_realizadas 
+                (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea, terminada) 
+                VALUES (?,?,?,?,?,?,?)";
+        $stmt = $pdo->prepare($sql);                 
+        $stmt->execute([$s_idTarea, $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added,  $terminada ]);
+
              
        /* 
         Preparar la consulta
