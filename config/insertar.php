@@ -11,8 +11,8 @@
   $POSTGRESQL_USER='alban';
   $POSTGRESQL_PASS='Iliada1520psql(sqrt(pi))';
   */
-   require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
-     require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
+   require_once ("db.php");//Contiene las variables de configuracion para conectar a la base de datos
+     require_once ("conexion.php");//Contiene funcion que conecta a la base de datos
      include("head.php");
   echo "algo"; 
    // Crear una nueva instancia de conexión PDO
