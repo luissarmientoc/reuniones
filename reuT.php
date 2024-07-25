@@ -104,12 +104,12 @@
         $stmt = $pdo->prepare($sql);
 
         // Asignar valores a los marcadores de posición
-        $stmt->bindParam(':idtarea', $s_idReunion, PDO::PARAM_INT);
-        $stmt->bindParam(':idreunion', $s_fechaReunion, PDO::PARAM_INT);
-        $stmt->bindParam(':numeroidparticipante', $s_horaReunion, PDO::PARAM_INT);
-        $stmt->bindParam(':idcompromiso', $s_lugarReunion, PDO::PARAM_INT);
-        $stmt->bindParam(':tarearealizada', $s_convocadaPor, PDO::PARAM_STR);
-        $stmt->bindParam(':fechatarea', $s_idEntidad, PDO::PARAM_STR);
+        $stmt->bindParam(':idtarea', $s_idTarea, PDO::PARAM_INT);
+        $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
+        $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
+        $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
+        $stmt->bindParam(':tarearealizada', $s_tareaRealizada, PDO::PARAM_STR);
+        $stmt->bindParam(':fechatarea', $date_added, PDO::PARAM_STR);
         
       $s_existe ="1";
       $s_tocoBoton = "S";
