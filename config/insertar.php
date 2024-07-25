@@ -13,6 +13,8 @@
   */
   
   echo "algo"; 
+   // Crear una nueva instancia de conexión PDO
+   $pdo = new PDO($dsn);
   
   try {
     
