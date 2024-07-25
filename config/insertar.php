@@ -22,6 +22,7 @@
     $s_idCompromiso=12;
     $s_tareaRealizada=13;
     $date_added=date("Y-m-d");
+    $date_added="2024-01-01";
     
     $sql = "INSERT INTO reu_tareas_realizadas 
                 (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
