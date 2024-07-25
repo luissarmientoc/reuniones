@@ -61,6 +61,40 @@
     $s_idCompromiso         = $partir[2];
     $tipAccion              = $partir[3];  
     
+    $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$s_numeroIdParticipante";
+    $stmt_par = $pdo->query($sql_par);
+    $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
+    $nombre   = $row_par['nombresparticipante']; 
+    
+	$sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion and numeroidparticipante=$s_numeroIdParticipante and idcompromiso=$s_idCompromiso";
+    $stmt_com = $pdo->query($sqlCompromiso);
+    $row_com  = $stmt_com->fetch(PDO::FETCH_ASSOC);
+    $compromiso   = $row_com['compromisoadquirido']; 
+    
+    
+    echo "1.." . $s_idReunion;
+    echo '<br>';
+    echo "2.." . $s_numeroIdParticipante;
+    echo '<br>';
+    echo "3.." . $s_idCompromiso;
+    echo '<br>';
+     
+    if ( $s_idReunion != "" )
+    {  
+      ///////////////////////////////////////////////////////  
+      ////// REALIZA LA CONSULTA DE LA marca SELECCIONADA 
+      $titulo = "MODIFICAR TAREA";
+      $s_existe = 1;
+      $boton  = "Actualizar";
+      $s_tocoBoton="S";
+    }
+    else
+    {
+      $titulo = "NUEVA TAREA";
+      $s_existe = 0;
+      $boton="Grabar";
+    }  
+    
     
     if(isset($_POST['grabar']))
     {   
@@ -95,6 +129,9 @@
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       $s_maximo  = $row['maximo'];
       $s_idTarea = $s_maximo+1;
+      try
+      {
+          
       
        $sql = "INSERT INTO reu_tareas_realizadas 
                 (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
@@ -111,8 +148,11 @@
         $stmt->bindParam(':tarearealizada', $s_tareaRealizada, PDO::PARAM_STR);
         $stmt->bindParam(':fechatarea', $date_added, PDO::PARAM_STR);
         
-      $s_existe ="1";
-      $s_tocoBoton = "S";
+        $s_existe ="1";
+        $s_tocoBoton = "S";
+      } catch (PDOException $e) {
+    echo "Error de conexión: " . $e->getMessage();
+}
     }  
     
     if(isset($_POST['borrarTarea']))
@@ -163,39 +203,6 @@
    }    
     
     
-    $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$s_numeroIdParticipante";
-    $stmt_par = $pdo->query($sql_par);
-    $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
-    $nombre   = $row_par['nombresparticipante']; 
-    
-	$sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion and numeroidparticipante=$s_numeroIdParticipante and idcompromiso=$s_idCompromiso";
-    $stmt_com = $pdo->query($sqlCompromiso);
-    $row_com  = $stmt_com->fetch(PDO::FETCH_ASSOC);
-    $compromiso   = $row_com['compromisoadquirido']; 
-    
-    
-    echo "1.." . $s_idReunion;
-    echo '<br>';
-    echo "2.." . $s_numeroIdParticipante;
-    echo '<br>';
-    echo "3.." . $s_idCompromiso;
-    echo '<br>';
-     
-    if ( $s_idReunion != "" )
-    {  
-      ///////////////////////////////////////////////////////  
-      ////// REALIZA LA CONSULTA DE LA marca SELECCIONADA 
-      $titulo = "MODIFICAR TAREA";
-      $s_existe = 1;
-      $boton  = "Actualizar";
-      $s_tocoBoton="S";
-    }
-    else
-    {
-      $titulo = "NUEVA TAREA";
-      $s_existe = 0;
-      $boton="Grabar";
-    }  
     
 ?>
                         <!-- Page Content Holder -->
@@ -225,7 +232,7 @@
                           $lv   = $s_idReunion. "/MOD1234567890qwertyuiopasdfghjkl";
 					      $lVDX = base64_encode($lv);
                          ?>
-                         <a href="reu1?LA=<?=$lVDX?>" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
+                         <a href="reu1.php?LA=<?=$lVDX?>" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
                         </div>                
                       </div>
                   </div>
