@@ -88,7 +88,7 @@
       
       $s_existe         = $_POST['existe'];
       $s_yaGrabo        = $_POST['yaGrabo'];
-      
+      $terminada ="N";
       $sql = "select max(idtarea) as maximo from reu_tareas_realizadas ";
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
