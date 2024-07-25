@@ -118,16 +118,16 @@
 	$sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion and numeroidparticipante=$s_numeroIdParticipante and idcompromiso=$s_idCompromiso";
     $stmt_com = $pdo->query($sqlCompromiso);
     $row_com  = $stmt_com->fetch(PDO::FETCH_ASSOC);
-    $nombre   = $row_com['compromisoadquirido']; 
+    $compromiso   = $row_com['compromisoadquirido']; 
     
-    /*
+    
     echo "1.." . $s_idReunion;
     echo '<br>';
     echo "2.." . $s_numeroIdParticipante;
     echo '<br>';
     echo "3.." . $s_idCompromiso;
     echo '<br>';
-    */
+     
     if ( $s_idReunion != "" )
     {  
       ///////////////////////////////////////////////////////  
