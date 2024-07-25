@@ -173,7 +173,7 @@
      
      
      // Consulta preparada con marcadores de posición
-     $sql = "UPDTE reu_tareas_realizadas terminada =:terminada 
+     $sql = "UPDTE reu_tareas_realizadas SET terminada =:terminada 
                    WHERE idreunion = :idreunion AND 
                          numeroidparticipante = :numeroidparticipante AND 
                          idcompromiso = :idcompromiso AND  
