@@ -52,7 +52,7 @@
    echo '<br>';
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
-   
+    
     //PARTE LA LINEA
     $partir      = explode ("/", $linDeco);   
     
@@ -60,6 +60,55 @@
     $s_numeroIdParticipante = $partir[1];
     $s_idCompromiso         = $partir[2];
     $tipAccion              = $partir[3];  
+    
+    
+    if(isset($_POST['grabar']))
+    {   
+      $s_idReunion            = $_POST['idReunion'];
+      $s_numeroIdParticipante = $_POST['numeroIdParticipante']; 
+      $s_idCompromiso         = $_POST['idCompromiso']; 
+      $s_tareaRealizada       = $_POST['tareaRealizada'];
+      
+      ECHO "grabar..";
+      ECHO '<BR>';
+      
+      echo "1. " . $s_idReunion;
+      ECHO '<BR>';
+      echo "2. " . $s_numeroIdParticipante; 
+      ECHO '<BR>';
+      echo "3. " . $s_idCompromiso; 
+      ECHO '<BR>';
+      echo "4. " . $s_tareaRealizada;
+      ECHO '<BR>';
+      
+      
+      date_default_timezone_set('America/Bogota');
+      //$s_fecha  = date("Y-m-d",time());
+      //$s_fecha  = date("Y/m/d H:i:s");
+      $date_added=date("Y-m-d");
+      
+      $s_existe         = $_POST['existe'];
+      $s_yaGrabo        = $_POST['yaGrabo'];
+      
+      $sql = "select max(idtarea) as maximo from reu_tareas_realizadas ";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      $s_maximo  = $row['maximo'];
+      $s_idTarea = $s_maximo+1;
+      
+      $sql="INSERT INTO reu_tareas_realizadas (idtarea, idreunion, numeroidparticipante, idcompromiso, tarearealizada, fechatarea) 
+                    VALUES (?, ?, ?, ?, ?, ?)";
+                     echo "insert.." . $sql;
+      //echo $sql;
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([$s_idTarea , $s_idReunion, $s_numeroIdParticipante, $s_idCompromiso, $s_tareaRealizada, $date_added]);
+      
+      $mensaje=" <b>Atención!</b> Grabación exitosa";
+      
+      $s_existe ="1";
+      $s_tocoBoton = "S";
+    }  
+    
     
     $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$s_numeroIdParticipante";
     $stmt_par = $pdo->query($sql_par);
