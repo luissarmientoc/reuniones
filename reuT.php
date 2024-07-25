@@ -151,7 +151,7 @@
     }  
     
 ?>
-            <!-- Page Content Holder -->
+                        <!-- Page Content Holder -->
             <div id="content">  
                   <!--- MENU CERRAR ---->
                      <nav class="navbar navbar-default">  
@@ -178,7 +178,7 @@
                           $lv   = $s_idReunion. "/MOD1234567890qwertyuiopasdfghjkl";
 					      $lVDX = base64_encode($lv);
                          ?>
-                         <a href="reu1.php?LA=<?=$lVDX?>" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
+                         <a href="reu1?LA=<?=$lVDX?>" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
                         </div>                
                       </div>
                   </div>
