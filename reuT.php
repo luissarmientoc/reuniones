@@ -171,6 +171,7 @@
       $idTarea              = $partir[3];
       $s_terminada ="S";
      
+     /*
      // Consulta preparada con marcadores de posición
      $sql = "UPDATE reu_tareas_realizadas 
              SET terminada = :terminada 
@@ -198,6 +199,39 @@
     
      // Verificar el número de filas afectadas (opcional)
      $count = $stmt->rowCount();
+     
+     */
+     // Verificar los valores antes de usarlos en la consulta
+if (!is_numeric($s_idReunion) || !is_numeric($s_numeroIdParticipante) || !is_numeric($s_idCompromiso) || !is_numeric($idTarea)) {
+    throw new InvalidArgumentException("Uno o más parámetros tienen un valor no válido.");
+}
+
+// Consulta SQL para actualizar datos
+$sql = "UPDATE reu_tareas_realizadas 
+        SET terminada = :terminada 
+        WHERE idreunion = :idreunion 
+          AND numeroidparticipante = :numeroidparticipante 
+          AND idcompromiso = :idcompromiso 
+          AND idtarea = :idtarea";
+
+// Preparar la consulta
+$stmt = $pdo->prepare($sql);
+
+// Asociar valores a los parámetros
+$stmt->bindParam(':terminada', $s_terminada, PDO::PARAM_STR); // O PDO::PARAM_BOOL si es booleano
+$stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
+$stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
+$stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
+$stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
+
+// Ejecutar la consulta
+try {
+    $stmt->execute();
+    echo "Registro actualizado correctamente.";
+} catch (PDOException $e) {
+    echo "Error al actualizar el registro: " . $e->getMessage();
+}
+     
       
    }    
     
