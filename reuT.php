@@ -64,7 +64,7 @@
       $s_numeroIdParticipante = $_POST['numeroIdParticipante']; 
       $s_idCompromiso         = $_POST['idCompromiso']; 
       $s_tareaRealizada       = $_POST['tareaRealizada'];
-      
+      /*
       ECHO "grabar..";
       ECHO '<BR>';
       
@@ -76,7 +76,7 @@
       ECHO '<BR>';
       echo "4. " . $s_tareaRealizada;
       ECHO '<BR>';
-      
+      */
       
       date_default_timezone_set('America/Bogota');
       //$s_fecha  = date("Y-m-d",time());
@@ -180,7 +180,7 @@
                          idtarea = :idtarea";
      
      // Preparar la consulta
-     $stmt->bindParam(':idreunion', $s_terminado, PDO::PARAM_STR);
+     $stmt->bindParam(':terminado', $s_terminado, PDO::PARAM_STR);
      $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
      $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
      $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
@@ -199,13 +199,14 @@
     $row_com  = $stmt_com->fetch(PDO::FETCH_ASSOC);
     $compromiso   = $row_com['compromisoadquirido']; 
     
-    
+    /*
     echo "1.." . $s_idReunion;
     echo '<br>';
     echo "2.." . $s_numeroIdParticipante;
     echo '<br>';
     echo "3.." . $s_idCompromiso;
     echo '<br>';
+    */
      
     if ( $s_idReunion != "" )
     {  
