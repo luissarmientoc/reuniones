@@ -177,7 +177,7 @@
                     }//while
         ?>
                        <tr>
-					      <td colspan="2">
+					      <td colspan="8">
 					         <span class="pull-right">
 					            <?php
 					              echo paginate($reload, $page, $total_pages, $adjacents);
