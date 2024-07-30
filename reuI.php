@@ -70,7 +70,7 @@
 		$nombreLugar = $rowLugar['nombrelugar'];
 
         //trae persona
-		$sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$convocadaPor";
+		$sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$s_convocadaPor";
 		echo '<br>';
         echo "3. " . $sqlResponsable;
         echo '<br>';
