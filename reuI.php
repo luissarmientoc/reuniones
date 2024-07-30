@@ -205,7 +205,7 @@
 		         echo '<br>';
 		         $stmtResponsable = $pdo->query($sqlResponsable);
 		         $rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
-		         $responsable     = $rowPer['nombresparticipante'];
+		         $responsableC     = $rowPer['nombresparticipante'];
             ?>
             <tr>	
   			  <td align="center"><?php echo $idCompromiso; ?></td>
