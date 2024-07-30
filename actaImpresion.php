@@ -30,7 +30,6 @@
    
         $s_LA    = $_GET['LA'];
         $linDeco = base64_decode($s_LA);
-        echo "linea.." . $linDeco;
         //PARTE LA LINEA
         $partir      = explode ("/", $linDeco);   
         $s_idReunion   = $partir[0];
@@ -299,7 +298,23 @@
 			     <a href="actaImpresion.php?LA=<?=$lVDX?>" target="_blank" type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Imprimir <br> Acta</a>       
 			 </td> 
             </tr>   -->
-        </table>        
+        </table>   
+        
+        <table class='tablaResponsive table table-striped table-bordered table-hover' style="font-size:9px;">
+            <tr align="left" style="background-color:#ecf0f1;">
+                <td colspan="3"><b>Elaborado por:</b></td>
+            </tr>  
+            <tr align="left" style="background-color:#ecf0f1;">
+                <td colspan="3"><b>Archivese en:</b></td>
+            </tr>
+            
+            <tr style="background-color:#ecf0f1;">
+                <td align="left" >GOT-FT-23/V2</b></td>
+                <td align="left" >Oficialización: 15/08/2023</b></td>
+                <td align="right" >Página: 2</b></td>
+            </tr>
+            
+        </table>    
      </div>
   </body>   
 </html>  
