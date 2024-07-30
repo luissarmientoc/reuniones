@@ -36,6 +36,9 @@
         $tipAccion     = $partir[1];
     
         $sql = "select * from reu_reuniones where idreunion=$s_idReunion";
+        echo '<br>';
+        echo "1. " . $sql;
+        echo '<br>';
         $stmt = $pdo->query($sql);
         $row  = $stmt->fetch(PDO::FETCH_ASSOC);
         
@@ -59,17 +62,27 @@
 					    
         //trae lugar
 		$sqlLugar  ="select nombrelugar from reu_lugares where idlugar=$s_lugarReunion";
+		echo '<br>';
+        echo "2. " . $sqlLugar;
+        echo '<br>';
 		$stmtLugar = $pdo->query($sqlLugar);
 		$rowLugar  = $stmtLugar->fetch(PDO::FETCH_ASSOC);
 		$nombreLugar = $rowLugar['nombrelugar'];
 
         //trae persona
 		$sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$convocadaPor";
+		echo '<br>';
+        echo "3. " . $sqlResponsable;
+        echo '<br>';
 		$stmtResponsable = $pdo->query($sqlResponsable);
 		$rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
 		$responsable     = $rowPer['nombresparticipante'];
         
         $sqlC = "SELECT count(*) AS cuantos FROM reu_reuniones_participante where idreunion=$id_reunion";
+        echo '<br>';
+        echo "3. " . $sqlC;
+        echo '<br>';
+        
         $stmtC = $pdo->query($sqlC);
         $rowC  = $stmtC->fetch(PDO::FETCH_ASSOC);
         $count = $rowC['cuantos'];
