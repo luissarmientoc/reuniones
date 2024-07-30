@@ -249,7 +249,7 @@
       {
         $comboDepto .=" <option value=''>".'- Seleccione el departamento -'."</option>";
       }
-      if ($line['coddepto']==$s_entidad)
+      if ($line['coddepto']==$s_departamento)
       {
         $comboDepto .=" <option value='".$line['coddepto']."' selected>".$line['nomdepto']." </option>"; 
       }
