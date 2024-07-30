@@ -2,8 +2,15 @@
   $q=$_POST['q']; 
   require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
   require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
+   // Crear una nueva instancia de conexión PDO
+    $pdo = new PDO($dsn);
   
-  $stmt = $pdo->query('SELECT * FROM reu_reu_municipios coddepto=$q order by nommunicipio order by nommunicipio');
+  $sql= "SELECT * FROM reu_reu_municipios coddepto=$q order by nommunicipio order by nommunicipio";
+  echo '<br>';
+  echo $sql;
+  echo '<br>';
+  
+  $stmt = $pdo->query($sql);
   $i=0;
   while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
   {
