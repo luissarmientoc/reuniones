@@ -36,9 +36,6 @@
         $tipAccion     = $partir[1];
     
         $sql = "select * from reu_reuniones where idreunion=$s_idReunion";
-        echo '<br>';
-        echo "1. " . $sql;
-        echo '<br>';
         $stmt = $pdo->query($sql);
         $row  = $stmt->fetch(PDO::FETCH_ASSOC);
         
@@ -62,27 +59,17 @@
 					    
         //trae lugar
 		$sqlLugar  ="select nombrelugar from reu_lugares where idlugar=$s_lugarReunion";
-		echo '<br>';
-        echo "2. " . $sqlLugar;
-        echo '<br>';
 		$stmtLugar = $pdo->query($sqlLugar);
 		$rowLugar  = $stmtLugar->fetch(PDO::FETCH_ASSOC);
 		$nombreLugar = $rowLugar['nombrelugar'];
 
         //trae persona
 		$sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$s_convocadaPor";
-		echo '<br>';
-        echo "3. " . $sqlResponsable;
-        echo '<br>';
 		$stmtResponsable = $pdo->query($sqlResponsable);
 		$rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
 		$responsable     = $rowPer['nombresparticipante'];
         
         $sqlC = "SELECT count(*) AS cuantos FROM reu_reuniones_participante where idreunion=$s_idReunion";
-        echo '<br>';
-        echo "3. " . $sqlC;
-        echo '<br>';
-        
         $stmtC = $pdo->query($sqlC);
         $rowC  = $stmtC->fetch(PDO::FETCH_ASSOC);
         $count = $rowC['cuantos'];
@@ -193,9 +180,6 @@
             </tr>
             <?php
               $sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion order by numeroidparticipante";
-              	echo '<br>';
-                echo "4. " . $sqlCompromiso;
-                echo '<br>';
 		      $stmtCompromiso = $pdo->query($sqlCompromiso);
 		      $rowCompromiso  = $stmtCompromiso->fetch(PDO::FETCH_ASSOC);
 		      
@@ -217,8 +201,8 @@
 			     //trae persona
 		         $sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$s_convocadaPor";
 		         echo '<br>';
-                 echo "5. " . $sqlResponsable;
-                 echo '<br>';
+		         echo $sqlResponsable;
+		         echo '<br>';
 		         $stmtResponsable = $pdo->query($sqlResponsable);
 		         $rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
 		         $responsable     = $rowPer['nombresparticipante'];
@@ -294,8 +278,6 @@
 				$stmtDep = $pdo->query($sqlDep);
 				$rowDep  = $stmtDep->fetch(PDO::FETCH_ASSOC);
     			$nombreDependencia     = $rowDep['nombredependencia'];
-			      
-			     
 			?>   
 			
 			   <tr>
