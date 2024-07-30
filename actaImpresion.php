@@ -301,19 +301,39 @@
         </table>   
         
         <table class='tablaResponsive table table-striped table-bordered' style="font-size:8px;">
-            <tr align="left" style="background-color:#ecf0f1;">
+            <tr align="left">
                 <td colspan="3"><b>Elaborado por:</b></td>
             </tr>  
-            <tr align="left" style="background-color:#ecf0f1;">
+            <tr align="left">
                 <td colspan="3"><b>Archivese en:</b></td>
             </tr>
             
-            <tr style="background-color:#ecf0f1;">
+            <tr>
                 <td align="left" >GOT-FT-23/V2</b></td>
                 <td align="left" >Oficialización: 15/08/2023</b></td>
                 <td align="right" >Página: 2</b></td>
             </tr>
-            
+        </table> 
+        
+        <table class='tablaResponsive table table-striped table-bordered' style="font-size:8px;">
+            <tr align="center">
+                <td>VERSIÓN INICIAL</td>
+                <td>DESCRIPCIÓN DE LA CREACIÓN O CAMBIO DEL DOCUMENTO</td>
+                <td>FECHA</td>
+                <td>VERSION FINAL</td>
+            </tr>  
+            <tr align="center">
+                <td>0</td>
+                <td>Se solicita la Creación del Formato en el Proceso de Gestión Documental ya que se encontraba en el SGI. </td>
+                <td>15/06/2022</td>
+                <td>1</td>
+            </tr>
+            <tr align="center">
+                <td>1</td>
+                <td>En el numeral IV (Participante) por solicitud de la SER y demás procesos se adicionaron: Número de contacto, correo eléctronico y entidad, número de identificación, ciudad, enfoque diferencial</td>
+                <td>15/08/2023</td>
+                <td>2</td>
+            </tr>
         </table>    
      </div>
   </body>   
