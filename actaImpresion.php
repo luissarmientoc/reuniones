@@ -294,11 +294,11 @@
 			  }
 			?>
 			
-			<tr>
+		<!--	<tr>
 			  <td colspan="9">
 			     <a href="actaImpresion.php?LA=<?=$lVDX?>" target="_blank" type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Imprimir <br> Acta</a>       
 			 </td> 
-            </tr>   
+            </tr>   -->
         </table>        
      </div>
   </body>   
