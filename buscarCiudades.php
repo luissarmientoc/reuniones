@@ -3,7 +3,7 @@
   require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
   require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
   
-  $stmt = $pdo->query('SELECT * FROM reu_reu_municipios order by nommunicipio');
+  $stmt = $pdo->query('SELECT * FROM reu_reu_municipios coddepto=$q order by nommunicipio order by nommunicipio');
   $i=0;
   while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
   {
