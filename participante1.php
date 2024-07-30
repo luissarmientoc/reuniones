@@ -67,19 +67,20 @@
       $s_nombresParticipante = strtoupper($s_nombresParticipante);
       $s_cargo = strtoupper($s_cargo);
       $s_correoParticipante = strtolower($s_correoParticipante);
-      /*
+      
       //TRAE NOMBRES DE CIUDAD Y DEPARTAMENTO
-      $sqlDepto="select nomDepto from sl_municipios where codDepto=$s_departamento group by nomDepto ";
-      $queryDepto = mysqli_query($con, $sqlDepto);  
-      $rowDepto=mysqli_fetch_array($queryDepto);
-      $s_nomDepto = $rowDepto['nomDepto'];
+      $sqlDepto="select nomdepto from reu_municipios where coddepto=$s_departamento group by nomdepto ";
+      $stmtDepto = $pdo->query($sqlDepto);
+      $rowDepto  = $stmtDepto->fetch(PDO::FETCH_ASSOC);
+      $s_nomDepto = $rowDepto['nomdepto'];
     
       //TRAE NOMBRES DE CIUDAD Y DEPARTAMENTO
-      $sqlMpio="select nomMunicipio from sl_municipios where codDepto=$s_departamento and codMunicipio=$s_ciudad";
-      $queryMpio = mysqli_query($con, $sqlMpio);  
-      $rowMpio=mysqli_fetch_array($queryMpio);
-      $s_nomCiudad = $rowMpio['nomMunicipio'];
-      */
+      $sqlMpio="select nommunicipio from reu_municipios where coddepto=$s_departamento and codmunicipio=$s_ciudad";
+      $stmtMpio = $pdo->query($sqlMpio);
+      $rowMpio  = $stmtMpio->fetch(PDO::FETCH_ASSOC);
+      $s_nomCiudad = $rowMpio['nommunicipio'];
+      
+      
 
     }  
     else
