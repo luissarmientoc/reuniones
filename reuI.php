@@ -200,12 +200,9 @@
 			     
 			     //trae persona
 		         $sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$s_convocadaPor";
-		         echo '<br>';
-		         echo $sqlResponsable;
-		         echo '<br>';
 		         $stmtResponsable = $pdo->query($sqlResponsable);
 		         $rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
-		         $responsableC     = $rowPer['nombresparticipante'];
+		         $responsableC     = $rowResponsable['nombresparticipante'];
             ?>
             <tr>	
   			  <td align="center"><?php echo $idCompromiso; ?></td>
