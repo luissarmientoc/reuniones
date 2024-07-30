@@ -67,7 +67,7 @@
 		$sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$s_convocadaPor";
 		$stmtResponsable = $pdo->query($sqlResponsable);
 		$rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
-		$responsable     = $rowPer['nombresparticipante'];
+		$responsable     = $rowResponsable['nombresparticipante'];
         
         $sqlC = "SELECT count(*) AS cuantos FROM reu_reuniones_participante where idreunion=$s_idReunion";
         $stmtC = $pdo->query($sqlC);
@@ -300,7 +300,7 @@
             </tr>   -->
         </table>   
         
-        <table class='tablaResponsive table table-striped table-bordered table-hover' style="font-size:9px;">
+        <table class='tablaResponsive table table-striped table-bordered' style="font-size:8px;">
             <tr align="left" style="background-color:#ecf0f1;">
                 <td colspan="3"><b>Elaborado por:</b></td>
             </tr>  

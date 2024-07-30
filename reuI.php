@@ -67,7 +67,7 @@
 		$sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$s_convocadaPor";
 		$stmtResponsable = $pdo->query($sqlResponsable);
 		$rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
-		$responsable     = $rowPer['nombresparticipante'];
+		$responsable     = $rowResponsable['nombresparticipante'];
         
         $sqlC = "SELECT count(*) AS cuantos FROM reu_reuniones_participante where idreunion=$s_idReunion";
         $stmtC = $pdo->query($sqlC);
