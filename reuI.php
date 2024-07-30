@@ -78,7 +78,7 @@
 		$rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
 		$responsable     = $rowPer['nombresparticipante'];
         
-        $sqlC = "SELECT count(*) AS cuantos FROM reu_reuniones_participante where idreunion=$id_reunion";
+        $sqlC = "SELECT count(*) AS cuantos FROM reu_reuniones_participante where idreunion=$s_idReunion";
         echo '<br>';
         echo "3. " . $sqlC;
         echo '<br>';
@@ -193,6 +193,9 @@
             </tr>
             <?php
               $sqlCompromiso ="select * from reu_compromisos where idreunion=$s_idReunion order by numeroidparticipante";
+              	echo '<br>';
+                echo "4. " . $sqlCompromiso;
+                echo '<br>';
 		      $stmtCompromiso = $pdo->query($sqlCompromiso);
 		      $rowCompromiso  = $stmtCompromiso->fetch(PDO::FETCH_ASSOC);
 		      
@@ -212,7 +215,10 @@
 			     if ($estado==4){$s_estado="Incumplido";}
 			     
 			     //trae persona
-		         $sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$convocadaPor";
+		         $sqlResponsable   = "select nombresparticipante from reu_participante where numeroidparticipante=$s_convocadaPor";
+		         echo '<br>';
+                 echo "5. " . $sqlResponsable;
+                 echo '<br>';
 		         $stmtResponsable = $pdo->query($sqlResponsable);
 		         $rowResponsable  = $stmtResponsable->fetch(PDO::FETCH_ASSOC);
 		         $responsable     = $rowPer['nombresparticipante'];
