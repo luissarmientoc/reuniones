@@ -171,7 +171,7 @@
       $idTarea                = $partir[3];  
       $s_terminada            ='S';
       
-      
+      /*
       echo "reu.. ." . $s_idReunion;  
       echo '<br>';
       echo "par.. ." . $s_numeroIdParticipante;  
@@ -180,6 +180,7 @@
       echo '<br>';
       echo "tar.. ." . $idTarea;  
       echo '<br>';
+      */
       
      // Ejecutar la consulta
      try {
@@ -386,7 +387,7 @@
   					        <input class='btn btn-success btn-sm' type='submit' id='terminarTarea' name='terminarTarea' value='<?=$borrarTarea?> '  style='width:40' onclick='return confirmarTarea()'>  <i class="fa fa-check" aria-hidden="true"></i>  
 					       </td>
 					       <?php
-					        echo "ter.." . $terminada;
+					        
 					         if ($terminada!='S')
     			  	         {
     			  	       ?>  
