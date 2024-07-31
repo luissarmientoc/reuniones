@@ -26,7 +26,7 @@
   
   <?php  
    include("navbar.php");
-    // Crear una nueva instancia de conexión PDO
+    // Crear una nueva instancia de conexi锟斤拷n PDO
     $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
@@ -37,6 +37,69 @@
     
     $s_idReunion   = $partir[0];
     $tipAccion     = $partir[1];
+    
+    
+    if(isset($_POST['enviarcorreo']))
+    {
+        $s_idReunion    = $_POST['idReunion']; 
+        $s_yaGrabo      = $_POST['yaGrabo'];
+        $s_existe       = $_POST['existe']; 
+        
+        // Inserci贸n de datos
+        
+      $sql = "select * from reu_reuniones where idreunion=$s_idReunion";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+      $s_idReunion       = $row['idreunion'];
+      $s_fechaReunion    = $row['fechareunion'];
+      $s_horaReunion     = $row['horareunion'];
+      $s_lugarReunion    = $row['lugarreunion'];
+      $s_convocadaPor    = $row['convocadapor'];
+      $s_idEntidad       = $row['identidad'];
+      $s_idDependencia   = $row['iddependencia'];
+      $s_idGrupo         = $row['idgrupo'];
+      $s_idCategoria     = $row['idcategoria'];
+      $s_idSubCategoria  = $row['idsubcategoria'];
+      $s_detalleReunion  = $row['detallereunion'];
+      $s_desarrolloReunion = $row['desarrolloreunion'];
+      $s_estadoReunion   = $row['estadoreunion'];
+      $s_fechaEstado     = $row['fechaestado'];
+        
+           
+        echo "1.." . $s_idReunion;
+        echo '<br>';
+        echo "2.." . $s_fechaReunion;
+        echo '<br>';
+        echo "3.." . $s_horaReunion;
+        echo '<br>';
+        echo "4.." . $s_lugarReunion;
+        echo '<br>';
+        echo "5.." . $s_convocadaPor;
+        echo '<br>';
+        echo "6.." . $s_idEntidad;
+        echo '<br>';
+        echo "7.." . $s_idDependencia;
+        echo '<br>';
+        echo "8.." . $s_idGrupo;
+        echo '<br>';
+        echo "9.." . $s_idCategoria;
+        echo '<br>';
+        echo "10.." . $s_idSubCategoria;
+        echo '<br>';
+        echo "11.." . $s_detalleReunion;
+        echo '<br>';
+        echo "11 a.." . $s_desarrolloReunion;
+        echo '<br>';
+        echo "12.." . $s_estadoReunion;
+        echo '<br>';
+        echo "13.." . $s_fechaEstado;
+        echo '<br>';
+         
+       
+        
+        $mensaje=" <b>Atenci贸n!</b> Correos enviados exitosa 隆";
+    }
     
     if ( $s_idReunion != "" )
     {  
@@ -65,10 +128,9 @@
       $s_estadoReunion   = $row['estadoreunion'];
       $s_fechaEstado     = $row['fechaestado'];
         
-         
+        /*  
         echo "1.." . $s_idReunion;
         echo '<br>';
-        /*
         echo "2.." . $s_fechaReunion;
         echo '<br>';
         echo "3.." . $s_horaReunion;
@@ -110,7 +172,7 @@
                              <div class="navbar-header">
                                  <img src="img/usuario_ap.svg" class="img-circle" alt="Cinque Terre" width=40px; > 
                                  <span style="color:#002857; font-size:1.3em; font-weight:600; "><?=$nombreUsuario?> </span>  
-                                 <p style="color:grey; font-size:14px; font-family:snas-serif:">Fecha de último ingreso: </p>
+                                 <p style="color:grey; font-size:14px; font-family:snas-serif:">Fecha de 煤ltimo ingreso: </p>
                              </div>
                           </div>
                     <!-- </nav>  ---->
@@ -120,7 +182,7 @@
                   <div class="fondo"> 
                       <div class="row">
                        <div class="col-sm-6" ALIGN="left">
-                          <h3> <i class='fas fa-building' style='color:#2f79b9'></i> REUNIÓN </h3>
+                          <h3> <i class='fas fa-building' style='color:#2f79b9'></i> REUNI脫N </h3>
                        </div> 
                        
                        <div class="col-sm-6" align="right">  					  			 
@@ -159,7 +221,7 @@
                                 ?>
                                 <div class="table-responsive">
 			                        <table class='tablaResponsive table table-striped table-bordered table-hover'>
-			                            <th>Identificación</th>
+			                            <th>Identificaci贸n</th>
 			                            <th>Nombres</th>
 			                            <th>Celular</th>
 			                            <th>Correo</th>
@@ -168,11 +230,7 @@
 			                                $i=1;
 			                                while ($row  = $stmt->fetch(PDO::FETCH_ASSOC)){
 			                                        $numeroIdParticipante=$row['numeroidparticipante'];
-			                                        
 			                                        $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$numeroIdParticipante";
-			                                        echo '<br>';
-			                                        echo ".." . $sql_par;
-			                                        echo '<br>';
  			                                        $stmt_par = $pdo->query($sql_par);
 			                                        $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
 			                                        $nombre   = $row_par['nombresparticipante']; 
@@ -190,18 +248,16 @@
   					                   <?php
 			                              }
 			                           ?>       
-  					                     
+  					                 
+  					                   <tr>
+			                              <td colspan="4">
+			                                 <button type="submit" name='enviarcorreo' class="btn btn-primary btn-block"><i class="glyphicon glyphicon-edit"></i> Enviar Correos </button>
+			                              </td> 
+                                       </tr>      
 			                        </table>
-			                           
-			 
-				    
-					
-                                
-                                
-                                
-                                
-                                
-                            
+    			                    <input style="visibility:hidden" name="idReunion" id="idReunion" value="<?=$s_idReunion?>"/>
+                                    <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
+                                    <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
                             </form>
                          </div>    
                      
