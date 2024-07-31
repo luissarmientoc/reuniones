@@ -163,13 +163,13 @@
 
    if(isset($_POST['terminarTarea']))
     {
-      $borrar                 = $_POST['borrarTarea'];
+      $borrar                 = $_POST['terminarTarea'];
       $partir                 = explode ("-", $borrar);   
       $s_idReunion            = $partir[0];  
       $s_numeroIdParticipante = $partir[1];  
       $s_idCompromiso         = $partir[2];  
       $idTarea                = $partir[3];  
-      $s_terminada            ="S";
+      $s_terminada            ='S';
       
       
       echo "reu.. ." . $s_idReunion;  
@@ -186,15 +186,15 @@
          
         // Consulta preparada con marcadores de posición
         $sql = "UPDATE reu_tareas_realizadas 
-             SET terminada = :terminada 
-             WHERE idreunion = :idreunion 
-               AND numeroidparticipante = :numeroidparticipante 
-               AND idcompromiso = :idcompromiso 
-               AND idtarea = :idtarea";
-               
-         $stmt = $pdo->prepare($sql);           
+                SET terminada = :terminada 
+                WHERE idreunion = :idreunion 
+                      AND numeroidparticipante = :numeroidparticipante 
+                      AND idcompromiso = :idcompromiso 
+                      AND idtarea = :idtarea";
+                      
+         $stmt = $pdo->prepare($sql);
          // Preparar la consulta
-         $stmt->bindParam(':terminada', $s_terminada, PDO::PARAM_STR);
+         $stmt->bindParam(':terminada', $s_terminada, PDO::PARAM_STR); // Si `terminada` es un entero, usa PDO::PARAM_INT
          $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
          $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
          $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
