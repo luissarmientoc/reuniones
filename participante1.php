@@ -105,13 +105,16 @@
       $s_dependencia          = $_POST['dependencia'];
       $s_cargo                = $_POST['cargo'];
      
-     
       $s_nombresParticipante = strtoupper($s_nombresParticipante);
       if($s_ciudad=="")
-     {
-       $s_ciudad=$s_codCiudad;
-     }
+      {
+        $s_ciudad=$s_codCiudad;
+      }
       
+      //POR DEFECTO BOGOTA
+      $s_departamento = 11;
+      $s_ciudad = 1;
+     
       //TRAE NOMBRES DE CIUDAD Y DEPARTAMENTO
       $sqlDepto="select nomdepto from reu_municipios where coddepto=$s_departamento group by nomdepto ";
       $stmtDepto = $pdo->query($sqlDepto);
@@ -359,7 +362,7 @@
                                       <input type="mail" class="form-control" id="correoParticipante" name="correoParticipante" value="<?=$s_correoParticipante?> " placeholder="Correo" required style="text-transform:lowercase;">			                         
                                 </div>
                               </div>
-                              
+                    <!--          
                               <div class="row" style="padding:5px;">
                                 <div class='col-md-4' align="left"><b> Departamento: </b></div>
                                 <div class='col-md-4' align="left"><b> Ciudad: </b></div>
@@ -380,7 +383,7 @@
                                       <input type="text" class="form-control" id="nombre_ciudad" name="nombre_ciudad" value="<?=$s_nomCiudad?> " placeholder="Nombre del municipio" readonly><br>  
                                     </div>
                                </div>
-                               
+                    -->           
                                <div class="row" style="padding:5px;">
                                  <div class='col-md-6' align="left"><b> Entidad: </b></div>
                                  <div class='col-md-6' align="left"><b> Dependencia: </b></div>
