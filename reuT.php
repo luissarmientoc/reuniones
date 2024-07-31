@@ -202,7 +202,7 @@
          $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
      
           $stmt->execute();
-          echo "Registro actualizado correctamente.";
+          //echo "Registro actualizado correctamente.";
         } catch (PDOException $e) {
           echo "Error al actualizar el registro: " . $e->getMessage();
      }
