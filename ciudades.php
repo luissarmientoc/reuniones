@@ -15,7 +15,7 @@
    {
      if (xmlhttp.readyState==4 && xmlhttp.status==200)
      {
-     document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+        document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
      }
    }
    xmlhttp.open("POST","buscarCiudades.php",true);
@@ -29,14 +29,14 @@ function datoCiiu()
   var cod = document.getElementById("id_ciudad").value;
   document.getElementById("codCiudad").value=cod;
 
-  //alert(cod);
+  alert(cod);
  
   /* Para obtener el texto */
   var combo = document.getElementById("id_ciudad");
   var selected = combo.options[combo.selectedIndex].text;
   document.getElementById("nombre_ciudad").value=selected;
 
-  //alert(selected);  
+  alert(selected);  
 }
 
 </script>
