@@ -147,10 +147,7 @@
             }
         ?>
                 <div class="container-fluid">
-                    <div class="panel panel-info">
-	                     <div class="panel-heading">
-        	               <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> PARTICIPANTES </h4>
-	                     </div>
+                    
 	                     <div class="panel-body" align="left">
                             <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">   
                                 <?php
@@ -174,7 +171,7 @@
 			                                        
 			                                        $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$numeroIdParticipante";
 			                                        echo '<br>';
-			                                        echo $sqlpar;
+			                                        echo ".." . $sql_par;
 			                                        echo '<br>';
  			                                        $stmt_par = $pdo->query($sql_par);
 			                                        $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
@@ -207,8 +204,7 @@
                             
                             </form>
                          </div>    
-	                </div>      
-                    
+                     
                 </div>  
                                              
         </div> <!-- content -->   
