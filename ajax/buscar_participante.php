@@ -22,6 +22,9 @@
            if ($cuantos>0){
                //valida que no haya reuniones asignadas a la dependencia
                $sqlReu = "SELECT COUNT(*) AS cuantosReu FROM reu_reuniones_participante where numeroidparticipante=$id_participante";
+               echo '<br>';
+               echo "reu.." . $sqlReu;
+               echo '<br>';
                $stmtReu = $pdo->query($sqlReu);
                $resReu  = $stmtReu->fetch(PDO::FETCH_ASSOC);
                $cuantosReu = $resReu['cuantosReu'];
@@ -39,10 +42,11 @@
                {
                   //borrar dependencia
                   // Consulta SQL de eliminación con marcador de posición   $id_participante
-                  $sql = "DELETE FROM $sTable WHERE numeroidparticipante = :id_participante";
+                  
+                  $sql = "DELETE FROM $sTable WHERE numeroidparticipante = :numeroidparticipante";
                   $stmt = $pdo->prepare($sql);
                   // Vincular parámetro
-                  $stmt->bindParam(':id_participante', $id_participante, PDO::PARAM_INT);
+                  $stmt->bindParam(':numeroidparticipante', $id_participante, PDO::PARAM_INT);
                   // Ejecutar la consulta
                   $stmt->execute();
                   // Verificar el número de filas afectadas (opcional)
