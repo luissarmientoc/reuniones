@@ -163,13 +163,13 @@
 
    if(isset($_POST['terminarTarea']))
     {
-      $borrar               = $_POST['borrarTarea'];
-      $partir               = explode ("-", $borrar);   
-      $s_idReunion            = intval($partir[0]);  
-      $s_numeroIdParticipante = intval($partir[1]);  
-      $s_idCompromiso         = intval($partir[2]);  
-      $idTarea                = intval($partir[3]);  
-      $s_terminada ="S";
+      $borrar                 = $_POST['borrarTarea'];
+      $partir                 = explode ("-", $borrar);   
+      $s_idReunion            = $partir[0];  
+      $s_numeroIdParticipante = $partir[1];  
+      $s_idCompromiso         = $partir[2];  
+      $idTarea                = $partir[3];  
+      $s_terminada            ="S";
       
       
       echo "reu.. ." . $s_idReunion;  
@@ -180,25 +180,26 @@
       echo '<br>';
       echo "tar.. ." . $idTarea;  
       echo '<br>';
-     
-     // Consulta preparada con marcadores de posición
-     $sql = "UPDATE reu_tareas_realizadas 
+      
+     // Ejecutar la consulta
+     try {
+         
+        // Consulta preparada con marcadores de posición
+        $sql = "UPDATE reu_tareas_realizadas 
              SET terminada = :terminada 
              WHERE idreunion = :idreunion 
                AND numeroidparticipante = :numeroidparticipante 
                AND idcompromiso = :idcompromiso 
                AND idtarea = :idtarea";
                
-     $stmt = $pdo->prepare($sql);           
-     // Preparar la consulta
-     $stmt->bindParam(':terminada', $s_terminada, PDO::PARAM_STR);
-     $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
-     $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
-     $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
-     $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
+         $stmt = $pdo->prepare($sql);           
+         // Preparar la consulta
+         $stmt->bindParam(':terminada', $s_terminada, PDO::PARAM_STR);
+         $stmt->bindParam(':idreunion', $s_idReunion, PDO::PARAM_INT);
+         $stmt->bindParam(':numeroidparticipante', $s_numeroIdParticipante, PDO::PARAM_INT);
+         $stmt->bindParam(':idcompromiso', $s_idCompromiso, PDO::PARAM_INT);
+         $stmt->bindParam(':idtarea', $idTarea, PDO::PARAM_INT);
      
-     // Ejecutar la consulta
-     try {
           $stmt->execute();
           echo "Registro actualizado correctamente.";
         } catch (PDOException $e) {
@@ -208,8 +209,6 @@
     
      // Verificar el número de filas afectadas (opcional)
      $count = $stmt->rowCount();
-     
-      
    }    
     
     $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$s_numeroIdParticipante";
