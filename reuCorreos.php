@@ -98,3 +98,83 @@
     }  
 
  ?>    
+ 
+               <!-- Page Content Holder -->
+              <div id="content">  
+                  <!--- MENU CERRAR 
+                     <nav class="navbar navbar-default">  ---->
+                     <nav>  
+                         <div class="container-fluid" style="background-color:#fff; padding:10px;">
+                             <div class="navbar-header">
+                                 <img src="img/usuario_ap.svg" class="img-circle" alt="Cinque Terre" width=40px; > 
+                                 <span style="color:#002857; font-size:1.3em; font-weight:600; "><?=$nombreUsuario?> </span>  
+                                 <p style="color:grey; font-size:14px; font-family:snas-serif:">Fecha de último ingreso: </p>
+                             </div>
+                          </div>
+                    <!-- </nav>  ---->
+                <!--- FIN MENU CERRAR ---->
+                  <br>
+                  <!--- BARRA DE TITULO ---->
+                  <div class="fondo"> 
+                      <div class="row">
+                       <div class="col-sm-6" ALIGN="left">
+                          <h3> <i class='fas fa-building' style='color:#2f79b9'></i> REUNIÓN </h3>
+                       </div> 
+                       
+                       <div class="col-sm-6" align="right">  					  			 
+                         <p style="font-size:12px;"><i class="fas fa-user"></i> <?=$_SESSION['nombre_perfil']?></p>
+                         <a href="reu0.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
+                        </div>                
+                      </div>
+                  </div>
+                  <!--- FIN BARRA DE TITULO ----> 
+                  
+                  <div class="panel panel-info">
+                 <div class="panel-heading">
+                <div class="btn-group pull-right">        	     
+                </div>
+              <h4><i class="fa fa-keyboard-o" style='color:#2f79b9'></i> <?=$titulo?>  </h4>
+            </div>
+      
+        <?php  
+            if ($s_tocoBoton=="S")
+            {
+        ?> 
+              <div class="alert alert-success" align="center"><?=$mensaje?></div>
+        <?php 
+            }
+        ?>
+                  
+                                             
+        </div> <!-- content -->   
+        
+        
+              
+        <!--- complemento -->
+        <?php
+           include("complemento.html");             
+        ?>
+        <!--- fin complemento -->
+    </div> <!-- wrapper -->
+            
+    <hr>
+     <?php
+      // include("footer.php");
+     ?>
+      <script type="text/javascript" src="js/bootstrap-filestyle.js"> </script>
+     
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <script src="js/jasny-bootstrap.min.js"></script>
+    
+  
+    </body>
+  </html>
+  
+   
+ 
+ 

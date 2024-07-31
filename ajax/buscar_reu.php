@@ -226,7 +226,7 @@
 					<th>Dependencia</th>
 					<th>Grupo</th> 
 					<th>Estado</th>
-					<th class='text-center' colspan="3">Acciones</th>
+					<th class='text-center' colspan="4">Acciones</th>
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
                     $stmt = $pdo->query($sql);
