@@ -282,17 +282,21 @@
 					         <a href="reu1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar reunión' ><i class="glyphicon glyphicon-edit"></i></a> 
 					       </td>  
 					       <td class='text-center'>  
+					         <a href="reuCorreos.php?LA=<?=$lVDX?>" class='btn btn-default'title='Enviar correos'><i class="glyphicon glyphicon-envelope"></i> </a>
+					        </td> 
+					       <td class='text-center'>  
 					         <a href="reuI.php?LA=<?=$lVDX?>" class='btn btn-default' title='Imprimir acta' ><i class="glyphicon glyphicon-print"></i></a> 
 					        </td>
 					        <td class='text-center'>  
 					         <a href="#" class='btn btn-default'title='Borrar reunión' onclick="eliminar('<?php echo $idReunion; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
-					        </td> 
+					        </td>
+					        
 					   </tr>
         <?php
                     }//while
         ?>
                        <tr>
-					      <td colspan="9">
+					      <td colspan="10">
 					         <span class="pull-right">
 					            <?php
 					              echo paginate($reload, $page, $total_pages, $adjacents);
