@@ -26,7 +26,7 @@
   
   <?php  
    include("navbar.php");
-    // Crear una nueva instancia de conexi贸n PDO
+    // Crear una nueva instancia de conexión PDO
     $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
@@ -110,7 +110,7 @@
                              <div class="navbar-header">
                                  <img src="img/usuario_ap.svg" class="img-circle" alt="Cinque Terre" width=40px; > 
                                  <span style="color:#002857; font-size:1.3em; font-weight:600; "><?=$nombreUsuario?> </span>  
-                                 <p style="color:grey; font-size:14px; font-family:snas-serif:">Fecha de 煤ltimo ingreso: </p>
+                                 <p style="color:grey; font-size:14px; font-family:snas-serif:">Fecha de último ingreso: </p>
                              </div>
                           </div>
                     <!-- </nav>  ---->
@@ -120,7 +120,7 @@
                   <div class="fondo"> 
                       <div class="row">
                        <div class="col-sm-6" ALIGN="left">
-                          <h3> <i class='fas fa-building' style='color:#2f79b9'></i> REUNI脫N </h3>
+                          <h3> <i class='fas fa-building' style='color:#2f79b9'></i> REUNIÓN </h3>
                        </div> 
                        
                        <div class="col-sm-6" align="right">  					  			 
@@ -159,7 +159,7 @@
                                 ?>
                                 <div class="table-responsive">
 			                        <table class='tablaResponsive table table-striped table-bordered table-hover'>
-			                            <th>Identificaci贸n</th>
+			                            <th>Identificación</th>
 			                            <th>Nombres</th>
 			                            <th>Celular</th>
 			                            <th>Correo</th>
@@ -176,8 +176,8 @@
  			                                        $stmt_par = $pdo->query($sql_par);
 			                                        $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
 			                                        $nombre   = $row_par['nombresparticipante']; 
-			                                        $celularparticipante=$row['celularparticipante'];
-				                                    $correoparticipante=$row['correoparticipante'];
+			                                        $celularparticipante=$row_par['celularparticipante'];
+				                                    $correoparticipante=$row_par['correoparticipante'];
 			                            ?>
 				                        
 				                           <tr>	
