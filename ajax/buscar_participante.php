@@ -22,9 +22,6 @@
            if ($cuantos>0){
                //valida que no haya reuniones asignadas a la dependencia
                $sqlReu = "SELECT COUNT(*) AS cuantosreu FROM reu_reuniones_participante where numeroidparticipante=$id_participante";
-               echo '<br>';
-               echo "reu.." . $sqlReu;
-               echo '<br>';
                $stmtReu = $pdo->query($sqlReu);
                $resReu  = $stmtReu->fetch(PDO::FETCH_ASSOC);
                $cuantosReu = $resReu['cuantosreu'];
