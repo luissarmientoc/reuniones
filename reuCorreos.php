@@ -42,7 +42,7 @@
     {  
       ///////////////////////////////////////////////////////  
       ////// REALIZA LA CONSULTA DE LA marca SELECCIONADA 
-      $titulo = "MODIFICAR REUNION";
+      $titulo = "ENVIAR CORREOS A PARTICIPANTES";
       $s_existe = 1;
       $boton  = "Actualizar";
     
@@ -68,6 +68,7 @@
          
         echo "1.." . $s_idReunion;
         echo '<br>';
+        /*
         echo "2.." . $s_fechaReunion;
         echo '<br>';
         echo "3.." . $s_horaReunion;
@@ -94,6 +95,7 @@
         echo '<br>';
         echo "13.." . $s_fechaEstado;
         echo '<br>';
+        */
 
     }  
 
@@ -144,12 +146,73 @@
         <?php 
             }
         ?>
-                  
+                <div class="container-fluid">
+                    <div class="panel panel-info">
+	                     <div class="panel-heading">
+        	               <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> PARTICIPANTES </h4>
+	                     </div>
+	                     <div class="panel-body" align="left">
+                            <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">   
+                                <?php
+                                     $sql="select * from  reu_reuniones_participante where idreunion = $s_idReunion";
+                                     echo '<br>';
+                                     echo $sql;
+                                     echo '<br>';
+                                     $stmt = $pdo->query($sql);
+                                ?>
+                                <div class="table-responsive">
+			                        <table class='tablaResponsive table table-striped table-bordered table-hover'>
+			                            <th>Identificación</th>
+			                            <th>Nombres</th>
+			                            <th>Celular</th>
+			                            <th>Correo</th>
+			                            
+			                            <?php
+			                                $i=1;
+			                                while ($row  = $stmt->fetch(PDO::FETCH_ASSOC)){
+			                                        $numeroIdParticipante=$row['numeroidparticipante'];
+			                                        
+			                                        $sql_par  = "SELECT * FROM reu_participante where numeroidparticipante=$numeroIdParticipante";
+			                                        echo '<br>';
+			                                        echo $sqlpar;
+			                                        echo '<br>';
+ 			                                        $stmt_par = $pdo->query($sql_par);
+			                                        $row_par  = $stmt_par->fetch(PDO::FETCH_ASSOC);
+			                                        $nombre   = $row_par['nombresparticipante']; 
+			                                        $celularparticipante=$row['celularparticipante'];
+				                                    $correoparticipante=$row['correoparticipante'];
+			                            ?>
+				                        
+				                           <tr>	
+  		   			                         <td><?php echo $numeroIdParticipante; ?></td>
+  					                         <td><?php echo $nombre; ?></td>
+  					                         <td><?php echo $celularparticipante; ?></td>
+  					                         <td><?php echo $correoparticipante; ?></td>
+  					                       </tr>      
+  					                 
+  					                   <?php
+			                              }
+			                           ?>       
+  					                     
+			                        </table>
+			                           
+			 
+				    
+					
+                                
+                                
+                                
+                                
+                                
+                            
+                            </form>
+                         </div>    
+	                </div>      
+                    
+                </div>  
                                              
         </div> <!-- content -->   
         
-        
-              
         <!--- complemento -->
         <?php
            include("complemento.html");             
@@ -177,4 +240,4 @@
   
    
  
- 
+                 
