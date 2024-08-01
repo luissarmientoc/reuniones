@@ -166,7 +166,7 @@
          
        */
         $s_tocoBoton="S";
-        $mensaje=" <b>Atención!</b> Correos enviados exitosa ¡";
+        $mensaje=" <b>Atención!</b> Correos enviados exitosamente ¡";
     }
     
     if ( $s_idReunion != "" )

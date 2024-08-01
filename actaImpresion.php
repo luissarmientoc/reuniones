@@ -313,9 +313,9 @@
                 <td align="left" >Oficialización: 15/08/2023</b></td>
                 <td align="right" >Página: 2</b></td>
             </tr>
-        </table> 
+       <!-- </table> 
         
-        <table class='tablaResponsive table table-striped table-bordered' style="font-size:8px;">
+        <table class='tablaResponsive table table-striped table-bordered' style="font-size:8px;">-->
             <tr align="center">
                 <td>VERSIÓN INICIAL</td>
                 <td>DESCRIPCIÓN DE LA CREACIÓN O CAMBIO DEL DOCUMENTO</td>
