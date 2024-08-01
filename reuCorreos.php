@@ -100,10 +100,10 @@
       
       //ARMA EL CUERPO DEL CORRERO
       $elAsunto = "Invitación a reunión de: " . $s_detalleReunion;
-      $mensaje =  "Id de la reunión: " . $s_idReunion ."\n" .
-                  "Tema: " . $s_detalleReunion . "\n" .
-                  "Fecha: " . $s_fechaReunion . $s_horaReunion ."\n";
-                  "Lugar: " .  $lugar ."\n"; 
+      $mensaje =  "<b>Id de la reunión: </b>" . $s_idReunion ."\n" .
+                  "<b>Tema:</b> " . $s_detalleReunion . "\n" .
+                  "<b>Fecha:</b> " . $s_fechaReunion . "<b>Hora: </b>". $s_horaReunion ."\n";
+                  "<b>Lugar:</b> " .  $lugar ."\n"; 
                   
       
       echo '<br>';
