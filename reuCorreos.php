@@ -66,8 +66,8 @@
       
       //TOMA EL CORREO DE QUIEN CONVOCA
       $sqlConvoca      = "select * from reu_participante where numeroidparticipante=$s_convocadaPor";
-	  $stmtConvoca     = $pdo->query($sqlPer);
-	  $rowConvoca      = $stmtPer->fetch(PDO::FETCH_ASSOC);
+	  $stmtConvoca     = $pdo->query($sqlConvoca);
+	  $rowConvoca      = $stmtConvoca->fetch(PDO::FETCH_ASSOC);
 	  $personaConvoca  = $rowConvoca['nombresparticipante'];
 	  $correoConvoca   = $rowConvoca['correoparticipante'];
 	  $celularConvoca  = $rowConvoca['celularparticipante'];
