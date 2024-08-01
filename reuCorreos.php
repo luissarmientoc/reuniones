@@ -133,7 +133,7 @@
       */
 
         
-        
+        /*
            
         echo "1.." . $s_idReunion;
         echo '<br>';
@@ -164,7 +164,7 @@
         echo "13.." . $s_fechaEstado;
         echo '<br>';
          
-       
+       */
         
         $mensaje=" <b>Atención!</b> Correos enviados exitosa ¡";
     }
