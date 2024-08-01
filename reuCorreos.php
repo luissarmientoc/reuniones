@@ -105,7 +105,7 @@
                   "<b>Fecha:</b> " . $s_fechaReunion . "<b>Hora: </b>". $s_horaReunion ."\n";
                   "<b>Lugar:</b> " .  $lugar ."\n"; 
                   
-      
+      /*
       echo '<br>';
       echo "Asunto.. " . $elAsunto;
       echo '<br>';
@@ -115,7 +115,7 @@
       echo '<br>';
       echo "Mensaje.. " . $mensaje;
       
-      /*
+      
       //enviar correos
       $to = 'recipient@example.com'; // Dirección del destinatario
       $subject = 'Asunto del correo'; // Asunto del correo
@@ -165,7 +165,7 @@
         echo '<br>';
          
        */
-        
+        $s_tocoBoton="S";
         $mensaje=" <b>Atención!</b> Correos enviados exitosa ¡";
     }
     
