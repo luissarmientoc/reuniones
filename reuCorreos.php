@@ -26,7 +26,7 @@
   
   <?php  
    include("navbar.php");
-    // Crear una nueva instancia de conexi��n PDO
+    // Crear una nueva instancia de conexión PDO
     $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
@@ -41,30 +41,98 @@
     
     if(isset($_POST['enviarcorreo']))
     {
-        $s_idReunion    = $_POST['idReunion']; 
-        $s_yaGrabo      = $_POST['yaGrabo'];
-        $s_existe       = $_POST['existe']; 
-        
-        // Inserción de datos
+      $s_idReunion    = $_POST['idReunion']; 
+      $s_yaGrabo      = $_POST['yaGrabo'];
+      $s_existe       = $_POST['existe']; 
         
       $sql = "select * from reu_reuniones where idreunion=$s_idReunion";
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
     
-      $s_idReunion       = $row['idreunion'];
-      $s_fechaReunion    = $row['fechareunion'];
-      $s_horaReunion     = $row['horareunion'];
-      $s_lugarReunion    = $row['lugarreunion'];
-      $s_convocadaPor    = $row['convocadapor'];
-      $s_idEntidad       = $row['identidad'];
-      $s_idDependencia   = $row['iddependencia'];
-      $s_idGrupo         = $row['idgrupo'];
-      $s_idCategoria     = $row['idcategoria'];
-      $s_idSubCategoria  = $row['idsubcategoria'];
-      $s_detalleReunion  = $row['detallereunion'];
+      $s_idReunion         = $row['idreunion'];
+      $s_fechaReunion      = $row['fechareunion'];
+      $s_horaReunion       = $row['horareunion'];
+      $s_lugarReunion      = $row['lugarreunion'];
+      $s_convocadaPor      = $row['convocadapor'];
+      $s_idEntidad         = $row['identidad'];
+      $s_idDependencia     = $row['iddependencia'];
+      $s_idGrupo           = $row['idgrupo'];
+      $s_idCategoria       = $row['idcategoria'];
+      $s_idSubCategoria    = $row['idsubcategoria'];
+      $s_detalleReunion    = $row['detallereunion'];
       $s_desarrolloReunion = $row['desarrolloreunion'];
-      $s_estadoReunion   = $row['estadoreunion'];
-      $s_fechaEstado     = $row['fechaestado'];
+      $s_estadoReunion     = $row['estadoreunion'];
+      $s_fechaEstado       = $row['fechaestado'];
+      
+      //TOMA EL CORREO DE QUIEN CONVOCA
+      $sqlConvoca      = "select * from reu_participante where numeroidparticipante=$s_convocadaPor";
+	  $stmtConvoca     = $pdo->query($sqlPer);
+	  $rowConvoca      = $stmtPer->fetch(PDO::FETCH_ASSOC);
+	  $personaConvoca  = $rowConvoca['nombresparticipante'];
+	  $correoConvoca   = $rowConvoca['correoparticipante'];
+	  $celularConvoca  = $rowConvoca['celularparticipante'];
+      
+      //TOMA EL LUGAR DE LA REUNION
+      $sqllugar  = "select * from reu_lugares where id_lugar = $s_lugarReunion";
+      $stmtLugar = $pdo->query($sqlLugar);
+      $rowlugar  = $stmtLugar->fetch(PDO::FETCH_ASSOC);
+      $lugar     = $rowLugar['nombrelugar'];
+      
+      //TOMA EL CORREO Y LOS DATOS DE LOS PARTICPANTES
+      $sql="select * from  reu_reuniones_participante where idreunion = $s_idReunion";
+      $stmt = $pdo->query($sql);
+      $enviarA='';
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $numeroIdParticipante=$row['numeroidparticipante'];
+      
+            //trae persona
+			$sqlPer    = "select * from reu_participante where numeroidparticipante=$numeroIdParticipante";
+			$stmtPer   = $pdo->query($sqlPer);
+			$rowPer    = $stmtPer->fetch(PDO::FETCH_ASSOC);
+			$persona   = $rowPer['nombresparticipante'];
+			$correoPar = $rowPer['correoparticipante'];
+			$celularPar= $rowPer['celularparticipante'];
+			
+			$enviarA =  $enviarA . $correoPar .", " ;
+      }					    
+      
+      //TOMA EL LUGAR DE REUNION
+      
+      //ARMA EL CUERPO DEL CORRERO
+      $elAsunto = "Invitación a reunión el día: " .  $s_fechaReunion . $s_horaReunion . $lugar;
+      $mensaje =  "Id de la reunión: " . $s_idReunion ."\n" .
+                  "Tema: " . $s_detalleReunion . "\n" .
+                  "Fecha: " . $s_fechaReunion . $s_horaReunion;
+                  "Lugar: " .  $lugar ."\n"; 
+                  
+      
+      echo '<br>';
+      echo "Asunto.. " . $elAsunto;
+      echo '<br>';
+      echo "Enviar a.. " . $enviarA;
+      echo '<br>';
+      echo "Enviado por.. ". $correoConvoca;
+      echo '<br>';
+      echo "Mensaje.. " . $mensaje;
+      
+      /*
+      //enviar correos
+      $to = 'recipient@example.com'; // Dirección del destinatario
+      $subject = 'Asunto del correo'; // Asunto del correo
+      $message = 'Este es el cuerpo del correo electrónico.'; // Cuerpo del mensaje
+      $headers = 'From: sender@example.com' . "\r\n" . // Cabeceras adicionales
+                 'Reply-To: sender@example.com' . "\r\n" .
+                 'X-Mailer: PHP/' . phpversion(); // Cabecera X-Mailer
+
+      // Enviar el correo
+      if (mail($to, $subject, $message, $headers)) {
+        echo 'Correo enviado correctamente.';
+      } else {
+         echo 'Error al enviar el correo.';
+      }
+      */
+
+        
         
            
         echo "1.." . $s_idReunion;
@@ -127,7 +195,7 @@
       $s_desarrolloReunion = $row['desarrolloreunion'];
       $s_estadoReunion   = $row['estadoreunion'];
       $s_fechaEstado     = $row['fechaestado'];
-        
+
         /*  
         echo "1.." . $s_idReunion;
         echo '<br>';
@@ -214,9 +282,6 @@
                             <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">   
                                 <?php
                                      $sql="select * from  reu_reuniones_participante where idreunion = $s_idReunion";
-                                     echo '<br>';
-                                     echo $sql;
-                                     echo '<br>';
                                      $stmt = $pdo->query($sql);
                                 ?>
                                 <div class="table-responsive">
@@ -251,7 +316,7 @@
   					                 
   					                   <tr>
 			                              <td colspan="4">
-			                                 <button type="submit" name='enviarcorreo' class="btn btn-primary btn-block"><i class="glyphicon glyphicon-edit"></i> Enviar Correos </button>
+			                                 <button type="submit" name='enviarcorreo' class="btn btn-primary btn-block"><i class="glyphicon glyphicon-edit"></i> Enviar Correo a los Participantes </button>
 			                              </td> 
                                        </tr>      
 			                        </table>
