@@ -73,9 +73,9 @@
 	  $celularConvoca  = $rowConvoca['celularparticipante'];
       
       //TOMA EL LUGAR DE LA REUNION
-      $sqllugar  = "select * from reu_lugares where idlugar = $s_lugarReunion";
+      $sqlLugar  = "select * from reu_lugares where idlugar = $s_lugarReunion";
       $stmtLugar = $pdo->query($sqlLugar);
-      $rowlugar  = $stmtLugar->fetch(PDO::FETCH_ASSOC);
+      $rowLugar  = $stmtLugar->fetch(PDO::FETCH_ASSOC);
       $lugar     = $rowLugar['nombrelugar'];
       
       //TOMA EL CORREO Y LOS DATOS DE LOS PARTICPANTES
