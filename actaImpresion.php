@@ -300,7 +300,7 @@
             </tr>   -->
         </table>   
         
-        <table class='tablaResponsive table table-striped table-bordered' style="font-size:8px;">
+        <table class='tablaResponsive table table-striped table-bordered' style="font-size:6px;">
             <tr align="left">
                 <td colspan="4"><b>Elaborado por:</b></td>
             </tr>  
