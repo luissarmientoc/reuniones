@@ -99,10 +99,10 @@
       //TOMA EL LUGAR DE REUNION
       
       //ARMA EL CUERPO DEL CORRERO
-      $elAsunto = "Invitación a reunión de: " . $s_detalleReunion .  " el día: " .  $s_fechaReunion . " Hora de inicio: " . $s_horaReunion . $lugar;
+      $elAsunto = "Invitación a reunión de: " . $s_detalleReunion;
       $mensaje =  "Id de la reunión: " . $s_idReunion ."\n" .
                   "Tema: " . $s_detalleReunion . "\n" .
-                  "Fecha: " . $s_fechaReunion . $s_horaReunion;
+                  "Fecha: " . $s_fechaReunion . $s_horaReunion ."\n";
                   "Lugar: " .  $lugar ."\n"; 
                   
       
