@@ -302,16 +302,16 @@
         
         <table class='tablaResponsive table table-striped table-bordered' style="font-size:8px;">
             <tr align="left">
-                <td colspan="3"><b>Elaborado por:</b></td>
+                <td colspan="4"><b>Elaborado por:</b></td>
             </tr>  
             <tr align="left">
-                <td colspan="3"><b>Archivese en:</b></td>
+                <td colspan="4"><b>Archivese en:</b></td>
             </tr>
             
             <tr>
                 <td align="left" >GOT-FT-23/V2</b></td>
                 <td align="left" >Oficialización: 15/08/2023</b></td>
-                <td align="right" >Página: 2</b></td>
+                <td align="right" colspan="2">Página: 2</b></td>
             </tr>
        <!-- </table> 
         
