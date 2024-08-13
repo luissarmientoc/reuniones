@@ -865,7 +865,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="analista_solicitudes">ANALISTA DE SOLICITUDES</label>
-                    <!--<input type="text" class="form-control" id="analista_solicitudes" name="analista_solicitudes" value="<?=?>">-->
+                    
                     <select <?=$active?> required class="form-control" name="analista_solicitudes">
                        <?php echo $combo_analista_solicitudes; ?>
                     </select>
