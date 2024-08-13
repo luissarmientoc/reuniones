@@ -4,7 +4,7 @@
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
  	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
- 	
+ 	echo 'entra';
    	
  	try {
  	    // Crear una nueva instancia de conexión PDO
@@ -245,6 +245,11 @@
 		
 	        // Consulta SQL para contar las filas
             $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
+            echo '<br>';echo '<br>';echo '<br>';
+             echo "sql.." . $sql;
+            echo '<br>';echo '<br>';echo '<br>';
+            
+            
             $stmt = $pdo->query($sql);
             // Obtener el resultado (única fila)
             $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
