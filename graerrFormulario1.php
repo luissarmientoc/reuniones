@@ -1,16 +1,122 @@
+<?php
+
+  session_start();
+  /*
+  if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) 
+  {
+    header("location: login.php");
+    exit;
+  }
+ */
+  
+  $active_marca="active";
+  $title="UNP | Grupo Interno";    
+  $nombreUsuario = $_SESSION['user_firstname'] ." " .$_SESSION['user_lastname']; 
+?>
+
 <!DOCTYPE html>
-<html lang="es">
-<head>
-   <?php 
+<html lang="en">
+  <head>
+ <?php 
      require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
      require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
      include("head.php");
-     include("navbar.php");
   ?>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<!-- Page Content Holder -->
+  </head>
+  
+  <?php  
+   include("navbar.php");
+   // Crear una nueva instancia de conexión PDO
+   $pdo = new PDO($dsn);
+   
+    $s_LA    = $_GET['LA'];
+    $linDeco = base64_decode($s_LA);
+   
+    //PARTE LA LINEA
+    $partir      = explode ("/", $linDeco);   
+    
+    $s_idGrupoInterno   = $partir[0];
+    $tipAccion            = $partir[1];
+    
+    
+    if ( $s_idGrupoInterno != "" )
+    {  
+      ///////////////////////////////////////////////////////  
+      ////// REALIZA LA CONSULTA DE LA marca SELECCIONADA 
+      $titulo = "MODIFICAR GRUPO INTERNO";
+      $s_existe = 1;
+      $boton  = "Actualizar";
+    
+      $sql = "select * from reu_grupos_internos where idgrupointerno=$s_idGrupoInterno";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      $s_idGrupoInterno = $row['idgrupointerno'];
+      $s_grupoInterno   = $row['grupointerno'];
+    }  
+    else
+    {
+      $titulo = "NUEVO GRUPO INTERNO";
+      $s_existe = 0;
+      $boton="Grabar";
+    }  
+    
+    
+   if(isset($_POST['grabar']))
+   {   
+     $s_idGrupoInterno = $_POST['idGrupoInterno'];
+     $s_grupoInterno   = $_POST['grupoInterno'];
+     
+     $s_grupoInterno = strtoupper($s_grupoInterno);
+   
+     $s_existe         = $_POST['existe'];
+     $s_yaGrabo        = $_POST['yaGrabo'];
+    
+     date_default_timezone_set('America/Bogota');
+     //$s_fecha  = date("Y-m-d",time());
+     //$s_fecha  = date("Y/m/d H:i:s");
+     $date_added=date("Y-m-d H:i:s");
+     
+      ///MODIFICA
+      if ($s_existe == "1")  
+      {
+        $sql = "UPDATE reu_grupos_internos SET grupointerno = :grupointerno WHERE idgrupointerno = :idgrupointerno";
+        $stmt = $pdo->prepare($sql);
+    
+        // Vincular parámetros
+        $stmt->bindParam(':grupointerno', $s_grupoInterno, PDO::PARAM_STR);
+        $stmt->bindParam(':idgrupointerno', $s_idGrupoInterno, PDO::PARAM_INT);
+    
+        // Ejecutar la consulta
+        $stmt->execute();
+        
+        $mensaje=" <b>Atención!</b> Actualización exitosa";
+      }  
+      
+      ///ADICIONA
+      if ($s_existe == "0")
+      {
+        $sql = "SELECT MAX(idgrupointerno) AS maximo FROM reu_grupos_internos";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
+        
+        $s_idGrupoInterno     = $s_maximo+1;
+        
+        // Inserción de datos
+        $stmt = $pdo->prepare('INSERT INTO reu_grupos_internos (idgrupointerno, grupointerno) VALUES (?, ?)');
+        $stmt->execute([$s_idGrupoInterno, $s_grupoInterno]);
+        
+        $mensaje=" <b>Atención!</b> Grabación exitosa ¡";
+        
+        $s_existe ="1";
+      }   
+       
+      $s_tocoBoton = "S";  
+          
+   }//grabar
+   
+  ?>  
+              <!-- Page Content Holder -->
               <div id="content">  
                   <!--- MENU CERRAR 
                      <nav class="navbar navbar-default">  ---->
@@ -30,12 +136,12 @@
                   <div class="fondo"> 
                       <div class="row">
                        <div class="col-sm-6" ALIGN="left">
-                          <h3> <i class='fas fa-project-diagram' style='color:#2f79b9'></i>  Grupo de Recepción, Análisis, Evaluación del Riesgo y Recomendaciones - GRAERR </h3>
+                          <h3> <i class='fas fa-project-diagram' style='color:#2f79b9'></i> GRUPO INTERNO </h3>
                        </div> 
                        
                        <div class="col-sm-6" align="right">  					  			 
                          <p style="font-size:12px;"><i class="fas fa-user"></i> <?=$_SESSION['nombre_perfil']?></p>
-                         <a href="graerrFormulario0.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
+                         <a href="grupos0.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
                         </div>                
                       </div>
                   </div>
@@ -110,3 +216,5 @@
   
     </body>
   </html>
+  
+   
