@@ -163,7 +163,8 @@ a.article, a.article:hover {
  $apeUsuarioI = $_SESSION['user_lastname'];   
  $user_perfil = $_SESSION['user_perfil'];
  $idUt        = $_SESSION['idUt'];
- $nombreUt    = $_SESSION['nombreUt'];     
+ $nombreUt    = $_SESSION['nombreUt'];    
+ $laId        = $_SESSION['user_id']  
 
 /* 
  echo "1.." .$nomUusuario;
@@ -241,7 +242,29 @@ a.article, a.article:hover {
                      <button type="button" id="sidebarCollapse" class="btn btn-link" style="color:#fff;">
                        <i class="fa fa-reorder"></i>
                       </button>  
-                    </span>                              
+                    </span>      
+                
+                <?php
+                    if ($laId==14)
+                     {
+                ?>      
+                
+                  <li> 
+                     <hr>
+                        <a href="graerrFormulario0.php"> 0
+                            <i class="glyphicon glyphicon-home"></i>
+                            GRAERR
+                        </a>
+                        <hr>
+                        <a href="graerrFormulario1.php"> 1
+                            <i class="glyphicon glyphicon-home"></i>
+                            GRAERR
+                        </a>
+                   </li> 
+                <?php
+                     }
+                ?>     
+                   
                   <li> 
                      <hr>
                         <a href="dash.php">
