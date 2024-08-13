@@ -10,7 +10,7 @@
  */
   
   $active_marca="active";
-  $title="UNP | Grupo Interno";    
+  $title="UNP | GRAERR Formulario";    
   $nombreUsuario = $_SESSION['user_firstname'] ." " .$_SESSION['user_lastname']; 
 ?>
 
@@ -35,27 +35,86 @@
     //PARTE LA LINEA
     $partir      = explode ("/", $linDeco);   
     
-    $s_idGrupoInterno   = $partir[0];
+    $s_registro   = $partir[0];
     $tipAccion            = $partir[1];
     
     
-    if ( $s_idGrupoInterno != "" )
+    if ( $s_registro != "" )
     {  
       ///////////////////////////////////////////////////////  
-      ////// REALIZA LA CONSULTA DE LA marca SELECCIONADA 
-      $titulo = "MODIFICAR GRUPO INTERNO";
+      ////// REALIZA LA CONSULTA  
+      $titulo = "MODIFICAR REGISTRO";
       $s_existe = 1;
       $boton  = "Actualizar";
     
-      $sql = "select * from reu_grupos_internos where idgrupointerno=$s_idGrupoInterno";
+      $sql = "select * from graerr_formulario where registro=$registro";
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
-      $s_idGrupoInterno = $row['idgrupointerno'];
-      $s_grupoInterno   = $row['grupointerno'];
+      
+             $registro = $row['registro'];
+             $vigencia = $row['vigencia'];
+             $fecha_recepcion_unp = $row['fecha_recepcion_unp'];
+             $fecha_recepcion_graerr = $row['fecha_recepcion_graerr'];
+             $fecha_carta_solicitante = $row['fecha_carta_solicitante'];
+             $no_mem_ext = $row['no_mem_ext'];
+             $otras_entradas_sigob = $row['otras_entradas_sigob'];
+             $no_folios = $row['no_folios'];
+             $entidad_persona_solicitante = $row['entidad_persona_solicitante'];
+             $destinatario = $row['destinatario'];
+             $tipo_documento = $row['tipo_documento'];
+             $no_documento = $row['no_documento'];
+             $nombres_apellidos_peticionario = $row['nombres_apellidos_peticionario'];
+             $seudonimo = $row['seudonimo'];
+             $tipo_ruta = $row['tipo_ruta'];
+             $descripcion_colectivo = $row['descripcion_colectivo'];
+             $nombre_colectivo = $row['nombre_colectivo'];
+             $no_personas_evaluar = $row['no_personas_evaluar'];
+             $genero = $row['genero'];
+             $grupo_etnico = $row['grupo_etnico'];
+             $correo_electronico = $row['correo_electronico'];
+             $no_de_contacto = $row['no_de_contacto'];
+             $otros_numeros_contacto = $row['otros_numeros_contacto'];
+             $direccion = $row['direccion'];
+             $departamento = $row['departamento'];
+             $municipio = $row['municipio'];
+             $corregimiento_vereda = $row['corregimiento_vereda'];
+             $autoriza_envio_info = $row['autoriza_envio_info'];
+             $fecha_asignacion_analisis = $row['fecha_asignacion_analisis'];
+             $analista_solicitudes = $row['analista_solicitudes'];
+             $medidas_preventivas = $row['medidas_preventivas'];
+             $estado_solicitud = $row['estado_solicitud'];
+             $fecha_asignado_ot = $row['fecha_asignado_ot'];
+             $fecha_reasignacion_ot = $row['fecha_reasignacion_ot'];
+             $estado_ot = $row['estado_ot'];
+             $ot = $row['ot'];
+             $analista_riesgo = $row['analista_riesgo'];
+             $analista_riesgo_dos = $row['analista_riesgo_dos'];
+             $analista_calidad = $row['analista_calidad'];
+             $subpoblacion = $row['subpoblacion'];
+             $tipo_estudio_riesgo = $row['tipo_estudio_riesgo'];
+             $tramite_emergencia = $row['tramite_emergencia'];
+             $fecha_tramite_emergencia = $row['fecha_tramite_emergencia'];
+             $ingreso_calidad = $row['ingreso_calidad'];
+             $fecha_aprobacion_calidad = $row['fecha_aprobacion_calidad'];
+             $fecha_presentacion_premesa = $row['fecha_presentacion_premesa'];
+             $recomendacion_riesgo_premesa = $row['recomendacion_riesgo_premesa'];
+             $recomendacion_medidas_premesa = $row['recomendacion_medidas_premesa'];
+             $observaciones_premesa = $row['observaciones_premesa'];
+             $tiempo_gestion_graerr = $row['tiempo_gestion_graerr'];
+             $remision_mesa_tecnica = $row['remision_mesa_tecnica'];
+             $mes_remision = $row['mes_remision'];
+             $ano_remision = $row['ano_remision'];
+             $observaciones = $row['observaciones'];
+             $seguimiento = $row['seguimiento'];
+             $factor_diferencial = $row['factor_diferencial'];
+             $reporte_936 = $row['reporte_936'];
+             $verificacion = $row['verificacion'];
+             $otros = $row['otros'];
+             $dev_traslados_poblacional = $row['dev_traslados_poblacional'];
     }  
     else
     {
-      $titulo = "NUEVO GRUPO INTERNO";
+      $titulo = "NUEVO REGISTRO GRAERR";
       $s_existe = 0;
       $boton="Grabar";
     }  
@@ -115,6 +174,349 @@
           
    }//grabar
    
+   
+   ////////////////////////////////////
+  ////// DESPLEGABLES //////////////////
+  ////////////////////////////////////
+  
+    //============================= CONSULTA EL graerr_analista_calidad
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_analista_calidad order by nombre');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_analista_calidad .=" <option value=''>".'- Seleccione el analista de calidad -'."</option>";
+      }
+      if ($line['id']==$analista_calidad)
+      {
+        $combo_analista_calidad .=" <option value='".$line['id']."' selected>".$line['nombre']." </option>"; 
+      }
+      $combo_analista_calidad .=" <option value='".$line['id']."'>".$line['nombre']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_analista_riesgo
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_analista_riesgo order by nombre_analista');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_analista_riesgo .=" <option value=''>".'- Seleccione el analista de riesgo -'."</option>";
+      }
+      if ($line['id']==$analista_riesgo)
+      {
+        $combo_analista_riesgo .=" <option value='".$line['id']."' selected>".$line['nombre_analista']." </option>"; 
+      }
+      $combo_analista_riesgo .=" <option value='".$line['id']."'>".$line['nombre_analista']."</option>"; 
+      $i++; 
+    }
+   
+    //============================= CONSULTA EL graerr_analista_solicitudes
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_analista_solicitudes order by nombre_analista');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_analista_solicitudes .=" <option value=''>".'- Seleccione el analista de solicitudes -'."</option>";
+      }
+      if ($line['id']==$analista_solicitudes)
+      {
+        $combo_analista_solicitudes .=" <option value='".$line['id']."' selected>".$line['nombre_analista']." </option>"; 
+      }
+      $combo_analista_solicitudes .=" <option value='".$line['id']."'>".$line['nombre_analista']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_asignado_por
+    //============================================================================ 
+    //$stmt = $pdo->query('select * from graerr_asignado_por order by nombre');
+    //$i=0;
+    
+    //============================= CONSULTA EL graerr_autoriza_correo
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_autoriza_correo order by autoriza_correo');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_autoriza_correo .=" <option value=''>".'- Seleccione quien autoriza el correo -'."</option>";
+      }
+      if ($line['id']==$autoriza_envio_info)
+      {
+        $combo_autoriza_correo .=" <option value='".$line['id']."' selected>".$line['autoriza_correo']." </option>"; 
+      }
+      $combo_autoriza_correo .=" <option value='".$line['id']."'>".$line['autoriza_correo']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_desc_colectivo
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_desc_colectivo order by descripcion');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_desc_colectivo .=" <option value=''>".'- Seleccione descripción del colectivo -'."</option>";
+      }
+      if ($line['id']==$descripcion_colectivo)
+      {
+        $combo_desc_colectivo .=" <option value='".$line['id']."' selected>".$line['descripcion']." </option>"; 
+      }
+      $combo_desc_colectivo .=" <option value='".$line['id']."'>".$line['descripcion']."</option>"; 
+      $i++; 
+    }
+   
+    //============================= CONSULTA EL graerr_estado_asignacion
+    //============================================================================ 
+    //$stmt = $pdo->query('select * from graerr_estado_asignacion order by estado');
+    //$i=0;
+    
+    
+    //============================= CONSULTA EL graerr_estado_ot
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_estado_ot order by estado');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_estado_ot .=" <option value=''>".'- Seleccione el estado de la OT -'."</option>";
+      }
+      if ($line['id']==$estado_ot)
+      {
+        $combo_estado_ot .=" <option value='".$line['id']."' selected>".$line['estado']." </option>"; 
+      }
+      $combo_estado_ot .=" <option value='".$line['id']."'>".$line['estado']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_estado_solicitud
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_estado_solicitud order by estado_solicitud');
+    $i=0;
+     while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_estado_solicitud .=" <option value=''>".'- Seleccione el estado de la solicitud -'."</option>";
+      }
+      if ($line['id']==$estado_solicitud)
+      {
+        $combo_estado_solicitud .=" <option value='".$line['id']."' selected>".$line['estado_solicitud']." </option>"; 
+      }
+      $combo_estado_solicitud .=" <option value='".$line['id']."'>".$line['estado_solicitud']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_factor_diferencial
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_factor_diferencial order by factor_diferencial');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_factor_diferencial .=" <option value=''>".'- Seleccione el factor diferencial -'."</option>";
+      }
+      if ($line['id']==$subpoblacion)
+      {
+        $combo_factor_diferencial .=" <option value='".$line['id']."' selected>".$line['factor_diferencial']." </option>"; 
+      }
+      $combo_factor_diferencial .=" <option value='".$line['id']."'>".$line['factor_diferencial']."</option>"; 
+      $i++; 
+    }
+   
+    //============================= CONSULTA EL graerr_genero
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_genero order by genero');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_genero .=" <option value=''>".'- Seleccione el genero -'."</option>";
+      }
+      if ($line['id']==$genero)
+      {
+        $combo_genero .=" <option value='".$line['id']."' selected>".$line['genero']." </option>"; 
+      }
+      $combo_genero .=" <option value='".$line['id']."'>".$line['genero']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_grupo_etnico
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_grupo_etnico order by grupo_etnico');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_grupo_etnico .=" <option value=''>".'- Seleccione el grupo étnico -'."</option>";
+      }
+      if ($line['id']==$grupo_etnico)
+      {
+        $combo_grupo_etnico .=" <option value='".$line['id']."' selected>".$line['grupo_etnico']." </option>"; 
+      }
+      $combo_grupo_etnico .=" <option value='".$line['id']."'>".$line['grupo_etnico']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_medidas_preventivas
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_medidas_preventivas order by medida_preventiva');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_medidas_preventivas .=" <option value=''>".'- Seleccione la medida preventiva -'."</option>";
+      }
+      if ($line['id']==$medidas_preventivas)
+      {
+        $combo_medidas_preventivas .=" <option value='".$line['id']."' selected>".$line['medida_preventiva']." </option>"; 
+      }
+      $combo_medidas_preventivas .=" <option value='".$line['id']."'>".$line['medida_preventiva']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_poblacion
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_poblacion order by descripcion');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_poblacion .=" <option value=''>".'- Seleccione la población -'."</option>";
+      }
+      if ($line['id']==$poblacion)
+      {
+        $combo_poblacion .=" <option value='".$line['id']."' selected>".$line['descripcion']." </option>"; 
+      }
+      $combo_poblacion .=" <option value='".$line['id']."'>".$line['descripcion']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_recomendacion_premesa
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_recomendacion_premesa order by descripcion');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_recomendacion_premesa .=" <option value=''>".'- Seleccione la recomendacion de premesa -'."</option>";
+      }
+      if ($line['id']==$recomendacion_medidas_premesa)
+      {
+        $combo_recomendacion_premesa .=" <option value='".$line['id']."' selected>".$line['descripcion']." </option>"; 
+      }
+      $combo_recomendacion_premesa .=" <option value='".$line['id']."'>".$line['descripcion']."</option>"; 
+      $i++; 
+    }
+    
+    
+    //============================= CONSULTA EL graerr_seguimiento
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_seguimiento order by descripcion');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_seguimiento .=" <option value=''>".'- Seleccione el seguimiento -'."</option>";
+      }
+      if ($line['id']==$seguimiento)
+      {
+        $combo_seguimiento .=" <option value='".$line['id']."' selected>".$line['descripcion']." </option>"; 
+      }
+      $combo_seguimiento .=" <option value='".$line['id']."'>".$line['descripcion']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_tipo_documento
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_tipo_documento order by tipo_documento');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_documento .=" <option value=''>".'- Seleccione el tipo de documento -'."</option>";
+      }
+      if ($line['id']==$tipo_documento)
+      {
+        $combo_tipo_documento .=" <option value='".$line['id']."' selected>".$line['tipo_documento']." </option>"; 
+      }
+      $combo_tipo_documento .=" <option value='".$line['id']."'>".$line['tipo_documento']."</option>"; 
+      $i++; 
+    }
+    
+    
+    //============================= CONSULTA EL graerr_tipo_estudio_riesgo
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_tipo_estudio_riesgo order by descripcion');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_estudio_riesgo .=" <option value=''>".'- Seleccione el tipo de estudio de riesgo -'."</option>";
+      }
+      if ($line['id']==$tipo_estudio_riesgo)
+      {
+        $combo_tipo_estudio_riesgo .=" <option value='".$line['id']."' selected>".$line['descripcion']." </option>"; 
+      }
+      $combo_tipo_estudio_riesgo .=" <option value='".$line['id']."'>".$line['descripcion']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_tipo_ruta
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_tipo_ruta order by tipo_ruta');
+    $i=0;
+     while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_ruta .=" <option value=''>".'- Seleccione el tipo de ruta -'."</option>";
+      }
+      if ($line['id']==$tipo_ruta)
+      {
+        $combo_tipo_ruta .=" <option value='".$line['id']."' selected>".$line['tipo_ruta']." </option>"; 
+      }
+      $combo_tipo_ruta .=" <option value='".$line['id']."'>".$line['tipo_ruta']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_vigencia
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_vigencia order by ano');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_vigencia .=" <option value=''>".'- Seleccione ls vigencia -'."</option>";
+      }
+      if ($line['id']==$vigencia)
+      {
+        $combo_vigencia .=" <option value='".$line['id']."' selected>".$line['ano']." </option>"; 
+      }
+      $combo_vigencia .=" <option value='".$line['id']."'>".$line['tipo_ruta']."</ano>"; 
+      $i++; 
+    }
+   
+   
   ?>  
               <!-- Page Content Holder -->
               <div id="content">  
@@ -136,7 +538,7 @@
                   <div class="fondo"> 
                       <div class="row">
                        <div class="col-sm-6" ALIGN="left">
-                          <h3> <i class='fas fa-project-diagram' style='color:#2f79b9'></i> GRUPO INTERNO </h3>
+                          <h3> <i class='fas fa-project-diagram' style='color:#2f79b9'></i>  Grupo de Recepción, Análisis, Evaluación del Riesgo y Recomendaciones - GRAERR </h3>
                        </div> 
                        
                        <div class="col-sm-6" align="right">  					  			 
@@ -165,6 +567,28 @@
                   
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">			 
                <div class="panel-body">
+                 <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="registro">REGISTRO</label>
+                        <input type="text" class="form-control" id="registro" name="registro"  value="<?=$registro?>"required>
+                    </div>
+                <div class="form-group col-md-4">
+                    <label for="vigencia">VIGENCIA</label>
+                    <!--<input type="text" class="form-control" id="vigencia" name="vigencia" value="<?=$vigencia?>"required>-->
+                     <select <?=$active?> required class="form-control" name="vigencia">
+                       <?php echo $combo_vigencia; ?>
+                     </select> 
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="fecha_recepcion_unp">FECHA DE RECEPCION EN LA UNP</label>
+                    <input type="date" class="form-control" id="fecha_recepcion_unp" name="fecha_recepcion_unp"  value="<?=$fecha_recepcion_unp?>" required>
+                </div>
+            </div>
+                   
+                   
+                   
+                   
+                   
                   <div class="row">
                     <div class=" col-md-9 col-lg-9 "> 
                         <table class="table table-condensed">
