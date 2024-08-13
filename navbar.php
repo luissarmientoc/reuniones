@@ -164,7 +164,7 @@ a.article, a.article:hover {
  $user_perfil = $_SESSION['user_perfil'];
  $idUt        = $_SESSION['idUt'];
  $nombreUt    = $_SESSION['nombreUt'];    
- $laId        = $_SESSION['user_id']  
+ $laId        = $_SESSION['user_id'];
 
 /* 
  echo "1.." .$nomUusuario;
