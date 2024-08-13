@@ -567,70 +567,73 @@
                   
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">			 
                <div class="panel-body">
-                 <div class="row">
-                <div class="col-md-3">
+                 <div class="container mt-5">
+        <h1>Formulario de Registro Graerr</h1>
+        <form action="procesar_formulario.php" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="registro">REGISTRO</label>
                     <input type="text" class="form-control" id="registro" name="registro"  value="<?=$registro?>"required>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="vigencia">VIGENCIA</label>
                     <!--<input type="text" class="form-control" id="vigencia" name="vigencia" value="<?=$vigencia?>"required>-->
                      <select <?=$active?> required class="form-control" name="vigencia">
                        <?php echo $combo_vigencia; ?>
                      </select> 
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="fecha_recepcion_unp">FECHA DE RECEPCION EN LA UNP</label>
                     <input type="date" class="form-control" id="fecha_recepcion_unp" name="fecha_recepcion_unp"  value="<?=$fecha_recepcion_unp?>" required>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="fecha_recepcion_graerr">FECHA RECEPCION GRAERR</label>
                     <input type="date" class="form-control" id="fecha_recepcion_graerr" name="fecha_recepcion_graerr"  value="<?=$fecha_recepcion_graerr?>" required>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="fecha_carta_solicitante">FECHA DE CARTA SOLICITANTE</label>
                     <input type="date" class="form-control" id="fecha_carta_solicitante" name="fecha_carta_solicitante"  value="<?=$fecha_carta_solicitante?>" required>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="no_mem_ext">No MEM y/o EXT</label>
                     <input type="text" class="form-control" id="no_mem_ext" name="no_mem_ext"  value="<?=$no_mem_ext?>" required>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="otras_entradas_sigob">OTRAS ENTRADAS SIGOB</label>
                     <input type="text" class="form-control" id="otras_entradas_sigob" name="otras_entradas_sigob"  value="<?=$otras_entradas_sigob?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="no_folios">No FOLIOS</label>
                     <input type="text" class="form-control" id="no_folios" name="no_folios"  value="<?=$no_folios?>" required>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="entidad_persona_solicitante">ENTIDAD/PERSONA SOLICITANTE</label>
                     <input type="text" class="form-control" id="entidad_persona_solicitante" name="entidad_persona_solicitante"  value="<?=$entidad_persona_solicitante?>" required>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="destinatario">DESTINATARIO</label>
                     <input type="text" class="form-control" id="destinatario" name="destinatario"  value="<?=$destinatario?>" required>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="tipo_documento">TIPO DE DOCUMENTO</label>
                     <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required>-->
                     <select <?=$active?> required class="form-control" name="tipo_documento">
                        <?php echo $combo_tipo_documento; ?>
                     </select> 
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="no_documento">No DE DOCUMENTO</label>
                     <input type="text" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
                     
                 </div>
             </div>
-            <div class="row">
+            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="nombres_apellidos_peticionario">NOMBRES Y APELLIDOS PETICIONARIO O BENEFICIARIO</label>
                     <input type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
@@ -640,36 +643,36 @@
                     <input type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="tipo_ruta">TIPO DE RUTA</label>
                     <!--<input type="text" class="form-control" id="tipo_ruta" name="tipo_ruta"  value="<?=$tipo_ruta?>">-->
                      <select <?=$active?> required class="form-control" name="tipo_ruta">
                        <?php echo $combo_tipo_ruta; ?>
                      </select>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
                     <input type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
                     <input type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="no_personas_evaluar">No PERSONAS A EVALUAR</label>
                     <input type="number" class="form-control" id="no_personas_evaluar" name="no_personas_evaluar"  value="<?=$no_personas_evaluar?>" required>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="genero">GENERO</label>
                     <!--<input type="text" class="form-control" id="genero" name="genero"  value="<?=$genero?>">-->
                     <select <?=$active?> required class="form-control" name="genero">
                        <?php echo $combo_genero; ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="grupo_etnico">GRUPO ETNICO</label>
                     <!--<input type="text" class="form-control" id="grupo_etnico" name="grupo_etnico"  value="<?=$grupo_etnico?>">-->
                     <select <?=$active?> required class="form-control" name="grupo_etnico">
@@ -677,7 +680,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="correo_electronico">CORREO ELECTRONICO</label>
                     <input type="email" class="form-control" id="correo_electronico" name="correo_electronico"   value="<?=$correo_electronico?>"required>
@@ -691,7 +694,7 @@
                     <input type="text" class="form-control" id="otros_numeros_contacto" name="otros_numeros_contacto"  value="<?=$otros_numeros_contacto?>">
                 </div>
             </div>
-            <div class="row">
+            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="direccion">DIRECCION</label>
                     <input type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
@@ -705,7 +708,7 @@
                     <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required>
                 </div>
             </div>
-            <div class="row">
+            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
                     <input type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
@@ -718,19 +721,19 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="fecha_asignacion_analisis">FECHA ASIGNACION ANALISIS PRELIMINAR</label>
                     <input type="date" class="form-control" id="fecha_asignacion_analisis" name="fecha_asignacion_analisis" value="<?=$fecha_asignacion_analisis?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="analista_solicitudes">ANALISTA DE SOLICITUDES</label>
                     
                     <select <?=$active?> required class="form-control" name="analista_solicitudes">
                        <?php echo $combo_analista_solicitudes; ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="medidas_preventivas">MEDIDAS PREVENTIVAS</label>
                     <!--<input type="text" class="form-control" id="medidas_preventivas" name="medidas_preventivas" value="<?=$medidas_preventivas?>">-->
                     <select <?=$active?> required class="form-control" name="medidas_preventivas">
@@ -738,36 +741,36 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="estado_solicitud">ESTADO DE LA SOLICITUD</label>
                     <!--<input type="text" class="form-control" id="estado_solicitud" name="estado_solicitud" value="<?=$estado_solicitud?>">-->
                     <select <?=$active?> required class="form-control" name="estado_solicitud">
                        <?php echo $combo_estado_solicitud; ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="fecha_asignado_ot">FECHA ASIGNADO OT</label>
                     <input type="date" class="form-control" id="fecha_asignado_ot" name="fecha_asignado_ot" value="<?=$fecha_asignado_ot?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="fecha_reasignacion_ot">FECHA REASIGNACION OT</label>
                     <input type="date" class="form-control" id="fecha_reasignacion_ot" name="fecha_reasignacion_ot" value="<?=$fecha_reasignacion_ot?>">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="estado_ot">ESTADO OT</label>
                     <!--<input type="text" class="form-control" id="estado_ot" name="estado_ot" value="<?=$estado_ot?>">-->
                     <select <?=$active?> required class="form-control" name="estado_ot">
                        <?php echo $combo_estado_ot; ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="ot">OT</label>
                     <input type="text" class="form-control" id="ot" name="ot" value="<?=$ot?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="analista_riesgo">ANALISTA DE RIESGO</label>
                     <!--<input type="text" class="form-control" id="analista_riesgo" name="analista_riesgo" value="<?=$analista_riesgo?>">-->
                     <select <?=$active?> required class="form-control" name="analista_riesgo">
@@ -775,22 +778,22 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="analista_riesgo_dos">ANALISTA DE RIESGO DOS</label>
                     <!--<input type="text" class="form-control" id="analista_riesgo_dos" name="analista_riesgo_dos" value="<?=$analista_riesgo_dos?>">-->
                     <select <?=$active?> required class="form-control" name="analista_riesgo_dos">
                        <?php echo $combo_analista_riesgo; ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="analista_calidad">ANALISTA DE CALIDAD</label>
                     <!--<input type="text" class="form-control" id="analista_calidad" name="analista_calidad" value="<?=$analista_calidad?>">-->
                     <select <?=$active?> required class="form-control" name="analista_calidad">
                        <?php echo $combo_analista_calidad; ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="subpoblacion">SUBPOBLACION</label>
                     <!--<input type="text" class="form-control" id="subpoblacion" name="subpoblacion" value="<?=$subpoblacion?>">-->
                     <select <?=$active?> required class="form-control" name="subpoblacion">
@@ -798,78 +801,78 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="tipo_estudio_riesgo">TIPO ESTUDIO DE RIESGO</label>
                     <!--<input type="text" class="form-control" id="tipo_estudio_riesgo" name="tipo_estudio_riesgo" value="<?=$tipo_estudio_riesgo?>">-->
                     <select <?=$active?> required class="form-control" name="tipo_estudio_riesgo">
                        <?php echo $combo_tipo_estudio_riesgo; ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
                     <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="fecha_tramite_emergencia">FECHA TRAMITE DE EMERGENCIA</label>
                     <input type="date" class="form-control" id="fecha_tramite_emergencia" name="fecha_tramite_emergencia" value="<?=$fecha_tramite_emergencia?>">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="ingreso_calidad">INGRESO A CALIDAD</label>
                     <input type="text" class="form-control" id="ingreso_calidad" name="ingreso_calidad" value="<?=$ingreso_calidad?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="fecha_aprobacion_calidad">FECHA APROBACION ASESOR TECNICO CALIDAD</label>
                     <input type="date" class="form-control" id="fecha_aprobacion_calidad" name="fecha_aprobacion_calidad" value="<?=$fecha_aprobacion_calidad?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="fecha_presentacion_premesa">FECHA PRESENTACION PREMESA</label>
                     <input type="date" class="form-control" id="fecha_presentacion_premesa" name="fecha_presentacion_premesa" value="<?=$fecha_presentacion_premesa?>">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="recomendacion_riesgo_premesa">RECOMENDACION DEL RIESGO PREMESA</label>
                     <input type="text" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa" value="<?=$recomendacion_riesgo_premesa?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="recomendacion_medidas_premesa">RECOMENDACION DE MEDIDAS PREMESA</label>
                     <!--<input type="text" class="form-control" id="recomendacion_medidas_premesa" name="recomendacion_medidas_premesa" value="<?=$recomendacion_medidas_premesa?>">-->
                     <select <?=$active?> required class="form-control" name="recomendacion_medidas_premesa">
                        <?php echo $combo_recomendacion_premesa; ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="observaciones_premesa">OBSERVACIONES PREMESA</label>
                     <input type="text" class="form-control" id="observaciones_premesa" name="observaciones_premesa" value="<?=$observaciones_premesa?>">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="tiempo_gestion_graerr">TIEMPO GESTION GRAERR</label>
                     <input type="text" class="form-control" id="tiempo_gestion_graerr" name="tiempo_gestion_graerr" value="<?=$tiempo_gestion_graerr?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="remision_mesa_tecnica">REMISION MESA TECNICA</label>
                     <input type="text" class="form-control" id="remision_mesa_tecnica" name="remision_mesa_tecnica" value="<?=$remision_mesa_tecnica?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="mes_remision">MES DE REMISION</label>
                     <input type="number" class="form-control" id="mes_remision" name="mes_remision" min="1" max="12" value="<?=$mes_remision?>">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="ano_remision">AÑO DE REMISION</label>
                     <input type="number" class="form-control" id="ano_remision" name="ano_remision" min="1900" max="2099" value="<?=$ano_remision?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="observaciones">OBSERVACIONES</label>
                     <textarea class="form-control" id="observaciones" name="observaciones"> "<?=$observaciones?>" </textarea>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="seguimiento">SEGUIMIENTO</label>
                     <!--<input type="text" class="form-control" id="seguimiento" name="seguimiento" value="<?=$seguimiento?>">-->
                     <select <?=$active?> required class="form-control" name="seguimiento">
@@ -877,29 +880,29 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="factor_diferencial">FACTOR DIFERENCIAL</label>
                     <!--<input type="text" class="form-control" id="factor_diferencial" name="factor_diferencial" value="<?=$factor_diferencial?>">-->
                     <select <?=$active?> required class="form-control" name="factor_diferencial">
                        <?php echo $combo_factor_diferencial; ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="reporte_936">REPORTE 936</label>
                     <input type="text" class="form-control" id="reporte_936" name="reporte_936" value="<?=$reporte_936?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="verificacion">VERIFICACION</label>
                     <input type="text" class="form-control" id="verificacion" name="verificacion" value="<?=$verificacion?>">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-4">
                     <label for="otros">OTROS</label>
                     <input type="text" class="form-control" id="otros" name="otros" value="<?=$otros?>">
                 </div>
-                <div class="col-md-3">
+                <div class="form-group col-md-4">
                     <label for="dev_traslados_poblacional">DEV/TRASLADOS POBLACIONAL</label>
                     <input type="text" class="form-control" id="dev_traslados_poblacional" name="dev_traslados_poblacional" value="<?=$dev_traslados_poblacional?>">
                 </div>
@@ -909,6 +912,31 @@
             <input style="visibility:hidden" name="registro" id="registro" value="<?=$s_registro?>"/>
              <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
              <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
+        </form>
+    </div>
+            </div>
+                 
+                 
+                 
+                 
+                 
+                 
+                 <div class="row">
+                    <div class="col-md-9 col-lg-9">
+                        <label for="registro">REGISTRO</label>
+                        <input type="text" class="form-control" id="registro" name="registro"  value="<?=$registro?>"required>
+                    </div>
+                <div class="col-md-9 col-lg-9">
+                    <label for="vigencia">VIGENCIA</label>
+                    <!--<input type="text" class="form-control" id="vigencia" name="vigencia" value="<?=$vigencia?>"required>-->
+                     <select <?=$active?> required class="form-control" name="vigencia">
+                       <?php echo $combo_vigencia; ?>
+                     </select> 
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="fecha_recepcion_unp">FECHA DE RECEPCION EN LA UNP</label>
+                    <input type="date" class="form-control" id="fecha_recepcion_unp" name="fecha_recepcion_unp"  value="<?=$fecha_recepcion_unp?>" required>
+                </div>
             </div>
                    
                    
