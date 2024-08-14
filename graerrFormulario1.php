@@ -814,6 +814,27 @@
                            </div>
                        </div> <!--row-->
                        
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="medidas_preventivas">MEDIDAS PREVENTIVAS</label>
+                               <!--<input type="text" class="form-control" id="medidas_preventivas" name="medidas_preventivas" value="<?=$medidas_preventivas?>">-->
+                               <select <?=$active?> required class="form-control" name="medidas_preventivas">
+                                  <?php echo $combo_medidas_preventivas; ?>
+                               </select>
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="estado_ot">ESTADO OT</label>
+                               <!--<input type="text" class="form-control" id="estado_ot" name="estado_ot" value="<?=$estado_ot?>">-->
+                               <select <?=$active?> required class="form-control" name="estado_ot">
+                                  <?php echo $combo_estado_ot; ?>
+                               </select>
+                           </div>
+                          <div class="col-sm-4" align="left">
+                               <label for="ot">OT</label>
+                               <input type="text" class="form-control" id="ot" name="ot" value="<?=$ot?>">
+                           </div>
+                       </div> <!--row-->
+                       
                     </div> <!--container-->
                     
                     <div class="container" style="margin-bottom:10px;">
@@ -870,29 +891,13 @@
             </div>
             <div class="form-row">
                 
-                <div class="form-group col-md-4">
-                    <label for="medidas_preventivas">MEDIDAS PREVENTIVAS</label>
-                    <!--<input type="text" class="form-control" id="medidas_preventivas" name="medidas_preventivas" value="<?=$medidas_preventivas?>">-->
-                    <select <?=$active?> required class="form-control" name="medidas_preventivas">
-                       <?php echo $combo_medidas_preventivas; ?>
-                    </select>
-                </div>
+                
             </div>
             <div class="form-row">
                 
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="estado_ot">ESTADO OT</label>
-                    <!--<input type="text" class="form-control" id="estado_ot" name="estado_ot" value="<?=$estado_ot?>">-->
-                    <select <?=$active?> required class="form-control" name="estado_ot">
-                       <?php echo $combo_estado_ot; ?>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="ot">OT</label>
-                    <input type="text" class="form-control" id="ot" name="ot" value="<?=$ot?>">
-                </div>
+                
                 <div class="form-group col-md-4">
                     <label for="analista_riesgo">ANALISTA DE RIESGO</label>
                     <!--<input type="text" class="form-control" id="analista_riesgo" name="analista_riesgo" value="<?=$analista_riesgo?>">-->
