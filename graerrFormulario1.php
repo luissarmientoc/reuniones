@@ -594,12 +594,24 @@
                        <!--------------------------------------------------------- 
                        ---------------------------ASIGNACIÓN----------------------
                        ---------------------------------------------------------->
-                       <div class="row"  style="background-color:#D9EDF7; color:#fff;" >
+                       <div class="row"  style="background-color:#D9EDF7; color:#2f79b9;" >
                            <div class="col-sm-10" align="center">
                                <h4>ASIGNACIÓN</h4>
                            </div>
                        </div>
                     </div> <!--container-->
+                    
+                    <div>
+                       <!--------------------------------------------------------- 
+                       ---------------------------PREMESA Y SUBCOMISIÓN----------------------
+                       ---------------------------------------------------------->
+                       <div class="row" style="background-color:#5CB85C; color:#fff;" >
+                           <div class="col-sm-10" align="center">
+                               <h4>PREMESA Y SUBCOMISIÓN</h4>
+                           </div>
+                       </div>
+                    </div> <!--container-->
+                    
                     
                     <div>
                        <!--------------------------------------------------------- 
