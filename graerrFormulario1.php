@@ -673,6 +673,25 @@
                            </div>
                        
                        </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;">   
+                           <div class="col-sm-4" align="left">
+                               <label style="font-size:11px;" for="nombres_apellidos_peticionario">NOMBRES PETICIONARIO O BENEFICIARIO</label>
+                               <input type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label style="font-size:11px;" for="nombres_apellidos_peticionario">APELLIDOS PETICIONARIO O BENEFICIARIO</label>
+                               <input type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="seudonimo">SEUDONIMO</label>
+                               <input type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
+                           </div>
+                       
+                       </div> <!--row-->
+                       
                     </div> <!--container-->
                     
                     <div class="container">
