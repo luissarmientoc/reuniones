@@ -1010,18 +1010,12 @@
                            <div class="col-sm-6" align="left">
                             </div>
                         </div>       
-                        
-                        
                     </div> <!--container-->
                     
                     
                 
-                    <hr>
-                   
-                
-            </div>
-                 
-                     	       
+                     <hr>
+                    </div>
                 </div> <!-- panel body -->	 
               
                <div class="modal-footer"> 
