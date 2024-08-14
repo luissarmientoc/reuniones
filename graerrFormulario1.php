@@ -698,7 +698,29 @@
                               <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
                               <input type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
                           </div>
+                       </div> <!--row-->
                        
+                       <div class="row" style="margin-top:5px;">   
+                           <div class="col-sm-4" align="left">
+                               <label for="no_personas_evaluar">No PERSONAS A EVALUAR</label>
+                               <input type="number" class="form-control" id="no_personas_evaluar" name="no_personas_evaluar"  value="<?=$no_personas_evaluar?>" required>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="genero">GENERO</label>
+                               <!--<input type="text" class="form-control" id="genero" name="genero"  value="<?=$genero?>">-->
+                               <select <?=$active?> required class="form-control" name="genero">
+                                  <?php echo $combo_genero; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="grupo_etnico">GRUPO ETNICO</label>
+                               <!--<input type="text" class="form-control" id="grupo_etnico" name="grupo_etnico"  value="<?=$grupo_etnico?>">-->
+                               <select <?=$active?> required class="form-control" name="grupo_etnico">
+                                  <?php echo $combo_grupo_etnico; ?>
+                               </select>
+                           </div>
                        </div> <!--row-->
                        
                     </div> <!--container-->
@@ -753,24 +775,7 @@
                 
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="no_personas_evaluar">No PERSONAS A EVALUAR</label>
-                    <input type="number" class="form-control" id="no_personas_evaluar" name="no_personas_evaluar"  value="<?=$no_personas_evaluar?>" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="genero">GENERO</label>
-                    <!--<input type="text" class="form-control" id="genero" name="genero"  value="<?=$genero?>">-->
-                    <select <?=$active?> required class="form-control" name="genero">
-                       <?php echo $combo_genero; ?>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="grupo_etnico">GRUPO ETNICO</label>
-                    <!--<input type="text" class="form-control" id="grupo_etnico" name="grupo_etnico"  value="<?=$grupo_etnico?>">-->
-                    <select <?=$active?> required class="form-control" name="grupo_etnico">
-                       <?php echo $combo_grupo_etnico; ?>
-                    </select>
-                </div>
+                
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
