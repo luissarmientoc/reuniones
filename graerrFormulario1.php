@@ -701,12 +701,12 @@
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">   
-                           <div class="col-sm-4" align="left">
+                           <div class="col-sm-3" align="left">
                                <label for="no_personas_evaluar">No PERSONAS A EVALUAR</label>
                                <input type="number" class="form-control" id="no_personas_evaluar" name="no_personas_evaluar"  value="<?=$no_personas_evaluar?>" required>
                            </div>
                            
-                           <div class="col-sm-4" align="left">
+                           <div class="col-sm-3" align="left">
                                <label for="genero">GENERO</label>
                                <!--<input type="text" class="form-control" id="genero" name="genero"  value="<?=$genero?>">-->
                                <select <?=$active?> required class="form-control" name="genero">
@@ -714,11 +714,19 @@
                                </select>
                            </div>
                            
-                           <div class="col-sm-4" align="left">
+                           <div class="col-sm-3" align="left">
                                <label for="grupo_etnico">GRUPO ETNICO</label>
                                <!--<input type="text" class="form-control" id="grupo_etnico" name="grupo_etnico"  value="<?=$grupo_etnico?>">-->
                                <select <?=$active?> required class="form-control" name="grupo_etnico">
                                   <?php echo $combo_grupo_etnico; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-3" align="left">
+                               <label for="factor_diferencial">FACTOR DIFERENCIAL</label>
+                               <!--<input type="text" class="form-control" id="factor_diferencial" name="factor_diferencial" value="<?=$factor_diferencial?>">-->
+                               <select <?=$active?> required class="form-control" name="factor_diferencial">
+                                  <?php echo $combo_factor_diferencial; ?>
                                </select>
                            </div>
                        </div> <!--row-->
@@ -758,6 +766,14 @@
                               <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
                               <input type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
                           </div>
+                          
+                          <div class="col-sm-4" align="left">
+                               <label for="seguimiento">SEGUIMIENTO</label>
+                               <!--<input type="text" class="form-control" id="seguimiento" name="seguimiento" value="<?=$seguimiento?>">-->
+                               <select <?=$active?> required class="form-control" name="seguimiento">
+                                  <?php echo $combo_seguimiento; ?>
+                               </select>
+                           </div>
                        </div> <!--row-->
                        
                     </div> <!--container-->
@@ -966,20 +982,8 @@
                         </div> <!--row-->
                         
                         <div class="row" style="margin-top:5px;"> 
-                           <div class="col-sm-4" align="left">
-                               <label for="seguimiento">SEGUIMIENTO</label>
-                               <!--<input type="text" class="form-control" id="seguimiento" name="seguimiento" value="<?=$seguimiento?>">-->
-                               <select <?=$active?> required class="form-control" name="seguimiento">
-                                  <?php echo $combo_seguimiento; ?>
-                               </select>
-                           </div>
-                           <div class="col-sm-4" align="left">
-                               <label for="factor_diferencial">FACTOR DIFERENCIAL</label>
-                               <!--<input type="text" class="form-control" id="factor_diferencial" name="factor_diferencial" value="<?=$factor_diferencial?>">-->
-                               <select <?=$active?> required class="form-control" name="factor_diferencial">
-                                  <?php echo $combo_factor_diferencial; ?>
-                               </select>
-                           </div>
+                           
+                           
                            <div class="col-sm-4" align="left">
                                <label for="reporte_936">REPORTE 936</label>
                                <input type="text" class="form-control" id="reporte_936" name="reporte_936" value="<?=$reporte_936?>">
