@@ -567,7 +567,7 @@
                   
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">			 
                <div class="panel-body">
-                   <div class="container">
+                   <div class="container" style="margin-bottom:10px;">
                        <!--------------------------------------------------------- 
                        ----------------------DATOS DEL TRAMITE--------------------
                        ---------------------------------------------------------->
@@ -575,17 +575,6 @@
                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
                            <div class="col-sm-10" align="center">
                                <h4>DATOS DEL TRAMITE</h4>
-                           </div>
-                       </div>
-                    </div> <!--container-->
-                    
-                    <div class="container">   
-                       <!--------------------------------------------------------- 
-                       -----------DATOS DEL BENEFICIARIO O SOLICITANTE------------
-                       ---------------------------------------------------------->
-                       <div class="row" style="background-color:#5CC0DE; color:#fff;">
-                           <div class="col-sm-10" align="center">
-                               <h4>DATOS DEL BENEFICIARIO O SOLICITANTE</h4>
                            </div>
                        </div>
                        
@@ -613,6 +602,20 @@
                                <input type="date" class="form-control" id="fecha_carta_solicitante" name="fecha_carta_solicitante"  value="<?=$fecha_carta_solicitante?>" required>
                            </div>
                        </div>
+                       
+                    </div> <!--container-->
+                    
+                    <div class="container">   
+                       <!--------------------------------------------------------- 
+                       -----------DATOS DEL BENEFICIARIO O SOLICITANTE------------
+                       ---------------------------------------------------------->
+                       <div class="row" style="background-color:#5CC0DE; color:#fff;">
+                           <div class="col-sm-10" align="center">
+                               <h4>DATOS DEL BENEFICIARIO O SOLICITANTE</h4>
+                           </div>
+                       </div>
+                       
+                       
                        
                        
                     </div> <!--container-->
