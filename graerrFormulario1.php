@@ -723,7 +723,7 @@
                            </div>
                        </div> <!--row-->
                         
-                        <div class="row" style="margin-top:5px;">                          
+                       <div class="row" style="margin-top:5px;">                          
                           <div class="col-sm-4" align="left"> 
                               <label for="correo_electronico">CORREO ELECTRONICO</label>
                               <input type="email" class="form-control" id="correo_electronico" name="correo_electronico"   value="<?=$correo_electronico?>"required>
@@ -738,8 +738,8 @@
                           </div>
                        </div> <!--row-->
                        
-                       <div class="col-sm-4" align="left">  
-                          <div class="form-group col-md-6">
+                       <div class="row" style="margin-top:5px;">  
+                           <div class="col-sm-4" align="left">  
                               <label for="direccion">DIRECCION</label>
                               <input type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
                           </div>
@@ -751,7 +751,13 @@
                               <label for="municipio">MUNICIPIO</label>
                               <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required>
                           </div>
+                       </div> <!--row-->
                        
+                       <div class="row" style="margin-top:5px;">  
+                          <div class="col-sm-4" align="left">
+                              <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
+                              <input type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
+                          </div>
                        </div> <!--row-->
                        
                     </div> <!--container-->
@@ -812,24 +818,11 @@
                 
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="direccion">DIRECCION</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="departamento">DEPARTAMENTO</label>
-                    <input type="text" class="form-control" id="departamento" name="departamento"  value="<?=$departamento?>" required>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="municipio">MUNICIPIO</label>
-                    <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required>
-                </div>
+                 
+                 
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
-                    <input type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
-                </div>
+                
                 <div class="form-group col-md-6">
                     <label for="autoriza_envio_info">AUTORIZA ENVIO DE INFO POR CORREO</label>
                     <select class="form-control" id="autoriza_envio_info" name="autoriza_envio_info" value="<?=$autoriza_envio_info?>">
