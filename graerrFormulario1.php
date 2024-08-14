@@ -1011,11 +1011,7 @@
                             </div>
                         </div>       
                     </div> <!--container-->
-                    
-                    
-                
-                     <hr>
-                    </div>
+                  </div>
                 </div> <!-- panel body -->	 
               
                <div class="modal-footer"> 
