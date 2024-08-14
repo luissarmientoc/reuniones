@@ -649,7 +649,7 @@
                        </div>
                        
                        <div class="row" style="margin-top:5px;">   
-                           <div class="col-sm-6" align="left">
+                           <div class="col-sm-4" align="left">
                                <label for="tipo_documento">TIPO DE DOCUMENTO</label>
                                <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required>-->
                                <select <?=$active?> required class="form-control" name="tipo_documento">
@@ -657,7 +657,7 @@
                                </select> 
                            </div>
                            
-                           <div class="col-sm-6" align="left">
+                           <div class="col-sm-4" align="left">
                                <label for="no_documento">No DE DOCUMENTO</label>
                                <input type="text" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
                            </div>
@@ -736,6 +736,22 @@
                               <label for="otros_numeros_contacto">OTROS NUMEROS DE CONTACTO</label>
                               <input type="text" class="form-control" id="otros_numeros_contacto" name="otros_numeros_contacto"  value="<?=$otros_numeros_contacto?>">
                           </div>
+                       </div> <!--row-->
+                       
+                       <div class="col-sm-4" align="left">  
+                          <div class="form-group col-md-6">
+                              <label for="direccion">DIRECCION</label>
+                              <input type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
+                          </div>
+                          <div class="col-sm-4" align="left">
+                              <label for="departamento">DEPARTAMENTO</label>
+                              <input type="text" class="form-control" id="departamento" name="departamento"  value="<?=$departamento?>" required>
+                          </div>
+                          <div class="col-sm-4" align="left">
+                              <label for="municipio">MUNICIPIO</label>
+                              <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required>
+                          </div>
+                       
                        </div> <!--row-->
                        
                     </div> <!--container-->
