@@ -754,7 +754,7 @@
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">  
-                          <div class="col-sm-4" align="left">
+                          <div class="col-sm-8" align="left">
                               <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
                               <input type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
                           </div>
@@ -771,6 +771,30 @@
                                <h4>ASIGNACIÓN</h4>
                            </div>
                        </div>
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                          <div class="col-sm-4" align="left">
+                              <label for="autoriza_envio_info">AUTORIZA ENVIO DE INFO POR CORREO</label>
+                              <select class="form-control" id="autoriza_envio_info" name="autoriza_envio_info" value="<?=$autoriza_envio_info?>">
+                                  <option value="si">Sí</option>
+                                  <option value="no">No</option>
+                              </select>
+                          </div>
+                          
+                          <div class="col-sm-4" align="left">
+                              <label for="fecha_asignacion_analisis">FECHA ASIGNACION ANALISIS PRELIMINAR</label>
+                              <input type="date" class="form-control" id="fecha_asignacion_analisis" name="fecha_asignacion_analisis" value="<?=$fecha_asignacion_analisis?>">
+                          </div>
+                          
+                          <div class="col-sm-4" align="left">
+                              <label for="analista_solicitudes">ANALISTA DE SOLICITUDES</label>
+                              <select <?=$active?> required class="form-control" name="analista_solicitudes">
+                                 <?php echo $combo_analista_solicitudes; ?>
+                              </select>
+                          </div>
+                       
+                       </div> <!--row-->
+                       
                     </div> <!--container-->
                     
                     <div class="container" style="margin-bottom:10px;">
@@ -787,7 +811,7 @@
                     
                     <div class="container" style="margin-bottom:10px;">
                        <!--------------------------------------------------------- 
-                       ---------------------------ASIGNACIÓN----------------------
+                       ---------------------------ASIGNAffgfgfgfgfgCIÓN----------------------
                        ---------------------------------------------------------->
                        <div class="row" style="background-color:#5CB85C; color:#fff;" >
                            <div class="col-sm-10" align="center">
@@ -823,26 +847,10 @@
             </div>
             <div class="form-row">
                 
-                <div class="form-group col-md-6">
-                    <label for="autoriza_envio_info">AUTORIZA ENVIO DE INFO POR CORREO</label>
-                    <select class="form-control" id="autoriza_envio_info" name="autoriza_envio_info" value="<?=$autoriza_envio_info?>">
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
+                
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="fecha_asignacion_analisis">FECHA ASIGNACION ANALISIS PRELIMINAR</label>
-                    <input type="date" class="form-control" id="fecha_asignacion_analisis" name="fecha_asignacion_analisis" value="<?=$fecha_asignacion_analisis?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="analista_solicitudes">ANALISTA DE SOLICITUDES</label>
-                    
-                    <select <?=$active?> required class="form-control" name="analista_solicitudes">
-                       <?php echo $combo_analista_solicitudes; ?>
-                    </select>
-                </div>
+                
                 <div class="form-group col-md-4">
                     <label for="medidas_preventivas">MEDIDAS PREVENTIVAS</label>
                     <!--<input type="text" class="form-control" id="medidas_preventivas" name="medidas_preventivas" value="<?=$medidas_preventivas?>">-->
