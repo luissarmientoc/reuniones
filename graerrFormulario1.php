@@ -723,6 +723,21 @@
                            </div>
                        </div> <!--row-->
                        
+                       <div class="col-sm-4" align="left"> 
+                          <div class="form-group col-md-6">
+                              <label for="correo_electronico">CORREO ELECTRONICO</label>
+                              <input type="email" class="form-control" id="correo_electronico" name="correo_electronico"   value="<?=$correo_electronico?>"required>
+                          </div> 
+                          <div class="col-sm-4" align="left">
+                              <label for="no_contacto">No DE CONTACTO</label>
+                              <input type="text" class="form-control" id="no_contacto" name="no_contacto"  value="<?=$no_contacto?>" required>
+                          </div>
+                          <div class="col-sm-4" align="left">
+                              <label for="otros_numeros_contacto">OTROS NUMEROS DE CONTACTO</label>
+                              <input type="text" class="form-control" id="otros_numeros_contacto" name="otros_numeros_contacto"  value="<?=$otros_numeros_contacto?>">
+                          </div>
+                       </div> <!--row-->
+                       
                     </div> <!--container-->
                     
                     <div class="container" style="margin-bottom:10px;">
@@ -778,18 +793,7 @@
                 
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="correo_electronico">CORREO ELECTRONICO</label>
-                    <input type="email" class="form-control" id="correo_electronico" name="correo_electronico"   value="<?=$correo_electronico?>"required>
-                </div> 
-                <div class="form-group col-md-3">
-                    <label for="no_contacto">No DE CONTACTO</label>
-                    <input type="text" class="form-control" id="no_contacto" name="no_contacto"  value="<?=$no_contacto?>" required>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="otros_numeros_contacto">OTROS NUMEROS DE CONTACTO</label>
-                    <input type="text" class="form-control" id="otros_numeros_contacto" name="otros_numeros_contacto"  value="<?=$otros_numeros_contacto?>">
-                </div>
+                
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
