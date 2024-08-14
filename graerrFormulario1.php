@@ -572,7 +572,7 @@
                        ----------------------DATOS DEL TRAMITE--------------------
                        ---------------------------------------------------------->
                             <!--D8544F-->
-                       <div class="row"  style="background-color:#5CB85C;" color:#fff;>
+                       <div class="row"  style="background-color:#337AB8; color:#fff;" >
                            <div class="col-sm-10" align="center">
                                <h4>DATOS DEL TRAMITE</h4>
                            </div>
@@ -583,7 +583,7 @@
                        <!--------------------------------------------------------- 
                        -----------DATOS DEL BENEFICIARIO O SOLICITANTE------------
                        ---------------------------------------------------------->
-                       <div class="row" style="background-color:#337AB8; color:#fff;">
+                       <div class="row" style="background-color:#5CC0DE; color:#fff;">
                            <div class="col-sm-10" align="center">
                                <h4>DATOS DEL BENEFICIARIO O SOLICITANTE</h4>
                            </div>
@@ -594,7 +594,7 @@
                        <!--------------------------------------------------------- 
                        ---------------------------ASIGNACIÓN----------------------
                        ---------------------------------------------------------->
-                       <div class="row"  style="background-color:#5CC0DE;" color:#fff;>
+                       <div class="row"  style="background-color:#D9EDF7; color:#fff;" >
                            <div class="col-sm-10" align="center">
                                <h4>ASIGNACIÓN</h4>
                            </div>
@@ -605,7 +605,7 @@
                        <!--------------------------------------------------------- 
                        ---------------------------ASIGNACIÓN----------------------
                        ---------------------------------------------------------->
-                       <div class="row" style="background-color:#F0AD4E;" color:#fff;>
+                       <div class="row" style="background-color:#5CB85C; color:#fff;" >
                            <div class="col-sm-10" align="center">
                                <h4>PREMESA Y SUBCOMISIÓN</h4>
                            </div>
