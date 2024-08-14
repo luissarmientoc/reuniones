@@ -571,9 +571,9 @@
                        <!--------------------------------------------------------- 
                        ----------------------DATOS DEL TRAMITE--------------------
                        ---------------------------------------------------------->
-                       <div class="row" style="background-color:#f1c40f;">
-                           <div class="col-sm-10">
-                               <h2>DATOS DEL TRAMITE</h2>
+                       <div class="row" class="info">
+                           <div class="col-sm-10" align="center">
+                               <h3>DATOS DEL TRAMITE</h3>
                            </div>
                        </div>
                     </div> <!--container-->
@@ -582,9 +582,9 @@
                        <!--------------------------------------------------------- 
                        -----------DATOS DEL BENEFICIARIO O SOLICITANTE------------
                        ---------------------------------------------------------->
-                       <div class="row"  style="background-color:#f39c12;">
-                           <div class="col-sm-10">
-                               <h2>DATOS DEL BENEFICIARIO O SOLICITANTE</h2>
+                       <div class="row"  class="primary">
+                           <div class="col-sm-10" align="center">
+                               <h3>DATOS DEL BENEFICIARIO O SOLICITANTE</h3>
                            </div>
                        </div>
                     </div> <!--container-->
@@ -593,9 +593,9 @@
                        <!--------------------------------------------------------- 
                        ---------------------------ASIGNACIÓN----------------------
                        ---------------------------------------------------------->
-                       <div class="row"  style="background-color:#3498db;">
-                           <div class="col-sm-10">
-                               <h2>ASIGNACIÓN</h2>
+                       <div class="row"  class="success">
+                           <div class="col-sm-10" align="center">
+                               <h3>ASIGNACIÓN</h3>
                            </div>
                        </div>
                     </div> <!--container-->
@@ -604,12 +604,14 @@
                        <!--------------------------------------------------------- 
                        ---------------------------ASIGNACIÓN----------------------
                        ---------------------------------------------------------->
-                       <div class="row"  style="background-color:#2980b9;">
-                           <div class="col-sm-10">
-                               <h2>PREMESA Y SUBCOMISIÓN</h2>
+                       <div class="row"  class="warning">
+                           <div class="col-sm-10" align="center">
+                               <h3>PREMESA Y SUBCOMISIÓN</h3>
                            </div>
                        </div>
                     </div> <!--container-->
+                    
+                    <hr>
                    
                  <div class="container mt-5">
         <h1>Formulario de Registro Graerr</h1>
