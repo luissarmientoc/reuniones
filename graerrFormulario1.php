@@ -835,6 +835,31 @@
                            </div>
                        </div> <!--row-->
                        
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="analista_riesgo">ANALISTA DE RIESGO</label>
+                               <!--<input type="text" class="form-control" id="analista_riesgo" name="analista_riesgo" value="<?=$analista_riesgo?>">-->
+                               <select <?=$active?> required class="form-control" name="analista_riesgo">
+                                  <?php echo $combo_analista_riesgo; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="analista_riesgo_dos">ANALISTA DE RIESGO DOS</label>
+                               <!--<input type="text" class="form-control" id="analista_riesgo_dos" name="analista_riesgo_dos" value="<?=$analista_riesgo_dos?>">-->
+                               <select <?=$active?> required class="form-control" name="analista_riesgo_dos">
+                                  <?php echo $combo_analista_riesgo; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="analista_calidad">ANALISTA DE CALIDAD</label>
+                               <!--<input type="text" class="form-control" id="analista_calidad" name="analista_calidad" value="<?=$analista_calidad?>">-->
+                               <select <?=$active?> required class="form-control" name="analista_calidad">
+                                  <?php echo $combo_analista_calidad; ?>
+                               </select>
+                           </div>
+                       </div> <!--row-->
                     </div> <!--container-->
                     
                     <div class="container" style="margin-bottom:10px;">
@@ -898,29 +923,10 @@
             </div>
             <div class="form-row">
                 
-                <div class="form-group col-md-4">
-                    <label for="analista_riesgo">ANALISTA DE RIESGO</label>
-                    <!--<input type="text" class="form-control" id="analista_riesgo" name="analista_riesgo" value="<?=$analista_riesgo?>">-->
-                    <select <?=$active?> required class="form-control" name="analista_riesgo">
-                       <?php echo $combo_analista_riesgo; ?>
-                    </select>
-                </div>
+               
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="analista_riesgo_dos">ANALISTA DE RIESGO DOS</label>
-                    <!--<input type="text" class="form-control" id="analista_riesgo_dos" name="analista_riesgo_dos" value="<?=$analista_riesgo_dos?>">-->
-                    <select <?=$active?> required class="form-control" name="analista_riesgo_dos">
-                       <?php echo $combo_analista_riesgo; ?>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="analista_calidad">ANALISTA DE CALIDAD</label>
-                    <!--<input type="text" class="form-control" id="analista_calidad" name="analista_calidad" value="<?=$analista_calidad?>">-->
-                    <select <?=$active?> required class="form-control" name="analista_calidad">
-                       <?php echo $combo_analista_calidad; ?>
-                    </select>
-                </div>
+                
                 <div class="form-group col-md-4">
                     <label for="subpoblacion">SUBPOBLACION</label>
                     <!--<input type="text" class="form-control" id="subpoblacion" name="subpoblacion" value="<?=$subpoblacion?>">-->
