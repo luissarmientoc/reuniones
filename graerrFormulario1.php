@@ -792,7 +792,26 @@
                                  <?php echo $combo_analista_solicitudes; ?>
                               </select>
                           </div>
+                       </div> <!--row-->
                        
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="estado_solicitud">ESTADO DE LA SOLICITUD</label>
+                               <!--<input type="text" class="form-control" id="estado_solicitud" name="estado_solicitud" value="<?=$estado_solicitud?>">-->
+                               <select <?=$active?> required class="form-control" name="estado_solicitud">
+                                  <?php echo $combo_estado_solicitud; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="fecha_asignado_ot">FECHA ASIGNADO OT</label>
+                               <input type="date" class="form-control" id="fecha_asignado_ot" name="fecha_asignado_ot" value="<?=$fecha_asignado_ot?>">
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="fecha_reasignacion_ot">FECHA REASIGNACION OT</label>
+                               <input type="date" class="form-control" id="fecha_reasignacion_ot" name="fecha_reasignacion_ot" value="<?=$fecha_reasignacion_ot?>">
+                           </div>
                        </div> <!--row-->
                        
                     </div> <!--container-->
@@ -860,21 +879,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="estado_solicitud">ESTADO DE LA SOLICITUD</label>
-                    <!--<input type="text" class="form-control" id="estado_solicitud" name="estado_solicitud" value="<?=$estado_solicitud?>">-->
-                    <select <?=$active?> required class="form-control" name="estado_solicitud">
-                       <?php echo $combo_estado_solicitud; ?>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="fecha_asignado_ot">FECHA ASIGNADO OT</label>
-                    <input type="date" class="form-control" id="fecha_asignado_ot" name="fecha_asignado_ot" value="<?=$fecha_asignado_ot?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="fecha_reasignacion_ot">FECHA REASIGNACION OT</label>
-                    <input type="date" class="form-control" id="fecha_reasignacion_ot" name="fecha_reasignacion_ot" value="<?=$fecha_reasignacion_ot?>">
-                </div>
+                
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
