@@ -995,152 +995,33 @@
                            </div>
                         </div> <!--row-->
                         
-                        
-                        
-                    </div> <!--container-->
-                    
-                    
-                    <div class="container" style="margin-bottom:10px;">
-                       <!--------------------------------------------------------- 
-                       ---------------------------ASIGNAffgfgfgfgfgCIÓN----------------------
-                       ---------------------------------------------------------->
-                       <div class="row" style="background-color:#5CB85C; color:#fff;" >
-                           <div class="col-sm-10" align="center">
-                               <h4>ddfdfdfdfdfdfdfdfdfdfdfdfdfdf/h4>
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-6" align="left">
+                               <label for="otros">OTROS</label>
+                               <input type="text" class="form-control" id="otros" name="otros" value="<?=$otros?>">
                            </div>
-                       </div>
+                           <div class="col-sm-6" align="left">
+                               <label for="dev_traslados_poblacional">DEV/TRASLADOS POBLACIONAL</label>
+                               <input type="text" class="form-control" id="dev_traslados_poblacional" name="dev_traslados_poblacional" value="<?=$dev_traslados_poblacional?>">
+                           </div>
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-6" align="left">
+                            </div>
+                        </div>       
+                        
+                        
                     </div> <!--container-->
                     
+                    
+                
                     <hr>
                    
-                 <div class="container mt-5">
-        <h1>Formulario de Registro Graerr</h1>
-        <form action="procesar_formulario.php" method="post">
-             
-             
-            <div class="form-row">
-                 
                 
-            </div>
-             
-            <div class="form-row">
-                
-            </div>
-            <div class="form-row">
-                
-            </div>
-            <div class="form-row">
-                
-            </div>
-            <div class="form-row">
-                 
-                 
-            </div>
-            <div class="form-row">
-                
-                
-            </div>
-            <div class="form-row">
-                
-                
-            </div>
-            <div class="form-row">
-                
-            </div>
-            <div class="form-row">
-                
-               
-            </div>
-            <div class="form-row">
-                
-                
-            </div>
-            <div class="form-row">
-                
-                
-            </div>
-            <div class="form-row">
-                
-                
-            </div>
-            <div class="form-row">
-                
-                
-                
-            </div>
-            <div class="form-row">
-               
-            </div>
-            <div class="form-row">
-                
-                
-                
-            
-            
-            
-            </div>
-            <div class="form-row">
-                
-                
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="otros">OTROS</label>
-                    <input type="text" class="form-control" id="otros" name="otros" value="<?=$otros?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="dev_traslados_poblacional">DEV/TRASLADOS POBLACIONAL</label>
-                    <input type="text" class="form-control" id="dev_traslados_poblacional" name="dev_traslados_poblacional" value="<?=$dev_traslados_poblacional?>">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-            
-            <input style="visibility:hidden" name="registro" id="registro" value="<?=$s_registro?>"/>
-             <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
-             <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
-        </form>
-    </div>
             </div>
                  
-                 
-                 
-                 
-                 
-                 
-                 <div class="row">
-                    <div class="col-md-9 col-lg-9">
-                        <label for="registro">REGISTRO</label>
-                        <input type="text" class="form-control" id="registro" name="registro"  value="<?=$registro?>"required>
-                    </div>
-                <div class="col-md-9 col-lg-9">
-                    <label for="vigencia">VIGENCIA</label>
-                    <!--<input type="text" class="form-control" id="vigencia" name="vigencia" value="<?=$vigencia?>"required>-->
-                     <select <?=$active?> required class="form-control" name="vigencia">
-                       <?php echo $combo_vigencia; ?>
-                     </select> 
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="fecha_recepcion_unp">FECHA DE RECEPCION EN LA UNP</label>
-                    <input type="date" class="form-control" id="fecha_recepcion_unp" name="fecha_recepcion_unp"  value="<?=$fecha_recepcion_unp?>" required>
-                </div>
-            </div>
-                   
-                   
-                   
-                   
-                   
-                  <div class="row">
-                    <div class=" col-md-9 col-lg-9 "> 
-                        <table class="table table-condensed">
-                         <tbody>
-                          <tr>
-                              <td class='col-md-3' align="right"> Nombre del Grupo Interno: </td>
-                              <td> <textarea class="form-control" id="grupoInterno" name="grupoInterno" required style="text-transform:uppercase;"><?=$s_grupoInterno?></textarea> </td>
-                          </tr> 
-                         </tbody>
-                        </table>			
-                     </div>        	      
-                  </div> <!--row-->        	       
+                     	       
                 </div> <!-- panel body -->	 
               
                <div class="modal-footer"> 
