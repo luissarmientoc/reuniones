@@ -596,13 +596,12 @@
                                <label for="fecha_recepcion_unp">FECHA DE RECEPCION EN LA UNP</label>
                                <input type="date" class="form-control" id="fecha_recepcion_unp" name="fecha_recepcion_unp"  value="<?=$fecha_recepcion_unp?>" required>
                            </div>
-                           
-                           <div class="col-sm-3" align="center">
-                               <label for="fecha_carta_solicitante">FECHA DE CARTA SOLICITANTE</label>
-                               <input type="date" class="form-control" id="fecha_carta_solicitante" name="fecha_carta_solicitante"  value="<?=$fecha_carta_solicitante?>" required>
-                           </div>
-                       </div>
-                       
+                          
+                            <div class="col-sm-3" align="center">
+                               <label for="fecha_recepcion_graerr">FECHA RECEPCION GRAERR</label>
+                               <input type="date" class="form-control" id="fecha_recepcion_graerr" name="fecha_recepcion_graerr"  value="<?=$fecha_recepcion_graerr?>" required>
+                            </div>
+                       </div> <!--row-->
                     </div> <!--container-->
                     
                     <div class="container">   
@@ -615,9 +614,13 @@
                            </div>
                        </div>
                        
+                       <div class="row">
+                           <div class="col-sm-3" align="center">
+                               <label for="fecha_carta_solicitante">FECHA DE CARTA SOLICITANTE</label>
+                               <input type="date" class="form-control" id="fecha_carta_solicitante" name="fecha_carta_solicitante"  value="<?=$fecha_carta_solicitante?>" required>
+                           </div>
                        
-                       
-                       
+                       </div> <!--row-->
                     </div> <!--container-->
                     
                     <div class="container">
