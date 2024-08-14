@@ -891,6 +891,22 @@
                                <h4>PREMESA Y SUBCOMISIÓN</h4>
                            </div>
                        </div>
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
+                               <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="fecha_tramite_emergencia">FECHA TRAMITE DE EMERGENCIA</label>
+                               <input type="date" class="form-control" id="fecha_tramite_emergencia" name="fecha_tramite_emergencia" value="<?=$fecha_tramite_emergencia?>">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="ingreso_calidad">INGRESO A CALIDAD</label>
+                               <input type="text" class="form-control" id="ingreso_calidad" name="ingreso_calidad" value="<?=$ingreso_calidad?>">
+                           </div>
+                        </div> <!--row-->
+                        
                     </div> <!--container-->
                     
                     
@@ -900,7 +916,7 @@
                        ---------------------------------------------------------->
                        <div class="row" style="background-color:#5CB85C; color:#fff;" >
                            <div class="col-sm-10" align="center">
-                               <h4>PREMESA Y SUBCOMISIÓN</h4>
+                               <h4>ddfdfdfdfdfdfdfdfdfdfdfdfdfdf/h4>
                            </div>
                        </div>
                     </div> <!--container-->
@@ -951,20 +967,10 @@
             </div>
             <div class="form-row">
                 
-                <div class="form-group col-md-4">
-                    <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
-                    <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="fecha_tramite_emergencia">FECHA TRAMITE DE EMERGENCIA</label>
-                    <input type="date" class="form-control" id="fecha_tramite_emergencia" name="fecha_tramite_emergencia" value="<?=$fecha_tramite_emergencia?>">
-                </div>
+                
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="ingreso_calidad">INGRESO A CALIDAD</label>
-                    <input type="text" class="form-control" id="ingreso_calidad" name="ingreso_calidad" value="<?=$ingreso_calidad?>">
-                </div>
+                
                 <div class="form-group col-md-4">
                     <label for="fecha_aprobacion_calidad">FECHA APROBACION ASESOR TECNICO CALIDAD</label>
                     <input type="date" class="form-control" id="fecha_aprobacion_calidad" name="fecha_aprobacion_calidad" value="<?=$fecha_aprobacion_calidad?>">
