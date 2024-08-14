@@ -638,7 +638,7 @@
                        </div> <!--row-->
                     </div> <!--container-->
                     
-                    <div class="container">   
+                    <div class="container"  style="margin-bottom:10px;">   
                        <!--------------------------------------------------------- 
                        -----------DATOS DEL BENEFICIARIO O SOLICITANTE------------
                        ---------------------------------------------------------->
@@ -860,6 +860,26 @@
                                </select>
                            </div>
                        </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                          <div class="col-sm-4" align="left">
+                              <label for="subpoblacion">SUBPOBLACION</label>
+                              <!--<input type="text" class="form-control" id="subpoblacion" name="subpoblacion" value="<?=$subpoblacion?>">-->
+                              <select <?=$active?> required class="form-control" name="subpoblacion">
+                                 <?php echo $combo_factor_diferencial; ?>
+                              </select>
+                          </div>
+                
+                          <div class="col-sm-4" align="left">
+                              <label for="tipo_estudio_riesgo">TIPO ESTUDIO DE RIESGO</label>
+                              <!--<input type="text" class="form-control" id="tipo_estudio_riesgo" name="tipo_estudio_riesgo" value="<?=$tipo_estudio_riesgo?>">-->
+                              <select <?=$active?> required class="form-control" name="tipo_estudio_riesgo">
+                                 <?php echo $combo_tipo_estudio_riesgo; ?>
+                              </select>
+                          </div>
+                       </div> <!--row-->
+                       
+                       
                     </div> <!--container-->
                     
                     <div class="container" style="margin-bottom:10px;">
@@ -927,22 +947,10 @@
             </div>
             <div class="form-row">
                 
-                <div class="form-group col-md-4">
-                    <label for="subpoblacion">SUBPOBLACION</label>
-                    <!--<input type="text" class="form-control" id="subpoblacion" name="subpoblacion" value="<?=$subpoblacion?>">-->
-                    <select <?=$active?> required class="form-control" name="subpoblacion">
-                       <?php echo $combo_factor_diferencial; ?>
-                    </select>
-                </div>
+                
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="tipo_estudio_riesgo">TIPO ESTUDIO DE RIESGO</label>
-                    <!--<input type="text" class="form-control" id="tipo_estudio_riesgo" name="tipo_estudio_riesgo" value="<?=$tipo_estudio_riesgo?>">-->
-                    <select <?=$active?> required class="form-control" name="tipo_estudio_riesgo">
-                       <?php echo $combo_tipo_estudio_riesgo; ?>
-                    </select>
-                </div>
+                
                 <div class="form-group col-md-4">
                     <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
                     <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
