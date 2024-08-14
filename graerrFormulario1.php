@@ -578,7 +578,7 @@
                            </div>
                        </div>
                        
-                       <div class="row">
+                       <div class="row" style="margin-top:5px;">
                            <div class="col-sm-3" align="left">
                                <label for="registro">REGISTRO</label>
                                <input type="text" class="form-control" id="registro" name="registro"  value="<?=$registro?>"required>
@@ -603,7 +603,7 @@
                             </div>
                        </div> <!--row-->
                        
-                       <div class="row">
+                       <div class="row" style="margin-top:5px;">
                            <div class="col-sm-3" align="left">
                                <label for="fecha_carta_solicitante">FECHA DE CARTA SOLICITANTE</label>
                                <input type="date" class="form-control" id="fecha_carta_solicitante" name="fecha_carta_solicitante"  value="<?=$fecha_carta_solicitante?>" required>
@@ -623,12 +623,18 @@
                                 <label for="no_folios">No FOLIOS</label>
                                 <input type="text" class="form-control" id="no_folios" name="no_folios"  value="<?=$no_folios?>" required>
                             </div>
-                            
-                            <div class="col-sm-3" align="left">
+                       </div> <!--row-->    
+                       
+                       <div class="row" style="margin-top:5px;">    
+                            <div class="col-sm-6" align="left">
                                 <label for="entidad_persona_solicitante">ENTIDAD/PERSONA SOLICITANTE</label>
                                 <input type="text" class="form-control" id="entidad_persona_solicitante" name="entidad_persona_solicitante"  value="<?=$entidad_persona_solicitante?>" required>
                             </div>
-                       
+                            
+                            <div class="col-sm-6" align="left">
+                                <label for="destinatario">DESTINATARIO</label>
+                                <input type="text" class="form-control" id="destinatario" name="destinatario"  value="<?=$destinatario?>" required>
+                            </div>
                        </div> <!--row-->
                     </div> <!--container-->
                     
