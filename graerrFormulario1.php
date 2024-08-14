@@ -573,7 +573,7 @@
                        ---------------------------------------------------------->
                             <!--D8544F-->
                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
-                           <div class="col-sm-10" align="center">
+                           <div class="col-sm-12" align="center">
                                <h4>DATOS DEL TRAMITE</h4>
                            </div>
                        </div>
@@ -643,12 +643,36 @@
                        -----------DATOS DEL BENEFICIARIO O SOLICITANTE------------
                        ---------------------------------------------------------->
                        <div class="row" style="background-color:#5CC0DE; color:#fff;">
-                           <div class="col-sm-10" align="center">
+                           <div class="col-sm-12" align="center">
                                <h4>DATOS DEL BENEFICIARIO O SOLICITANTE</h4>
                            </div>
                        </div>
                        
+                       <div class="row" style="margin-top:5px;">   
+                           <div class="col-sm-3" align="left">
+                               <label for="tipo_documento">TIPO DE DOCUMENTO</label>
+                               <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required>-->
+                               <select <?=$active?> required class="form-control" name="tipo_documento">
+                                  <?php echo $combo_tipo_documento; ?>
+                               </select> 
+                           </div>
+                           
+                           <div class="col-sm-3" align="left">
+                               <label for="no_documento">No DE DOCUMENTO</label>
+                               <input type="text" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
+                           </div>
+                           
+                           <div class="col-sm-3" align="left">
+                               <label for="nombres_apellidos_peticionario">NOMBRES Y APELLIDOS PETICIONARIO O BENEFICIARIO</label>
+                               <input type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
+                           </div>
+                           
+                           <div class="col-sm-3" align="left">
+                               <label for="seudonimo">SEUDONIMO</label>
+                               <input type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
+                           </div>
                        
+                       </div> <!--row-->
                     </div> <!--container-->
                     
                     <div class="container">
@@ -656,7 +680,7 @@
                        ---------------------------ASIGNACIÓN----------------------
                        ---------------------------------------------------------->
                        <div class="row"  style="background-color:#D9EDF7; color:#2f79b9;" >
-                           <div class="col-sm-10" align="center">
+                           <div class="col-sm-12" align="center">
                                <h4>ASIGNACIÓN</h4>
                            </div>
                        </div>
@@ -667,7 +691,7 @@
                        ---------------------------PREMESA Y SUBCOMISIÓN----------------------
                        ---------------------------------------------------------->
                        <div class="row" style="background-color:#5CB85C; color:#fff;" >
-                           <div class="col-sm-10" align="center">
+                           <div class="col-sm-12" align="center">
                                <h4>PREMESA Y SUBCOMISIÓN</h4>
                            </div>
                        </div>
@@ -690,68 +714,11 @@
                  <div class="container mt-5">
         <h1>Formulario de Registro Graerr</h1>
         <form action="procesar_formulario.php" method="post">
+             
+             
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="registro">REGISTRO</label>
-                    <input type="text" class="form-control" id="registro" name="registro"  value="<?=$registro?>"required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="vigencia">VIGENCIA</label>
-                    <!--<input type="text" class="form-control" id="vigencia" name="vigencia" value="<?=$vigencia?>"required>-->
-                     <select <?=$active?> required class="form-control" name="vigencia">
-                       <?php echo $combo_vigencia; ?>
-                     </select> 
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="fecha_recepcion_unp">FECHA DE RECEPCION EN LA UNP</label>
-                    <input type="date" class="form-control" id="fecha_recepcion_unp" name="fecha_recepcion_unp"  value="<?=$fecha_recepcion_unp?>" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="fecha_recepcion_graerr">FECHA RECEPCION GRAERR</label>
-                    <input type="date" class="form-control" id="fecha_recepcion_graerr" name="fecha_recepcion_graerr"  value="<?=$fecha_recepcion_graerr?>" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="fecha_carta_solicitante">FECHA DE CARTA SOLICITANTE</label>
-                    <input type="date" class="form-control" id="fecha_carta_solicitante" name="fecha_carta_solicitante"  value="<?=$fecha_carta_solicitante?>" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="no_mem_ext">No MEM y/o EXT</label>
-                    <input type="text" class="form-control" id="no_mem_ext" name="no_mem_ext"  value="<?=$no_mem_ext?>" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="otras_entradas_sigob">OTRAS ENTRADAS SIGOB</label>
-                    <input type="text" class="form-control" id="otras_entradas_sigob" name="otras_entradas_sigob"  value="<?=$otras_entradas_sigob?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="no_folios">No FOLIOS</label>
-                    <input type="text" class="form-control" id="no_folios" name="no_folios"  value="<?=$no_folios?>" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="entidad_persona_solicitante">ENTIDAD/PERSONA SOLICITANTE</label>
-                    <input type="text" class="form-control" id="entidad_persona_solicitante" name="entidad_persona_solicitante"  value="<?=$entidad_persona_solicitante?>" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="destinatario">DESTINATARIO</label>
-                    <input type="text" class="form-control" id="destinatario" name="destinatario"  value="<?=$destinatario?>" required>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="tipo_documento">TIPO DE DOCUMENTO</label>
-                    <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required>-->
-                    <select <?=$active?> required class="form-control" name="tipo_documento">
-                       <?php echo $combo_tipo_documento; ?>
-                    </select> 
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="no_documento">No DE DOCUMENTO</label>
-                    <input type="text" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
-                    
-                </div>
+                 
+                
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
