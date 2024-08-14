@@ -649,7 +649,7 @@
                        </div>
                        
                        <div class="row" style="margin-top:5px;">   
-                           <div class="col-sm-3" align="left">
+                           <div class="col-sm-6" align="left">
                                <label for="tipo_documento">TIPO DE DOCUMENTO</label>
                                <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required>-->
                                <select <?=$active?> required class="form-control" name="tipo_documento">
@@ -657,7 +657,7 @@
                                </select> 
                            </div>
                            
-                           <div class="col-sm-3" align="left">
+                           <div class="col-sm-6" align="left">
                                <label for="no_documento">No DE DOCUMENTO</label>
                                <input type="text" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
                            </div>
@@ -678,6 +678,26 @@
                                <label for="seudonimo">SEUDONIMO</label>
                                <input type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
                            </div>
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;">   
+                          <div class="col-sm-4" align="left">
+                              <label for="tipo_ruta">TIPO DE RUTA</label>
+                              <!--<input type="text" class="form-control" id="tipo_ruta" name="tipo_ruta"  value="<?=$tipo_ruta?>">-->
+                               <select <?=$active?> required class="form-control" name="tipo_ruta">
+                                 <?php echo $combo_tipo_ruta; ?>
+                               </select>
+                          </div>
+                          
+                          <div class="col-sm-4" align="left">
+                              <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
+                              <input type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
+                          </div>
+                          
+                          <div class="col-sm-4" align="left">
+                              <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
+                              <input type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
+                          </div>
                        
                        </div> <!--row-->
                        
@@ -728,32 +748,9 @@
                  
                 
             </div>
+             
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="nombres_apellidos_peticionario">NOMBRES Y APELLIDOS PETICIONARIO O BENEFICIARIO</label>
-                    <input type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="seudonimo">SEUDONIMO</label>
-                    <input type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="tipo_ruta">TIPO DE RUTA</label>
-                    <!--<input type="text" class="form-control" id="tipo_ruta" name="tipo_ruta"  value="<?=$tipo_ruta?>">-->
-                     <select <?=$active?> required class="form-control" name="tipo_ruta">
-                       <?php echo $combo_tipo_ruta; ?>
-                     </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
-                    <input type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
-                    <input type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
-                </div>
+                
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
