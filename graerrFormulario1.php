@@ -571,10 +571,10 @@
                        <!--------------------------------------------------------- 
                        ----------------------DATOS DEL TRAMITE--------------------
                        ---------------------------------------------------------->
-                       <div class="row" style="background-color:#337AB8;">     <!--D8544F-->
+                       <div class="row" style="background-color:#337AB8; color:#fff;">     <!--D8544F-->
 5CB85C
                            <div class="col-sm-10" align="center">
-                               <h3>DATOS DEL TRAMITE</h3>
+                               <h4>DATOS DEL TRAMITE</h4>
                            </div>
                        </div>
                     </div> <!--container-->
