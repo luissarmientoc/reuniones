@@ -567,6 +567,50 @@
                   
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">			 
                <div class="panel-body">
+                   <div class="container">
+                       <!--------------------------------------------------------- 
+                       ----------------------DATOS DEL TRAMITE--------------------
+                       ---------------------------------------------------------->
+                       <div class="row" style="background-color:#f1c40f;">
+                           <div class="col-sm-10">
+                               <h2>DATOS DEL TRAMITE</h2>
+                           </div>
+                       </div>
+                    </div> <!--container-->
+                    
+                    <div class="container">   
+                       <!--------------------------------------------------------- 
+                       -----------DATOS DEL BENEFICIARIO O SOLICITANTE------------
+                       ---------------------------------------------------------->
+                       <div class="row"  style="background-color:#f39c12;">
+                           <div class="col-sm-10">
+                               <h2>DATOS DEL BENEFICIARIO O SOLICITANTE</h2>
+                           </div>
+                       </div>
+                    </div> <!--container-->
+                    
+                    <div class="container">
+                       <!--------------------------------------------------------- 
+                       ---------------------------ASIGNACIÓN----------------------
+                       ---------------------------------------------------------->
+                       <div class="row"  style="background-color:#3498db;">
+                           <div class="col-sm-10">
+                               <h2>ASIGNACIÓN</h2>
+                           </div>
+                       </div>
+                    </div> <!--container-->
+                    
+                    <div>
+                       <!--------------------------------------------------------- 
+                       ---------------------------ASIGNACIÓN----------------------
+                       ---------------------------------------------------------->
+                       <div class="row"  style="background-color:#2980b9;">
+                           <div class="col-sm-10">
+                               <h2>PREMESA Y SUBCOMISIÓN</h2>
+                           </div>
+                       </div>
+                    </div> <!--container-->
+                   
                  <div class="container mt-5">
         <h1>Formulario de Registro Graerr</h1>
         <form action="procesar_formulario.php" method="post">
