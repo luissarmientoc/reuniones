@@ -722,9 +722,9 @@
                                </select>
                            </div>
                        </div> <!--row-->
-                       
-                       <div class="col-sm-4" align="left"> 
-                          <div class="form-group col-md-6">
+                        
+                        <div class="row" style="margin-top:5px;">                          
+                          <div class="col-sm-4" align="left"> 
                               <label for="correo_electronico">CORREO ELECTRONICO</label>
                               <input type="email" class="form-control" id="correo_electronico" name="correo_electronico"   value="<?=$correo_electronico?>"required>
                           </div> 
