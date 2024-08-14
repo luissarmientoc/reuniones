@@ -571,8 +571,8 @@
                        <!--------------------------------------------------------- 
                        ----------------------DATOS DEL TRAMITE--------------------
                        ---------------------------------------------------------->
-                       <div class="row" style="background-color:#337AB8; color:#fff;">     <!--D8544F-->
-5CB85C
+                            <!--D8544F-->
+                       <div class="row"  style="background-color:#5CB85C;" color:#fff;>
                            <div class="col-sm-10" align="center">
                                <h4>DATOS DEL TRAMITE</h4>
                            </div>
@@ -583,9 +583,9 @@
                        <!--------------------------------------------------------- 
                        -----------DATOS DEL BENEFICIARIO O SOLICITANTE------------
                        ---------------------------------------------------------->
-                       <div class="row"  style="background-color:#5CB85C;">
+                       <div class="row" style="background-color:#337AB8; color:#fff;">
                            <div class="col-sm-10" align="center">
-                               <h3>DATOS DEL BENEFICIARIO O SOLICITANTE</h3>
+                               <h4>DATOS DEL BENEFICIARIO O SOLICITANTE</h4>
                            </div>
                        </div>
                     </div> <!--container-->
@@ -594,9 +594,9 @@
                        <!--------------------------------------------------------- 
                        ---------------------------ASIGNACIÓN----------------------
                        ---------------------------------------------------------->
-                       <div class="row"  style="background-color:#5CC0DE;">
+                       <div class="row"  style="background-color:#5CC0DE;" color:#fff;>
                            <div class="col-sm-10" align="center">
-                               <h3>ASIGNACIÓN</h3>
+                               <h4>ASIGNACIÓN</h4>
                            </div>
                        </div>
                     </div> <!--container-->
@@ -605,9 +605,9 @@
                        <!--------------------------------------------------------- 
                        ---------------------------ASIGNACIÓN----------------------
                        ---------------------------------------------------------->
-                       <div class="row" style="background-color:#F0AD4E;">
+                       <div class="row" style="background-color:#F0AD4E;" color:#fff;>
                            <div class="col-sm-10" align="center">
-                               <h3>PREMESA Y SUBCOMISIÓN</h3>
+                               <h4>PREMESA Y SUBCOMISIÓN</h4>
                            </div>
                        </div>
                     </div> <!--container-->
