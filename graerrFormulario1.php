@@ -767,13 +767,6 @@
                               <input type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
                           </div>
                           
-                          <div class="col-sm-4" align="left">
-                               <label for="seguimiento">SEGUIMIENTO</label>
-                               <!--<input type="text" class="form-control" id="seguimiento" name="seguimiento" value="<?=$seguimiento?>">-->
-                               <select <?=$active?> required class="form-control" name="seguimiento">
-                                  <?php echo $combo_seguimiento; ?>
-                               </select>
-                           </div>
                        </div> <!--row-->
                        
                     </div> <!--container-->
@@ -893,7 +886,28 @@
                                  <?php echo $combo_tipo_estudio_riesgo; ?>
                               </select>
                           </div>
+                          
+                           <div class="col-sm-4" align="left">
+                               <label for="seguimiento">SEGUIMIENTO</label>
+                               <!--<input type="text" class="form-control" id="seguimiento" name="seguimiento" value="<?=$seguimiento?>">-->
+                               <select <?=$active?> required class="form-control" name="seguimiento">
+                                  <?php echo $combo_seguimiento; ?>
+                               </select>
+                           </div>
                        </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="reporte_936">REPORTE 936</label>
+                               <input type="text" class="form-control" id="reporte_936" name="reporte_936" value="<?=$reporte_936?>">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="verificacion">VERIFICACION</label>
+                               <input type="text" class="form-control" id="verificacion" name="verificacion" value="<?=$verificacion?>">
+                           </div>
+                       </div> <!--row-->
+                       
+                       
                        
                        
                     </div> <!--container-->
@@ -981,14 +995,7 @@
                            </div>
                         </div> <!--row-->
                         
-                        <div class="row" style="margin-top:5px;"> 
-                           
-                           
-                           <div class="col-sm-4" align="left">
-                               <label for="reporte_936">REPORTE 936</label>
-                               <input type="text" class="form-control" id="reporte_936" name="reporte_936" value="<?=$reporte_936?>">
-                           </div>
-                        </div> <!--row-->
+                        
                         
                     </div> <!--container-->
                     
@@ -1074,10 +1081,7 @@
             </div>
             <div class="form-row">
                 
-                <div class="form-group col-md-4">
-                    <label for="verificacion">VERIFICACION</label>
-                    <input type="text" class="form-control" id="verificacion" name="verificacion" value="<?=$verificacion?>">
-                </div>
+                
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
