@@ -512,7 +512,7 @@
       {
         $combo_vigencia .=" <option value='".$line['id']."' selected>".$line['ano']." </option>"; 
       }
-      $combo_vigencia .=" <option value='".$line['id']."'>".$line['tipo_ruta']."</ano>"; 
+     // $combo_vigencia .=" <option value='".$line['id']."'>".$line['tipo_ruta']."</ano>"; 
       $i++; 
     }
    
@@ -588,6 +588,33 @@
                                <h4>DATOS DEL BENEFICIARIO O SOLICITANTE</h4>
                            </div>
                        </div>
+                       
+                       <div class="row">
+                           <div class="col-sm-3" align="center">
+                               <label for="registro">REGISTRO</label>
+                               <input type="text" class="form-control" id="registro" name="registro"  value="<?=$registro?>"required>
+                           </div>
+                           
+                           <div class="col-sm-3" align="center">
+                               <label for="vigencia">VIGENCIA</label>
+                               <!--<input type="text" class="form-control" id="vigencia" name="vigencia" value="<?=$vigencia?>"required>-->
+                                <select <?=$active?> required class="form-control" name="vigencia">
+                                  <?php echo $combo_vigencia; ?>
+                                </select>
+                           </div>
+                           
+                           <div class="col-sm-3" align="center">
+                               <label for="fecha_recepcion_unp">FECHA DE RECEPCION EN LA UNP</label>
+                               <input type="date" class="form-control" id="fecha_recepcion_unp" name="fecha_recepcion_unp"  value="<?=$fecha_recepcion_unp?>" required>
+                           </div>
+                           
+                           <div class="col-sm-3" align="center">
+                               <label for="fecha_carta_solicitante">FECHA DE CARTA SOLICITANTE</label>
+                               <input type="date" class="form-control" id="fecha_carta_solicitante" name="fecha_carta_solicitante"  value="<?=$fecha_carta_solicitante?>" required>
+                           </div>
+                       </div>
+                       
+                       
                     </div> <!--container-->
                     
                     <div class="container">
