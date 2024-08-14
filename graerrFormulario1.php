@@ -907,6 +907,31 @@
                            </div>
                         </div> <!--row-->
                         
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                              <label for="fecha_aprobacion_calidad">FECHA APROBACION ASESOR TECNICO CALIDAD</label>
+                              <input type="date" class="form-control" id="fecha_aprobacion_calidad" name="fecha_aprobacion_calidad" value="<?=$fecha_aprobacion_calidad?>">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                              <label for="fecha_presentacion_premesa">FECHA PRESENTACION PREMESA</label>
+                              <input type="date" class="form-control" id="fecha_presentacion_premesa" name="fecha_presentacion_premesa" value="<?=$fecha_presentacion_premesa?>">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="recomendacion_medidas_premesa">RECOMENDACION DE MEDIDAS PREMESA</label>
+                               <!--<input type="text" class="form-control" id="recomendacion_medidas_premesa" name="recomendacion_medidas_premesa" value="<?=$recomendacion_medidas_premesa?>">-->
+                               <select <?=$active?> required class="form-control" name="recomendacion_medidas_premesa">
+                                  <?php echo $combo_recomendacion_premesa; ?>
+                               </select>
+                           </div>
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-12" align="left">
+                              <label for="recomendacion_riesgo_premesa">RECOMENDACION DEL RIESGO PREMESA</label>
+                              <input type="text" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa" value="<?=$recomendacion_riesgo_premesa?>">
+                           </div>
+                        </div> <!--row-->
+                        
                     </div> <!--container-->
                     
                     
@@ -971,27 +996,11 @@
             </div>
             <div class="form-row">
                 
-                <div class="form-group col-md-4">
-                    <label for="fecha_aprobacion_calidad">FECHA APROBACION ASESOR TECNICO CALIDAD</label>
-                    <input type="date" class="form-control" id="fecha_aprobacion_calidad" name="fecha_aprobacion_calidad" value="<?=$fecha_aprobacion_calidad?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="fecha_presentacion_premesa">FECHA PRESENTACION PREMESA</label>
-                    <input type="date" class="form-control" id="fecha_presentacion_premesa" name="fecha_presentacion_premesa" value="<?=$fecha_presentacion_premesa?>">
-                </div>
+                
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="recomendacion_riesgo_premesa">RECOMENDACION DEL RIESGO PREMESA</label>
-                    <input type="text" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa" value="<?=$recomendacion_riesgo_premesa?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="recomendacion_medidas_premesa">RECOMENDACION DE MEDIDAS PREMESA</label>
-                    <!--<input type="text" class="form-control" id="recomendacion_medidas_premesa" name="recomendacion_medidas_premesa" value="<?=$recomendacion_medidas_premesa?>">-->
-                    <select <?=$active?> required class="form-control" name="recomendacion_medidas_premesa">
-                       <?php echo $combo_recomendacion_premesa; ?>
-                    </select>
-                </div>
+                
+                
                 <div class="form-group col-md-4">
                     <label for="observaciones_premesa">OBSERVACIONES PREMESA</label>
                     <input type="text" class="form-control" id="observaciones_premesa" name="observaciones_premesa" value="<?=$observaciones_premesa?>">
