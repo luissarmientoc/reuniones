@@ -1019,8 +1019,8 @@
                 </div> <!-- panel body -->	 
               
                <div class="modal-footer"> 
-                <div class="col-sm-11" align="right">  					  			 
-                  <button type="submit" name='grabar' class="btn btn-md btn-success"><i class="glyphicon glyphicon-refresh"></i> <?=$boton?> </button>
+                <div class="col-sm-11" align="center">  					  			 
+                  <button type="submit" name='grabar' class="btn btn-md btn-success btn-lg"><i class="glyphicon glyphicon-refresh"></i> <?=$boton?> </button>
                 </div>	 
               </div>
          
