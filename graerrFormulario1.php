@@ -940,19 +940,19 @@
                         </div> <!--row-->
                         
                         <div class="row" style="margin-top:5px;"> 
-                           <div class="col-sm-4" align="left">
+                           <div class="col-sm-3" align="left">
                                <label for="tiempo_gestion_graerr">TIEMPO GESTION GRAERR</label>
                                <input type="text" class="form-control" id="tiempo_gestion_graerr" name="tiempo_gestion_graerr" value="<?=$tiempo_gestion_graerr?>">
                            </div>
-                           <div class="col-sm-4" align="left">
+                           <div class="col-sm-3" align="left">
                                <label for="remision_mesa_tecnica">REMISION MESA TECNICA</label>
                                <input type="text" class="form-control" id="remision_mesa_tecnica" name="remision_mesa_tecnica" value="<?=$remision_mesa_tecnica?>">
                            </div>
-                           <div class="col-sm-4" align="left">
+                           <div class="col-sm-3" align="left">
                                <label for="mes_remision">MES DE REMISION</label>
                                <input type="number" class="form-control" id="mes_remision" name="mes_remision" min="1" max="12" value="<?=$mes_remision?>">
                            </div>
-                           <div class="col-sm-4" align="left">
+                           <div class="col-sm-3" align="left">
                                <label for="ano_remision">AÑO DE REMISION</label>
                                <input type="number" class="form-control" id="ano_remision" name="ano_remision" min="1900" max="2099" value="<?=$ano_remision?>">
                            </div>
@@ -961,7 +961,28 @@
                         <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-12" align="left">
                                <label for="observaciones">OBSERVACIONES</label>
-                               <textarea class="form-control" id="observaciones" name="observaciones"> "<?=$observaciones?>" </textarea>
+                               <textarea class="form-control" id="observaciones" name="observaciones" rows="4"> <?=$observaciones?> </textarea>
+                           </div>
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="seguimiento">SEGUIMIENTO</label>
+                               <!--<input type="text" class="form-control" id="seguimiento" name="seguimiento" value="<?=$seguimiento?>">-->
+                               <select <?=$active?> required class="form-control" name="seguimiento">
+                                  <?php echo $combo_seguimiento; ?>
+                               </select>
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="factor_diferencial">FACTOR DIFERENCIAL</label>
+                               <!--<input type="text" class="form-control" id="factor_diferencial" name="factor_diferencial" value="<?=$factor_diferencial?>">-->
+                               <select <?=$active?> required class="form-control" name="factor_diferencial">
+                                  <?php echo $combo_factor_diferencial; ?>
+                               </select>
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="reporte_936">REPORTE 936</label>
+                               <input type="text" class="form-control" id="reporte_936" name="reporte_936" value="<?=$reporte_936?>">
                            </div>
                         </div> <!--row-->
                         
@@ -1042,26 +1063,13 @@
             <div class="form-row">
                 
                 
-                <div class="form-group col-md-4">
-                    <label for="seguimiento">SEGUIMIENTO</label>
-                    <!--<input type="text" class="form-control" id="seguimiento" name="seguimiento" value="<?=$seguimiento?>">-->
-                    <select <?=$active?> required class="form-control" name="seguimiento">
-                       <?php echo $combo_seguimiento; ?>
-                    </select>
-                </div>
+                
+            
+            
+            
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="factor_diferencial">FACTOR DIFERENCIAL</label>
-                    <!--<input type="text" class="form-control" id="factor_diferencial" name="factor_diferencial" value="<?=$factor_diferencial?>">-->
-                    <select <?=$active?> required class="form-control" name="factor_diferencial">
-                       <?php echo $combo_factor_diferencial; ?>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="reporte_936">REPORTE 936</label>
-                    <input type="text" class="form-control" id="reporte_936" name="reporte_936" value="<?=$reporte_936?>">
-                </div>
+                
                 <div class="form-group col-md-4">
                     <label for="verificacion">VERIFICACION</label>
                     <input type="text" class="form-control" id="verificacion" name="verificacion" value="<?=$verificacion?>">
