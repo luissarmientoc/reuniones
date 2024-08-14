@@ -932,6 +932,39 @@
                            </div>
                         </div> <!--row-->
                         
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-12" align="left">
+                               <label for="observaciones_premesa">OBSERVACIONES PREMESA</label>
+                               <input type="text" class="form-control" id="observaciones_premesa" name="observaciones_premesa" value="<?=$observaciones_premesa?>">
+                           </div>
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="tiempo_gestion_graerr">TIEMPO GESTION GRAERR</label>
+                               <input type="text" class="form-control" id="tiempo_gestion_graerr" name="tiempo_gestion_graerr" value="<?=$tiempo_gestion_graerr?>">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="remision_mesa_tecnica">REMISION MESA TECNICA</label>
+                               <input type="text" class="form-control" id="remision_mesa_tecnica" name="remision_mesa_tecnica" value="<?=$remision_mesa_tecnica?>">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="mes_remision">MES DE REMISION</label>
+                               <input type="number" class="form-control" id="mes_remision" name="mes_remision" min="1" max="12" value="<?=$mes_remision?>">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="ano_remision">AÑO DE REMISION</label>
+                               <input type="number" class="form-control" id="ano_remision" name="ano_remision" min="1900" max="2099" value="<?=$ano_remision?>">
+                           </div>
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-12" align="left">
+                               <label for="observaciones">OBSERVACIONES</label>
+                               <textarea class="form-control" id="observaciones" name="observaciones"> "<?=$observaciones?>" </textarea>
+                           </div>
+                        </div> <!--row-->
+                        
                     </div> <!--container-->
                     
                     
@@ -1001,34 +1034,14 @@
             <div class="form-row">
                 
                 
-                <div class="form-group col-md-4">
-                    <label for="observaciones_premesa">OBSERVACIONES PREMESA</label>
-                    <input type="text" class="form-control" id="observaciones_premesa" name="observaciones_premesa" value="<?=$observaciones_premesa?>">
-                </div>
+                
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="tiempo_gestion_graerr">TIEMPO GESTION GRAERR</label>
-                    <input type="text" class="form-control" id="tiempo_gestion_graerr" name="tiempo_gestion_graerr" value="<?=$tiempo_gestion_graerr?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="remision_mesa_tecnica">REMISION MESA TECNICA</label>
-                    <input type="text" class="form-control" id="remision_mesa_tecnica" name="remision_mesa_tecnica" value="<?=$remision_mesa_tecnica?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="mes_remision">MES DE REMISION</label>
-                    <input type="number" class="form-control" id="mes_remision" name="mes_remision" min="1" max="12" value="<?=$mes_remision?>">
-                </div>
+               
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="ano_remision">AÑO DE REMISION</label>
-                    <input type="number" class="form-control" id="ano_remision" name="ano_remision" min="1900" max="2099" value="<?=$ano_remision?>">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="observaciones">OBSERVACIONES</label>
-                    <textarea class="form-control" id="observaciones" name="observaciones"> "<?=$observaciones?>" </textarea>
-                </div>
+                
+                
                 <div class="form-group col-md-4">
                     <label for="seguimiento">SEGUIMIENTO</label>
                     <!--<input type="text" class="form-control" id="seguimiento" name="seguimiento" value="<?=$seguimiento?>">-->
