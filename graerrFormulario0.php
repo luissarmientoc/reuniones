@@ -35,7 +35,7 @@
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "Conectado: ";
     // Consulta SQL
-    $sql = "SELECT COUNT(*) AS cuantos FROM graerr_formulario";
+    $sql = "SELECT COUNT(*) AS cuantos FROM graerr_formulario_b";
     // Ejecutar la consulta
     $query = $pdo->query($sql);
     // Obtener el resultado
@@ -88,21 +88,21 @@
                         <div class="form-group row">
         	              <div class='col-md-3'>
          		             <label>Filtrar por número de registro</label>
-         		             <input type="number" class="form-control" id="q" placeholder="Número de registro" onchange='load(1);'>
+         		             <input type="number" class="form-control" id="q" placeholder="Número de registro" onkeyup='load(1);'>
          		     
 	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
          		          </div>
          		          
          		          <div class='col-md-3'>
          		             <label>Filtrar por Id del beneficiario</label>
-         		             <input type="number" class="form-control" id="q1" placeholder="Número de registro" onchange='load(1);'>
+         		             <input type="number" class="form-control" id="q1" placeholder="Número de registro" onkeyup='load(1);'>
          		     
 	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
          		          </div>
          		          
          		          <div class='col-md-3'>
          		             <label>Filtrar por nombre del beneficiario</label>
-         		             <input type="text" class="form-control" id="q2" placeholder="Nombre del beneficiario" onchange='load(1);'>
+         		             <input type="text" class="form-control" id="q2" placeholder="Nombre del beneficiario" onkeyup='load(1);'>
          		     
 	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
          		          </div>
