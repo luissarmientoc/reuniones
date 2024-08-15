@@ -136,7 +136,7 @@
      $vigencia1                      = $_POST['vigencia1'];
     $vigencia                      = $_POST['vigencia'];
     echo '<br>';
-    echo "aqui..". $vigencia1;
+    echo "aqui..". $vigencia;
     echo '<br>';
     $fecha_recepcion_unp           = $_POST['fecha_recepcion_unp'];
     $fecha_recepcion_graerr        = $_POST['fecha_recepcion_graerr'];
@@ -204,7 +204,7 @@
           echo "1.." . $_POST['registro'];
           echo '<br>';
           
-          $vigencia="345";
+         
     echo "1.." . $registro;
     echo '<br>';
     echo "2.la vigencia." . $vigencia;
@@ -993,7 +993,7 @@
                            <div class="col-sm-3" align="left">
                                <label for="vigencia">VIGENCIA</label>
                               
-                                <select <?=$active?> required class="form-control" id="vigencia1" name="vigencia1">
+                                <select <?=$active?> required class="form-control" id="vigencia" name="vigencia">
                                   <?php echo $combo_vigencia; ?>
                                 </select>
                            </div>
