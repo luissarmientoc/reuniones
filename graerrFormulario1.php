@@ -493,6 +493,8 @@ try {
         :fecha_presentacion_premesa, :recomendacion_riesgo_premesa, :recomendacion_medidas_premesa,
         :observaciones_premesa, :remision_mesa_tecnica, :observaciones, :otros
     )";
+    
+    echo $sql;
 
     // Preparar la declaración
     $stmt = $pdo->prepare($sql);
@@ -1403,14 +1405,14 @@ try {
                         </div> <!--row-->
                         
                         <div class="row" style="margin-top:5px;"> 
-                           <div class="col-sm-2" align="left">
+                           <div class="col-sm-12" align="left">
                                <label for="otros">OTROS</label>
                                <textarea  style="text-transform:uppercase;" class="form-control" id="otros" name="otros" rows="5"> <?=$otros?> </textarea>
                            </div>
                            <!--
                            <div class="col-sm-6" align="left">
                                <label for="dev_traslados_poblacional">DEV/TRASLADOS POBLACIONAL</label>
-                               <input type="text" class="form-control" id="dev_traslados_poblacional" name="dev_traslados_poblacional" value="<?=$dev_traslados_poblacional?>">
+                               <input type="text" class="form-control" id="dev_traslados_poblacional" name="dev_traslados_poblacional" value="">
                            </div>
                            -->
                         </div> <!--row-->
