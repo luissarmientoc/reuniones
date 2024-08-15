@@ -468,8 +468,8 @@ try {
     // Preparar la consulta SQL
     
         $stmt = $pdo->prepare('INSERT INTO graerr_formulario_a (
-                      id, registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
-                      no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario) VALUES ( VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+                      registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
+                      no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario) VALUES ( VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
         $stmt->execute([$id, $registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
                       $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario]);
     echo "Datos insertados correctamente.";
