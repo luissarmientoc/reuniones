@@ -72,14 +72,14 @@
         //aqui va ajax
 	    if($action == 'ajax'){
 	        // Limpiar y escapar la cadena de texto (strip_tags y htmlentities)
-            $q = strip_tags($_REQUEST['q']);
-            $q = htmlentities($q, ENT_QUOTES, 'UTF-8');
+            $q_str = isset($_REQUEST['q']) ? strip_tags($_REQUEST['q']) : ''; 
+            $q = intval($q_str); // Convierte $q_str a entero
             
-            $q1_str = strip_tags($_REQUEST['q1']);
-            $q1 = htmlentities($q1_str, ENT_QUOTES, 'UTF-8');
+            $q1_str = isset($_REQUEST['q1']) ? strip_tags($_REQUEST['q1']) : ''; 
+            $q1 = intval($q1_str); // Convierte $q1_str a entero
             
-            $q2_str = isset($_REQUEST['q2']) ? strip_tags($_REQUEST['q2']) : ''; 
-            $q2 = intval($q2_str); // Convierte $q2_str a entero
+            $q2_str = strip_tags($_REQUEST['q2']);
+            $q2 = htmlentities($q2_str, ENT_QUOTES, 'UTF-8');// Convierte $q2_str a entero
             
             $q3_str = isset($_REQUEST['q3']) ? strip_tags($_REQUEST['q3']) : ''; 
             $q3 = intval($q3_str); // Convierte $q3_str a entero
