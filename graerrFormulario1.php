@@ -200,6 +200,7 @@
           echo "1.." . $_POST['registro'];
           echo '<br>';
           
+          $vigencia="345";
     echo "1.." . $registro;
     echo '<br>';
     echo "2.la vigencia." . $vigencia;
