@@ -472,6 +472,8 @@
     ///ADICIONA
     if ($s_existe == "0")
     {
+      try
+      {
         // Preparar la consulta SQL
         $sql = "INSERT INTO formulario (
             registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante, no_mem_ext,
@@ -578,6 +580,17 @@
         } else {
             echo "Error al insertar los datos.";
         }
+        
+    } catch (PDOException $e) {
+    // Manejar errores específicos de PDO
+    echo "Error en la consulta: " . $e->getMessage();
+} catch (Exception $e) {
+    // Manejar otros errores
+    echo "Error general: " . $e->getMessage();
+}    
+        
+        
+        
     }//existe=0
     
     $s_tocoBoton = "S";  
