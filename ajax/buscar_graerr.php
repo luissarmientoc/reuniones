@@ -248,8 +248,7 @@
             echo '<br>';echo '<br>';echo '<br>';
              echo "sql 1.." . $sql;
             echo '<br>';echo '<br>';echo '<br>';
-            
-            
+             
             $stmt = $pdo->query($sql);
             // Obtener el resultado (única fila)
             $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -309,11 +308,8 @@
   					       <td><?php echo $estado_solicitud; ?></td>
  
 					       <td class='text-center'>
-					         <a href="reu1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a> 
+					         <a href="graerrFormulario1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a> 
 					       </td>  
-					        
-					        
-					        
 					   </tr>
         <?php
                     }//while

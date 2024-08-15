@@ -47,7 +47,7 @@
       $s_existe = 1;
       $boton  = "Actualizar";
     
-      $sql = "select * from graerr_formulario where registro=$registro";
+      $sql = "select * from graerr_formulario_b where registro=$registro";
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       
@@ -115,7 +115,7 @@
       $boton="Grabar";
       
       // GENERA EL NUMERO DEL NUEVO REGISTRO
-        $sql = "SELECT MAX(registro) AS maximo FROM graerr_formulario";
+        $sql = "SELECT MAX(registro) AS maximo FROM graerr_formulario_b";
        // echo '<br>';
         //echo $sql;
         //echo '<br>';
@@ -316,145 +316,57 @@
     echo "61.." . $otros;
     echo '<br>';
       
-       ///MODIFICA
-      if ($s_existe == "1")  
-      {
-         // Preparar la consulta SQL para actualizar el registro
-         $sql = "UPDATE formulario SET
-             registro = :registro,
-             vigencia = :vigencia,
-             fecha_recepcion_unp = :fecha_recepcion_unp,
-             fecha_recepcion_graerr = :fecha_recepcion_graerr,
-             fecha_carta_solicitante = :fecha_carta_solicitante,
-             no_mem_ext = :no_mem_ext,
-             otras_entradas_sigob = :otras_entradas_sigob,
-             no_folios = :no_folios,
-             entidad_persona_solicitante = :entidad_persona_solicitante,
-             destinatario = :destinatario,
-             tipo_documento = :tipo_documento,
-             no_documento = :no_documento,
-             nombres_apellidos_peticionario = :nombres_apellidos_peticionario,
-             seudonimo = :seudonimo,
-             tipo_ruta = :tipo_ruta,
-             descripcion_colectivo = :descripcion_colectivo,
-             nombre_colectivo = :nombre_colectivo,
-             no_personas_evaluar = :no_personas_evaluar,
-             genero = :genero,
-             grupo_etnico = :grupo_etnico,
-             correo_electronico = :correo_electronico,
-             no_de_contacto = :no_de_contacto,
-             otros_numeros_contacto = :otros_numeros_contacto,
-             direccion = :direccion,
-             departamento = :departamento,
-             municipio = :municipio,
-             corregimiento_vereda = :corregimiento_vereda,
-             autoriza_envio_info = :autoriza_envio_info,
-             fecha_asignacion_analisis = :fecha_asignacion_analisis,
-             analista_solicitudes = :analista_solicitudes,
-             medidas_preventivas = :medidas_preventivas,
-             estado_solicitud = :estado_solicitud,
-             fecha_asignado_ot = :fecha_asignado_ot,
-             fecha_reasignacion_ot = :fecha_reasignacion_ot,
-             estado_ot = :estado_ot,
-             ot = :ot,
-             analista_riesgo = :analista_riesgo,
-             analista_riesgo_dos = :analista_riesgo_dos,
-             analista_calidad = :analista_calidad,
-             subpoblacion = :subpoblacion,
-             tipo_estudio_riesgo = :tipo_estudio_riesgo,
-             tramite_emergencia = :tramite_emergencia,
-             fecha_tramite_emergencia = :fecha_tramite_emergencia,
-             ingreso_calidad = :ingreso_calidad,
-             fecha_aprobacion_calidad = :fecha_aprobacion_calidad,
-             fecha_presentacion_premesa = :fecha_presentacion_premesa,
-             recomendacion_riesgo_premesa = :recomendacion_riesgo_premesa,
-             recomendacion_medidas_premesa = :recomendacion_medidas_premesa,
-             observaciones_premesa = :observaciones_premesa,
-             tiempo_gestion_graerr = :tiempo_gestion_graerr,
-             remision_mesa_tecnica = :remision_mesa_tecnica,
-             mes_remision = :mes_remision,
-             ano_remision = :ano_remision,
-             observaciones = :observaciones,
-             seguimiento = :seguimiento,
-             factor_diferencial = :factor_diferencial,
-             reporte_936 = :reporte_936,
-             verificacion = :verificacion,
-             otros = :otros,
-             dev_traslados_poblacional = :dev_traslados_poblacional
-         WHERE id = :id";
+    //MODIFICA
+    if ($s_existe == "1")  
+    {
+      
+try {
+    // Conectar a la base de datos
+    $pdo = new PDO("pgsql:host=localhost;dbname=mi_base_de_datos", "mi_usuario", "mi_contraseña");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-         // Preparar la declaración
-         $stmt = $conn->prepare($sql);
+    // Preparar la consulta SQL para actualizar
+    $stmt = $pdo->prepare('
+        UPDATE graerr_formulario_b
+        SET 
+            registro = ?, vigencia = ?, fecha_recepcion_unp = ?, fecha_recepcion_graerr = ?, fecha_carta_solicitante = ?,
+            no_mem_ext = ?, otras_entradas_sigob = ?, no_folios = ?, entidad_persona_solicitante = ?, destinatario = ?,
+            tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, seudonimo = ?,
+            tipo_ruta = ?, descripcion_colectivo = ?, nombre_colectivo = ?, no_personas_evaluar = ?, genero = ?,
+            grupo_etnico = ?, factor_diferencial = ?, correo_electronico = ?, no_de_contacto = ?, otros_numeros_contacto = ?,
+            direccion = ?, departamento = ?, municipio = ?, corregimiento_vereda = ?, autoriza_envio_info = ?,
+            fecha_asignacion_analisis = ?, analista_solicitudes = ?, estado_solicitud = ?, fecha_asignado_ot = ?, 
+            fecha_reasignacion_ot = ?, medidas_preventivas = ?, estado_ot = ?, ot = ?, analista_riesgo = ?, 
+            analista_riesgo_dos = ?, analista_calidad = ?, subpoblacion = ?, tipo_estudio_riesgo = ?, seguimiento = ?, 
+            es_tramite_emergencia = ?, tramite_emergencia = ?, fecha_tramite_emergencia = ?, ingreso_calidad = ?, 
+            fecha_aprobacion_calidad = ?, fecha_presentacion_premesa = ?, recomendacion_riesgo_premesa = ?, 
+            recomendacion_medidas_premesa = ?, observaciones_premesa = ?, remision_mesa_tecnica = ?, 
+            observaciones = ?, otros = ?
+        WHERE id = ?
+    ');
 
-         // Bindear los parámetros
-         $stmt->bindParam(':registro', $_POST['registro']);
-         $stmt->bindParam(':vigencia', $_POST['vigencia']);
-         $stmt->bindParam(':fecha_recepcion_unp', $_POST['fecha_recepcion_unp']);
-         $stmt->bindParam(':fecha_recepcion_graerr', $_POST['fecha_recepcion_graerr']);
-         $stmt->bindParam(':fecha_carta_solicitante', $_POST['fecha_carta_solicitante']);
-         $stmt->bindParam(':no_mem_ext', $_POST['no_mem_ext']);
-         $stmt->bindParam(':otras_entradas_sigob', $_POST['otras_entradas_sigob']);
-         $stmt->bindParam(':no_folios', $_POST['no_folios']);
-         $stmt->bindParam(':entidad_persona_solicitante', $_POST['entidad_persona_solicitante']);
-         $stmt->bindParam(':destinatario', $_POST['destinatario']);
-         $stmt->bindParam(':tipo_documento', $_POST['tipo_documento']);
-         $stmt->bindParam(':no_documento', $_POST['no_documento']);
-         $stmt->bindParam(':nombres_apellidos_peticionario', $_POST['nombres_apellidos_peticionario']);
-         $stmt->bindParam(':seudonimo', $_POST['seudonimo']);
-         $stmt->bindParam(':tipo_ruta', $_POST['tipo_ruta']);
-         $stmt->bindParam(':descripcion_colectivo', $_POST['descripcion_colectivo']);
-         $stmt->bindParam(':nombre_colectivo', $_POST['nombre_colectivo']);
-         $stmt->bindParam(':no_personas_evaluar', $_POST['no_personas_evaluar']);
-         $stmt->bindParam(':genero', $_POST['genero']);
-         $stmt->bindParam(':grupo_etnico', $_POST['grupo_etnico']);
-         $stmt->bindParam(':correo_electronico', $_POST['correo_electronico']);
-         $stmt->bindParam(':no_de_contacto', $_POST['no_de_contacto']);
-         $stmt->bindParam(':otros_numeros_contacto', $_POST['otros_numeros_contacto']);
-         $stmt->bindParam(':direccion', $_POST['direccion']);
-         $stmt->bindParam(':departamento', $_POST['departamento']);
-         $stmt->bindParam(':municipio', $_POST['municipio']);
-         $stmt->bindParam(':corregimiento_vereda', $_POST['corregimiento_vereda']);
-         $stmt->bindParam(':autoriza_envio_info', $_POST['autoriza_envio_info']);
-         $stmt->bindParam(':fecha_asignacion_analisis', $_POST['fecha_asignacion_analisis']);
-         $stmt->bindParam(':analista_solicitudes', $_POST['analista_solicitudes']);
-         $stmt->bindParam(':medidas_preventivas', $_POST['medidas_preventivas']);
-         $stmt->bindParam(':estado_solicitud', $_POST['estado_solicitud']);
-         $stmt->bindParam(':fecha_asignado_ot', $_POST['fecha_asignado_ot']);
-         $stmt->bindParam(':fecha_reasignacion_ot', $_POST['fecha_reasignacion_ot']);
-         $stmt->bindParam(':estado_ot', $_POST['estado_ot']);
-         $stmt->bindParam(':ot', $_POST['ot']);
-         $stmt->bindParam(':analista_riesgo', $_POST['analista_riesgo']);
-         $stmt->bindParam(':analista_riesgo_dos', $_POST['analista_riesgo_dos']);
-         $stmt->bindParam(':analista_calidad', $_POST['analista_calidad']);
-         $stmt->bindParam(':subpoblacion', $_POST['subpoblacion']);
-         $stmt->bindParam(':tipo_estudio_riesgo', $_POST['tipo_estudio_riesgo']);
-         $stmt->bindParam(':tramite_emergencia', $_POST['tramite_emergencia']);
-         $stmt->bindParam(':fecha_tramite_emergencia', $_POST['fecha_tramite_emergencia']);
-         $stmt->bindParam(':ingreso_calidad', $_POST['ingreso_calidad']);
-         $stmt->bindParam(':fecha_aprobacion_calidad', $_POST['fecha_aprobacion_calidad']);
-         $stmt->bindParam(':fecha_presentacion_premesa', $_POST['fecha_presentacion_premesa']);
-         $stmt->bindParam(':recomendacion_riesgo_premesa', $_POST['recomendacion_riesgo_premesa']);
-         $stmt->bindParam(':recomendacion_medidas_premesa', $_POST['recomendacion_medidas_premesa']);
-         $stmt->bindParam(':observaciones_premesa', $_POST['observaciones_premesa']);
-         $stmt->bindParam(':tiempo_gestion_graerr', $_POST['tiempo_gestion_graerr']);
-         $stmt->bindParam(':remision_mesa_tecnica', $_POST['remision_mesa_tecnica']);
-       //  $stmt->bindParam(':mes_remision', $_POST['mes_remision']);
-       // $stmt->bindParam(':ano_remision', $_POST['ano_remision']);
-         $stmt->bindParam(':observaciones', $_POST['observaciones']);
-         $stmt->bindParam(':seguimiento', $_POST['seguimiento']);
-         $stmt->bindParam(':factor_diferencial', $_POST['factor_diferencial']);
-       //  $stmt->bindParam(':reporte_936', $_POST['reporte_936']);
-       // $stmt->bindParam(':verificacion', $_POST['verificacion']);
-         $stmt->bindParam(':otros', $_POST['otros']);
-         $stmt->bindParam(':dev_traslados_poblacional', $_POST['dev_traslados_poblacional']);
-         $stmt->bindParam(':id', $_POST['id']); // Aquí se incluye el ID del registro a actualizar
+    // Ejecutar la consulta con los valores correspondientes
+    $stmt->execute([
+        $registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
+        $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario,
+        $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $seudonimo, $tipo_ruta,
+        $descripcion_colectivo, $nombre_colectivo, $no_personas_evaluar, $genero, $grupo_etnico,
+        $factor_diferencial, $correo_electronico, $no_de_contacto, $otros_numeros_contacto, $direccion,
+        $departamento, $municipio, $corregimiento_vereda, $autoriza_envio_info, $fecha_asignacion_analisis,
+        $analista_solicitudes, $estado_solicitud, $fecha_asignado_ot, $fecha_reasignacion_ot, $medidas_preventivas,
+        $estado_ot, $ot, $analista_riesgo, $analista_riesgo_dos, $analista_calidad, $subpoblacion, $tipo_estudio_riesgo,
+        $seguimiento, $es_tramite_emergencia, $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad,
+        $fecha_aprobacion_calidad, $fecha_presentacion_premesa, $recomendacion_riesgo_premesa,
+        $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, $otros,
+        $id  // El ID del registro que deseas actualizar
+    ]);
 
-         // Ejecutar la consulta
-         if ($stmt->execute()) {
-             echo "Datos actualizados correctamente.";
-         } else {
-             echo "Error al actualizar los datos.";
-         }
+    echo "Datos actualizados correctamente.";
+} catch (PDOException $e) {
+    echo "Error al actualizar los datos: " . $e->getMessage();
+}
+
+      
     }//modificar
       
     ///ADICIONA
@@ -510,18 +422,6 @@ try {
               ]);              
                    
                    
-                   
-       
-	
-	
-	
-	
-	
-	
-	
-	
-                   
-                      
                       
                       
     echo "Datos insertados correctamente.";
@@ -904,7 +804,7 @@ try {
                        
                        <div class="col-sm-6" align="right">  					  			 
                          <p style="font-size:12px;"><i class="fas fa-user"></i> <?=$_SESSION['nombre_perfil']?></p>
-                         <a href="grupos0.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
+                         <a href="graerrFormulario0.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
                         </div>                
                       </div>
                   </div>
