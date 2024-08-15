@@ -450,13 +450,13 @@
          $stmt->bindParam(':observaciones_premesa', $_POST['observaciones_premesa']);
          $stmt->bindParam(':tiempo_gestion_graerr', $_POST['tiempo_gestion_graerr']);
          $stmt->bindParam(':remision_mesa_tecnica', $_POST['remision_mesa_tecnica']);
-         $stmt->bindParam(':mes_remision', $_POST['mes_remision']);
-         $stmt->bindParam(':ano_remision', $_POST['ano_remision']);
+       //  $stmt->bindParam(':mes_remision', $_POST['mes_remision']);
+       // $stmt->bindParam(':ano_remision', $_POST['ano_remision']);
          $stmt->bindParam(':observaciones', $_POST['observaciones']);
          $stmt->bindParam(':seguimiento', $_POST['seguimiento']);
          $stmt->bindParam(':factor_diferencial', $_POST['factor_diferencial']);
-         $stmt->bindParam(':reporte_936', $_POST['reporte_936']);
-         $stmt->bindParam(':verificacion', $_POST['verificacion']);
+       //  $stmt->bindParam(':reporte_936', $_POST['reporte_936']);
+       // $stmt->bindParam(':verificacion', $_POST['verificacion']);
          $stmt->bindParam(':otros', $_POST['otros']);
          $stmt->bindParam(':dev_traslados_poblacional', $_POST['dev_traslados_poblacional']);
          $stmt->bindParam(':id', $_POST['id']); // Aquí se incluye el ID del registro a actualizar
@@ -472,10 +472,17 @@
     ///ADICIONA
     if ($s_existe == "0")
     {
+        // GENERA EL NUMERO DEL NUEVO REGISTRO
+        $sql = "SELECT MAX(registro) AS maximo FROM graerr_formulario";
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
+        
+        $registro     = $s_maximo+1;
       try
       {
         // Preparar la consulta SQL
-        $sql = "INSERT INTO formulario (
+        $sql = "INSERT INTO graerr_formulario (
             registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante, no_mem_ext,
             otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario, tipo_documento, no_documento,
             nombres_apellidos_peticionario, seudonimo, tipo_ruta, descripcion_colectivo, nombre_colectivo,
@@ -506,11 +513,16 @@
         echo "2l sql.." . $sql;
         echo '<br>';
 
+                        //mes_remision
+                        //ano_remision
+                        //reporte_936
+                        //verificacion
+
         // Preparar la declaración
         $stmt = $conn->prepare($sql);
 
         // Bindear los parámetros
-        $stmt->bindParam(':registro', $_POST['registro']);
+        $stmt->bindParam(':registro', $registro);
         $stmt->bindParam(':vigencia', $_POST['vigencia']);
         $stmt->bindParam(':fecha_recepcion_unp', $_POST['fecha_recepcion_unp']);
         $stmt->bindParam(':fecha_recepcion_graerr', $_POST['fecha_recepcion_graerr']);
@@ -561,13 +573,13 @@
         $stmt->bindParam(':observaciones_premesa', $_POST['observaciones_premesa']);
         $stmt->bindParam(':tiempo_gestion_graerr', $_POST['tiempo_gestion_graerr']);
         $stmt->bindParam(':remision_mesa_tecnica', $_POST['remision_mesa_tecnica']);
-        $stmt->bindParam(':mes_remision', $_POST['mes_remision']);
-        $stmt->bindParam(':ano_remision', $_POST['ano_remision']);
+    //    $stmt->bindParam(':mes_remision', $_POST['mes_remision']);
+    //    $stmt->bindParam(':ano_remision', $_POST['ano_remision']);
         $stmt->bindParam(':observaciones', $_POST['observaciones']);
         $stmt->bindParam(':seguimiento', $_POST['seguimiento']);
         $stmt->bindParam(':factor_diferencial', $_POST['factor_diferencial']);
-        $stmt->bindParam(':reporte_936', $_POST['reporte_936']);
-        $stmt->bindParam(':verificacion', $_POST['verificacion']);
+     //   $stmt->bindParam(':reporte_936', $_POST['reporte_936']);
+     //   $stmt->bindParam(':verificacion', $_POST['verificacion']);
         $stmt->bindParam(':otros', $_POST['otros']);
         $stmt->bindParam(':dev_traslados_poblacional', $_POST['dev_traslados_poblacional']);
         
@@ -1005,7 +1017,7 @@
                        <div class="row" style="margin-top:5px;">
                            <div class="col-sm-3" align="left">
                                <label for="registro">REGISTRO</label>
-                               <input type="text" class="form-control" id="registro" name="registro"  value="<?=$registro?>"required>
+                               <input type="text" class="form-control" id="registro" name="registro"  value="<?=$registro?>" required readonly>
                            </div>
                            
                            <div class="col-sm-3" align="left">
@@ -1035,29 +1047,29 @@
                            
                            <div  class="col-sm-3" align="left">
                                <label for="no_mem_ext">No MEM y/o EXT</label>
-                               <input type="text" class="form-control" id="no_mem_ext" name="no_mem_ext"  value="<?=$no_mem_ext?>" required>
+                               <input type="text" class="form-control" id="no_mem_ext" name="no_mem_ext"  value="<?=$no_mem_ext?>" required  style="text-transform:uppercase;">
                            </div>
                            
                            <div class="col-sm-3" align="left">
                                 <label for="otras_entradas_sigob">OTRAS ENTRADAS SIGOB</label>
-                                <input type="text" class="form-control" id="otras_entradas_sigob" name="otras_entradas_sigob"  value="<?=$otras_entradas_sigob?>">
+                                <input type="text" class="form-control" id="otras_entradas_sigob" name="otras_entradas_sigob"  value="<?=$otras_entradas_sigob?>"  style="text-transform:uppercase;">
                             </div>
                             
                             <div class="col-sm-3" align="left">
                                 <label for="no_folios">No FOLIOS</label>
-                                <input type="text" class="form-control" id="no_folios" name="no_folios"  value="<?=$no_folios?>" required>
+                                <input type="number" class="form-control" id="no_folios" name="no_folios"  value="<?=$no_folios?>" required>
                             </div>
                        </div> <!--row-->    
                        
                        <div class="row" style="margin-top:5px;">    
                             <div class="col-sm-6" align="left">
                                 <label for="entidad_persona_solicitante">ENTIDAD/PERSONA SOLICITANTE</label>
-                                <input type="text" class="form-control" id="entidad_persona_solicitante" name="entidad_persona_solicitante"  value="<?=$entidad_persona_solicitante?>" required>
+                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="entidad_persona_solicitante" name="entidad_persona_solicitante"  value="<?=$entidad_persona_solicitante?>" required>
                             </div>
                             
                             <div class="col-sm-6" align="left">
                                 <label for="destinatario">DESTINATARIO</label>
-                                <input type="text" class="form-control" id="destinatario" name="destinatario"  value="<?=$destinatario?>" required>
+                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="destinatario" name="destinatario"  value="<?=$destinatario?>" required>
                             </div>
                        </div> <!--row-->
                     </div> <!--container-->
@@ -1083,24 +1095,24 @@
                            
                            <div class="col-sm-4" align="left">
                                <label for="no_documento">No DE DOCUMENTO</label>
-                               <input type="text" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
+                               <input type="number" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
                            </div>
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">   
                            <div class="col-sm-4" align="left">
                                <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES PETICIONARIO O BENEFICIARIO</label>
-                               <input type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
                            </div>
                            
                            <div class="col-sm-4" align="left">
                                <label style="font-size:12px;" for="nombres_apellidos_peticionario">APELLIDOS PETICIONARIO O BENEFICIARIO</label>
-                               <input type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
                            </div>
                            
                            <div class="col-sm-4" align="left">
                                <label for="seudonimo">SEUDONIMO</label>
-                               <input type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
                            </div>
                        </div> <!--row-->
                        
@@ -1115,12 +1127,12 @@
                           
                           <div class="col-sm-4" align="left">
                               <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
-                              <input type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
+                              <input  style="text-transform:uppercase;" type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
                           </div>
                           
                           <div class="col-sm-4" align="left">
                               <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
-                              <input type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
+                              <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
                           </div>
                        </div> <!--row-->
                        
@@ -1162,18 +1174,18 @@
                           </div> 
                           <div class="col-sm-4" align="left">
                               <label for="no_contacto">No DE CONTACTO</label>
-                              <input type="text" class="form-control" id="no_de_contacto" name="no_de_contacto"  value="<?=$no_de_contacto?>" required>
+                              <input type="number" class="form-control" id="no_de_contacto" name="no_de_contacto"  value="<?=$no_de_contacto?>" required>
                           </div>
                           <div class="col-sm-4" align="left">
                               <label for="otros_numeros_contacto">OTROS NUMEROS DE CONTACTO</label>
-                              <input type="text" class="form-control" id="otros_numeros_contacto" name="otros_numeros_contacto"  value="<?=$otros_numeros_contacto?>">
+                              <input type="number" class="form-control" id="otros_numeros_contacto" name="otros_numeros_contacto"  value="<?=$otros_numeros_contacto?>">
                           </div>
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">  
                            <div class="col-sm-4" align="left">  
                               <label for="direccion">DIRECCION</label>
-                              <input type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
+                              <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
                           </div>
                           <div class="col-sm-4" align="left">
                               <label for="departamento">DEPARTAMENTO</label>
@@ -1188,7 +1200,7 @@
                        <div class="row" style="margin-top:5px;">  
                           <div class="col-sm-8" align="left">
                               <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
-                              <input type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
+                              <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
                           </div>
                           
                        </div> <!--row-->
@@ -1320,6 +1332,7 @@
                            </div>
                        </div> <!--row-->
                        
+                       <!--
                        <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-4" align="left">
                                <label for="reporte_936">REPORTE 936</label>
@@ -1329,11 +1342,9 @@
                                <label for="verificacion">VERIFICACION</label>
                                <input type="text" class="form-control" id="verificacion" name="verificacion" value="<?=$verificacion?>">
                            </div>
-                       </div> <!--row-->
-                       
-                       
-                       
-                       
+                       </div> <!--row
+                       -->
+                        
                     </div> <!--container-->
                     
                     <div class="container" style="margin-bottom:10px;">
@@ -1348,6 +1359,16 @@
                        
                        <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-4" align="left">
+                               <label for="tramite_emergencia">ES TRAMITE DE EMERGENCIA?</label>
+                               <select class="form-control" id="es_tramite_emergencia" name="es_tramite_emergencia" value="<?=$autoriza_envio_info?>">
+                                  <option value="si">Sí</option>
+                                  <option value="no">No</option>
+                               </select>
+                           </div>
+                        </div>   
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
                                <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
                                <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
                            </div>
@@ -1357,7 +1378,7 @@
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="ingreso_calidad">INGRESO A CALIDAD</label>
-                               <input type="text" class="form-control" id="ingreso_calidad" name="ingreso_calidad" value="<?=$ingreso_calidad?>">
+                               <input type="date" class="form-control" id="ingreso_calidad" name="ingreso_calidad" value="<?=$ingreso_calidad?>">
                            </div>
                         </div> <!--row-->
                         
@@ -1382,14 +1403,14 @@
                         <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-12" align="left">
                               <label for="recomendacion_riesgo_premesa">RECOMENDACION DEL RIESGO PREMESA</label>
-                              <input type="text" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa" value="<?=$recomendacion_riesgo_premesa?>">
+                              <textarea  style="text-transform:uppercase;" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa" rows="5"> <?=$recomendacion_riesgo_premesa?> </textarea>
                            </div>
                         </div> <!--row-->
                         
                         <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-12" align="left">
                                <label for="observaciones_premesa">OBSERVACIONES PREMESA</label>
-                               <input type="text" class="form-control" id="observaciones_premesa" name="observaciones_premesa" value="<?=$observaciones_premesa?>">
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="observaciones_premesa" name="observaciones_premesa" rows="5"> <?=$observaciones_premesa?> </textarea>
                            </div>
                         </div> <!--row-->
                         
@@ -1400,8 +1421,9 @@
                            </div>
                            <div class="col-sm-3" align="left">
                                <label for="remision_mesa_tecnica">REMISION MESA TECNICA</label>
-                               <input type="text" class="form-control" id="remision_mesa_tecnica" name="remision_mesa_tecnica" value="<?=$remision_mesa_tecnica?>">
+                               <input type="date" class="form-control" id="remision_mesa_tecnica" name="remision_mesa_tecnica" value="<?=$remision_mesa_tecnica?>">
                            </div>
+                           <!--
                            <div class="col-sm-3" align="left">
                                <label for="mes_remision">MES DE REMISION</label>
                                <input type="number" class="form-control" id="mes_remision" name="mes_remision" min="1" max="12" value="<?=$mes_remision?>">
@@ -1410,12 +1432,13 @@
                                <label for="ano_remision">AÑO DE REMISION</label>
                                <input type="number" class="form-control" id="ano_remision" name="ano_remision" min="1900" max="2099" value="<?=$ano_remision?>">
                            </div>
+                           -->
                         </div> <!--row-->
-                        
+                       
                         <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-12" align="left">
                                <label for="observaciones">OBSERVACIONES</label>
-                               <textarea class="form-control" id="observaciones" name="observaciones" rows="4"> <?=$observaciones?> </textarea>
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="observaciones" name="observaciones" rows="5"> <?=$observaciones?> </textarea>
                            </div>
                         </div> <!--row-->
                         
