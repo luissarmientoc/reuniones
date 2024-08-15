@@ -991,8 +991,8 @@
                            
                            <div class="col-sm-3" align="left">
                                <label for="vigencia">VIGENCIA</label>
-                               <!--<input type="text" class="form-control" id="vigencia" name="vigencia" value="<?=$vigencia?>"required>-->
-                                <select <?=$active?> required class="form-control" id="vigencia" name="vigencia">
+                              
+                                <select <?=$active?> required class="form-control" id="vigencia1" name="vigencia1">
                                   <?php echo $combo_vigencia; ?>
                                 </select>
                            </div>
