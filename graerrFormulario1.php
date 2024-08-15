@@ -134,6 +134,9 @@
        
     $registro                      = $_POST['registro'];
     $vigencia                      = $_POST['vigencia'];
+    echo '<br>';
+    echo "aqui..". $vigencia;
+    echo '<br>';
     $fecha_recepcion_unp           = $_POST['fecha_recepcion_unp'];
     $fecha_recepcion_graerr        = $_POST['fecha_recepcion_graerr'];
     $fecha_carta_solicitante       = $_POST['fecha_carta_solicitante'];
