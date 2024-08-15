@@ -478,7 +478,7 @@
         $row  = $stmt->fetch(PDO::FETCH_ASSOC);
         $s_maximo = $row['maximo'];
         
-        $registro     = $s_maximo+1;
+        $s_registro     = $s_maximo+1;
       try
       {
         // Preparar la consulta SQL
