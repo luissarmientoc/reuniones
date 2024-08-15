@@ -474,11 +474,17 @@
     {
         // GENERA EL NUMERO DEL NUEVO REGISTRO
         $sql = "SELECT MAX(registro) AS maximo FROM graerr_formulario";
+        echo '<br>';
+        echo $sql;
+        echo '<br>';
         $stmt = $pdo->query($sql);
         $row  = $stmt->fetch(PDO::FETCH_ASSOC);
         $s_maximo = $row['maximo'];
         
         $s_registro     = $s_maximo+1;
+        echo '<br>';
+        echo "el regi..·" . $s_registro;
+        echo '<br>';
       try
       {
         // Preparar la consulta SQL
