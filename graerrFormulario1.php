@@ -200,7 +200,7 @@
           echo '<br>';
           echo "1.." . $_POST['registro'];
           echo '<br>';
-          
+     
          
     echo "1.." . $registro;
     echo '<br>';
@@ -466,33 +466,12 @@ try {
     //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Preparar la consulta SQL
-    $sql = "INSERT INTO graerr_formulario_a (
-        id, registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
-        no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario
-    ) VALUES (
-        DEFAULT, :registro, :vigencia, :fecha_recepcion_unp, :fecha_recepcion_graerr, :fecha_carta_solicitante,
-        :no_mem_ext, :otras_entradas_sigob, :no_folios, :entidad_persona_solicitante, :destinatario
-    )";
     
-    echo $sql;
-
-    // Preparar la declaración
-    $stmt = $pdo->prepare($sql);
- 
-    // Bindear los parámetros
-    $stmt->bindParam(':registro', $_POST['registro']);
-    $stmt->bindParam(':vigencia', $_POST['vigencia']);
-    $stmt->bindParam(':fecha_recepcion_unp', $_POST['fecha_recepcion_unp']);
-    $stmt->bindParam(':fecha_recepcion_graerr', $_POST['fecha_recepcion_graerr']);
-    $stmt->bindParam(':fecha_carta_solicitante', $_POST['fecha_carta_solicitante']);
-    $stmt->bindParam(':no_mem_ext', $_POST['no_mem_ext']);
-    $stmt->bindParam(':otras_entradas_sigob', $_POST['otras_entradas_sigob']);
-    $stmt->bindParam(':no_folios', $_POST['no_folios']);
-    $stmt->bindParam(':entidad_persona_solicitante', $_POST['entidad_persona_solicitante']);
-    $stmt->bindParam(':destinatario', $_POST['destinatario']);
-
-    // Ejecutar la consulta
-    $stmt->execute();
+        $stmt = $pdo->prepare('INSERT INTO graerr_formulario_a (
+                      id, registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
+                      no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario) VALUES ( VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$id, $registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
+                      $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario]);
     echo "Datos insertados correctamente.";
 } catch (PDOException $e) {
     echo "Error al insertar los datos: " . $e->getMessage();
