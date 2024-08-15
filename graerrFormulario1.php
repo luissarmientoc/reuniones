@@ -466,12 +466,20 @@ try {
     //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Preparar la consulta SQL
-    
+                  
         $stmt = $pdo->prepare('INSERT INTO graerr_formulario_a (
-                      registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
-                      no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario) VALUES ( VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-        $stmt->execute([$registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
-                      $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario]);
+                registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
+                no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario
+              ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+
+        // Ejecutar la consulta con los valores correspondientes
+        $stmt->execute([
+               $registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
+               $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario
+        ]);              
+                      
+                      
+                      
     echo "Datos insertados correctamente.";
 } catch (PDOException $e) {
     echo "Error al insertar los datos: " . $e->getMessage();
