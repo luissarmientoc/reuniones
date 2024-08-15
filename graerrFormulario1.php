@@ -498,6 +498,11 @@
             :remision_mesa_tecnica, :mes_remision, :ano_remision, :observaciones, :seguimiento, :factor_diferencial,
             :reporte_936, :verificacion, :otros, :dev_traslados_poblacional
         )";
+        
+        
+        echo '<br>';
+        echo "2l sql.." . $sql;
+        echo '<br>';
 
         // Preparar la declaración
         $stmt = $conn->prepare($sql);
