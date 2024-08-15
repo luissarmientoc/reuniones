@@ -769,7 +769,7 @@ try {
       {
         $combo_vigencia .=" <option value=''>".'- Seleccione ls vigencia -'."</option>";
       }
-      if ($line['id']==$vigencia)
+      if ($line['ano']==$vigencia)
       {
         $combo_vigencia .=" <option value='".$line['ano']."' selected>".$line['ano']." </option>"; 
       }
