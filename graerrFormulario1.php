@@ -47,7 +47,7 @@
       $s_existe = 1;
       $boton  = "Actualizar";
     
-      $sql = "select * from graerr_formulario_b where registro=$registro";
+      $sql = "select * from graerr_formulario_b where registro=$s_registro";
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       
