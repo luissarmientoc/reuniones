@@ -204,7 +204,7 @@
     echo '<br>';
     echo "2.." . $vigencia;
     echo '<br>';
-    echo "3.." . $fecha_recepcion_un;
+    echo "3.." . $fecha_recepcion_unp;
     echo '<br>';
     echo "4.." . $fecha_recepcion_graerr;
     echo '<br>';
@@ -244,7 +244,7 @@
     echo '<br>';
     echo "23.." . $correo_electronico;
     echo '<br>';
-    echo "24.." . $no_de_contacto;
+    echo "24.." . $no_de_contacto; 
     echo '<br>';
     echo "25.." . $otros_numeros_contacto;
     echo '<br>';
@@ -1139,7 +1139,7 @@
                           </div> 
                           <div class="col-sm-4" align="left">
                               <label for="no_contacto">No DE CONTACTO</label>
-                              <input type="text" class="form-control" id="no_contacto" name="no_contacto"  value="<?=$no_contacto?>" required>
+                              <input type="text" class="form-control" id="no_de_contacto" name="no_contacto"  value="<?=$no_de_contacto?>" required>
                           </div>
                           <div class="col-sm-4" align="left">
                               <label for="otros_numeros_contacto">OTROS NUMEROS DE CONTACTO</label>
