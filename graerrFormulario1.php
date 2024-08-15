@@ -63,8 +63,8 @@
              $destinatario                  = $row['destinatario'];
              $tipo_documento                = $row['tipo_documento'];
              $no_documento                  = $row['no_documento'];
-             $nombres_peticionario  = $row['nombres_apellidos_peticionario'];
-             $apellidos_peticionario    = $row['nombres_apellidos_peticionario'];
+             $nombres_peticionario          = $row['nombres_apellidos_peticionario'];
+             $apellidos_peticionario        = $row['nombres_apellidos_peticionario'];
              $seudonimo                     = $row['seudonimo'];
              $tipo_ruta                     = $row['tipo_ruta'];
              $descripcion_colectivo         = $row['descripcion_colectivo'];
@@ -82,10 +82,10 @@
              $autoriza_envio_info           = $row['autoriza_envio_info'];
              $fecha_asignacion_analisis     = $row['fecha_asignacion_analisis'];
              $analista_solicitudes          = $row['analista_solicitudes'];
-             $medidas_preventivas           = $row['medidas_preventivas'];
              $estado_solicitud              = $row['estado_solicitud'];
              $fecha_asignado_ot             = $row['fecha_asignado_ot'];
              $fecha_reasignacion_ot         = $row['fecha_reasignacion_ot'];
+             $medidas_preventivas           = $row['medidas_preventivas'];
              $estado_ot                     = $row['estado_ot'];
              $ot                            = $row['ot'];
              $analista_riesgo               = $row['analista_riesgo'];
@@ -93,6 +93,7 @@
              $analista_calidad              = $row['analista_calidad'];
              $subpoblacion                  = $row['subpoblacion'];
              $tipo_estudio_riesgo           = $row['tipo_estudio_riesgo'];
+             $es_tramite_emergencia         = $row['es_tramite_emergencia'];
              $tramite_emergencia            = $row['tramite_emergencia'];
              $fecha_tramite_emergencia      = $row['fecha_tramite_emergencia'];
              $ingreso_calidad               = $row['ingreso_calidad'];
@@ -101,17 +102,10 @@
              $recomendacion_riesgo_premesa  = $row['recomendacion_riesgo_premesa'];
              $recomendacion_medidas_premesa = $row['recomendacion_medidas_premesa'];
              $observaciones_premesa         = $row['observaciones_premesa'];
-             $tiempo_gestion_graerr         = $row['tiempo_gestion_graerr'];
              $remision_mesa_tecnica         = $row['remision_mesa_tecnica'];
-             $mes_remision                  = $row['mes_remision'];
-             $ano_remision                  = $row['ano_remision'];
              $observaciones                 = $row['observaciones'];
-             $seguimiento                   = $row['seguimiento'];
-             $factor_diferencial            = $row['factor_diferencial'];
-             $reporte_936                   = $row['reporte_936'];
-             $verificacion                  = $row['verificacion'];
              $otros                         = $row['otros'];
-             $dev_traslados_poblacional     = $row['dev_traslados_poblacional'];
+             
     }  
     else
     {
@@ -121,17 +115,17 @@
       
       // GENERA EL NUMERO DEL NUEVO REGISTRO
         $sql = "SELECT MAX(registro) AS maximo FROM graerr_formulario";
-        echo '<br>';
-        echo $sql;
-        echo '<br>';
+       // echo '<br>';
+        //echo $sql;
+        //echo '<br>';
         $stmt = $pdo->query($sql);
         $row  = $stmt->fetch(PDO::FETCH_ASSOC);
         $s_maximo = $row['maximo'];
         
         $s_registro     = $s_maximo+1;
-        echo '<br>';
-        echo "el regi..·" . $s_registro;
-        echo '<br>';
+        //echo '<br>';
+        //echo "el regi..·" . $s_registro;
+        //echo '<br>';
     }  
  
    
@@ -146,73 +140,61 @@
        //$s_fecha  = date("Y/m/d H:i:s");
        $date_added=date("Y-m-d H:i:s");
        
-    $registro                      = $_POST['registro'];
-     $vigencia1                      = $_POST['vigencia1'];
-    $vigencia                      = $_POST['vigencia'];
-    echo '<br>';
-    echo "aqui..". $vigencia;
-    echo '<br>';
-    $fecha_recepcion_unp           = $_POST['fecha_recepcion_unp'];
-    $fecha_recepcion_graerr        = $_POST['fecha_recepcion_graerr'];
-    $fecha_carta_solicitante       = $_POST['fecha_carta_solicitante'];
-    $no_mem_ext                    = $_POST['no_mem_ext'];
-    $otras_entradas_sigob          = $_POST['otras_entradas_sigob'];
-    $no_folios                     = $_POST['no_folios'];
-    $entidad_persona_solicitante =$_POST['entidad_persona_solicitante'];
-    $destinatario                  = $_POST['destinatario'];
-    $tipo_documento                = $_POST['tipo_documento'];
-    $no_documento                  = $_POST['no_documento'];
-    $nombres_peticionario  =$_POST['nombres_apellidos_peticionario'];
-    $apellidos_peticionario=$_POST['nombres_apellidos_peticionario'];
-    $seudonimo                     = $_POST['seudonimo'];
-    $tipo_ruta                     = $_POST['tipo_ruta'];
-    $descripcion_colectivo         = $_POST['descripcion_colectivo'];
-    $nombre_colectivo              = $_POST['nombre_colectivo'];
-    $no_personas_evaluar           = $_POST['no_personas_evaluar'];
-    $genero                        = $_POST['genero'];
-    $grupo_etnico                  = $_POST['grupo_etnico'];
-    $correo_electronico            = $_POST['correo_electronico'];
-    $no_de_contacto                = $_POST['no_de_contacto'];
-    $otros_numeros_contacto        = $_POST['otros_numeros_contacto'];
-    $direccion                     = $_POST['direccion'];
-    $departamento                  = $_POST['departamento'];
-    $municipio                     = $_POST['municipio'];
-    $corregimiento_vereda          = $_POST['corregimiento_vereda'];
-    $autoriza_envio_info           = $_POST['autoriza_envio_info'];
-    $fecha_asignacion_analisis= $_POST['fecha_asignacion_analisis'];
-    $analista_solicitudes          = $_POST['analista_solicitudes'];
-    $medidas_preventivas           = $_POST['medidas_preventivas'];
-    $estado_solicitud              = $_POST['estado_solicitud'];
-    $fecha_asignado_ot             = $_POST['fecha_asignado_ot'];
-    $fecha_reasignacion_ot         = $_POST['fecha_reasignacion_ot'];
-    $estado_ot                     = $_POST['estado_ot'];
-    $ot                            = $_POST['ot'];
-    $analista_riesgo               = $_POST['analista_riesgo'];
-    $analista_riesgo_dos           = $_POST['analista_riesgo_dos'];
-    $analista_calidad              = $_POST['analista_calidad'];
-    $subpoblacion                  = $_POST['subpoblacion'];
-    $tipo_estudio_riesgo           = $_POST['tipo_estudio_riesgo'];
-    $tramite_emergencia            = $_POST['tramite_emergencia'];
-    $fecha_tramite_emergencia     = $_POST['fecha_tramite_emergencia'];
-    $ingreso_calidad               = $_POST['ingreso_calidad'];
-    $fecha_aprobacion_calidad     = $_POST['fecha_aprobacion_calidad'];
-    $fecha_presentacion_premesa= $_POST['fecha_presentacion_premesa'];
-    $recomendacion_riesgo_premesa= $_POST['recomendacion_riesgo_premesa'];
-    $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
-    $observaciones_premesa         = $_POST['observaciones_premesa'];
-    $tiempo_gestion_graerr         = $_POST['tiempo_gestion_graerr'];
-    $remision_mesa_tecnica         = $_POST['remision_mesa_tecnica'];
-    $mes_remision                  = $_POST['mes_remision'];
-    $ano_remision                  = $_POST['ano_remision'];
-    $observaciones                 = $_POST['observaciones'];
-    $seguimiento                   = $_POST['seguimiento'];
-    $factor_diferencial            = $_POST['factor_diferencial'];
-    $reporte_936                   = $_POST['reporte_936'];
-    $verificacion                  = $_POST['verificacion'];
-    $otros                         = $_POST['otros'];
-    $dev_traslados_poblacional     = $_POST['dev_traslados_poblacional'];
-     
-    
+             $registro                      = $_POST['registro'];
+             $vigencia                      = $_POST['vigencia'];
+             $fecha_recepcion_unp           = $_POST['fecha_recepcion_unp'];
+             $fecha_recepcion_graerr        = $_POST['fecha_recepcion_graerr'];
+             $fecha_carta_solicitante       = $_POST['fecha_carta_solicitante'];
+             $no_mem_ext                    = $_POST['no_mem_ext'];
+             $otras_entradas_sigob          = $_POST['otras_entradas_sigob'];
+             $no_folios                     = $_POST['no_folios'];
+             $entidad_persona_solicitante   = $_POST['entidad_persona_solicitante'];
+             $destinatario                  = $_POST['destinatario'];
+             $tipo_documento                = $_POST['tipo_documento'];
+             $no_documento                  = $_POST['no_documento'];
+             $nombres_peticionario          = $_POST['nombres_apellidos_peticionario'];
+             $apellidos_peticionario        = $_POST['nombres_apellidos_peticionario'];
+             $seudonimo                     = $_POST['seudonimo'];
+             $tipo_ruta                     = $_POST['tipo_ruta'];
+             $descripcion_colectivo         = $_POST['descripcion_colectivo'];
+             $nombre_colectivo              = $_POST['nombre_colectivo'];
+             $no_personas_evaluar           = $_POST['no_personas_evaluar'];
+             $genero                        = $_POST['genero'];
+             $grupo_etnico                  = $_POST['grupo_etnico'];
+             $correo_electronico            = $_POST['correo_electronico'];
+             $no_de_contacto                = $_POST['no_de_contacto'];
+             $otros_numeros_contacto        = $_POST['otros_numeros_contacto'];
+             $direccion                     = $_POST['direccion'];
+             $departamento                  = $_POST['departamento'];
+             $municipio                     = $_POST['municipio'];
+             $corregimiento_vereda          = $_POST['corregimiento_vereda'];
+             $autoriza_envio_info           = $_POST['autoriza_envio_info'];
+             $fecha_asignacion_analisis     = $_POST['fecha_asignacion_analisis'];
+             $analista_solicitudes          = $_POST['analista_solicitudes'];
+             $estado_solicitud              = $_POST['estado_solicitud'];
+             $fecha_asignado_ot             = $_POST['fecha_asignado_ot'];
+             $fecha_reasignacion_ot         = $_POST['fecha_reasignacion_ot'];
+             $medidas_preventivas           = $_POST['medidas_preventivas'];
+             $estado_ot                     = $_POST['estado_ot'];
+             $ot                            = $_POST['ot'];
+             $analista_riesgo               = $_POST['analista_riesgo'];
+             $analista_riesgo_dos           = $_POST['analista_riesgo_dos'];
+             $analista_calidad              = $_POST['analista_calidad'];
+             $subpoblacion                  = $_POST['subpoblacion'];
+             $tipo_estudio_riesgo           = $_POST['tipo_estudio_riesgo'];
+             $es_tramite_emergencia         = $_POST['es_tramite_emergencia'];
+             $tramite_emergencia            = $_POST['tramite_emergencia'];
+             $fecha_tramite_emergencia      = $_POST['fecha_tramite_emergencia'];
+             $ingreso_calidad               = $_POST['ingreso_calidad'];
+             $fecha_aprobacion_calidad      = $_POST['fecha_aprobacion_calidad'];
+             $fecha_presentacion_premesa    = $_POST['fecha_presentacion_premesa'];
+             $recomendacion_riesgo_premesa  = $_POST['recomendacion_riesgo_premesa'];
+             $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
+             $observaciones_premesa         = $_POST['observaciones_premesa'];
+             $remision_mesa_tecnica         = $_POST['remision_mesa_tecnica'];
+             $observaciones                 = $_POST['observaciones'];
+             $otros                         = $_POST['otros'];
+       
     echo "entra a grabar";
           echo '<br>';
           echo "1.." . $_POST['registro'];
@@ -261,6 +243,8 @@
     echo '<br>';
     echo "22.." . $grupo_etnico;
     echo '<br>';
+    echo "58.." . $factor_diferencial;
+    echo '<br>';
     echo "23.." . $correo_electronico;
     echo '<br>';
     echo "24.." . $no_de_contacto; 
@@ -281,13 +265,13 @@
     echo '<br>';
     echo "32.." . $analista_solicitudes;
     echo '<br>';
-    echo "33.." . $medidas_preventivas;
-    echo '<br>';
     echo "34.." . $estado_solicitud;
     echo '<br>';
     echo "35.." . $fecha_asignado_ot;
     echo '<br>';
     echo "36.." . $fecha_reasignacion_ot;
+    echo '<br>';
+    echo "33.." . $medidas_preventivas;
     echo '<br>';
     echo "37.." . $estado_ot;
     echo '<br>';
@@ -302,6 +286,11 @@
     echo "42.." . $subpoblacion;
     echo '<br>';
     echo "43.." . $tipo_estudio_riesgo;
+    echo '<br>';
+    echo "57.." . $seguimiento;
+    echo '<br>';
+    echo "44a.." . $es_tramite_emergencia;
+    echo '<br>';
     echo '<br>';
     echo "44.." . $tramite_emergencia;
     echo '<br>';
@@ -319,27 +308,11 @@
     echo '<br>';
     echo "51.." . $observaciones_premesa;
     echo '<br>';
-    echo "52.." . $tiempo_gestion_graerr;
-    echo '<br>';
     echo "53.." . $remision_mesa_tecnica;
-    echo '<br>';
-    echo "54.." . $mes_remision;
-    echo '<br>';
-    echo "55.." . $ano_remision;
     echo '<br>';
     echo "56.." . $observaciones;
     echo '<br>';
-    echo "57.." . $seguimiento;
-    echo '<br>';
-    echo "58.." . $factor_diferencial;
-    echo '<br>';
-    echo "59.." . $reporte_936;
-    echo '<br>';
-    echo "60.." . $verificacion;
-    echo '<br>';
     echo "61.." . $otros;
-    echo '<br>';
-    echo "62.." . $dev_traslados_poblacional; 
     echo '<br>';
       
        ///MODIFICA
@@ -486,131 +459,107 @@
     ///ADICIONA
     if ($s_existe == "0")
     {
-        
-      try
-      {
-        // Preparar la consulta SQL
-        $sql = "INSERT INTO graerr_formulario (
-            registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante, no_mem_ext,
-            otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario, tipo_documento, no_documento,
-            nombres_apellidos_peticionario, seudonimo, tipo_ruta, descripcion_colectivo, nombre_colectivo,
-            no_personas_evaluar, genero, grupo_etnico, correo_electronico, no_de_contacto, otros_numeros_contacto,
-            direccion, departamento, municipio, corregimiento_vereda, autoriza_envio_info, fecha_asignacion_analisis,
-            analista_solicitudes, medidas_preventivas, estado_solicitud, fecha_asignado_ot, fecha_reasignacion_ot,
-            estado_ot, ot, analista_riesgo, analista_riesgo_dos, analista_calidad, subpoblacion, tipo_estudio_riesgo,
-            tramite_emergencia, fecha_tramite_emergencia, ingreso_calidad, fecha_aprobacion_calidad, fecha_presentacion_premesa,
-            recomendacion_riesgo_premesa, recomendacion_medidas_premesa, observaciones_premesa, tiempo_gestion_graerr,
-            remision_mesa_tecnica, mes_remision, ano_remision, observaciones, seguimiento, factor_diferencial,
-            reporte_936, verificacion, otros, dev_traslados_poblacional
-        ) VALUES (
-            :registro, :vigencia, :fecha_recepcion_unp, :fecha_recepcion_graerr, :fecha_carta_solicitante, :no_mem_ext,
-            :otras_entradas_sigob, :no_folios, :entidad_persona_solicitante, :destinatario, :tipo_documento, :no_documento,
-            :nombres_apellidos_peticionario, :seudonimo, :tipo_ruta, :descripcion_colectivo, :nombre_colectivo,
-            :no_personas_evaluar, :genero, :grupo_etnico, :correo_electronico, :no_de_contacto, :otros_numeros_contacto,
-            :direccion, :departamento, :municipio, :corregimiento_vereda, :autoriza_envio_info, :fecha_asignacion_analisis,
-            :analista_solicitudes, :medidas_preventivas, :estado_solicitud, :fecha_asignado_ot, :fecha_reasignacion_ot,
-            :estado_ot, :ot, :analista_riesgo, :analista_riesgo_dos, :analista_calidad, :subpoblacion, :tipo_estudio_riesgo,
-            :tramite_emergencia, :fecha_tramite_emergencia, :ingreso_calidad, :fecha_aprobacion_calidad, :fecha_presentacion_premesa,
-            :recomendacion_riesgo_premesa, :recomendacion_medidas_premesa, :observaciones_premesa, :tiempo_gestion_graerr,
-            :remision_mesa_tecnica, :mes_remision, :ano_remision, :observaciones, :seguimiento, :factor_diferencial,
-            :reporte_936, :verificacion, :otros, :dev_traslados_poblacional
-        )";
-        
-        
-        echo '<br>';
-        echo "2l sql.." . $sql;
-        echo '<br>';
+try {
+    // Conectar a la base de datos
+    //$conn = new PDO("pgsql:host=localhost;dbname=mi_base_de_datos", "mi_usuario", "mi_contraseña");
+    //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                        //mes_remision
-                        //ano_remision
-                        //reporte_936
-                        //verificacion
+    // Preparar la consulta SQL
+    $sql = "INSERT INTO graerr_formulario (
+        id, registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
+        no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario,
+        tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, seudonimo,
+        tipo_ruta, descripcion_colectivo, nombre_colectivo, no_personas_evaluar, genero,
+        grupo_etnico, factor_diferencial, correo_electronico, no_de_contacto, otros_numeros_contacto,
+        direccion, departamento, municipio, corregimiento_vereda, autoriza_envio_info,
+        fecha_asignacion_analisis, analista_solicitudes, estado_solicitud, fecha_asignado_ot,
+        fecha_reasignacion_ot, medidas_preventivas, estado_ot, ot, analista_riesgo, analista_riesgo_dos,
+        analista_calidad, subpoblacion, tipo_estudio_riesgo, seguimiento, es_tramite_emergencia,
+        tramite_emergencia, fecha_tramite_emergencia, ingreso_calidad, fecha_aprobacion_calidad,
+        fecha_presentacion_premesa, recomendacion_riesgo_premesa, recomendacion_medidas_premesa,
+        observaciones_premesa, remision_mesa_tecnica, observaciones, otros
+    ) VALUES (
+        DEFAULT, :registro, :vigencia, :fecha_recepcion_unp, :fecha_recepcion_graerr, :fecha_carta_solicitante,
+        :no_mem_ext, :otras_entradas_sigob, :no_folios, :entidad_persona_solicitante, :destinatario,
+        :tipo_documento, :no_documento, :nombres_peticionario, :apellidos_peticionario, :seudonimo,
+        :tipo_ruta, :descripcion_colectivo, :nombre_colectivo, :no_personas_evaluar, :genero,
+        :grupo_etnico, :factor_diferencial, :correo_electronico, :no_de_contacto, :otros_numeros_contacto,
+        :direccion, :departamento, :municipio, :corregimiento_vereda, :autoriza_envio_info,
+        :fecha_asignacion_analisis, :analista_solicitudes, :estado_solicitud, :fecha_asignado_ot,
+        :fecha_reasignacion_ot, :medidas_preventivas, :estado_ot, :ot, :analista_riesgo, :analista_riesgo_dos,
+        :analista_calidad, :subpoblacion, :tipo_estudio_riesgo, :seguimiento, :es_tramite_emergencia,
+        :tramite_emergencia, :fecha_tramite_emergencia, :ingreso_calidad, :fecha_aprobacion_calidad,
+        :fecha_presentacion_premesa, :recomendacion_riesgo_premesa, :recomendacion_medidas_premesa,
+        :observaciones_premesa, :remision_mesa_tecnica, :observaciones, :otros
+    )";
 
-        // Preparar la declaración
-        $stmt = $conn->prepare($sql);
+    // Preparar la declaración
+    $stmt = $pdo->prepare($sql);
+ 
+    // Bindear los parámetros
+    $stmt->bindParam(':registro', $_POST['registro']);
+    $stmt->bindParam(':vigencia', $_POST['vigencia']);
+    $stmt->bindParam(':fecha_recepcion_unp', $_POST['fecha_recepcion_unp']);
+    $stmt->bindParam(':fecha_recepcion_graerr', $_POST['fecha_recepcion_graerr']);
+    $stmt->bindParam(':fecha_carta_solicitante', $_POST['fecha_carta_solicitante']);
+    $stmt->bindParam(':no_mem_ext', $_POST['no_mem_ext']);
+    $stmt->bindParam(':otras_entradas_sigob', $_POST['otras_entradas_sigob']);
+    $stmt->bindParam(':no_folios', $_POST['no_folios']);
+    $stmt->bindParam(':entidad_persona_solicitante', $_POST['entidad_persona_solicitante']);
+    $stmt->bindParam(':destinatario', $_POST['destinatario']);
+    $stmt->bindParam(':tipo_documento', $_POST['tipo_documento']);
+    $stmt->bindParam(':no_documento', $_POST['no_documento']);
+    $stmt->bindParam(':nombres_peticionario', $_POST['nombres_peticionario']);
+    $stmt->bindParam(':apellidos_peticionario', $_POST['apellidos_peticionario']);
+    $stmt->bindParam(':seudonimo', $_POST['seudonimo']);
+    $stmt->bindParam(':tipo_ruta', $_POST['tipo_ruta']);
+    $stmt->bindParam(':descripcion_colectivo', $_POST['descripcion_colectivo']);
+    $stmt->bindParam(':nombre_colectivo', $_POST['nombre_colectivo']);
+    $stmt->bindParam(':no_personas_evaluar', $_POST['no_personas_evaluar']);
+    $stmt->bindParam(':genero', $_POST['genero']);
+    $stmt->bindParam(':grupo_etnico', $_POST['grupo_etnico']);
+    $stmt->bindParam(':factor_diferencial', $_POST['factor_diferencial']);
+    $stmt->bindParam(':correo_electronico', $_POST['correo_electronico']);
+    $stmt->bindParam(':no_de_contacto', $_POST['no_de_contacto']);
+    $stmt->bindParam(':otros_numeros_contacto', $_POST['otros_numeros_contacto']);
+    $stmt->bindParam(':direccion', $_POST['direccion']);
+    $stmt->bindParam(':departamento', $_POST['departamento']);
+    $stmt->bindParam(':municipio', $_POST['municipio']);
+    $stmt->bindParam(':corregimiento_vereda', $_POST['corregimiento_vereda']);
+    $stmt->bindParam(':autoriza_envio_info', $_POST['autoriza_envio_info']);
+    $stmt->bindParam(':fecha_asignacion_analisis', $_POST['fecha_asignacion_analisis']);
+    $stmt->bindParam(':analista_solicitudes', $_POST['analista_solicitudes']);
+    $stmt->bindParam(':estado_solicitud', $_POST['estado_solicitud']);
+    $stmt->bindParam(':fecha_asignado_ot', $_POST['fecha_asignado_ot']);
+    $stmt->bindParam(':fecha_reasignacion_ot', $_POST['fecha_reasignacion_ot']);
+    $stmt->bindParam(':medidas_preventivas', $_POST['medidas_preventivas']);
+    $stmt->bindParam(':estado_ot', $_POST['estado_ot']);
+    $stmt->bindParam(':ot', $_POST['ot']);
+    $stmt->bindParam(':analista_riesgo', $_POST['analista_riesgo']);
+    $stmt->bindParam(':analista_riesgo_dos', $_POST['analista_riesgo_dos']);
+    $stmt->bindParam(':analista_calidad', $_POST['analista_calidad']);
+    $stmt->bindParam(':subpoblacion', $_POST['subpoblacion']);
+    $stmt->bindParam(':tipo_estudio_riesgo', $_POST['tipo_estudio_riesgo']);
+    $stmt->bindParam(':seguimiento', $_POST['seguimiento']);
+    $stmt->bindParam(':es_tramite_emergencia', $_POST['es_tramite_emergencia']);
+    $stmt->bindParam(':tramite_emergencia', $_POST['tramite_emergencia']);
+    $stmt->bindParam(':fecha_tramite_emergencia', $_POST['fecha_tramite_emergencia']);
+    $stmt->bindParam(':ingreso_calidad', $_POST['ingreso_calidad']);
+    $stmt->bindParam(':fecha_aprobacion_calidad', $_POST['fecha_aprobacion_calidad']);
+    $stmt->bindParam(':fecha_presentacion_premesa', $_POST['fecha_presentacion_premesa']);
+    $stmt->bindParam(':recomendacion_riesgo_premesa', $_POST['recomendacion_riesgo_premesa']);
+    $stmt->bindParam(':recomendacion_medidas_premesa', $_POST['recomendacion_medidas_premesa']);
+    $stmt->bindParam(':observaciones_premesa', $_POST['observaciones_premesa']);
+    $stmt->bindParam(':remision_mesa_tecnica', $_POST['remision_mesa_tecnica']);
+    $stmt->bindParam(':observaciones', $_POST['observaciones']);
+    $stmt->bindParam(':otros', $_POST['otros']);
 
-        // Bindear los parámetros
-        $stmt->bindParam(':registro', $registro);
-        $stmt->bindParam(':vigencia', $_POST['vigencia']);
-        $stmt->bindParam(':fecha_recepcion_unp', $_POST['fecha_recepcion_unp']);
-        $stmt->bindParam(':fecha_recepcion_graerr', $_POST['fecha_recepcion_graerr']);
-        $stmt->bindParam(':fecha_carta_solicitante', $_POST['fecha_carta_solicitante']);
-        $stmt->bindParam(':no_mem_ext', $_POST['no_mem_ext']);
-        $stmt->bindParam(':otras_entradas_sigob', $_POST['otras_entradas_sigob']);
-        $stmt->bindParam(':no_folios', $_POST['no_folios']);
-        $stmt->bindParam(':entidad_persona_solicitante', $_POST['entidad_persona_solicitante']);
-        $stmt->bindParam(':destinatario', $_POST['destinatario']);
-        $stmt->bindParam(':tipo_documento', $_POST['tipo_documento']);
-        $stmt->bindParam(':no_documento', $_POST['no_documento']);
-        $stmt->bindParam(':nombres_apellidos_peticionario', $_POST['nombres_apellidos_peticionario']);
-        $stmt->bindParam(':seudonimo', $_POST['seudonimo']);
-        $stmt->bindParam(':tipo_ruta', $_POST['tipo_ruta']);
-        $stmt->bindParam(':descripcion_colectivo', $_POST['descripcion_colectivo']);
-        $stmt->bindParam(':nombre_colectivo', $_POST['nombre_colectivo']);
-        $stmt->bindParam(':no_personas_evaluar', $_POST['no_personas_evaluar']);
-        $stmt->bindParam(':genero', $_POST['genero']);
-        $stmt->bindParam(':grupo_etnico', $_POST['grupo_etnico']);
-        $stmt->bindParam(':correo_electronico', $_POST['correo_electronico']);
-        $stmt->bindParam(':no_de_contacto', $_POST['no_de_contacto']);
-        $stmt->bindParam(':otros_numeros_contacto', $_POST['otros_numeros_contacto']);
-        $stmt->bindParam(':direccion', $_POST['direccion']);
-        $stmt->bindParam(':departamento', $_POST['departamento']);
-        $stmt->bindParam(':municipio', $_POST['municipio']);
-        $stmt->bindParam(':corregimiento_vereda', $_POST['corregimiento_vereda']);
-        $stmt->bindParam(':autoriza_envio_info', $_POST['autoriza_envio_info']);
-        $stmt->bindParam(':fecha_asignacion_analisis', $_POST['fecha_asignacion_analisis']);
-        $stmt->bindParam(':analista_solicitudes', $_POST['analista_solicitudes']);
-        $stmt->bindParam(':medidas_preventivas', $_POST['medidas_preventivas']);
-        $stmt->bindParam(':estado_solicitud', $_POST['estado_solicitud']);
-        $stmt->bindParam(':fecha_asignado_ot', $_POST['fecha_asignado_ot']);
-        $stmt->bindParam(':fecha_reasignacion_ot', $_POST['fecha_reasignacion_ot']);
-        $stmt->bindParam(':estado_ot', $_POST['estado_ot']);
-        $stmt->bindParam(':ot', $_POST['ot']);
-        $stmt->bindParam(':analista_riesgo', $_POST['analista_riesgo']);
-        $stmt->bindParam(':analista_riesgo_dos', $_POST['analista_riesgo_dos']);
-        $stmt->bindParam(':analista_calidad', $_POST['analista_calidad']);
-        $stmt->bindParam(':subpoblacion', $_POST['subpoblacion']);
-        $stmt->bindParam(':tipo_estudio_riesgo', $_POST['tipo_estudio_riesgo']);
-        $stmt->bindParam(':tramite_emergencia', $_POST['tramite_emergencia']);
-        $stmt->bindParam(':fecha_tramite_emergencia', $_POST['fecha_tramite_emergencia']);
-        $stmt->bindParam(':ingreso_calidad', $_POST['ingreso_calidad']);
-        $stmt->bindParam(':fecha_aprobacion_calidad', $_POST['fecha_aprobacion_calidad']);
-        $stmt->bindParam(':fecha_presentacion_premesa', $_POST['fecha_presentacion_premesa']);
-        $stmt->bindParam(':recomendacion_riesgo_premesa', $_POST['recomendacion_riesgo_premesa']);
-        $stmt->bindParam(':recomendacion_medidas_premesa', $_POST['recomendacion_medidas_premesa']);
-        $stmt->bindParam(':observaciones_premesa', $_POST['observaciones_premesa']);
-        $stmt->bindParam(':tiempo_gestion_graerr', $_POST['tiempo_gestion_graerr']);
-        $stmt->bindParam(':remision_mesa_tecnica', $_POST['remision_mesa_tecnica']);
-    //    $stmt->bindParam(':mes_remision', $_POST['mes_remision']);
-    //    $stmt->bindParam(':ano_remision', $_POST['ano_remision']);
-        $stmt->bindParam(':observaciones', $_POST['observaciones']);
-        $stmt->bindParam(':seguimiento', $_POST['seguimiento']);
-        $stmt->bindParam(':factor_diferencial', $_POST['factor_diferencial']);
-     //   $stmt->bindParam(':reporte_936', $_POST['reporte_936']);
-     //   $stmt->bindParam(':verificacion', $_POST['verificacion']);
-        $stmt->bindParam(':otros', $_POST['otros']);
-        $stmt->bindParam(':dev_traslados_poblacional', $_POST['dev_traslados_poblacional']);
-        
-        
-        $s_existe ="1";
-
-        // Ejecutar la consulta
-        if ($stmt->execute()) {
-            echo "Datos insertados correctamente.";
-        } else {
-            echo "Error al insertar los datos.";
-        }
-        
-    } catch (PDOException $e) {
-    // Manejar errores específicos de PDO
-    echo "Error en la consulta: " . $e->getMessage();
-} catch (Exception $e) {
-    // Manejar otros errores
-    echo "Error general: " . $e->getMessage();
-}    
-        
-        
-        
+    // Ejecutar la consulta
+    $stmt->execute();
+    echo "Datos insertados correctamente.";
+} catch (PDOException $e) {
+    echo "Error al insertar los datos: " . $e->getMessage();
+}
     }//existe=0
     
     $s_tocoBoton = "S";  
@@ -1423,10 +1372,12 @@
                         </div> <!--row-->
                         
                         <div class="row" style="margin-top:5px;"> 
+                           <!--
                            <div class="col-sm-3" align="left">
                                <label for="tiempo_gestion_graerr">TIEMPO GESTION GRAERR</label>
                                <input type="text" class="form-control" id="tiempo_gestion_graerr" name="tiempo_gestion_graerr" value="<?=$tiempo_gestion_graerr?>">
                            </div>
+                           -->
                            <div class="col-sm-3" align="left">
                                <label for="remision_mesa_tecnica">REMISION MESA TECNICA</label>
                                <input type="date" class="form-control" id="remision_mesa_tecnica" name="remision_mesa_tecnica" value="<?=$remision_mesa_tecnica?>">
@@ -1451,14 +1402,16 @@
                         </div> <!--row-->
                         
                         <div class="row" style="margin-top:5px;"> 
-                           <div class="col-sm-6" align="left">
+                           <div class="col-sm-2" align="left">
                                <label for="otros">OTROS</label>
-                               <input type="text" class="form-control" id="otros" name="otros" value="<?=$otros?>">
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="otros" name="otros" rows="5"> <?=$otros?> </textarea>
                            </div>
+                           <!--
                            <div class="col-sm-6" align="left">
                                <label for="dev_traslados_poblacional">DEV/TRASLADOS POBLACIONAL</label>
                                <input type="text" class="form-control" id="dev_traslados_poblacional" name="dev_traslados_poblacional" value="<?=$dev_traslados_poblacional?>">
                            </div>
+                           -->
                         </div> <!--row-->
                         
                         <div class="row" style="margin-top:5px;"> 
