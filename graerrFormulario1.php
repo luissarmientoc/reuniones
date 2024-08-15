@@ -467,42 +467,62 @@ try {
 
     // Preparar la consulta SQL
                   
-        $stmt = $pdo->prepare('
-        INSERT INTO graerr_formulario_b (
-            registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
-            no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario,
-            tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, seudonimo, tipo_ruta,
-            descripcion_colectivo, nombre_colectivo, no_personas_evaluar, genero, grupo_etnico,
-            factor_diferencial, correo_electronico, no_de_contacto, otros_numeros_contacto, direccion,
-            departamento, municipio, corregimiento_vereda, autoriza_envio_info, fecha_asignacion_analisis,
-            analista_solicitudes, estado_solicitud, fecha_asignado_ot, fecha_reasignacion_ot, medidas_preventivas,
-            estado_ot, ot, analista_riesgo, analista_riesgo_dos, analista_calidad, subpoblacion, tipo_estudio_riesgo,
-            seguimiento, es_tramite_emergencia, tramite_emergencia, fecha_tramite_emergencia, ingreso_calidad,
-            fecha_aprobacion_calidad, fecha_presentacion_premesa, recomendacion_riesgo_premesa,
-            recomendacion_medidas_premesa, observaciones_premesa, remision_mesa_tecnica, observaciones, otros
-        ) VALUES (
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?
-        )
-    ');
+        $stmt = $pdo->prepare('INSERT INTO graerr_formulario_a (
+                registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
+                no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario,
+                tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, seudonimo, 
+                tipo_ruta, descripcion_colectivo, nombre_colectivo, no_personas_evaluar, genero,
+                grupo_etnico, factor_diferencial, correo_electronico, no_de_contacto, otros_numeros_contacto, 
+                direccion, departamento, municipio, corregimiento_vereda, autoriza_envio_info,
+                fecha_asignacion_analisis, analista_solicitudes, estado_solicitud, fecha_asignado_ot, fecha_reasignacion_ot, 
+                medidas_preventivas, estado_ot, ot, analista_riesgo, analista_riesgo_dos,
+                analista_calidad, subpoblacion, tipo_estudio_riesgo, seguimiento, es_tramite_emergencia, 
+                tramite_emergencia, fecha_tramite_emergencia, ingreso_calidad, fecha_aprobacion_calidad, fecha_presentacion_premesa,
+                recomendacion_riesgo_premesa, recomendacion_medidas_premesa, observaciones_premesa, remision_mesa_tecnica, observaciones, 
+                otros	           
+              ) VALUES (?, ?, ?, ?, ?, 
+                        ?, ?, ?, ?, ?,
+                        ?, ?, ?, ?, ?, 
+                        ?, ?, ?, ?, ?, 
+                        ?, ?, ?, ?, ?, 
+                        ?, ?, ?, ?, ?, 
+                        ?, ?, ?, ?, ?, 
+                        ?, ?, ?, ?, ?, 
+                        ?, ?, ?, ?, ?, 
+                        ?, ?, ?, ?, ?, 
+                        ?, ?, ?, ?, ?, 
+                        ?)');
 
-    // Ejecutar la consulta con los valores correspondientes
-    $stmt->execute([
-        $registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
-        $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario,
-        $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $seudonimo, $tipo_ruta,
-        $descripcion_colectivo, $nombre_colectivo, $no_personas_evaluar, $genero, $grupo_etnico,
-        $factor_diferencial, $correo_electronico, $no_de_contacto, $otros_numeros_contacto, $direccion,
-        $departamento, $municipio, $corregimiento_vereda, $autoriza_envio_info, $fecha_asignacion_analisis,
-        $analista_solicitudes, $estado_solicitud, $fecha_asignado_ot, $fecha_reasignacion_ot, $medidas_preventivas,
-        $estado_ot, $ot, $analista_riesgo, $analista_riesgo_dos, $analista_calidad, $subpoblacion, $tipo_estudio_riesgo,
-        $seguimiento, $es_tramite_emergencia, $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad,
-        $fecha_aprobacion_calidad, $fecha_presentacion_premesa, $recomendacion_riesgo_premesa,
-        $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, $otros
-    ]);            
+        // Ejecutar la consulta con los valores correspondientes
+        $stmt->execute([
+               $registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
+               $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario,
+               $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $seudonimo, 
+               $tipo_ruta, $descripcion_colectivo, $nombre_colectivo, $no_personas_evaluar, $genero,
+               $grupo_etnico, $factor_diferencial, $correo_electronico, $no_de_contacto, $otros_numeros_contacto, 
+               $direccion, $departamento, $municipio, $corregimiento_vereda, $autoriza_envio_info,
+               $fecha_asignacion_analisis, $analista_solicitudes, $estado_solicitud, $fecha_asignado_ot, $fecha_reasignacion_ot, 
+               $medidas_preventivas, $estado_ot, $ot, $analista_riesgo, $analista_riesgo_dos,
+               $analista_calidad, $subpoblacion, $tipo_estudio_riesgo, $seguimiento, $es_tramite_emergencia, 
+               $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad, $fecha_aprobacion_calidad, $fecha_presentacion_premesa,
+               $recomendacion_riesgo_premesa, $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, 
+               $otros	           
+              ]);              
+                   
+                   
+                   
+       
+	
+	
+	
+	
+	
+	
+	
+	
+                   
+                      
+                      
                       
     echo "Datos insertados correctamente.";
 } catch (PDOException $e) {
