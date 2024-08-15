@@ -133,9 +133,10 @@
        $date_added=date("Y-m-d H:i:s");
        
     $registro                      = $_POST['registro'];
+     $vigencia1                      = $_POST['vigencia1'];
     $vigencia                      = $_POST['vigencia'];
     echo '<br>';
-    echo "aqui..". $vigencia;
+    echo "aqui..". $vigencia1;
     echo '<br>';
     $fecha_recepcion_unp           = $_POST['fecha_recepcion_unp'];
     $fecha_recepcion_graerr        = $_POST['fecha_recepcion_graerr'];
@@ -915,9 +916,9 @@
       }
       if ($line['id']==$vigencia)
       {
-        $combo_vigencia .=" <option value='".$line['id']."' selected>".$line['ano']." </option>"; 
+        $combo_vigencia .=" <option value='".$line['ano']."' selected>".$line['ano']." </option>"; 
       }
-     // $combo_vigencia .=" <option value='".$line['id']."'>".$line['ano']."</ano>"; 
+     // $combo_vigencia .=" <option value='".$line['ano']."'>".$line['ano']."</ano>"; 
       $i++; 
     }
    
