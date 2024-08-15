@@ -1025,7 +1025,7 @@
                        <div class="row" style="margin-top:5px;">
                            <div class="col-sm-3" align="left">
                                <label for="registro">REGISTRO</label>
-                               <input type="text" class="form-control" id="registro" name="registro"  value="<?=$registro?>" required readonly>
+                               <input type="text" class="form-control" id="registro" name="registro"  value="<?=$s_registro?>" required readonly>
                            </div>
                            
                            <div class="col-sm-3" align="left">
