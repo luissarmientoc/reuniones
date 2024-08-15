@@ -202,7 +202,7 @@
           
     echo "1.." . $registro;
     echo '<br>';
-    echo "2.." . $vigencia;
+    echo "2.la vigencia." . $vigencia;
     echo '<br>';
     echo "3.." . $fecha_recepcion_unp;
     echo '<br>';
@@ -913,7 +913,7 @@
       {
         $combo_vigencia .=" <option value='".$line['id']."' selected>".$line['ano']." </option>"; 
       }
-     // $combo_vigencia .=" <option value='".$line['id']."'>".$line['tipo_ruta']."</ano>"; 
+     // $combo_vigencia .=" <option value='".$line['id']."'>".$line['ano']."</ano>"; 
       $i++; 
     }
    
@@ -988,7 +988,7 @@
                            <div class="col-sm-3" align="left">
                                <label for="vigencia">VIGENCIA</label>
                                <!--<input type="text" class="form-control" id="vigencia" name="vigencia" value="<?=$vigencia?>"required>-->
-                                <select <?=$active?> required class="form-control" name="vigencia">
+                                <select <?=$active?> required class="form-control" id="vigencia" name="vigencia">
                                   <?php echo $combo_vigencia; ?>
                                 </select>
                            </div>
