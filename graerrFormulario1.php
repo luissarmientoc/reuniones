@@ -51,6 +51,7 @@
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       
+             $s_registro                      = $row['registro'];
              $registro                      = $row['registro'];
              $vigencia                      = $row['vigencia'];
              $fecha_recepcion_unp           = $row['fecha_recepcion_unp'];
@@ -139,7 +140,7 @@
        //$s_fecha  = date("Y-m-d",time());
        //$s_fecha  = date("Y/m/d H:i:s");
        $date_added=date("Y-m-d H:i:s");
-       
+             $s_registro                     = $_POST['registro'];
              $registro                      = $_POST['registro'];
              $vigencia                      = $_POST['vigencia'];
              $fecha_recepcion_unp           = $_POST['fecha_recepcion_unp'];
