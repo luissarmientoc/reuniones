@@ -1139,7 +1139,7 @@
                           </div> 
                           <div class="col-sm-4" align="left">
                               <label for="no_contacto">No DE CONTACTO</label>
-                              <input type="text" class="form-control" id="no_de_contacto" name="no_contacto"  value="<?=$no_de_contacto?>" required>
+                              <input type="text" class="form-control" id="no_de_contacto" name="no_de_contacto"  value="<?=$no_de_contacto?>" required>
                           </div>
                           <div class="col-sm-4" align="left">
                               <label for="otros_numeros_contacto">OTROS NUMEROS DE CONTACTO</label>
