@@ -266,15 +266,15 @@
 					<th>Fecha UNP</th>
 					<th>Fecha GRAERR</th>
 					<th>Documento</th>
-					<th>Peticionario</th> 
+					<th COLSPAN="2">Peticionario</th> 
 					<th>Estado</th>
 					<th class='text-center' colspan="4">Acciones</th>
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
                     
                     echo '<br>';echo '<br>';echo '<br>';
-             echo "sql22.." . $sql;
-            echo '<br>';echo '<br>';echo '<br>';
+                    echo "sql22.." . $sql;
+                    echo '<br>';echo '<br>';echo '<br>';
                     
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -304,7 +304,7 @@
   					       <td><?php echo $fecha_recepcion_graerr; ?></td>
   					       <td><?php echo $no_documento; ?></td>
   					       <td><?php echo $nombres_peticionario; ?></td>
-  					       <!--<td><?php echo $apellidos_peticionario; ?></td>-->
+  					       <td><?php echo $apellidos_peticionario; ?></td>
   					       <td><?php echo $estado_solicitud; ?></td>
  
 					       <td class='text-center'>

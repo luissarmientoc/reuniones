@@ -108,7 +108,7 @@
              $observaciones                 = $row['observaciones'];
              $otros                         = $row['otros'];
              
-             
+    /*         
              echo "1.." . $registro;
     echo '<br>';
     echo "2.la vigencia." . $vigencia;
@@ -222,7 +222,7 @@
     echo '<br>';
     echo "61.." . $otros;
     echo '<br>';
-      
+      */
              
     }  
     else
@@ -314,6 +314,7 @@
              $observaciones                 = $_POST['observaciones'];
              $otros                         = $_POST['otros'];
        
+       /*
     echo "entra a grabar";
           echo '<br>';
           echo "1.." . $_POST['registro'];
@@ -433,7 +434,7 @@
     echo '<br>';
     echo "61.." . $otros;
     echo '<br>';
-      
+      */
     //MODIFICA
     if ($s_existe == "1")  
     {
