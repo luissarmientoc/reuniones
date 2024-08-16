@@ -22,6 +22,26 @@
      require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
      include("head.php");
   ?>
+  
+  <script>
+        $(document).ready(function() {
+            // Cuando se cambia la selección del departamento
+            $('#departamento').change(function() {
+                var departamentoId = $(this).val();
+                // Realizar una petición AJAX al servidor para obtener las ciudades
+                $.ajax({
+                    url: 'get_cities.php', // Archivo PHP que devolverá las ciudades
+                    type: 'POST',
+                    data: { departamento_id: departamentoId },
+                    success: function(data) {
+                        $('#ciudad').html(data); // Actualiza el campo de ciudades
+                    }
+                });
+            });
+        });
+    </script>
+  
+  
   </head>
   
   <?php  
@@ -1158,11 +1178,15 @@ try {
                              <!-- <input type="text" class="form-control" id="departamento" name="departamento"required>-->
                           </div>
                           
-                          
-                          
                           <div class="col-sm-4" align="left">
-                              <label for="municipio">MUNICIPIO</label>
-                              <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required>
+                              <label for="ciudad">Ciudad:</label>
+                              <select id="ciudad" name="ciudad">
+                                  <option value="">Seleccionar</option>
+                                  <!-- Opciones de ciudades que se actualizarán mediante AJAX -->
+                              </select>
+                          
+                              <!--<label for="municipio">MUNICIPIO</label>
+                              <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required>-->
                           </div>
                        </div> <!--row-->
                        
