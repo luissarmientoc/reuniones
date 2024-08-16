@@ -65,7 +65,7 @@
                 <div class="fondo"> 
                     <div class="row">
                      <div class="col-sm-6" ALIGN="left">
-                        <span align="center"> <?=$s_cuantos?> registradas  </span><br>
+                        <span align="center"> <?=$s_cuantos?> registrado  </span><br>
                         <h3> <i  class='fas fa-sign-in-alt' style='color:#2f79b9'></i> Grupo de Recepción, Análisis, Evaluación del Riesgo y Recomendaciones - GRAERR </h3>
                      </div>
                      <div class="col-sm-6" ALIGN="right">
@@ -95,7 +95,7 @@
          		          
          		          <div class='col-md-3'>
          		             <label>Filtrar por Id del beneficiario</label>
-         		             <input type="number" class="form-control" id="q1" placeholder="Número de registro" onkeyup='load(1);'>
+         		             <input type="number" class="form-control" id="q1" placeholder="Id del beneficiario" onkeyup='load(1);'>
          		     
 	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
          		          </div>

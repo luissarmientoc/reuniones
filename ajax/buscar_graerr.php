@@ -245,9 +245,9 @@
 		
 	        // Consulta SQL para contar las filas
             $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
-            echo '<br>';echo '<br>';echo '<br>';
-             echo "sql 1.." . $sql;
-            echo '<br>';echo '<br>';echo '<br>';
+            //echo '<br>';echo '<br>';echo '<br>';
+            // echo "sql 1.." . $sql;
+            //echo '<br>';echo '<br>';echo '<br>';
              
             $stmt = $pdo->query($sql);
             // Obtener el resultado (única fila)
@@ -305,7 +305,7 @@
   					       <td><?php echo $no_documento; ?></td>
   					       <td><?php echo $nombres_peticionario; ?></td>
   					       <td><?php echo $apellidos_peticionario; ?></td>
-  					       <td><?php echo $estado_solicitud; ?></td>
+  					       <td><?php echo $solicitud; ?></td>
  
 					       <td class='text-center'>
 					         <a href="graerrFormulario1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a> 
