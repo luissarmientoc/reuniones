@@ -87,8 +87,8 @@
             $q4_str = isset($_REQUEST['q4']) ? strip_tags($_REQUEST['q4']) : ''; 
             $q4 = intval($q4_str); // Convierte $q4_str a entero
             
-            $q4_str = isset($_REQUEST['q5']) ? strip_tags($_REQUEST['q5']) : ''; 
-            $q4 = intval($q5_str); // Convierte $q5_str a entero
+            $q5_str = isset($_REQUEST['q5']) ? strip_tags($_REQUEST['q5']) : ''; 
+            $q5 = intval($q5_str); // Convierte $q5_str a entero
             
             /*
              echo '<br>';
