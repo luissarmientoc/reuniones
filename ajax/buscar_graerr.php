@@ -187,13 +187,13 @@
 		    if ($q2!=''){
 		        if ($q1>0)
 		        {
-		          $sWhere .=" and nombres_peticionario LIKE '%".$q2."%'";
-		          $sWhere1 .=" and nombres_peticionario LIKE '%".$q2."%'";    
+		          $sWhere .=" and nombres_peticionario LIKE '%".$q2."%' OR apellidos_peticionario LIKE '%".$q2."%'";
+		          $sWhere1 .=" and nombres_peticionario LIKE '%".$q2."%' OR apellidos_peticionario LIKE ";    
 		        }
 		        else
 		        {
-		          $sWhere .=" nombres_peticionario LIKE '%".$q2."%'";
-		          $sWhere1 .=" nombres_peticionario LIKE '%".$q2."%'";
+		          $sWhere .=" nombres_peticionario LIKE '%".$q2."%' OR apellidos_peticionario LIKE ";
+		          $sWhere1 .=" nombres_peticionario LIKE '%".$q2."%' OR apellidos_peticionario LIKE ";
 		        }    
 		    }
 		    if ($q3>0){
