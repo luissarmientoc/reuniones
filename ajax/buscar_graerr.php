@@ -162,6 +162,9 @@
 			$sWhere .= ')';
 			*/
 		
+		    ///////////
+		    /*
+		
 		  	if ($q>0){
 		        $sWhere .=" registro ='$q'";
 		        $sWhere1 .=" registro ='$q'";
@@ -208,29 +211,86 @@
 		    if ($q4>0){
 		        if ($q3>0)
 		        {
-		          $sWhere .=" and analista_riesgo ='$q3'";
-		          $sWhere1 .=" and analista_riesgo ='$q3'";    
+		          $sWhere .=" and analista_riesgo ='$q4'";
+		          $sWhere1 .=" and analista_riesgo ='$q4'";    
 		        }
 		        else
 		        {
-		            $sWhere .=" analista_riesgo ='$q3'";
-		            $sWhere1 .=" analista_riesgo ='$q3'";
+		            $sWhere .=" analista_riesgo ='$q4'";
+		            $sWhere1 .=" analista_riesgo ='$q4'";
 		        }
 		    }
 		    
 		    if ($q5>0){
 		        if ($q4>0)
 		        {
-		          $sWhere .=" and analista_solicitudes ='$q3'";
-		          $sWhere1 .=" and analista_solicitudes ='$q3'";    
+		          $sWhere .=" and analista_solicitudes ='$q5'";
+		          $sWhere1 .=" and analista_solicitudes ='$q5'";    
 		        }
 		        else
 		        {
-		            $sWhere .=" analista_solicitudes ='$q3'";
-		            $sWhere1 .=" analista_solicitudes ='$q3'";
+		            $sWhere .=" analista_solicitudes ='$q5'";
+		            $sWhere1 .=" analista_solicitudes ='$q5'";
 		        }
 		    }
+           */
+           ///////////////
            
+           if ($q > 0) {
+    $sWhere .= " registro LIKE '%$q%'";
+    $sWhere1 .= " registro LIKE '%$q%'";
+}
+
+if ($q1 > 0) {
+    if ($q > 0) {
+        $sWhere .= " AND no_documento LIKE '%$q1%'";
+        $sWhere1 .= " AND no_documento LIKE '%$q1%'";
+    } else {
+        $sWhere .= " no_documento LIKE '%$q1%'";
+        $sWhere1 .= " no_documento LIKE '%$q1%'";
+    }
+}
+
+if ($q2 != '') {
+    if ($q1 > 0) {
+        $sWhere .= " AND nombres_peticionario LIKE '%$q2%'";
+        $sWhere1 .= " AND nombres_peticionario LIKE '%$q2%'";
+    } else {
+        $sWhere .= " nombres_peticionario LIKE '%$q2%'";
+        $sWhere1 .= " nombres_peticionario LIKE '%$q2%'";
+    }
+}
+
+if ($q3 > 0) {
+    if ($q2 != '') {
+        $sWhere .= " AND tipo_ruta LIKE '%$q3%'";
+        $sWhere1 .= " AND tipo_ruta LIKE '%$q3%'";
+    } else {
+        $sWhere .= " tipo_ruta LIKE '%$q3%'";
+        $sWhere1 .= " tipo_ruta LIKE '%$q3%'";
+    }
+}
+
+if ($q4 > 0) {
+    if ($q3 > 0) {
+        $sWhere .= " AND analista_riesgo LIKE '%$q4%'";
+        $sWhere1 .= " AND analista_riesgo LIKE '%$q4%'";
+    } else {
+        $sWhere .= " analista_riesgo LIKE '%$q4%'";
+        $sWhere1 .= " analista_riesgo LIKE '%$q4%'";
+    }
+}
+
+if ($q5 > 0) {
+    if ($q4 > 0) {
+        $sWhere .= " AND analista_solicitudes LIKE '%$q5%'";
+        $sWhere1 .= " AND analista_solicitudes LIKE '%$q5%'";
+    } else {
+        $sWhere .= " analista_solicitudes LIKE '%$q5%'";
+        $sWhere1 .= " analista_solicitudes LIKE '%$q5%'";
+    }
+}
+
 		    // Configurar el modo de error para excepciones
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    
