@@ -479,7 +479,8 @@ try {
         $registro  // El ID del registro que deseas actualizar
     ]);
 
-    echo "Datos actualizados correctamente.";
+     $mensaje=" <b>Atención!</b> Actualización exitosa";
+    //echo "Datos actualizados correctamente.";
 } catch (PDOException $e) {
     echo "Error al actualizar los datos: " . $e->getMessage();
 }
@@ -495,7 +496,7 @@ try {
     //$conn = new PDO("pgsql:host=localhost;dbname=mi_base_de_datos", "mi_usuario", "mi_contraseña");
     //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Preparar la consulta SQL
+         // Preparar la consulta SQL
                   
         $stmt = $pdo->prepare('INSERT INTO graerr_formulario_b (
                 registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
@@ -541,8 +542,8 @@ try {
                    
                    
                       
-                      
-    echo "Datos insertados correctamente.";
+              $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
+    //echo "Datos insertados correctamente.";
 } catch (PDOException $e) {
     echo "Error al insertar los datos: " . $e->getMessage();
 }

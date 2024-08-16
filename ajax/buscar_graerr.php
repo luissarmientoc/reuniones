@@ -287,11 +287,11 @@
 						$estado_solicitud=$row['estado_solicitud'];
 						 
 						
-						//trae persona
-						//$sqlPer   = "select * from reu_participante where numeroidparticipante=$convocadaPor";
-						//$stmtPer = $pdo->query($sqlPer);
-					    //$rowPer  = $stmtPer->fetch(PDO::FETCH_ASSOC);
-					    //$persona     = $rowPer['nombresparticipante'];
+						//trae estado solicitud
+						$sqlSol    = "select * from graerr_estado_solicitud where id=$estado_solicitud";
+						$stmtSol   = $pdo->query($sqlSol);
+					    $rowSol    = $stmtSol->fetch(PDO::FETCH_ASSOC);
+					    $solicitud = $rowSol['estado_solicitud'];
 						
 			            
  
