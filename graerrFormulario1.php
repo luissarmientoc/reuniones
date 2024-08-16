@@ -64,8 +64,8 @@
              $destinatario                  = $row['destinatario'];
              $tipo_documento                = $row['tipo_documento'];
              $no_documento                  = $row['no_documento'];
-             $nombres_peticionario          = $row['nombres_apellidos_peticionario'];
-             $apellidos_peticionario        = $row['nombres_apellidos_peticionario'];
+             $nombres_peticionario          = $row['nombres_peticionario'];
+             $apellidos_peticionario        = $row['apellidos_peticionario'];
              $seudonimo                     = $row['seudonimo'];
              $tipo_ruta                     = $row['tipo_ruta'];
              $descripcion_colectivo         = $row['descripcion_colectivo'];
