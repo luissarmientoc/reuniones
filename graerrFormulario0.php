@@ -102,7 +102,7 @@
          		          
          		          <div class='col-md-3'>
          		             <label>Filtrar por nombre del beneficiario</label>
-         		             <input style="text-transform:uppercase;" type="text" class="form-control" id="q2" placeholder="Nombre del beneficiario" onkeyup='load(1);'>
+         		             <input uppercase type="text" class="form-control" id="q2" placeholder="Nombre del beneficiario" onkeyup='load(1);'>
          		     
 	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
          		          </div>
