@@ -895,6 +895,25 @@ try {
      // $combo_vigencia .=" <option value='".$line['ano']."'>".$line['ano']."</ano>"; 
       $i++; 
     }
+    
+    //============================= CONSULTA LOS DEPARTAMENTOS
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT coddepto, nomdepto  FROM reu_municipios GROUP BY coddepto, nomdepto;');
+  
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $comboDepto .=" <option value=''>".'- Seleccione el departamento -'."</option>";
+      }
+      if ($line['coddepto']==$departamento)
+      {
+        $comboDepto .=" <option value='".$line['coddepto']."' selected>".$line['nomdepto']." </option>"; 
+      }
+      $comboDepto .=" <option value='".$line['coddepto']."'>".$line['nomdepto']."</option>"; 
+      $i++; 
+    }
    
    
   ?>  
@@ -1131,10 +1150,16 @@ try {
                               <label for="direccion">DIRECCION</label>
                               <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
                           </div>
-                          <div class="col-sm-4" align="left">
-                              <label for="departamento">DEPARTAMENTO</label>
-                              <input type="text" class="form-control" id="departamento" name="departamento"  value="<?=$departamento?>" required>
+                          <div class="col-sm-4" align="left"> 
+                                <label for="departamento">DEPARTAMENTO</label>
+                                <select required class="form-control" name="departamento" id="departamento" onchange="loadCiudad(this.value)">
+                                        <?php echo $comboDepto; ?>
+                                </select>
+                             <!-- <input type="text" class="form-control" id="departamento" name="departamento"required>-->
                           </div>
+                          
+                          
+                          
                           <div class="col-sm-4" align="left">
                               <label for="municipio">MUNICIPIO</label>
                               <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required>
