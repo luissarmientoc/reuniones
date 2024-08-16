@@ -187,13 +187,13 @@
 		    if ($q2!=''){
 		        if ($q1>0)
 		        {
-		          $sWhere .=" and nombres_peticionario ='$q2'";
-		          $sWhere1 .=" and nombres_peticionario ='$q2'";    
+		          $sWhere .=" and nombres_peticionario LIKE '%".$q2."%'";
+		          $sWhere1 .=" and nombres_peticionario LIKE '%".$q2."%'";    
 		        }
 		        else
 		        {
-		          $sWhere .=" nombres_peticionario ='$q2'";
-		          $sWhere1 .=" nombres_peticionario ='$q2'";
+		          $sWhere .=" nombres_peticionario LIKE '%".$q2."%'";
+		          $sWhere1 .=" nombres_peticionario LIKE '%".$q2."%'";
 		        }    
 		    }
 		    if ($q3>0){
