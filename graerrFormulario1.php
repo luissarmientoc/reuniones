@@ -154,8 +154,8 @@
              $destinatario                  = $_POST['destinatario'];
              $tipo_documento                = $_POST['tipo_documento'];
              $no_documento                  = $_POST['no_documento'];
-             $nombres_peticionario          = $_POST['nombres_apellidos_peticionario'];
-             $apellidos_peticionario        = $_POST['nombres_apellidos_peticionario'];
+             $nombres_peticionario          = $_POST['nombres_peticionario'];
+             $apellidos_peticionario        = $_POST['apellidos_peticionario'];
              $seudonimo                     = $_POST['seudonimo'];
              $tipo_ruta                     = $_POST['tipo_ruta'];
              $descripcion_colectivo         = $_POST['descripcion_colectivo'];
@@ -343,7 +343,7 @@ try {
             fecha_aprobacion_calidad = ?, fecha_presentacion_premesa = ?, recomendacion_riesgo_premesa = ?, 
             recomendacion_medidas_premesa = ?, observaciones_premesa = ?, remision_mesa_tecnica = ?, 
             observaciones = ?, otros = ?
-        WHERE id = ?
+        WHERE registro = ?
     ');
 
     // Ejecutar la consulta con los valores correspondientes
@@ -359,7 +359,7 @@ try {
         $seguimiento, $es_tramite_emergencia, $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad,
         $fecha_aprobacion_calidad, $fecha_presentacion_premesa, $recomendacion_riesgo_premesa,
         $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, $otros,
-        $id  // El ID del registro que deseas actualizar
+        $registro  // El ID del registro que deseas actualizar
     ]);
 
     echo "Datos actualizados correctamente.";
