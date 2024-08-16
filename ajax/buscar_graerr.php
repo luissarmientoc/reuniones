@@ -245,9 +245,12 @@
 		
 	        // Consulta SQL para contar las filas
             $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
-            //echo '<br>';echo '<br>';echo '<br>';
-            // echo "sql 1.." . $sql;
-            //echo '<br>';echo '<br>';echo '<br>';
+            $sql1 = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
+            echo '<br>';echo '<br>';echo '<br>';
+             echo "sql 1.." . $sql;
+             echo '<br>';
+             echo "sql 1aa.." . $sql;
+            echo '<br>';echo '<br>';echo '<br>';
              
             $stmt = $pdo->query($sql);
             // Obtener el resultado (única fila)
@@ -293,8 +296,6 @@
 					    $rowSol    = $stmtSol->fetch(PDO::FETCH_ASSOC);
 					    $solicitud = $rowSol['estado_solicitud'];
 						
-			            
- 
  					    $lv   = $registro. "/MOD1234567890qwertyuiopasdfghjkl";
 					    $lVDX = base64_encode($lv);
         ?>
@@ -302,7 +303,7 @@
   		   			      <td><?php echo $registro; ?></td>
   					       <td><?php echo $fecha_recepcion_unp; ?></td>
   					       <td><?php echo $fecha_recepcion_graerr; ?></td>
-  					       <td><?php echo $no_documento; ?></td>
+  					       <td><?php echo number_format($no_documento); ?></td>
   					       <td><?php echo $nombres_peticionario; ?></td>
   					       <td><?php echo $apellidos_peticionario; ?></td>
   					       <td><?php echo $solicitud; ?></td>
