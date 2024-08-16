@@ -65,7 +65,7 @@
                 <div class="fondo"> 
                     <div class="row">
                      <div class="col-sm-6" ALIGN="left">
-                        <span align="center"> <?=$s_cuantos?> registrado  </span><br>
+                        <span align="center"> <?=$s_cuantos?> registrados  </span><br>
                         <h3> <i  class='fas fa-sign-in-alt' style='color:#2f79b9'></i> Grupo de Recepción, Análisis, Evaluación del Riesgo y Recomendaciones - GRAERR </h3>
                      </div>
                      <div class="col-sm-6" ALIGN="right">
@@ -78,7 +78,7 @@
                 <div class="panel panel-info">
 	               <div class="panel-heading">
         	          <div class="btn-group pull-right">        	    
-          	            <a href="graerrFormulario1.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nueva Reunión</a>
+          	            <a href="graerrFormulario1.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
 	                  </div>
         	          <h4><i class='glyphicon glyphicon-search'></i> Buscar Registro</h4>
 	               </div>

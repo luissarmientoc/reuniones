@@ -254,12 +254,6 @@
 	        // Consulta SQL para contar las filas
             $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
             $sql1 = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
-            echo '<br>';echo '<br>';echo '<br>';
-             echo "sql 1.." . $sql;
-             echo '<br>';
-             echo "sql 1aa.." . $sql;
-            echo '<br>';echo '<br>';echo '<br>';
-             
             $stmt = $pdo->query($sql);
             // Obtener el resultado (única fila)
             $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -282,11 +276,6 @@
 					<th class='text-center' colspan="4">Acciones</th>
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
-                    
-                    echo '<br>';echo '<br>';echo '<br>';
-                    echo "sql22.." . $sql;
-                    echo '<br>';echo '<br>';echo '<br>';
-                    
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $registro=$row['registro'];
