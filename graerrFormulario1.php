@@ -94,6 +94,7 @@
              $analista_calidad              = $row['analista_calidad'];
              $subpoblacion                  = $row['subpoblacion'];
              $tipo_estudio_riesgo           = $row['tipo_estudio_riesgo'];
+             $seguimiento                   = $row['seguimiento'];
              $es_tramite_emergencia         = $row['es_tramite_emergencia'];
              $tramite_emergencia            = $row['tramite_emergencia'];
              $fecha_tramite_emergencia      = $row['fecha_tramite_emergencia'];
@@ -185,6 +186,7 @@
              $tipo_estudio_riesgo           = $_POST['tipo_estudio_riesgo'];
              $es_tramite_emergencia         = $_POST['es_tramite_emergencia'];
              $tramite_emergencia            = $_POST['tramite_emergencia'];
+             $seguimiento                   = $_POST['seguimiento'];
              $fecha_tramite_emergencia      = $_POST['fecha_tramite_emergencia'];
              $ingreso_calidad               = $_POST['ingreso_calidad'];
              $fecha_aprobacion_calidad      = $_POST['fecha_aprobacion_calidad'];
@@ -322,7 +324,6 @@
       
 try {
     // Conectar a la base de datos
-    $pdo = new PDO("pgsql:host=localhost;dbname=mi_base_de_datos", "mi_usuario", "mi_contraseña");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Preparar la consulta SQL para actualizar
@@ -927,12 +928,12 @@ try {
                        <div class="row" style="margin-top:5px;">   
                            <div class="col-sm-4" align="left">
                                <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES PETICIONARIO O BENEFICIARIO</label>
-                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
                            </div>
                            
                            <div class="col-sm-4" align="left">
                                <label style="font-size:12px;" for="nombres_apellidos_peticionario">APELLIDOS PETICIONARIO O BENEFICIARIO</label>
-                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_apellidos_peticionario" name="nombres_apellidos_peticionario"  value="<?=$nombres_apellidos_peticionario?>" required>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_peticionario" name="apellidos_peticionario"  value="<?=$apellidos_peticionario?>" required>
                            </div>
                            
                            <div class="col-sm-4" align="left">
