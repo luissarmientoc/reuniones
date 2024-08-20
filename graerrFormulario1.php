@@ -1017,7 +1017,7 @@ try {
                   
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">			 
                <div class="panel-body">
-                   <div class="container" style="margin-bottom:10px;">
+                   <div class="container-fluid" style="margin-bottom:10px;">
                        <!--------------------------------------------------------- 
                        ----------------------DATOS DEL TRAMITE--------------------
                        ---------------------------------------------------------->
