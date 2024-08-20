@@ -39,10 +39,8 @@ function datoCiiu()
 
   //alert(selected);  
 }
-</script>
 
-   <script>
-        document.getElementById('es_tramite_emergencia').addEventListener('change', function() {
+            document.getElementById('es_tramite_emergencia').addEventListener('change', function() {
             const miDiv = document.getElementById('emergencia');
             const seleccion = this.value;
 
@@ -51,10 +49,15 @@ function datoCiiu()
             } else {
                 miDiv.style.display = 'block';
             }
-        });
-    </script>
-  
-  
+            });
+</script>
+
+    <style>
+        #emergencia {
+            display: block; /* Inicialmente visible */
+        }
+    </style>
+    
   </head>
   
   <?php  
@@ -1550,6 +1553,24 @@ try {
      <?php
       // include("footer.php");
      ?>
+      <script>
+        // Espera a que el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            const miSelect = document.getElementById('es_tramite_emergencia');
+            const miDiv = document.getElementById('emergencia');
+
+            miSelect.addEventListener('change', function() {
+                const seleccion = this.value;
+
+                if (seleccion === 'si') {
+                    miDiv.style.display = 'none';
+                } else {
+                    miDiv.style.display = 'block';
+                }
+            });
+        });
+      </script>
+      
       <script type="text/javascript" src="js/bootstrap-filestyle.js"> </script>
       <script type="text/javascript" src="buscarCiudad.js"></script>
      
