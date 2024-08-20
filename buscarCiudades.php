@@ -1,5 +1,11 @@
 <?php
-  $q=$_POST['q']; 
+  echo '<br>';
+  echo "en php";
+  echo '<br>';
+  $q=$_POST['q'];
+   echo '<br>';
+  echo $q;
+  echo '<br>';
   require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
   require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
    // Crear una nueva instancia de conexión PDO
