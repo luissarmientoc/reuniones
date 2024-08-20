@@ -1177,10 +1177,12 @@ try {
                                 </select>
                              <!-- <input type="text" class="form-control" id="departamento" name="departamento"required>-->
                           </div>
-                          
+                          <!-- 
+                            necesito un campo lista  dependiente de otro campo lista, por ejemplo departamanto y ciudad
+                          -->
                           <div class="col-sm-4" align="left">
                               <label for="ciudad">Ciudad:</label>
-                              <select id="ciudad" name="ciudad">
+                              <select required class="form-control"  id="ciudad" name="ciudad">
                                   <option value="">Seleccionar</option>
                                   <!-- Opciones de ciudades que se actualizarán mediante AJAX -->
                               </select>

@@ -5,6 +5,10 @@
   require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
   require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
   include("head.php");
+  
+   echo '<br>';echo '<br>';echo '<br>';
+   echo "entrar cities";
+   echo '<br>';echo '<br>';echo '<br>';
      
    // Obtener el ID del departamento enviado por AJAX
    $departamentoId = isset($_POST['departamento']) ? (int)$_POST['departamento'] : 0;
