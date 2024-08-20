@@ -20,6 +20,7 @@
             xhr.onload = function() {
                 if (this.status === 200) {
                     try {
+                        alert ("en el try");
                         var cities = JSON.parse(this.responseText);
                         var citiesSelect = document.getElementById('cities');
                         var options = '<option value="">Selecciona una ciudad</option>'; // Inicializa con opción predeterminada
