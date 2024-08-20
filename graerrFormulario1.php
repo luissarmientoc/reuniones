@@ -23,25 +23,42 @@
      include("head.php");
   ?>
   
-    <script>
-        function loadCities() {
-            var departmentId = document.getElementById('departments').value;
-            alert departmentId;
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'get_cities.php?department_id=' + departmentId, true);
-            xhr.onload = function() {
-                if (this.status === 200) {
-                    var cities = JSON.parse(this.responseText);
-                    var citiesSelect = document.getElementById('cities');
-                    citiesSelect.innerHTML = '<option value="">Selecciona unaaaaaaaaaaa ciudad</option>';
-                    for (var i = 0; i < cities.length; i++) {
-                        citiesSelect.innerHTML += '<option value="' + cities[i].id + '">' + cities[i].name + '</option>';
-                    }
+<script>
+function loadCities() {
+    var departmentId = document.getElementById('departments').value;
+    alert(departmentId); // Corregido para usar paréntesis
+
+    if (!departmentId) {
+        // Si no hay un departamento seleccionado, limpia las opciones de la ciudad
+        document.getElementById('cities').innerHTML = '<option value="">Selecciona una ciudad</option>';
+        return;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'get_cities.php?department_id=' + encodeURIComponent(departmentId), true);
+    xhr.onload = function() {
+        if (this.status === 200) {
+            try {
+                var cities = JSON.parse(this.responseText);
+                var citiesSelect = document.getElementById('cities');
+                var options = '<option value="">Selecciona una ciudad</option>'; // Inicializa con opción predeterminada
+                for (var i = 0; i < cities.length; i++) {
+                    options += '<option value="' + cities[i].id + '">' + cities[i].name + '</option>';
                 }
-            };
-            xhr.send();
+                citiesSelect.innerHTML = options;
+            } catch (e) {
+                console.error('Error al analizar JSON:', e);
+            }
+        } else {
+            console.error('Error al cargar ciudades:', this.status, this.statusText);
         }
-    </script>
+    };
+    xhr.onerror = function() {
+        console.error('Error en la solicitud');
+    };
+    xhr.send();
+}
+</script>
   
   
   </head>
