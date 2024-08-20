@@ -1191,18 +1191,18 @@ try {
                           </div>
                           <div class="col-sm-4" align="left"> 
                                 <label for="departamento">DEPARTAMENTO</label>
-                                <select id="departments" name="departments" onchange="loadCities()">
+                                <select id="departamento" name="departamento" onchange="loadCiudadD(this.value)">
                                 <!--<select required class="form-control" name="departments" id="departments" onchange="loadCities(this.value)">-->
                                         <?php echo $comboDepto; ?>
                                 </select>
                              <!-- <input type="text" class="form-control" id="departamento" name="departamento"required>-->
                              <br><br>
-
-        <label for="cities">Ciudad:</label>
-        <select id="cities" name="cities">
-            <option value="">Selecciona uuuuuuuuna ciudad</option>
-        </select>
                           </div>
+                          
+                          <div class="col-sm-3">
+                               <b>Raza de la mascota:</b> <br>
+                               <div id="myDiv"> </div> 
+                           </div>
                           
                           <!-- 
                             necesito un campo lista  dependiente de otro campo lista, por ejemplo departamanto y ciudad
