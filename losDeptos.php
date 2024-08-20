@@ -48,6 +48,9 @@
             require_once 'config/conexion.php'; // Incluye la función de conexión
     //============================= CONSULTA LOS DEPARTAMENTOS
     //============================================================================ 
+     // Crear una nueva instancia de conexión PDO
+   $pdo = new PDO($dsn);
+    
     $stmt = $pdo->query('SELECT coddepto, nomdepto  FROM reu_municipios GROUP BY coddepto, nomdepto;');
   
     $i=0;
