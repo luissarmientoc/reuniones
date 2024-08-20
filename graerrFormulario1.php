@@ -127,6 +127,7 @@ function datoCiiu()
              $remision_mesa_tecnica         = $row['remision_mesa_tecnica'];
              $observaciones                 = $row['observaciones'];
              $otros                         = $row['otros'];
+             $factor_diferencial            = $row['factor_diferencial'];
              
     /*         
              echo "1.." . $registro;
@@ -333,12 +334,9 @@ function datoCiiu()
              $remision_mesa_tecnica         = $_POST['remision_mesa_tecnica'];
              $observaciones                 = $_POST['observaciones'];
              $otros                         = $_POST['otros'];
-       
-       
-       
-      
+             $factor_diferencial            = $_POST['factor_diferencial'];
        /*
-    echo "entra a grabar";
+          echo "entra a grabar";
           echo '<br>';
           echo "1.." . $_POST['registro'];
           echo '<br>';
@@ -829,7 +827,7 @@ try {
     
     //============================= CONSULTA EL graerr_recomendacion_premesa
     //============================================================================ 
-    $stmt = $pdo->query('select * from graerr_recomendacion_premesa order by descripcion');
+    $stmt = $pdo->query('select * from graerr_recomendacion_premesa order by id');
     $i=0;
     while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
     {
@@ -1266,8 +1264,9 @@ try {
                           <div class="col-sm-4" align="left">
                               <label for="autoriza_envio_info">AUTORIZA ENVIO DE INFO POR CORREO</label>
                               <select class="form-control" id="autoriza_envio_info" name="autoriza_envio_info" value="<?=$autoriza_envio_info?>">
-                                  <option value="si">Sí</option>
-                                  <option value="no">No</option>
+                                  <option value="Si">Sí</option>
+                                  <option value="No">No</option>
+                                  <option value="Si">No reporta</option>
                               </select>
                           </div>
                           
@@ -1286,6 +1285,13 @@ try {
                        
                        <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-4" align="left">
+                               <label for="medidas_preventivas">MEDIDAS PREVENTIVAS</label>
+                               <!--<input type="text" class="form-control" id="medidas_preventivas" name="medidas_preventivas" value="<?=$medidas_preventivas?>">-->
+                               <select <?=$active?> required class="form-control" name="medidas_preventivas">
+                                  <?php echo $combo_medidas_preventivas; ?>
+                               </select>
+                           </div>
+                           <div class="col-sm-4" align="left">
                                <label for="estado_solicitud">ESTADO DE LA SOLICITUD</label>
                                <!--<input type="text" class="form-control" id="estado_solicitud" name="estado_solicitud" value="<?=$estado_solicitud?>">-->
                                <select <?=$active?> required class="form-control" name="estado_solicitud">
@@ -1297,21 +1303,14 @@ try {
                                <label for="fecha_asignado_ot">FECHA ASIGNADO OT</label>
                                <input type="date" class="form-control" id="fecha_asignado_ot" name="fecha_asignado_ot" value="<?=$fecha_asignado_ot?>">
                            </div>
-                           
-                           <div class="col-sm-4" align="left">
-                               <label for="fecha_reasignacion_ot">FECHA REASIGNACION OT</label>
-                               <input type="date" class="form-control" id="fecha_reasignacion_ot" name="fecha_reasignacion_ot" value="<?=$fecha_reasignacion_ot?>">
-                           </div>
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-4" align="left">
-                               <label for="medidas_preventivas">MEDIDAS PREVENTIVAS</label>
-                               <!--<input type="text" class="form-control" id="medidas_preventivas" name="medidas_preventivas" value="<?=$medidas_preventivas?>">-->
-                               <select <?=$active?> required class="form-control" name="medidas_preventivas">
-                                  <?php echo $combo_medidas_preventivas; ?>
-                               </select>
+                               <label for="fecha_reasignacion_ot">FECHA REASIGNACION OT</label>
+                               <input type="date" class="form-control" id="fecha_reasignacion_ot" name="fecha_reasignacion_ot" value="<?=$fecha_reasignacion_ot?>">
                            </div>
+                           
                            <div class="col-sm-4" align="left">
                                <label for="estado_ot">ESTADO OT</label>
                                <!--<input type="text" class="form-control" id="estado_ot" name="estado_ot" value="<?=$estado_ot?>">-->
@@ -1356,7 +1355,7 @@ try {
                               <label for="subpoblacion">SUBPOBLACION</label>
                               <!--<input type="text" class="form-control" id="subpoblacion" name="subpoblacion" value="<?=$subpoblacion?>">-->
                               <select <?=$active?> required class="form-control" name="subpoblacion">
-                                 <?php echo $combo_factor_diferencial; ?>
+                                 <?php echo $combo_subpoblacion; ?>
                               </select>
                           </div>
                 
