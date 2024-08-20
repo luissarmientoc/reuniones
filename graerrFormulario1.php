@@ -26,13 +26,14 @@
     <script>
         function loadCities() {
             var departmentId = document.getElementById('departments').value;
+            alert departmentId;
             var xhr = new XMLHttpRequest();
             xhr.open('GET', 'get_cities.php?department_id=' + departmentId, true);
             xhr.onload = function() {
                 if (this.status === 200) {
                     var cities = JSON.parse(this.responseText);
                     var citiesSelect = document.getElementById('cities');
-                    citiesSelect.innerHTML = '<option value="">Selecciona una ciudad</option>';
+                    citiesSelect.innerHTML = '<option value="">Selecciona unaaaaaaaaaaa ciudad</option>';
                     for (var i = 0; i < cities.length; i++) {
                         citiesSelect.innerHTML += '<option value="' + cities[i].id + '">' + cities[i].name + '</option>';
                     }
