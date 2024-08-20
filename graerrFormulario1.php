@@ -909,13 +909,13 @@ try {
     {
       if ($i==0)
       {
-        $combo_vigencia .=" <option value=''>".'- Seleccione ls vigencia -'."</option>";
+        $combo_vigencia .=" <option value=''>".'- Seleccione la vigencia -'."</option>";
       }
       if ($line['ano']==$vigencia)
       {
         $combo_vigencia .=" <option value='".$line['ano']."' selected>".$line['ano']." </option>"; 
       }
-     // $combo_vigencia .=" <option value='".$line['ano']."'>".$line['ano']."</ano>"; 
+       $combo_vigencia .=" <option value='".$line['ano']."'>".$line['ano']."</ano>"; 
       $i++; 
     }
     
