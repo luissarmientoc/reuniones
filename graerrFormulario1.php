@@ -40,6 +40,19 @@ function datoCiiu()
   //alert(selected);  
 }
 </script>
+
+   <script>
+        document.getElementById('es_tramite_emergencia').addEventListener('change', function() {
+            const miDiv = document.getElementById('emergencia');
+            const seleccion = this.value;
+
+            if (seleccion === 'no') {
+                miDiv.style.display = 'none';
+            } else {
+                miDiv.style.display = 'block';
+            }
+        });
+    </script>
   
   
   </head>
@@ -1411,17 +1424,20 @@ try {
                                   <option value="no">No</option>
                                </select>
                            </div>
+                           <div id='emergencia'>
+                             <div class="col-sm-4" align="left">
+                               <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
+                               <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
+                             </div>
+                             <div class="col-sm-4" align="left">
+                               <label for="fecha_tramite_emergencia">FECHA TRAMITE DE EMERGENCIA</label>
+                               <input type="date" class="form-control" id="fecha_tramite_emergencia" name="fecha_tramite_emergencia" value="<?=$fecha_tramite_emergencia?>">
+                             </div>
+                           </div>
                         </div>   
                        
                        <div class="row" style="margin-top:5px;"> 
-                           <div class="col-sm-4" align="left">
-                               <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
-                               <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
-                           </div>
-                           <div class="col-sm-4" align="left">
-                               <label for="fecha_tramite_emergencia">FECHA TRAMITE DE EMERGENCIA</label>
-                               <input type="date" class="form-control" id="fecha_tramite_emergencia" name="fecha_tramite_emergencia" value="<?=$fecha_tramite_emergencia?>">
-                           </div>
+                           
                            <div class="col-sm-4" align="left">
                                <label for="ingreso_calidad">INGRESO A CALIDAD</label>
                                <input type="date" class="form-control" id="ingreso_calidad" name="ingreso_calidad" value="<?=$ingreso_calidad?>">
