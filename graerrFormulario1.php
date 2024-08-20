@@ -334,6 +334,11 @@ function datoCiiu()
              $observaciones                 = $_POST['observaciones'];
              $otros                         = $_POST['otros'];
        
+       
+       
+        echo '<br>';
+       echo "28.." . $municipio;
+     echo '<br>';
        /*
     echo "entra a grabar";
           echo '<br>';
