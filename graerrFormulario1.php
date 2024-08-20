@@ -336,9 +336,7 @@ function datoCiiu()
        
        
        
-        echo '<br>';
-       echo "28.." . $municipio;
-     echo '<br>';
+      
        /*
     echo "entra a grabar";
           echo '<br>';
