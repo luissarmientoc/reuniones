@@ -54,7 +54,7 @@ function datoCiiu()
 
     <style>
         #emergencia {
-            display: block; /* Inicialmente visible */
+            display: none; /* Inicialmente visible */
         }
     </style>
     
@@ -1423,6 +1423,7 @@ try {
                            <div class="col-sm-4" align="left">
                                <label for="tramite_emergencia">ES TRAMITE DE EMERGENCIA?</label>
                                <select class="form-control" id="es_tramite_emergencia" name="es_tramite_emergencia" value="<?=$autoriza_envio_info?>">
+                                  <option value="">Seleccione la opción</option>
                                   <option value="si">Sí</option>
                                   <option value="no">No</option>
                                </select>
@@ -1562,7 +1563,7 @@ try {
             miSelect.addEventListener('change', function() {
                 const seleccion = this.value;
 
-                if (seleccion === 'si') {
+                if (seleccion === 'no') {
                     miDiv.style.display = 'none';
                 } else {
                     miDiv.style.display = 'block';
