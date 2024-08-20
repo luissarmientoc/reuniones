@@ -11,7 +11,7 @@
    // Crear una nueva instancia de conexi¨®n PDO
     $pdo = new PDO($dsn);
   
-  $sql= "SELECT * FROM reu_municipios coddepto=5 order by nommunicipio order by nommunicipio";
+  $sql= "SELECT * FROM reu_municipios where coddepto=5 order by nommunicipio";
   echo '<br>';
   echo $sql;
   echo '<br>';
