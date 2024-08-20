@@ -729,17 +729,35 @@ try {
       {
         $combo_factor_diferencial .=" <option value=''>".'- Seleccione el factor diferencial -'."</option>";
       }
-      if ($line['id']==$subpoblacion)
+      if ($line['id']==$factor_diferencial)
       {
         $combo_factor_diferencial .=" <option value='".$line['id']."' selected>".$line['factor_diferencial']." </option>"; 
       }
       $combo_factor_diferencial .=" <option value='".$line['id']."'>".$line['factor_diferencial']."</option>"; 
       $i++; 
     }
+    
+    //============================= CONSULTA EL graerr_poblacion
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_poblacion order by id');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_subpoblacion .=" <option value=''>".'- Seleccione la subpoblacion -'."</option>";
+      }
+      if ($line['id']==$subpoblacion)
+      {
+        $combo_subpoblacion .=" <option value='".$line['id']."' selected>".$line['descripcion']." </option>"; 
+      }
+      $combo_subpoblacion .=" <option value='".$line['id']."'>".$line['descripcion']."</option>"; 
+      $i++; 
+    }
    
     //============================= CONSULTA EL graerr_genero
     //============================================================================ 
-    $stmt = $pdo->query('select * from graerr_genero order by genero');
+    $stmt = $pdo->query('select * from graerr_genero order by id');
     $i=0;
     while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
     {
