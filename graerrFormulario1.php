@@ -935,6 +935,16 @@ try {
       $i++; 
     }
    
+   //TOMA EL NOMBRE DEL MUNICIPIO
+   
+   
+    $stmt = $pdo->query('SELECT nommunicipio FROM reu_municipios where condmunicipio = GROUP BY coddepto, nomdepto;');
+    //trae dependencia
+	$sqlDep  ="SELECT nommunicipio FROM reu_municipios where condmunicipio =='$municipio'";
+	$stmtDep = $pdo->query($sqlDep);
+	$rowDep  = $stmtDep->fetch(PDO::FETCH_ASSOC);
+    $nommunicipio     = $rowDep['nommunicipio'];
+  
    
   ?>  
               <!-- Page Content Holder -->
@@ -1177,16 +1187,13 @@ try {
                           </div>
                           
                           <div class="col-sm-4">
-                               <b>Municipio:</b> <br>
+                               <b>Municipio:</b>  
                                <div id="myDiv"> </div> 
                            </div>
                            
                            
                            <div class="col-sm-3">
-                              <b>Raza de la mascota:</b> <br>     
-                               <?php
-                                // echo "raza..". $s_id_raza;
-                               ?>
+                              <b>Municipio: </b>     
                                <input style ="display:none;" class="form-control" type="text" readonly value="<?=$municipio?>" name="municipio" id="municipio">                         
                                <input type="text" class="form-control" id="nommunicipio" name="nommunicipio" value="<?=$nommunicipio?> " placeholder="Municipio" readonly><br>  
                            </div>
