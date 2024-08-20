@@ -1,5 +1,6 @@
 function loadCiudadD(str)
 {
+    alert ("entre");
 
 var xmlhttp;
 
@@ -15,7 +16,7 @@ else
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
-    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+      document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
     }
   }
 xmlhttp.open("POST","buscarCiudades.php",true);
