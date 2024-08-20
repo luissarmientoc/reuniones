@@ -1199,7 +1199,7 @@ try {
                              <br><br>
                           </div>
                           
-                          <div class="col-sm-3">
+                          <div class="col-sm-4">
                                <b>Raza de la mascota:</b> <br>
                                <div id="myDiv"> </div> 
                            </div>
@@ -1511,6 +1511,7 @@ try {
       // include("footer.php");
      ?>
       <script type="text/javascript" src="js/bootstrap-filestyle.js"> </script>
+      <script type="text/javascript" src="buscarCiudad.js"></script>
      
       <!-- Bootstrap core JavaScript
       ================================================== -->
