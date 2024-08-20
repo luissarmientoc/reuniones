@@ -1,7 +1,5 @@
 function loadCiudadD(str)
 {
-    alert ("entre");
-
 var xmlhttp;
 
 if (window.XMLHttpRequest)

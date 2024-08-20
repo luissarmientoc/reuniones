@@ -1,7 +1,5 @@
 <?php
-  echo '<br>';
-  echo "en php";
-  echo '<br>';
+ 
   $q=$_POST['q'];
   require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
   require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
@@ -9,10 +7,6 @@
   $pdo = new PDO($dsn);
   
   $sql= "SELECT * FROM reu_municipios where coddepto=$q order by nommunicipio";
-  echo '<br>';
-  echo $sql;
-  echo '<br>';
-  
   $stmt = $pdo->query($sql);
   $i=0;
   while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 

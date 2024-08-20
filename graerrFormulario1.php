@@ -1191,7 +1191,7 @@ try {
                           </div>
                           <div class="col-sm-4" align="left"> 
                                 <label for="departamento">DEPARTAMENTO</label>
-                                <select id="departamento" name="departamento" onchange="loadCiudadD(this.value)">
+                                <select class="form-control" id="departamento" name="departamento" onchange="loadCiudadD(this.value)">
                                 <!--<select required class="form-control" name="departments" id="departments" onchange="loadCities(this.value)">-->
                                         <?php echo $comboDepto; ?>
                                 </select>
@@ -1200,23 +1200,24 @@ try {
                           </div>
                           
                           <div class="col-sm-4">
-                               <b>Raza de la mascota:</b> <br>
+                               <b>Municipio:</b> <br>
                                <div id="myDiv"> </div> 
                            </div>
                           
                           <!-- 
                             necesito un campo lista  dependiente de otro campo lista, por ejemplo departamanto y ciudad
-                          -->
+                         
                           <div class="col-sm-4" align="left">
                               <label for="ciudad">Ciudad:</label>
                               <select required class="form-control"  id="cities1" name="cities1">
                                   <option value="">Seleccione una ciudad</option>
-                                  <!-- Opciones de ciudades que se actualizarán mediante AJAX -->
+                                  <!-- Opciones de ciudades que se actualizarán mediante AJAX  
                               </select>
                           
                               <!--<label for="municipio">MUNICIPIO</label>
-                              <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required>-->
+                              <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required> 
                           </div>
+                           -->
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">  
