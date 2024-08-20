@@ -1100,6 +1100,14 @@ try {
                        
                        <div class="row" style="margin-top:5px;">   
                            <div class="col-sm-4" align="left">
+                              <label for="tipo_ruta">TIPO DE RUTA</label>
+                              <!--<input type="text" class="form-control" id="tipo_ruta" name="tipo_ruta"  value="<?=$tipo_ruta?>">-->
+                               <select <?=$active?> required class="form-control" name="tipo_ruta">
+                                 <?php echo $combo_tipo_ruta; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
                                <label for="tipo_documento">TIPO DE DOCUMENTO</label>
                                <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required>-->
                                <select <?=$active?> required class="form-control" name="tipo_documento">
@@ -1131,13 +1139,7 @@ try {
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">   
-                          <div class="col-sm-4" align="left">
-                              <label for="tipo_ruta">TIPO DE RUTA</label>
-                              <!--<input type="text" class="form-control" id="tipo_ruta" name="tipo_ruta"  value="<?=$tipo_ruta?>">-->
-                               <select <?=$active?> required class="form-control" name="tipo_ruta">
-                                 <?php echo $combo_tipo_ruta; ?>
-                               </select>
-                          </div>
+                          
                           
                           <div class="col-sm-4" align="left">
                               <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
