@@ -41,22 +41,41 @@
         }
     </script>
 </head>
-<body>
-    <form>
-        <label for="departments">Departamento:</label>
-        <select id="departments" name="departments" onchange="loadCities()">
-            <option value="">Selecciona un departamento</option>
-            <?php
-            // Código PHP para generar opciones de departamentos
+
+<?php
+    // Código PHP para generar opciones de departamentos
             require_once 'config/db.php'; // Incluye la conexión a la base de datos
             require_once 'config/conexion.php'; // Incluye la función de conexión
+    //============================= CONSULTA LOS DEPARTAMENTOS
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT coddepto, nomdepto  FROM reu_municipios GROUP BY coddepto, nomdepto;');
+  
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $comboDepto .=" <option value=''>".'- Seleccione el departamento -'."</option>";
+      }
+      if ($line['coddepto']==$departamento)
+      {
+        $comboDepto .=" <option value='".$line['coddepto']."' selected>".$line['nomdepto']." </option>"; 
+      }
+      $comboDepto .=" <option value='".$line['coddepto']."'>".$line['nomdepto']."</option>"; 
+      $i++; 
+    }
+?>
 
-            $result = $conn->query("SELECT coddepto, nomdepto FROM re_municipios"); // Consulta los departamentos
-            while ($row = $result->fetch_assoc()) {
-                echo '<option value="' . $row['coddepto'] . '">' . $row['nomdepto'] . '</option>';
-            }
-            ?>
-        </select>
+<body>
+    <form>
+        
+                                <label for="departamento">DEPARTAMENTO</label>
+                                <select id="departments" name="departments" onchange="loadCities()">
+                                <!--<select required class="form-control" name="departments" id="departments" onchange="loadCities(this.value)">-->
+                                        <?php echo $comboDepto; ?>
+                                </select>
+                                
+        
 
         <br><br>
 
