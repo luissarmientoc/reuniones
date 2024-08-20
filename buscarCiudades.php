@@ -8,10 +8,10 @@
   echo '<br>';
   require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
   require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
-   // Crear una nueva instancia de conexi√≥n PDO
+   // Crear una nueva instancia de conexi®Æn PDO
     $pdo = new PDO($dsn);
   
-  $sql= "SELECT * FROM reu_reu_municipios coddepto=$q order by nommunicipio order by nommunicipio";
+  $sql= "SELECT * FROM reu_reu_municipios coddepto=5 order by nommunicipio order by nommunicipio";
   echo '<br>';
   echo $sql;
   echo '<br>';
