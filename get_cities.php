@@ -10,33 +10,30 @@
    echo "entrar cities";
    echo '<br>';echo '<br>';echo '<br>';
      
-   // Obtener el ID del departamento enviado por AJAX
-   $departamentoId = isset($_POST['departamento']) ? (int)$_POST['departamento'] : 0;
    echo '<br>';
-   echo "el depto.." . $departamentoId;
+   echo "el depto.." . $_GET['department_id'];
    echo '<br>';
-   
-   
-   
-   /*
-                        $sqlSol    = "select * from graerr_estado_solicitud where id=$estado_solicitud";
-						$stmtSol   = $pdo->query($sqlSol);
-					    $rowSol    = $stmtSol->fetch(PDO::FETCH_ASSOC);
-					    $solicitud = $rowSol['estado_solicitud'];
- */					    
 
-if ($departamentoId > 0) {
-    // Preparar la consulta para obtener las ciudades del departamento seleccionado
-    $stmt = $pdo->prepare("SELECT * FROM reu_municipios WHERE coddepto = :coddepto");
-    $stmt->bindParam(':coddepto', $departamentoId, PDO::PARAM_INT);
+   if (isset($_GET['department_id'])) {
+    $department_id = intval($_GET['department_id']);
+    $stmt = $conn->prepare("SELECT codmunicipio, nommunicipio FROM reu_municipios WHERE coddepto = ?");
+    $stmt->bind_param("i", $department_id);
     $stmt->execute();
+    $result = $stmt->get_result();
 
-    // Generar las opciones de ciudad
-    $ciudades = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($ciudades as $ciudad) {
-        echo "<option value=\"{$ciudad['codmunicipio']}\">{$ciudad['nommunicipio']}</option>";
+    $cities = array();
+    while ($row = $result->fetch_assoc()) {
+        $cities[] = $row;
     }
-} else {
-    echo '<option value="">Seleccionar</option>'; // Valor predeterminado si no hay resultados
+
+    echo json_encode($cities);
 }
+   
+   
+ 	    
+
+
 ?>
+
+
+

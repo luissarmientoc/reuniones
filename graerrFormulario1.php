@@ -23,22 +23,23 @@
      include("head.php");
   ?>
   
-  <script>
-        $(document).ready(function() {
-            // Cuando se cambia la selección del departamento
-            $('#departamento').change(function() {
-                var departamentoId = $(this).val();
-                // Realizar una petición AJAX al servidor para obtener las ciudades
-                $.ajax({
-                    url: 'get_cities.php', // Archivo PHP que devolverá las ciudades
-                    type: 'POST',
-                    data: { departamento_id: departamentoId },
-                    success: function(data) {
-                        $('#ciudad').html(data); // Actualiza el campo de ciudades
+    <script>
+        function loadCities() {
+            var departmentId = document.getElementById('departments').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'get_cities.php?department_id=' + departmentId, true);
+            xhr.onload = function() {
+                if (this.status === 200) {
+                    var cities = JSON.parse(this.responseText);
+                    var citiesSelect = document.getElementById('cities');
+                    citiesSelect.innerHTML = '<option value="">Selecciona una ciudad</option>';
+                    for (var i = 0; i < cities.length; i++) {
+                        citiesSelect.innerHTML += '<option value="' + cities[i].id + '">' + cities[i].name + '</option>';
                     }
-                });
-            });
-        });
+                }
+            };
+            xhr.send();
+        }
     </script>
   
   
@@ -1172,18 +1173,19 @@ try {
                           </div>
                           <div class="col-sm-4" align="left"> 
                                 <label for="departamento">DEPARTAMENTO</label>
-                                <select required class="form-control" name="departamento" id="departamento" onchange="loadCiudad(this.value)">
+                                <select required class="form-control" name="departments" id="departments" onchange="loadCities(this.value)">
                                         <?php echo $comboDepto; ?>
                                 </select>
                              <!-- <input type="text" class="form-control" id="departamento" name="departamento"required>-->
                           </div>
+                          
                           <!-- 
                             necesito un campo lista  dependiente de otro campo lista, por ejemplo departamanto y ciudad
                           -->
                           <div class="col-sm-4" align="left">
                               <label for="ciudad">Ciudad:</label>
-                              <select required class="form-control"  id="ciudad" name="ciudad">
-                                  <option value="">Seleccionar</option>
+                              <select required class="form-control"  id="cities" name="cities">
+                                  <option value="">Seleccione una ciudad</option>
                                   <!-- Opciones de ciudades que se actualizarán mediante AJAX -->
                               </select>
                           
