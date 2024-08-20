@@ -24,39 +24,20 @@
   ?>
   
 <script>
-function loadCities() {
-    var departmentId = document.getElementById('departments').value;
-    alert(departmentId); // Corregido para usar paréntesis
+function datoCiiu()
+{
+  /* Para obtener el valor */
+  var cod = document.getElementById("id_ciudad").value;
+  document.getElementById("municipio").value=cod;
 
-    if (!departmentId) {
-        // Si no hay un departamento seleccionado, limpia las opciones de la ciudad
-        document.getElementById('cities').innerHTML = '<option value="">Selecciona una ciudad</option>';
-        return;
-    }
+  //alert(cod);
+ 
+  /* Para obtener el texto */
+  var combo = document.getElementById("id_ciudad");
+  var selected = combo.options[combo.selectedIndex].text;
+  document.getElementById("nommunicipio").value=selected;
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'get_cities.php?department_id=' + encodeURIComponent(departmentId), true);
-    xhr.onload = function() {
-        if (this.status === 200) {
-            try {
-                var cities = JSON.parse(this.responseText);
-                var citiesSelect = document.getElementById('cities');
-                var options = '<option value="">Selecciona una ciudad</option>'; // Inicializa con opción predeterminada
-                for (var i = 0; i < cities.length; i++) {
-                    options += '<option value="' + cities[i].id + '">' + cities[i].name + '</option>';
-                }
-                citiesSelect.innerHTML = options;
-            } catch (e) {
-                console.error('Error al analizar JSON:', e);
-            }
-        } else {
-            console.error('Error al cargar ciudades:', this.status, this.statusText);
-        }
-    };
-    xhr.onerror = function() {
-        console.error('Error en la solicitud');
-    };
-    xhr.send();
+  //alert(selected);  
 }
 </script>
   
@@ -1184,11 +1165,7 @@ try {
                           </div>
                        </div> <!--row-->
                        
-                       <div class="row" style="margin-top:5px;">  
-                           <div class="col-sm-4" align="left">  
-                              <label for="direccion">DIRECCION</label>
-                              <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
-                          </div>
+                       <div class="row" style="margin-top:5px;">    
                           <div class="col-sm-4" align="left"> 
                                 <label for="departamento">DEPARTAMENTO</label>
                                 <select class="form-control" id="departamento" name="departamento" onchange="loadCiudadD(this.value)">
@@ -1202,6 +1179,16 @@ try {
                           <div class="col-sm-4">
                                <b>Municipio:</b> <br>
                                <div id="myDiv"> </div> 
+                           </div>
+                           
+                           
+                           <div class="col-sm-3">
+                              <b>Raza de la mascota:</b> <br>     
+                               <?php
+                                // echo "raza..". $s_id_raza;
+                               ?>
+                               <input style ="display:none;" class="form-control" type="text" readonly value="<?=$municipio?>" name="municipio" id="municipio">                         
+                               <input type="text" class="form-control" id="nommunicipio" name="nommunicipio" value="<?=$nommunicipio?> " placeholder="Municipio" readonly><br>  
                            </div>
                           
                           <!-- 
@@ -1221,7 +1208,12 @@ try {
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">  
-                          <div class="col-sm-8" align="left">
+                          <div class="col-sm-6" align="left">  
+                              <label for="direccion">DIRECCION</label>
+                              <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
+                          </div>
+                       
+                          <div class="col-sm-6" align="left">
                               <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
                           </div>
