@@ -937,8 +937,7 @@ try {
    
    //TOMA EL NOMBRE DEL MUNICIPIO
    
-   
-    $stmt = $pdo->query('SELECT nommunicipio FROM reu_municipios where condmunicipio = GROUP BY coddepto, nomdepto;');
+
     //trae dependencia
 	$sqlDep  ="SELECT nommunicipio FROM reu_municipios where condmunicipio =='$municipio'";
 	$stmtDep = $pdo->query($sqlDep);
