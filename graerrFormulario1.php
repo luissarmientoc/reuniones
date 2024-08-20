@@ -939,7 +939,7 @@ try {
    
 
     //trae dependencia
-	$sqlDep  ="SELECT nommunicipio FROM reu_municipios where condmunicipio =='$municipio'";
+	$sqlDep  ="SELECT nommunicipio FROM reu_municipios where condmunicipio ='$municipio'";
 	$stmtDep = $pdo->query($sqlDep);
 	$rowDep  = $stmtDep->fetch(PDO::FETCH_ASSOC);
     $nommunicipio     = $rowDep['nommunicipio'];
