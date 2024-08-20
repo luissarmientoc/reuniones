@@ -3,15 +3,12 @@
   echo "en php";
   echo '<br>';
   $q=$_POST['q'];
-   echo '<br>';
-  echo $q;
-  echo '<br>';
   require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
   require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
-   // Crear una nueva instancia de conexi¨®n PDO
-    $pdo = new PDO($dsn);
+  // Crear una nueva instancia de conexi¨®n PDO
+  $pdo = new PDO($dsn);
   
-  $sql= "SELECT * FROM reu_municipios where coddepto=5 order by nommunicipio";
+  $sql= "SELECT * FROM reu_municipios where coddepto=$q order by nommunicipio";
   echo '<br>';
   echo $sql;
   echo '<br>';
