@@ -57,9 +57,9 @@
 
         // INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
         if (seleccion1 === 1) {
-            miDiv1.style.display = 'none';
-        } else {
             miDiv1.style.display = 'block';
+        } else {
+            miDiv1.style.display = 'none';
         }
     });
 
