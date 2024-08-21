@@ -271,9 +271,10 @@ function datoCiiu()
       $s_existe = 0;
       $boton="Grabar";
       
-      // GENERA EL NUMERO DEL NUEVO REGISTRO
+      /*
+        // GENERA EL NUMERO DEL NUEVO REGISTRO
         $sql = "SELECT MAX(registro) AS maximo FROM graerr_formulario_b";
-       // echo '<br>';
+        // echo '<br>';
         //echo $sql;
         //echo '<br>';
         $stmt = $pdo->query($sql);
@@ -284,6 +285,7 @@ function datoCiiu()
         //echo '<br>';
         //echo "el regi..·" . $s_registro;
         //echo '<br>';
+    */    
     }  
  
    
@@ -503,7 +505,6 @@ try {
             fecha_aprobacion_calidad = ?, fecha_presentacion_premesa = ?, recomendacion_riesgo_premesa = ?, 
             recomendacion_medidas_premesa = ?, observaciones_premesa = ?, remision_mesa_tecnica = ?, 
             observaciones = ?, otros = ?, cantidad_hombres = ?, cantidad_mujeres = ?, cantidad_binarios = ?
-            
         WHERE registro = ?
     ');
 
@@ -541,8 +542,23 @@ try {
     // Conectar a la base de datos
     //$conn = new PDO("pgsql:host=localhost;dbname=mi_base_de_datos", "mi_usuario", "mi_contraseña");
     //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+        // GENERA EL NUMERO DEL NUEVO REGISTRO
+        $sql = "SELECT MAX(registro) AS maximo FROM graerr_formulario_b";
+        // echo '<br>';
+        //echo $sql;
+        //echo '<br>';
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        $s_maximo = $row['maximo'];
+        
+        $s_registro      = $s_maximo+1;
+        $registro = $s_registro;
+        //echo '<br>';
+        //echo "el regi..·" . $s_registro;
+        //echo '<br>';
 
-         // Preparar la consulta SQL
+        // Preparar la consulta SQL
                   
         $stmt = $pdo->prepare('INSERT INTO graerr_formulario_b (
                 registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
@@ -1132,6 +1148,9 @@ try {
                                </select>
                            </div>
                            
+                           <div id="individual"></div>
+                           
+                           
                            <div class="col-sm-4" align="left">
                                <label for="tipo_documento">TIPO DE DOCUMENTO</label>
                                <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required>-->
@@ -1144,22 +1163,6 @@ try {
                                <label for="no_documento">No DE DOCUMENTO</label>
                                <input type="number" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
                            </div>
-                       </div> <!--row-->
-                       
-                       <div class="row" style="margin-top:5px;">   
-                          <div class="col-sm-4" align="left">
-                               <label for="no_personas_evaluar">CANTIDAD DE HOMBRES</label>
-                               <input type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required>
-                           </div>
-                           <div class="col-sm-4" align="left">
-                               <label for="no_personas_evaluar">CANTIDAD DE MUJERES</label>
-                               <input type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required>
-                           </div>
-                           <div class="col-sm-4" align="left">
-                               <label for="no_personas_evaluar">CANTIDAD DE BINARIOS</label>
-                               <input type="number" class="form-control" id="cantidad_binarios" name="cantidad_binarios"  value="<?=$cantidad_binarios?>" required>
-                           </div>
-                        
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">   
@@ -1178,19 +1181,34 @@ try {
                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
                            </div>
                        </div> <!--row-->
-                       
+                        
+                       <div id="colectivo">
+                         <div class="row" style="margin-top:5px;">   
+                             <div class="col-sm-4" align="left">
+                                <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
+                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
+                             </div>
+                          
+                             <div class="col-sm-4" align="left">
+                               <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
+                             </div>  
+                         </div>
+                       </div> <!--- colectivo -->
+                           
                        <div class="row" style="margin-top:5px;">   
-                          
-                          
                           <div class="col-sm-4" align="left">
-                              <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
-                              <input  style="text-transform:uppercase;" type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
-                          </div>
-                          
-                          <div class="col-sm-4" align="left">
-                              <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
-                              <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
-                          </div>
+                               <label for="no_personas_evaluar">CANTIDAD DE HOMBRES</label>
+                               <input type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required>
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="no_personas_evaluar">CANTIDAD DE MUJERES</label>
+                               <input type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required>
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="no_personas_evaluar">CANTIDAD DE BINARIOS</label>
+                               <input type="number" class="form-control" id="cantidad_binarios" name="cantidad_binarios"  value="<?=$cantidad_binarios?>" required>
+                           </div>
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">   
