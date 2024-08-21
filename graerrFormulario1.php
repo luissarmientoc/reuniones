@@ -144,6 +144,9 @@ function datoCiiu()
              $observaciones                 = $row['observaciones'];
              $otros                         = $row['otros'];
              $factor_diferencial            = $row['factor_diferencial'];
+             $cantidad_hombres              = $row['cantidad_hombres'];
+             $cantidad_mujeres              = $row['cantidad_mujeres'];
+             $cantidad_binarios             = $row['cantidad_binarios'];
              
     /*         
              echo "1.." . $registro;
@@ -351,6 +354,9 @@ function datoCiiu()
              $observaciones                 = $_POST['observaciones'];
              $otros                         = $_POST['otros'];
              $factor_diferencial            = $_POST['factor_diferencial'];
+             $cantidad_hombres              = $_POST['cantidad_hombres'];
+             $cantidad_mujeres              = $_POST['cantidad_mujeres'];
+             $cantidad_binarios             = $_POST['cantidad_binarios'];
        /*
           echo "entra a grabar";
           echo '<br>';
@@ -496,7 +502,8 @@ try {
             es_tramite_emergencia = ?, tramite_emergencia = ?, fecha_tramite_emergencia = ?, ingreso_calidad = ?, 
             fecha_aprobacion_calidad = ?, fecha_presentacion_premesa = ?, recomendacion_riesgo_premesa = ?, 
             recomendacion_medidas_premesa = ?, observaciones_premesa = ?, remision_mesa_tecnica = ?, 
-            observaciones = ?, otros = ?
+            observaciones = ?, otros = ?, cantidad_hombres = ?, cantidad_mujeres = ?, cantidad_binarios = ?
+            
         WHERE registro = ?
     ');
 
@@ -512,9 +519,11 @@ try {
         $estado_ot, $ot, $analista_riesgo, $analista_riesgo_dos, $analista_calidad, $subpoblacion, $tipo_estudio_riesgo,
         $seguimiento, $es_tramite_emergencia, $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad,
         $fecha_aprobacion_calidad, $fecha_presentacion_premesa, $recomendacion_riesgo_premesa,
-        $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, $otros,
+        $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, $otros, 
+        $cantidad_hombres, $cantidad_mujeres, $cantidad_binarios, 
         $registro  // El ID del registro que deseas actualizar
     ]);
+    
 
      $mensaje=" <b>Atención!</b> Actualización exitosa";
     //echo "Datos actualizados correctamente.";
@@ -547,7 +556,7 @@ try {
                 analista_calidad, subpoblacion, tipo_estudio_riesgo, seguimiento, es_tramite_emergencia, 
                 tramite_emergencia, fecha_tramite_emergencia, ingreso_calidad, fecha_aprobacion_calidad, fecha_presentacion_premesa,
                 recomendacion_riesgo_premesa, recomendacion_medidas_premesa, observaciones_premesa, remision_mesa_tecnica, observaciones, 
-                otros	           
+                otros, cantidad_hombres, cantidad_mujeres, cantidad_binarios	           
               ) VALUES (?, ?, ?, ?, ?, 
                         ?, ?, ?, ?, ?,
                         ?, ?, ?, ?, ?, 
@@ -559,7 +568,7 @@ try {
                         ?, ?, ?, ?, ?, 
                         ?, ?, ?, ?, ?, 
                         ?, ?, ?, ?, ?, 
-                        ?)');
+                        ?, ?, ?, ?)');
 
         // Ejecutar la consulta con los valores correspondientes
         $stmt->execute([
@@ -574,7 +583,7 @@ try {
                $analista_calidad, $subpoblacion, $tipo_estudio_riesgo, $seguimiento, $es_tramite_emergencia, 
                $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad, $fecha_aprobacion_calidad, $fecha_presentacion_premesa,
                $recomendacion_riesgo_premesa, $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, 
-               $otros	           
+               $otros, $cantidad_hombres, $cantidad_mujeres , $cantidad_binarios	           
               ]);              
                    
                    
@@ -1135,6 +1144,22 @@ try {
                                <label for="no_documento">No DE DOCUMENTO</label>
                                <input type="number" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
                            </div>
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;">   
+                          <div class="col-sm-4" align="left">
+                               <label for="no_personas_evaluar">CANTIDAD DE HOMBRES</label>
+                               <input type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required>
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="no_personas_evaluar">CANTIDAD DE MUJERES</label>
+                               <input type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required>
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="no_personas_evaluar">CANTIDAD DE BINARIOS</label>
+                               <input type="number" class="form-control" id="cantidad_binarios" name="cantidad_binarios"  value="<?=$cantidad_binarios?>" required>
+                           </div>
+                        
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">   
