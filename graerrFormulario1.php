@@ -1161,7 +1161,7 @@ try {
                            <div class="col-sm-4" align="left">
                               <label for="tipo_ruta">TIPO DE RUTA</label>
                               <!--<input type="text" class="form-control" id="tipo_ruta" name="tipo_ruta"  value="<?=$tipo_ruta?>">-->
-                               <select <?=$active?> required class="form-control" name="tipo_ruta">
+                               <select <?=$active?> required class="form-control" name="tipo_ruta" id="tipo_ruta>
                                  <?php echo $combo_tipo_ruta; ?>
                                </select>
                            </div>
