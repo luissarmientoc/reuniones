@@ -55,10 +55,10 @@ function datoCiiu()
             document.getElementById('tipo_ruta').addEventListener('change', function() {
             const miDiv1 = document.getElementById('elColectivo');
             const seleccion1 = this.value;
-            
+            alert (seleccion1);
             //INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
 
-            if (seleccion1 === '1') {
+            if (seleccion1 === 1) {
                 miDiv1.style.display = 'none';
             } else {
                 miDiv1.style.display = 'block';
