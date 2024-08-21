@@ -53,7 +53,7 @@ function datoCiiu()
             
             
             document.getElementById('tipo_ruta').addEventListener('change', function() {
-            const miDiv1 = document.getElementById('colectivo');
+            const miDiv1 = document.getElementById('elColectivo');
             const seleccion1 = this.value;
             
             //INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
@@ -71,7 +71,7 @@ function datoCiiu()
         #emergencia {
             display: none; /* Inicialmente visible */
         }
-        #colectivo {
+        #elColectivo {
             display: none; /* Inicialmente visible */
         }
     </style>
@@ -1161,7 +1161,7 @@ try {
                            <div class="col-sm-4" align="left">
                               <label for="tipo_ruta">TIPO DE RUTA</label>
                               <!--<input type="text" class="form-control" id="tipo_ruta" name="tipo_ruta"  value="<?=$tipo_ruta?>">-->
-                               <select <?=$active?> required class="form-control" name="tipo_ruta" id="tipo_ruta>
+                               <select <?=$active?> required class="form-control" name="tipo_ruta">
                                  <?php echo $combo_tipo_ruta; ?>
                                </select>
                            </div>
@@ -1200,7 +1200,7 @@ try {
                            </div>
                        </div> <!--row-->
                         
-                       <div id="colectivo">
+                       <div id="elColectivo">
                          <div class="row" style="margin-top:5px;">   
                              <div class="col-sm-4" align="left">
                                 <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
