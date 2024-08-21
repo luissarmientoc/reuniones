@@ -50,10 +50,28 @@ function datoCiiu()
                 miDiv.style.display = 'block';
             }
             });
+            
+            
+            document.getElementById('tipo_ruta').addEventListener('change', function() {
+            const miDiv1 = document.getElementById('colectivo');
+            const seleccion1 = this.value;
+            
+            //INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
+
+            if (seleccion1 === '1') {
+                miDiv1.style.display = 'none';
+            } else {
+                miDiv1.style.display = 'block';
+            }
+            });
+            
 </script>
 
     <style>
         #emergencia {
+            display: none; /* Inicialmente visible */
+        }
+        #colectivo {
             display: none; /* Inicialmente visible */
         }
     </style>
