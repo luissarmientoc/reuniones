@@ -22,50 +22,54 @@
      require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
      include("head.php");
   ?>
-  
+
 <script>
-function datoCiiu()
-{
-  /* Para obtener el valor */
-  var cod = document.getElementById("id_ciudad").value;
-  document.getElementById("municipio").value=cod;
+     document.addEventListener('DOMContentLoaded', function() {
+    // Función para actualizar los campos con la información seleccionada
+    function datoCiiu() {
+        // Obtener el valor del select
+        var cod = document.getElementById("id_ciudad").value;
+        document.getElementById("municipio").value = cod;
 
-  //alert(cod);
- 
-  /* Para obtener el texto */
-  var combo = document.getElementById("id_ciudad");
-  var selected = combo.options[combo.selectedIndex].text;
-  document.getElementById("nommunicipio").value=selected;
-
-  //alert(selected);  
-}
-
-            document.getElementById('es_tramite_emergencia').addEventListener('change', function() {
-            const miDiv = document.getElementById('emergencia');
-            const seleccion = this.value;
-
-            if (seleccion === 'no') {
-                miDiv.style.display = 'none';
-            } else {
-                miDiv.style.display = 'block';
-            }
-            });
-            
-            
-            document.getElementById('tipo_ruta').addEventListener('change', function() {
-    const miDiv1 = document.getElementById('elColectivo');
-    const seleccion1 = parseInt(this.value, 10); // Convertir el valor a número entero
-    console.log(seleccion1); // Usar console.log para depuración
-
-    // INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
-    if (seleccion1 === 1) {
-        miDiv1.style.display = 'none';
-    } else {
-        miDiv1.style.display = 'block';
+        // Obtener el texto del select
+        var combo = document.getElementById("id_ciudad");
+        var selected = combo.options[combo.selectedIndex].text;
+        document.getElementById("nommunicipio").value = selected;
     }
+
+        // Event listener para el cambio en el select con id 'es_tramite_emergencia'
+        document.getElementById('es_tramite_emergencia').addEventListener('change', function() {
+        const miDiv = document.getElementById('emergencia');
+        const seleccion = this.value;
+
+        if (seleccion === 'no') {
+            miDiv.style.display = 'none';
+        } else {
+            miDiv.style.display = 'block';
+        }
+    });
+
+        // Event listener para el cambio en el select con id 'tipo_ruta'
+        document.getElementById('tipo_ruta').addEventListener('change', function() {
+        const miDiv1 = document.getElementById('elColectivo');
+        const seleccion1 = parseInt(this.value, 10); // Convertir el valor a número entero
+        console.log(seleccion1); // Usar console.log para depuración
+
+        // INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
+        if (seleccion1 === 1) {
+            miDiv1.style.display = 'none';
+        } else {
+            miDiv1.style.display = 'block';
+        }
+    });
+
+    // Llamar a datoCiiu si es necesario para inicializar los valores
+    datoCiiu();
 });
-            
 </script>
+
+  
+
 
     <style>
         #emergencia {
