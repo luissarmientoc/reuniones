@@ -224,13 +224,13 @@
 		    if ($q5>0){
 		        if ($q4>0)
 		        {     
-		          $sWhere .=" and no_mem_ex ='$q5'";
-		          $sWhere1 .=" and no_mem_ex ='$q5'";    
+		          $sWhere .=" and no_mem_ext ='$q5'";
+		          $sWhere1 .=" and no_mem_ext ='$q5'";    
 		        }
 		        else
 		        {
-		            $sWhere .=" no_mem_ex ='$q5'";
-		            $sWhere1 .=" no_mem_ex ='$q5'";
+		            $sWhere .=" no_mem_ext ='$q5'";
+		            $sWhere1 .=" no_mem_ext ='$q5'";
 		        }
 		    }
            
@@ -265,8 +265,8 @@
                 <div class="table-responsive">
 			      <table class='tablaResponsive table table-striped table-bordered table-hover'>
 				    <th>No.Registro</th>
-					<td>OT</td>
-  					<td>No.MEM EXT</td>
+					<tj>OT</th>
+  					<th>No.MEM EXT</th>
 					<th>Fecha UNP</th>
 					<th>Fecha GRAERR</th>
 					<th>Documento</th>
@@ -284,7 +284,7 @@
 						$nombres_peticionario=$row['nombres_peticionario'];
 						$apellidos_peticionario=$row['apellidos_peticionario'];
 						$estado_solicitud=$row['estado_solicitud'];
-						$no_mem_ext=$row['no_mem_ex'];
+						$no_mem_ext=$row['no_mem_ext'];
 						$ot=$row['ot'];
 						
 						//trae estado solicitud
