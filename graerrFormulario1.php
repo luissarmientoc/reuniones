@@ -42,7 +42,10 @@
                      const cantidadHombres = parseFloat(document.getElementById('cantidad_hombres').value) || 0;
                      const cantidadMujeres = parseFloat(document.getElementById('cantidad_mujeres').value) || 0;
                      const cantidadBinarios = parseFloat(document.getElementById('cantidad_binarios').value) || 0;
-
+                     console.log(cantidadHombres);
+                     console.log(cantidadMujeres);
+                     console.log(cantidadBinarios);
+                     
                      // Calcular la suma
                      const totalPersonas = cantidadHombres + cantidadMujeres + cantidadBinarios;
 
@@ -198,7 +201,7 @@
              }
              
              //es_tramite_emergencia
-             if ($es_tramite_emergencia=="no")
+             if ($es_tramite_emergencia=="no" or $es_tramite_emergencia=="n")
              {
                $prendeEmergencia = "display: none;";   
                $siTramite = "";
@@ -446,7 +449,7 @@
              }
              
               //es_tramite_emergencia
-             if ($es_tramite_emergencia=="no")
+             if ($es_tramite_emergencia=="no" or $es_tramite_emergencia=="n")
              {
                $prendeEmergencia = "display: none;";   
                $siTramite = "";
@@ -1227,6 +1230,7 @@
                        <div class="row" style="margin-top:5px;">   
                            <div class="col-sm-4" align="left">
                               <label for="tipo_ruta">TIPO DE RUTA</label>
+                              <?php echo $tipo_ruta; ?> 
                               <!--<input type="text" class="form-control" id="tipo_ruta" name="tipo_ruta"  value="<?=$tipo_ruta?>">-->
                                <select <?=$active?> required class="form-control" id="tipo_ruta" name="tipo_ruta">
                                  <?php echo $combo_tipo_ruta; ?>
@@ -1284,22 +1288,22 @@
                        <div class="row" style="margin-top:5px;">   
                           <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE HOMBRES</label>
-                               <input type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required  oninput="calcularTotal()">
+                               <input min=0 type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required  oninput="calcularTotal()">
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE MUJERES</label>
-                               <input type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required  oninput="calcularTotal()">
+                               <input min=0 type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required  oninput="calcularTotal()">
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE BINARIOS</label>
-                               <input type="number" class="form-control" id="cantidad_binarios" name="cantidad_binarios"  value="<?=$cantidad_binarios?>" required  oninput="calcularTotal()">
+                               <input min=0 type="number" class="form-control" id="cantidad_binarios" name="cantidad_binarios"  value="<?=$cantidad_binarios?>" required  oninput="calcularTotal()">
                            </div>
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">   
                            <div class="col-sm-3" align="left">
                                <label for="no_personas_evaluar">No PERSONAS A EVALUAR</label>
-                               <input type="number" class="form-control" id="no_personas_evaluar" name="no_personas_evaluar"  value="<?=$no_personas_evaluar?>" required>
+                               <input min=0 type="number" class="form-control" id="no_personas_evaluar" name="no_personas_evaluar"  value="<?=$no_personas_evaluar?>" readonly>
                            </div>
                            
                            <div class="col-sm-3" align="left">
