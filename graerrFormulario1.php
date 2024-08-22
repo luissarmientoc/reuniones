@@ -432,6 +432,9 @@
              $cantidad_mujeres              = $_POST['cantidad_mujeres'];
              $cantidad_binarios             = $_POST['cantidad_binarios'];
              
+             $nombres_peticionario          = strtoupper($_POST['nombres_peticionario']);
+             $apellidos_peticionario        = strtoupper($_POST['apellidos_peticionario']);
+             
              //Realiza la validació del tipo de ruta y si es tramite de emergencia
                            
              //tipo_ruta
