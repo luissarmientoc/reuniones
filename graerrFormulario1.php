@@ -37,24 +37,6 @@
                  document.getElementById("nommunicipio").value = selected;
              }
     
-             function calcularTotal() {
-                     // Obtener los valores de los campos de entrada
-                     const cantidadHombres = parseFloat(document.getElementById('cantidad_hombres').value) || 0;
-                     const cantidadMujeres = parseFloat(document.getElementById('cantidad_mujeres').value) || 0;
-                     const cantidadBinarios = parseFloat(document.getElementById('cantidad_binarios').value) || 0;
-                    
-                     window.alert (cantidadHombres);
-                     window.alert (cantidadMujeres);
-                     window.alert (cantidadBinarios);
-                     
-                     // Calcular la suma
-                      const totalPersonas = cantidadHombres + cantidadMujeres + cantidadBinarios;
-                      window.alert (totalPersonas);
-
-                     // Actualizar el campo de resultado
-                     document.getElementById('no_personas_evaluar').value = totalPersonas;
-             }
-    
              // Event listener para el cambio en el select con id 'es_tramite_emergencia'
              document.getElementById('es_tramite_emergencia').addEventListener('change', function() {
                  const miDiv = document.getElementById('emergencia');
@@ -84,6 +66,26 @@
               // Llamar a datoCiiu si es necesario para inicializar los valores
               datoCiiu();
             });
+            
+            function calcularTotal() {
+                     // Obtener los valores de los campos de entrada
+                     const cantidadHombres = parseFloat(document.getElementById('cantidad_hombres').value) || 0;
+                     const cantidadMujeres = parseFloat(document.getElementById('cantidad_mujeres').value) || 0;
+                     const cantidadBinarios = parseFloat(document.getElementById('cantidad_binarios').value) || 0;
+                    
+                     window.alert (cantidadHombres);
+                     window.alert (cantidadMujeres);
+                     window.alert (cantidadBinarios);
+                     
+                     // Calcular la suma
+                      const totalPersonas = cantidadHombres + cantidadMujeres + cantidadBinarios;
+                      window.alert (totalPersonas);
+
+                     // Actualizar el campo de resultado
+                     document.getElementById('no_personas_evaluar').value = totalPersonas;
+             }
+            
+            
           </script>
 
           <style>
