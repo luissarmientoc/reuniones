@@ -22,7 +22,8 @@
      require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
      include("head.php");
   ?>
-
+        
+            
          <script>
               document.addEventListener('DOMContentLoaded', function() {
              // Función para actualizar los campos con la información seleccionada
@@ -84,7 +85,6 @@
                      // Actualizar el campo de resultado
                      document.getElementById('no_personas_evaluar').value = totalPersonas;
              }
-            
             
           </script>
 
@@ -1170,7 +1170,7 @@
                            <div class="col-sm-3" align="left">
                                <label for="vigencia">VIGENCIA</label>
                               
-                                <select <?=$active?> required class="form-control" id="vigencia" name="vigencia">
+                                <select <?=$active?> required class="form-control" id="vigencia" name="vigencia" autofocus>
                                   <?php echo $combo_vigencia; ?>
                                 </select>
                            </div>
