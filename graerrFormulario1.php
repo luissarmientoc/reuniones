@@ -48,7 +48,7 @@
                      window.alert (cantidadBinarios);
                      
                      // Calcular la suma
-                     const totalPersonas = cantidadHombres + cantidadMujeres + cantidadBinarios;
+                      const totalPersonas = cantidadHombres + cantidadMujeres + cantidadBinarios;
                       window.alert (totalPersonas);
 
                      // Actualizar el campo de resultado
@@ -1290,11 +1290,11 @@
                        <div class="row" style="margin-top:5px;">   
                           <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE HOMBRES</label>
-                               <input min=0 type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required  oninput="calcularTotal()">
+                               <input min=0 type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required  onkeyup="calcularTotal()">
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE MUJERES</label>
-                               <input min=0 type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required  oninput="calcularTotal()">
+                               <input min=0 type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required  onkeyup="calcularTotal()">
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE BINARIOS</label>
