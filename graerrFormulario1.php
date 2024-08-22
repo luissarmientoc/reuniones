@@ -58,9 +58,9 @@
 
                  // INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
                  if (seleccion1 === 1) {
-                     miDiv1.style.display = 'block';
-                 } else {
                      miDiv1.style.display = 'none';
+                 } else {
+                     miDiv1.style.display = 'block';
                  }
              });
 
@@ -1204,7 +1204,7 @@
                             
                             <div class="col-sm-3" align="left">
                                 <label for="no_folios">No FOLIOS</label>
-                                <input type="number" class="form-control" id="no_folios" name="no_folios"  value="<?=$no_folios?>" required>
+                                <input min=0 type="number" class="form-control" id="no_folios" name="no_folios"  value="<?=$no_folios?>" required>
                             </div>
                        </div> <!--row-->    
                        
@@ -1338,7 +1338,7 @@
                        <div class="row" style="margin-top:5px;">                          
                           <div class="col-sm-4" align="left"> 
                               <label for="correo_electronico">CORREO ELECTRONICO</label>
-                              <input type="email" class="form-control" id="correo_electronico" name="correo_electronico"   value="<?=$correo_electronico?>"required>
+                              <input style="text-transform:lowercase;" type="email" class="form-control" id="correo_electronico" name="correo_electronico"   value="<?=$correo_electronico?>"required>
                           </div> 
                           <div class="col-sm-4" align="left">
                               <label for="no_contacto">No DE CONTACTO</label>
