@@ -4,12 +4,11 @@
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
  	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
- 	echo 'entra';
-   	
+ 	
  	try {
  	    // Crear una nueva instancia de conexión PDO
         $pdo = new PDO($dsn);
-        $sTable = "reu_reuniones";
+        $sTable = "graerr_formulario_b";
         
         if (isset($_GET['id'])){
 		   $id_reunion=intval($_GET['id']);
@@ -72,22 +71,22 @@
         //aqui va ajax
 	    if($action == 'ajax'){
 	        // Limpiar y escapar la cadena de texto (strip_tags y htmlentities)
-            $q_str = isset($_REQUEST['q']) ? strip_tags($_REQUEST['q']) : ''; 
+	        $q_str = isset($_REQUEST['q']) ? strip_tags($_REQUEST['q']) : ''; //Registro
             $q = intval($q_str); // Convierte $q_str a entero
             
-            $q1_str = isset($_REQUEST['q1']) ? strip_tags($_REQUEST['q1']) : ''; 
+            $q1_str = isset($_REQUEST['q1']) ? strip_tags($_REQUEST['q1']) : ''; //Identificacion
             $q1 = intval($q1_str); // Convierte $q1_str a entero
             
-            $q2_str = strip_tags($_REQUEST['q2']);
+            $q2_str = strip_tags($_REQUEST['q2']); //Nombres
             $q2 = htmlentities($q2_str, ENT_QUOTES, 'UTF-8');// Convierte $q2_str a entero
             
-            $q3_str = isset($_REQUEST['q3']) ? strip_tags($_REQUEST['q3']) : ''; 
+            $q3_str = isset($_REQUEST['q3']) ? strip_tags($_REQUEST['q3']) : ''; //Ruta
             $q3 = intval($q3_str); // Convierte $q3_str a entero
             
-            $q4_str = isset($_REQUEST['q4']) ? strip_tags($_REQUEST['q4']) : ''; 
+            $q4_str = isset($_REQUEST['q4']) ? strip_tags($_REQUEST['q4']) : ''; //Ot
             $q4 = intval($q4_str); // Convierte $q4_str a entero
             
-            $q5_str = isset($_REQUEST['q5']) ? strip_tags($_REQUEST['q5']) : ''; 
+            $q5_str = isset($_REQUEST['q5']) ? strip_tags($_REQUEST['q5']) : ''; //No MEM
             $q5 = intval($q5_str); // Convierte $q5_str a entero
             
             /*
@@ -212,34 +211,31 @@
 		    if ($q4>0){
 		        if ($q3>0)
 		        {
-		          $sWhere .=" and analista_riesgo ='$q4'";
-		          $sWhere1 .=" and analista_riesgo ='$q4'";    
+		          $sWhere .=" and ot ='$q4'";
+		          $sWhere1 .=" and ot ='$q4'";    
 		        }
-		        else
+		        else    
 		        {
-		            $sWhere .=" analista_riesgo ='$q4'";
-		            $sWhere1 .=" analista_riesgo ='$q4'";
+		            $sWhere .=" ot ='$q4'";
+		            $sWhere1 .=" ot ='$q4'";
 		        }
 		    }
 		    
 		    if ($q5>0){
 		        if ($q4>0)
-		        {
-		          $sWhere .=" and analista_solicitudes ='$q5'";
-		          $sWhere1 .=" and analista_solicitudes ='$q5'";    
+		        {     
+		          $sWhere .=" and no_mem_ex ='$q5'";
+		          $sWhere1 .=" and no_mem_ex ='$q5'";    
 		        }
 		        else
 		        {
-		            $sWhere .=" analista_solicitudes ='$q5'";
-		            $sWhere1 .=" analista_solicitudes ='$q5'";
+		            $sWhere .=" no_mem_ex ='$q5'";
+		            $sWhere1 .=" no_mem_ex ='$q5'";
 		        }
 		    }
            
            ///////////////
-           
-          
-
-		    // Configurar el modo de error para excepciones
+            // Configurar el modo de error para excepciones
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    
 		    $sWhere.=" order by registro desc";
@@ -269,6 +265,8 @@
                 <div class="table-responsive">
 			      <table class='tablaResponsive table table-striped table-bordered table-hover'>
 				    <th>No.Registro</th>
+					<td>OT</td>
+  					<td>No.MEM EXT</td>
 					<th>Fecha UNP</th>
 					<th>Fecha GRAERR</th>
 					<th>Documento</th>
@@ -286,6 +284,8 @@
 						$nombres_peticionario=$row['nombres_peticionario'];
 						$apellidos_peticionario=$row['apellidos_peticionario'];
 						$estado_solicitud=$row['estado_solicitud'];
+						$no_mem_ext=$row['no_mem_ex'];
+						$ot=$row['ot'];
 						
 						//trae estado solicitud
 						$sqlSol    = "select * from graerr_estado_solicitud where id=$estado_solicitud";
@@ -297,7 +297,9 @@
 					    $lVDX = base64_encode($lv);
         ?>
                         <tr>	
-  		   			      <td><?php echo $registro; ?></td>
+  		   			       <td><?php echo $registro; ?></td>
+  					       <td><?php echo $ot; ?></td>
+  					       <td><?php echo $no_mem_ext; ?></td>
   					       <td><?php echo $fecha_recepcion_unp; ?></td>
   					       <td><?php echo $fecha_recepcion_graerr; ?></td>
   					       <td><?php echo number_format($no_documento); ?></td>

@@ -85,7 +85,7 @@
 	               
 	               <div class="panel-body">			  	          
   	                 <form class="form-horizontal" role="form" id="datos_cotizacion">
-                        <div class="form-group row">
+                        <div class="form-group row"> 
         	              <div class='col-md-3'>
          		             <label>Filtrar por número de registro</label>
          		             <input type="number" class="form-control" id="q" placeholder="Número de registro" onkeyup='load(1);'>
@@ -106,7 +106,7 @@
          		     
 	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
          		          </div>
-         		   
+         		   		
          		          <div class='col-md-3'>
          	                 <label>Tipo de ruta</label>
          	                 <select class='form-control' id='q3' onchange="load(1);">
@@ -121,7 +121,23 @@
 			                      ?>  
 			                 </select>  
 			              </div>
-			      
+			              
+			              <div class='col-md-3'>
+         		             <label>Filtrar por OT</label>
+         		             <input type="number" class="form-control" id="q4" placeholder="Número de OT" onkeyup='load(1);'>
+         		     
+	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
+         		          </div>
+			              
+			              <div class='col-md-3'>
+         		             <label>Filtrar por No MEM </label>
+         		             <input type="number" class="form-control" id="q5" placeholder="No MEM" onkeyup='load(1);'>
+         		     
+	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
+         		          </div>
+			                
+			              <?php
+			              /*
 			              <div class='col-md-3'>
          	                 <label>Analista de riesgos</label>
          	                 <select class='form-control' id='q4' onchange="load(1);">
@@ -151,7 +167,8 @@
 			                      ?> 
 			                  </select>  
          	              </div>
-	             						
+	             		 */
+	             		 ?>
         	      
 		                 <div class='col-md-12 text-center'>
             		            <span id="loader"></span>

@@ -23,63 +23,72 @@
      include("head.php");
   ?>
 
-<script>
-     document.addEventListener('DOMContentLoaded', function() {
-    // Función para actualizar los campos con la información seleccionada
-    function datoCiiu() {
-        // Obtener el valor del select
-        var cod = document.getElementById("id_ciudad").value;
-        document.getElementById("municipio").value = cod;
+         <script>
+              document.addEventListener('DOMContentLoaded', function() {
+             // Función para actualizar los campos con la información seleccionada
+             function datoCiiu() {
+                 // Obtener el valor del select
+                 var cod = document.getElementById("id_ciudad").value;
+                 document.getElementById("municipio").value = cod;
 
-        // Obtener el texto del select
-        var combo = document.getElementById("id_ciudad");
-        var selected = combo.options[combo.selectedIndex].text;
-        document.getElementById("nommunicipio").value = selected;
-    }
-
-        // Event listener para el cambio en el select con id 'es_tramite_emergencia'
-        document.getElementById('es_tramite_emergencia').addEventListener('change', function() {
-        const miDiv = document.getElementById('emergencia');
-        const seleccion = this.value;
-
-        if (seleccion === 'no') {
-            miDiv.style.display = 'none';
-        } else {
-            miDiv.style.display = 'block';
-        }
-    });
-
-        // Event listener para el cambio en el select con id 'tipo_ruta'
-        document.getElementById('tipo_ruta').addEventListener('change', function() {
-        const miDiv1 = document.getElementById('elColectivo');
-        const seleccion1 = parseInt(this.value, 10); // Convertir el valor a número entero
-        console.log(seleccion1); // Usar console.log para depuración
-
-        // INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
-        if (seleccion1 === 1) {
-            miDiv1.style.display = 'block';
-        } else {
-            miDiv1.style.display = 'none';
-        }
-    });
-
-    // Llamar a datoCiiu si es necesario para inicializar los valores
-    datoCiiu();
-});
-</script>
-
-  
-
-
-    <style>
-        #emergencia {
-            display: none; /* Inicialmente visible */
-        }
-        #elColectivo {
-            display: none; /* Inicialmente visible */
-        }
-    </style>
+                 // Obtener el texto del select
+                 var combo = document.getElementById("id_ciudad");
+                 var selected = combo.options[combo.selectedIndex].text;
+                 document.getElementById("nommunicipio").value = selected;
+             }
     
+             function calcularTotal() {
+                     // Obtener los valores de los campos de entrada
+                     const cantidadHombres = parseFloat(document.getElementById('cantidad_hombres').value) || 0;
+                     const cantidadMujeres = parseFloat(document.getElementById('cantidad_mujeres').value) || 0;
+                     const cantidadBinarios = parseFloat(document.getElementById('cantidad_binarios').value) || 0;
+
+                     // Calcular la suma
+                     const totalPersonas = cantidadHombres + cantidadMujeres + cantidadBinarios;
+
+                     // Actualizar el campo de resultado
+                     document.getElementById('no_personas_evaluar').value = totalPersonas;
+             }
+    
+             // Event listener para el cambio en el select con id 'es_tramite_emergencia'
+             document.getElementById('es_tramite_emergencia').addEventListener('change', function() {
+                 const miDiv = document.getElementById('emergencia');
+                 const seleccion = this.value;
+
+                 if (seleccion === 'no') {
+                     miDiv.style.display = 'none';
+                 } else {
+                     miDiv.style.display = 'block';
+                 }
+             });
+
+             // Event listener para el cambio en el select con id 'tipo_ruta'
+             document.getElementById('tipo_ruta').addEventListener('change', function() {
+                 const miDiv1 = document.getElementById('elColectivo');
+                 const seleccion1 = parseInt(this.value, 10); // Convertir el valor a número entero
+                 console.log(seleccion1); // Usar console.log para depuración
+
+                 // INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
+                 if (seleccion1 === 1) {
+                     miDiv1.style.display = 'block';
+                 } else {
+                     miDiv1.style.display = 'none';
+                 }
+             });
+
+              // Llamar a datoCiiu si es necesario para inicializar los valores
+              datoCiiu();
+            });
+          </script>
+
+          <style>
+              #emergencia {
+               display: none; /* Inicialmente visible */
+              }
+              #elColectivo {
+               display: none; /* Inicialmente visible */
+              }
+       </style>
   </head>
   
   <?php  
@@ -99,15 +108,15 @@
     
     if ( $s_registro != "" )
     {  
-      ///////////////////////////////////////////////////////  
-      ////// REALIZA LA CONSULTA  
-      $titulo = "MODIFICAR REGISTRO";
-      $s_existe = 1;
-      $boton  = "Actualizar";
+             ///////////////////////////////////////////////////////  
+             ////// REALIZA LA CONSULTA  
+             $titulo = "MODIFICAR REGISTRO";
+             $s_existe = 1;
+             $boton  = "Actualizar";
     
-      $sql = "select * from graerr_formulario_b where registro=$s_registro";
-      $stmt = $pdo->query($sql);
-      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+             $sql = "select * from graerr_formulario_b where registro=$s_registro";
+             $stmt = $pdo->query($sql);
+             $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       
              $s_registro                      = $row['registro'];
              $registro                      = $row['registro'];
@@ -170,8 +179,41 @@
              $cantidad_mujeres              = $row['cantidad_mujeres'];
              $cantidad_binarios             = $row['cantidad_binarios'];
              
+             //Realiza la validació del tipo de ruta y si es tramite de emergencia
+             
+             //tipo_ruta
+             if ($tipo_ruta==1) //Individual
+             {
+                $prendeColectivo = "display: none;"; 
+             }
+             
+             if ($tipo_ruta==2) //Colectivo
+             {
+                $prendeColectivo = "display: block;";  
+             }
+             
+             if ($tipo_ruta==3) //Sedes Residencias
+             {
+                $prendeColectivo = "display: none;";   
+             }
+             
+             //es_tramite_emergencia
+             if ($es_tramite_emergencia=="no")
+             {
+               $prendeEmergencia = "display: none;";   
+               $siTramite = "";
+               $noTramite = "selected";
+             }
+             
+             if ($es_tramite_emergencia=="si")
+             {
+               $prendeEmergencia = "display: block;";
+               $siTramite = "selected";
+               $noTramite = "";
+             }
+          
     /*         
-             echo "1.." . $registro;
+    echo "1.." . $registro;
     echo '<br>';
     echo "2.la vigencia." . $vigencia;
     echo '<br>';
@@ -313,15 +355,14 @@
    
    if(isset($_POST['grabar']))
    { 
-       
-       $s_existe         = $_POST['existe'];
-       $s_yaGrabo        = $_POST['yaGrabo'];
-    
-       date_default_timezone_set('America/Bogota');
-       //$s_fecha  = date("Y-m-d",time());
-       //$s_fecha  = date("Y/m/d H:i:s");
-       $date_added=date("Y-m-d H:i:s");
-             $s_registro                     = $_POST['registro'];
+             $s_existe         = $_POST['existe'];
+             $s_yaGrabo        = $_POST['yaGrabo'];
+             date_default_timezone_set('America/Bogota');
+             //$s_fecha  = date("Y-m-d",time());
+             //$s_fecha  = date("Y/m/d H:i:s");
+             $date_added=date("Y-m-d H:i:s");
+             
+             $s_registro                    = $_POST['registro'];
              $registro                      = $_POST['registro'];
              $vigencia                      = $_POST['vigencia'];
              $fecha_recepcion_unp           = $_POST['fecha_recepcion_unp'];
@@ -381,12 +422,49 @@
              $cantidad_hombres              = $_POST['cantidad_hombres'];
              $cantidad_mujeres              = $_POST['cantidad_mujeres'];
              $cantidad_binarios             = $_POST['cantidad_binarios'];
-       /*
-          echo "entra a grabar";
-          echo '<br>';
-          echo "1.." . $_POST['registro'];
-          echo '<br>';
-     
+             
+             //Realiza la validació del tipo de ruta y si es tramite de emergencia
+                           
+             //tipo_ruta
+             if ($tipo_ruta==1) //Individual
+             {
+                $prendeColectivo = "display: none;"; 
+                $descripcion_colectivo = '';
+                $nombre_colectivo = '';
+             }
+             
+             if ($tipo_ruta==2) //Colectivo
+             {
+                $prendeColectivo = "display: block;";  
+             }
+             
+             if ($tipo_ruta==3) //Sedes Residencias
+             {
+                $prendeColectivo = "display: none;";   
+                $descripcion_colectivo = '';
+                $nombre_colectivo = '';
+             }
+             
+              //es_tramite_emergencia
+             if ($es_tramite_emergencia=="no")
+             {
+               $prendeEmergencia = "display: none;";   
+               $siTramite = "";
+               $noTramite = "selected";
+             }
+             
+             if ($es_tramite_emergencia=="si")
+             {
+               $prendeEmergencia = "display: block;";
+               $siTramite = "selected";
+               $noTramite = "";
+             }
+             
+    /*
+    echo "entra a grabar";
+    echo '<br>';
+    echo "1.." . $_POST['registro'];
+    echo '<br>';
          
     echo "1.." . $registro;
     echo '<br>';
@@ -505,141 +583,132 @@
     //MODIFICA
     if ($s_existe == "1")  
     {
-      
-try {
-    // Conectar a la base de datos
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+            // Conectar a la base de datos
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Preparar la consulta SQL para actualizar
-    $stmt = $pdo->prepare('
-        UPDATE graerr_formulario_b
-        SET 
-            registro = ?, vigencia = ?, fecha_recepcion_unp = ?, fecha_recepcion_graerr = ?, fecha_carta_solicitante = ?,
-            no_mem_ext = ?, otras_entradas_sigob = ?, no_folios = ?, entidad_persona_solicitante = ?, destinatario = ?,
-            tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, seudonimo = ?,
-            tipo_ruta = ?, descripcion_colectivo = ?, nombre_colectivo = ?, no_personas_evaluar = ?, genero = ?,
-            grupo_etnico = ?, factor_diferencial = ?, correo_electronico = ?, no_de_contacto = ?, otros_numeros_contacto = ?,
-            direccion = ?, departamento = ?, municipio = ?, corregimiento_vereda = ?, autoriza_envio_info = ?,
-            fecha_asignacion_analisis = ?, analista_solicitudes = ?, estado_solicitud = ?, fecha_asignado_ot = ?, 
-            fecha_reasignacion_ot = ?, medidas_preventivas = ?, estado_ot = ?, ot = ?, analista_riesgo = ?, 
-            analista_riesgo_dos = ?, analista_calidad = ?, subpoblacion = ?, tipo_estudio_riesgo = ?, seguimiento = ?, 
-            es_tramite_emergencia = ?, tramite_emergencia = ?, fecha_tramite_emergencia = ?, ingreso_calidad = ?, 
-            fecha_aprobacion_calidad = ?, fecha_presentacion_premesa = ?, recomendacion_riesgo_premesa = ?, 
-            recomendacion_medidas_premesa = ?, observaciones_premesa = ?, remision_mesa_tecnica = ?, 
-            observaciones = ?, otros = ?, cantidad_hombres = ?, cantidad_mujeres = ?, cantidad_binarios = ?
-        WHERE registro = ?
-    ');
+            // Preparar la consulta SQL para actualizar
+            $stmt = $pdo->prepare('
+            UPDATE graerr_formulario_b
+            SET 
+                registro = ?, vigencia = ?, fecha_recepcion_unp = ?, fecha_recepcion_graerr = ?, fecha_carta_solicitante = ?,
+                no_mem_ext = ?, otras_entradas_sigob = ?, no_folios = ?, entidad_persona_solicitante = ?, destinatario = ?,
+                tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, seudonimo = ?,
+                tipo_ruta = ?, descripcion_colectivo = ?, nombre_colectivo = ?, no_personas_evaluar = ?, genero = ?,
+                grupo_etnico = ?, factor_diferencial = ?, correo_electronico = ?, no_de_contacto = ?, otros_numeros_contacto = ?,
+                direccion = ?, departamento = ?, municipio = ?, corregimiento_vereda = ?, autoriza_envio_info = ?,
+                fecha_asignacion_analisis = ?, analista_solicitudes = ?, estado_solicitud = ?, fecha_asignado_ot = ?, 
+                fecha_reasignacion_ot = ?, medidas_preventivas = ?, estado_ot = ?, ot = ?, analista_riesgo = ?, 
+                analista_riesgo_dos = ?, analista_calidad = ?, subpoblacion = ?, tipo_estudio_riesgo = ?, seguimiento = ?, 
+                es_tramite_emergencia = ?, tramite_emergencia = ?, fecha_tramite_emergencia = ?, ingreso_calidad = ?, 
+                fecha_aprobacion_calidad = ?, fecha_presentacion_premesa = ?, recomendacion_riesgo_premesa = ?, 
+                recomendacion_medidas_premesa = ?, observaciones_premesa = ?, remision_mesa_tecnica = ?, 
+                observaciones = ?, otros = ?, cantidad_hombres = ?, cantidad_mujeres = ?, cantidad_binarios = ?
+            WHERE registro = ?
+        ');
 
-    // Ejecutar la consulta con los valores correspondientes
-    $stmt->execute([
-        $registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
-        $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario,
-        $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $seudonimo, $tipo_ruta,
-        $descripcion_colectivo, $nombre_colectivo, $no_personas_evaluar, $genero, $grupo_etnico,
-        $factor_diferencial, $correo_electronico, $no_de_contacto, $otros_numeros_contacto, $direccion,
-        $departamento, $municipio, $corregimiento_vereda, $autoriza_envio_info, $fecha_asignacion_analisis,
-        $analista_solicitudes, $estado_solicitud, $fecha_asignado_ot, $fecha_reasignacion_ot, $medidas_preventivas,
-        $estado_ot, $ot, $analista_riesgo, $analista_riesgo_dos, $analista_calidad, $subpoblacion, $tipo_estudio_riesgo,
-        $seguimiento, $es_tramite_emergencia, $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad,
-        $fecha_aprobacion_calidad, $fecha_presentacion_premesa, $recomendacion_riesgo_premesa,
-        $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, $otros, 
-        $cantidad_hombres, $cantidad_mujeres, $cantidad_binarios, 
-        $registro  // El ID del registro que deseas actualizar
-    ]);
+        // Ejecutar la consulta con los valores correspondientes
+        $stmt->execute([
+            $registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
+            $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario,
+            $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $seudonimo, $tipo_ruta,
+            $descripcion_colectivo, $nombre_colectivo, $no_personas_evaluar, $genero, $grupo_etnico,
+            $factor_diferencial, $correo_electronico, $no_de_contacto, $otros_numeros_contacto, $direccion,
+            $departamento, $municipio, $corregimiento_vereda, $autoriza_envio_info, $fecha_asignacion_analisis,
+            $analista_solicitudes, $estado_solicitud, $fecha_asignado_ot, $fecha_reasignacion_ot, $medidas_preventivas,
+            $estado_ot, $ot, $analista_riesgo, $analista_riesgo_dos, $analista_calidad, $subpoblacion, $tipo_estudio_riesgo,
+            $seguimiento, $es_tramite_emergencia, $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad,
+            $fecha_aprobacion_calidad, $fecha_presentacion_premesa, $recomendacion_riesgo_premesa,
+            $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, $otros, 
+            $cantidad_hombres, $cantidad_mujeres, $cantidad_binarios, 
+            $registro  // El ID del registro que se actualiza
+        ]);
     
-
-     $mensaje=" <b>Atención!</b> Actualización exitosa";
-    //echo "Datos actualizados correctamente.";
-} catch (PDOException $e) {
-    echo "Error al actualizar los datos: " . $e->getMessage();
-}
-
-      
+           $mensaje=" <b>Atención!</b> Actualización exitosa";
+           //echo "Datos actualizados correctamente.";
+        } catch (PDOException $e) {
+            echo "Error al actualizar los datos: " . $e->getMessage();
+        }
     }//modificar
       
     ///ADICIONA
     if ($s_existe == "0")
     {
-try {
-    // Conectar a la base de datos
-    //$conn = new PDO("pgsql:host=localhost;dbname=mi_base_de_datos", "mi_usuario", "mi_contraseña");
-    //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+       try {
+                // Conectar a la base de datos
+                //$conn = new PDO("pgsql:host=localhost;dbname=mi_base_de_datos", "mi_usuario", "mi_contraseña");
+                //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-        // GENERA EL NUMERO DEL NUEVO REGISTRO
-        $sql = "SELECT MAX(registro) AS maximo FROM graerr_formulario_b";
-        // echo '<br>';
-        //echo $sql;
-        //echo '<br>';
-        $stmt = $pdo->query($sql);
-        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
-        $s_maximo = $row['maximo'];
+                // GENERA EL NUMERO DEL NUEVO REGISTRO
+                $sql = "SELECT MAX(registro) AS maximo FROM graerr_formulario_b";
+                // echo '<br>';
+                //echo $sql;
+                //echo '<br>';
+                $stmt = $pdo->query($sql);
+                $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+                $s_maximo = $row['maximo'];
         
-        $s_registro      = $s_maximo+1;
-        $registro = $s_registro;
-        //echo '<br>';
-        //echo "el regi..·" . $s_registro;
-        //echo '<br>';
+                $s_registro = $s_maximo+1; //variable interna
+                $registro   = $s_registro;
+                //echo '<br>';
+                //echo "el regi..·" . $s_registro;
+                //echo '<br>';
 
-        // Preparar la consulta SQL
-                  
-        $stmt = $pdo->prepare('INSERT INTO graerr_formulario_b (
-                registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
-                no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario,
-                tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, seudonimo, 
-                tipo_ruta, descripcion_colectivo, nombre_colectivo, no_personas_evaluar, genero,
-                grupo_etnico, factor_diferencial, correo_electronico, no_de_contacto, otros_numeros_contacto, 
-                direccion, departamento, municipio, corregimiento_vereda, autoriza_envio_info,
-                fecha_asignacion_analisis, analista_solicitudes, estado_solicitud, fecha_asignado_ot, fecha_reasignacion_ot, 
-                medidas_preventivas, estado_ot, ot, analista_riesgo, analista_riesgo_dos,
-                analista_calidad, subpoblacion, tipo_estudio_riesgo, seguimiento, es_tramite_emergencia, 
-                tramite_emergencia, fecha_tramite_emergencia, ingreso_calidad, fecha_aprobacion_calidad, fecha_presentacion_premesa,
-                recomendacion_riesgo_premesa, recomendacion_medidas_premesa, observaciones_premesa, remision_mesa_tecnica, observaciones, 
-                otros, cantidad_hombres, cantidad_mujeres, cantidad_binarios	           
-              ) VALUES (?, ?, ?, ?, ?, 
-                        ?, ?, ?, ?, ?,
-                        ?, ?, ?, ?, ?, 
-                        ?, ?, ?, ?, ?, 
-                        ?, ?, ?, ?, ?, 
-                        ?, ?, ?, ?, ?, 
-                        ?, ?, ?, ?, ?, 
-                        ?, ?, ?, ?, ?, 
-                        ?, ?, ?, ?, ?, 
-                        ?, ?, ?, ?, ?, 
-                        ?, ?, ?, ?, ?, 
-                        ?, ?, ?, ?)');
+                // Preparar la consulta SQL
+                $stmt = $pdo->prepare('INSERT INTO graerr_formulario_b (
+                        registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
+                        no_mem_ext, otras_entradas_sigob, no_folios, entidad_persona_solicitante, destinatario,
+                        tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, seudonimo, 
+                        tipo_ruta, descripcion_colectivo, nombre_colectivo, no_personas_evaluar, genero,
+                        grupo_etnico, factor_diferencial, correo_electronico, no_de_contacto, otros_numeros_contacto, 
+                        direccion, departamento, municipio, corregimiento_vereda, autoriza_envio_info,
+                        fecha_asignacion_analisis, analista_solicitudes, estado_solicitud, fecha_asignado_ot, fecha_reasignacion_ot, 
+                        medidas_preventivas, estado_ot, ot, analista_riesgo, analista_riesgo_dos,
+                        analista_calidad, subpoblacion, tipo_estudio_riesgo, seguimiento, es_tramite_emergencia, 
+                        tramite_emergencia, fecha_tramite_emergencia, ingreso_calidad, fecha_aprobacion_calidad, fecha_presentacion_premesa,
+                        recomendacion_riesgo_premesa, recomendacion_medidas_premesa, observaciones_premesa, remision_mesa_tecnica, observaciones, 
+                        otros, cantidad_hombres, cantidad_mujeres, cantidad_binarios	           
+                      ) VALUES (?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?,
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?, ?, 
+                                ?, ?, ?, ?)');
 
-        // Ejecutar la consulta con los valores correspondientes
-        $stmt->execute([
-               $registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
-               $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario,
-               $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $seudonimo, 
-               $tipo_ruta, $descripcion_colectivo, $nombre_colectivo, $no_personas_evaluar, $genero,
-               $grupo_etnico, $factor_diferencial, $correo_electronico, $no_de_contacto, $otros_numeros_contacto, 
-               $direccion, $departamento, $municipio, $corregimiento_vereda, $autoriza_envio_info,
-               $fecha_asignacion_analisis, $analista_solicitudes, $estado_solicitud, $fecha_asignado_ot, $fecha_reasignacion_ot, 
-               $medidas_preventivas, $estado_ot, $ot, $analista_riesgo, $analista_riesgo_dos,
-               $analista_calidad, $subpoblacion, $tipo_estudio_riesgo, $seguimiento, $es_tramite_emergencia, 
-               $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad, $fecha_aprobacion_calidad, $fecha_presentacion_premesa,
-               $recomendacion_riesgo_premesa, $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, 
-               $otros, $cantidad_hombres, $cantidad_mujeres , $cantidad_binarios	           
-              ]);              
+                // Ejecutar la consulta con los valores correspondientes
+                $stmt->execute([
+                       $registro, $vigencia, $fecha_recepcion_unp, $fecha_recepcion_graerr, $fecha_carta_solicitante,
+                       $no_mem_ext, $otras_entradas_sigob, $no_folios, $entidad_persona_solicitante, $destinatario,
+                       $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $seudonimo, 
+                       $tipo_ruta, $descripcion_colectivo, $nombre_colectivo, $no_personas_evaluar, $genero,
+                       $grupo_etnico, $factor_diferencial, $correo_electronico, $no_de_contacto, $otros_numeros_contacto, 
+                       $direccion, $departamento, $municipio, $corregimiento_vereda, $autoriza_envio_info,
+                       $fecha_asignacion_analisis, $analista_solicitudes, $estado_solicitud, $fecha_asignado_ot, $fecha_reasignacion_ot, 
+                       $medidas_preventivas, $estado_ot, $ot, $analista_riesgo, $analista_riesgo_dos,
+                       $analista_calidad, $subpoblacion, $tipo_estudio_riesgo, $seguimiento, $es_tramite_emergencia, 
+                       $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad, $fecha_aprobacion_calidad, $fecha_presentacion_premesa,
+                       $recomendacion_riesgo_premesa, $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, 
+                       $otros, $cantidad_hombres, $cantidad_mujeres , $cantidad_binarios	           
+                      ]);              
                    
-                   
-                      
-              $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
-    //echo "Datos insertados correctamente.";
-} catch (PDOException $e) {
-    echo "Error al insertar los datos: " . $e->getMessage();
-}
+                      $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
+                    //echo "Datos insertados correctamente.";
+                } catch (PDOException $e) {
+            echo "Error al insertar los datos: " . $e->getMessage();
+        }
     }//existe=0
     
     $s_tocoBoton = "S";  
     
   }//grabar
-  
    
-   
-   ////////////////////////////////////
+  ////////////////////////////////////
   ////// DESPLEGABLES //////////////////
   ////////////////////////////////////
   
@@ -906,7 +975,6 @@ try {
       $i++; 
     }
     
-    
     //============================= CONSULTA EL graerr_seguimiento
     //============================================================================ 
     $stmt = $pdo->query('select * from graerr_seguimiento order by descripcion');
@@ -942,7 +1010,6 @@ try {
       $combo_tipo_documento .=" <option value='".$line['id']."'>".$line['tipo_documento']."</option>"; 
       $i++; 
     }
-    
     
     //============================= CONSULTA EL graerr_tipo_estudio_riesgo
     //============================================================================ 
@@ -1017,10 +1084,8 @@ try {
       $i++; 
     }
    
-   //TOMA EL NOMBRE DEL MUNICIPIO
-   
-
-    //trae dependencia
+    //TOMA EL NOMBRE DEL MUNICIPIO
+    //trae nombre del municipio
     if ($municipio>0)
     {
 	$sqlDep  ="SELECT nommunicipio FROM reu_municipios where codmunicipio ='$municipio' and coddepto=$departamento";
@@ -1028,9 +1093,7 @@ try {
 	$rowDep  = $stmtDep->fetch(PDO::FETCH_ASSOC);
     $nommunicipio     = $rowDep['nommunicipio'];
     }
-  
-   
-  ?>  
+ ?>  
               <!-- Page Content Holder -->
               <div id="content">  
                   <!--- MENU CERRAR 
@@ -1204,7 +1267,7 @@ try {
                            </div>
                        </div> <!--row-->
                         
-                       <div id="elColectivo">
+                       <div id="elColectivo" style="<?=$prendeColectivo?>">
                          <div class="row" style="margin-top:5px;">   
                              <div class="col-sm-4" align="left">
                                 <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
@@ -1221,15 +1284,15 @@ try {
                        <div class="row" style="margin-top:5px;">   
                           <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE HOMBRES</label>
-                               <input type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required>
+                               <input type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required  oninput="calcularTotal()">
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE MUJERES</label>
-                               <input type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required>
+                               <input type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required  oninput="calcularTotal()">
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE BINARIOS</label>
-                               <input type="number" class="form-control" id="cantidad_binarios" name="cantidad_binarios"  value="<?=$cantidad_binarios?>" required>
+                               <input type="number" class="form-control" id="cantidad_binarios" name="cantidad_binarios"  value="<?=$cantidad_binarios?>" required  oninput="calcularTotal()">
                            </div>
                        </div> <!--row-->
                        
@@ -1293,14 +1356,14 @@ try {
                           <div class="col-sm-4">
                                <b>Municipio:</b>  
                                <div id="myDiv"> </div> 
-                           </div>
+                          </div>
                            
                            
-                           <div class="col-sm-3">
+                          <div class="col-sm-3">
                               <b>Municipio: </b>     
                                <input style ="display:none;" class="form-control" type="text" readonly value="<?=$municipio?>" name="municipio" id="municipio">                         
                                <input type="text" class="form-control" id="nommunicipio" name="nommunicipio" value="<?=$nommunicipio?> " placeholder="Municipio" readonly><br>  
-                           </div>
+                          </div>
                           
                           <!-- 
                             necesito un campo lista  dependiente de otro campo lista, por ejemplo departamanto y ciudad
@@ -1487,13 +1550,14 @@ try {
                        <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-4" align="left">
                                <label for="tramite_emergencia">ES TRAMITE DE EMERGENCIA?</label>
-                               <select class="form-control" id="es_tramite_emergencia" name="es_tramite_emergencia" value="<?=$autoriza_envio_info?>">
+                               <select class="form-control" id="es_tramite_emergencia" name="es_tramite_emergencia" >
                                   <option value="">Seleccione la opción</option>
-                                  <option value="si">Sí</option>
-                                  <option value="no">No</option>
+                                  <option value="si" <?=$siTramite?>>Sí</option>
+                                  <option value="no" <?=$noTramite?>>No</option>
                                </select>
                            </div>
-                           <div id='emergencia'>
+                           
+                           <div id='emergencia' style="<?=$prendeEmergencia?>">
                              <div class="col-sm-4" align="left">
                                <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
                                <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
