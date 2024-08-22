@@ -27,16 +27,7 @@
          <script>
               document.addEventListener('DOMContentLoaded', function() {
              // Función para actualizar los campos con la información seleccionada
-             function datoCiiu() {
-                 // Obtener el valor del select
-                 var cod = document.getElementById("id_ciudad").value;
-                 document.getElementById("municipio").value = cod;
-
-                 // Obtener el texto del select
-                 var combo = document.getElementById("id_ciudad");
-                 var selected = combo.options[combo.selectedIndex].text;
-                 document.getElementById("nommunicipio").value = selected;
-             }
+            
     
              // Event listener para el cambio en el select con id 'es_tramite_emergencia'
              document.getElementById('es_tramite_emergencia').addEventListener('change', function() {
@@ -68,6 +59,17 @@
               datoCiiu();
             });
             
+             function datoCiiu() {
+                 // Obtener el valor del select
+                 var cod = document.getElementById("id_ciudad").value;
+                 document.getElementById("municipio").value = cod;
+
+                 // Obtener el texto del select
+                 var combo = document.getElementById("id_ciudad");
+                 var selected = combo.options[combo.selectedIndex].text;
+                 document.getElementById("nommunicipio").value = selected;
+             }
+             
             function calcularTotal() {
                      // Obtener los valores de los campos de entrada
                      const cantidadHombres = parseFloat(document.getElementById('cantidad_hombres').value) || 0;
