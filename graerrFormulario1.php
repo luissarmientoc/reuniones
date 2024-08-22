@@ -73,13 +73,13 @@
                      const cantidadMujeres = parseFloat(document.getElementById('cantidad_mujeres').value) || 0;
                      const cantidadBinarios = parseFloat(document.getElementById('cantidad_binarios').value) || 0;
                     
-                     window.alert (cantidadHombres);
-                     window.alert (cantidadMujeres);
-                     window.alert (cantidadBinarios);
+                    // window.alert (cantidadHombres);
+                    // window.alert (cantidadMujeres);
+                    // window.alert (cantidadBinarios);
                      
                      // Calcular la suma
                       const totalPersonas = cantidadHombres + cantidadMujeres + cantidadBinarios;
-                      window.alert (totalPersonas);
+                    //  window.alert (totalPersonas);
 
                      // Actualizar el campo de resultado
                      document.getElementById('no_personas_evaluar').value = totalPersonas;
@@ -1292,11 +1292,11 @@
                        <div class="row" style="margin-top:5px;">   
                           <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE HOMBRES</label>
-                               <input min=0 type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required  onkeyup="calcularTotal()">
+                               <input min=0 type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required  onchange="calcularTotal()">
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE MUJERES</label>
-                               <input min=0 type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required  onkeyup="calcularTotal()">
+                               <input min=0 type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required  onchange="calcularTotal()">
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE BINARIOS</label>
