@@ -42,12 +42,14 @@
                      const cantidadHombres = parseFloat(document.getElementById('cantidad_hombres').value) || 0;
                      const cantidadMujeres = parseFloat(document.getElementById('cantidad_mujeres').value) || 0;
                      const cantidadBinarios = parseFloat(document.getElementById('cantidad_binarios').value) || 0;
-                     console.log(cantidadHombres);
-                     console.log(cantidadMujeres);
-                     console.log(cantidadBinarios);
+                    
+                     window.alert (cantidadHombres);
+                     window.alert (cantidadMujeres);
+                     window.alert (cantidadBinarios);
                      
                      // Calcular la suma
                      const totalPersonas = cantidadHombres + cantidadMujeres + cantidadBinarios;
+                      window.alert (totalPersonas);
 
                      // Actualizar el campo de resultado
                      document.getElementById('no_personas_evaluar').value = totalPersonas;
