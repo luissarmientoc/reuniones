@@ -1204,7 +1204,7 @@
                             
                             <div class="col-sm-3" align="left">
                                 <label for="no_folios">No FOLIOS</label>
-                                <input min=0 type="number" class="form-control" id="no_folios" name="no_folios"  value="<?=$no_folios?>" required>
+                                <input min="0" type="number" class="form-control" id="no_folios" name="no_folios"  value="<?=$no_folios?>" required>
                             </div>
                        </div> <!--row-->    
                        
@@ -1292,22 +1292,22 @@
                        <div class="row" style="margin-top:5px;">   
                           <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE HOMBRES</label>
-                               <input min=0 type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required  onchange="calcularTotal()">
+                               <input min="0" type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required  onchange="calcularTotal()">
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE MUJERES</label>
-                               <input min=0 type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required  onchange="calcularTotal()">
+                               <input min="0" type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required  onchange="calcularTotal()">
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE BINARIOS</label>
-                               <input min=0 type="number" class="form-control" id="cantidad_binarios" name="cantidad_binarios"  value="<?=$cantidad_binarios?>" required  oninput="calcularTotal()">
+                               <input min="0" type="number" class="form-control" id="cantidad_binarios" name="cantidad_binarios"  value="<?=$cantidad_binarios?>" required  oninput="calcularTotal()">
                            </div>
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">   
                            <div class="col-sm-3" align="left">
                                <label for="no_personas_evaluar">No PERSONAS A EVALUAR</label>
-                               <input min=0 type="number" class="form-control" id="no_personas_evaluar" name="no_personas_evaluar"  value="<?=$no_personas_evaluar?>" readonly>
+                               <input min="0" type="number" class="form-control" id="no_personas_evaluar" name="no_personas_evaluar"  value="<?=$no_personas_evaluar?>" readonly>
                            </div>
                            
                            <div class="col-sm-3" align="left">
