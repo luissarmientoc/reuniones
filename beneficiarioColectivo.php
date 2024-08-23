@@ -68,7 +68,7 @@
     }
      else
     {
-      $titulo = "NUEVA BENEFICIARIO DEL COLECTIVO";
+      $titulo = "NUEVO BENEFICIARIO DEL COLECTIVO";
       $s_existe = 0;
       $boton="Grabar";
     }  
@@ -235,7 +235,7 @@
                           </div>    
                 </div> <!--row-->    
                 
-                <div class="row" style="margin:5px;">
+                 <div class="row" style="margin:5px;">
                           <div class="col-sm-6" align="left">  
                               <label for="direccion">DIRECCION</label>
                               <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
@@ -245,7 +245,17 @@
                               <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
                           </div>
-                </div> <!--row-->    
+                 </div> <!--row-->    
+                
+                 <div class="modal-footer"> 
+                    <div class="col-sm-11" align="center">  					  			 
+                      <button type="submit" name='grabar' class="btn btn-md btn-success btn-lg"><i class="glyphicon glyphicon-refresh"></i> <?=$boton?> </button>
+                    </div>	 
+                 </div>
+         
+                 <input style="visibility:hidden" name="registro" id="registro" value="<?=$s_registro?>"/>
+                 <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
+                 <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
                 
               </form>    
             </div>     
