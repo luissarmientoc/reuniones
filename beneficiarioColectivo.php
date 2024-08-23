@@ -99,9 +99,9 @@
       //$s_fecha  = date("Y/m/d H:i:s");
       $date_added=date("Y-m-d H:i:s");
       
-      $s_registro                    = $row['registro'];
-      $registro                     = $row['registro'];
-      $ot                           = $row['ot'];
+      $s_registro                    = $_POST['registro'];
+      $registro                     = $_POST['registro'];
+      $ot                           = $_POST['ot'];
       $tipo_documento_ben_colectivo = $_POST['tipo_documento_ben_colectivo'];
       $no_documento_ben_colectivo   = $_POST['no_documento_ben_colectivo'];
       $nombres_bene_colectivo       = $_POST['nombres_bene_colectivo'];
@@ -111,6 +111,29 @@
       $departamento_ben_colectivo   = $_POST['departamento_ben_colectivo'];
       $municipio_ben_colectivo      = $_POST['municipio_ben_colectivo'];
       
+      
+      echo "1..". $s_registro;              
+      echo '<br>';
+      echo "2..". $registro;   
+      echo '<br>';
+      echo "3..". $ot;       
+      echo '<br>';
+      echo "4..". $tipo_documento_ben_colectivo; 
+      echo '<br>';
+      echo "5..". $no_documento_ben_colectivo;   
+      echo '<br>';
+      echo "6..". $nombres_bene_colectivo;      
+      echo '<br>';
+      echo "7..". $apellidos_ben_colectivo;     
+      echo '<br>';
+      echo "8..". $seudonimo_beno_colectivo;  
+      echo '<br>';
+      echo "9..". $direccion_ben_colectivo;     
+      echo '<br>';
+      echo "10..". $departamento_ben_colectivo;   
+      echo '<br>';
+      echo "11..". $municipio_ben_colectivo;      
+      echo '<br>';
       
       //MODIFICA
       if ($s_existe == "1")  
