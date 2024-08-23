@@ -1723,7 +1723,7 @@
             </form>                                
          </div> <!-- content -->   
          
-          
+         
             <div class="container-fluid">
                  <div class="panel panel-info">
                      <div class="panel-heading">
@@ -1735,7 +1735,7 @@
 	            </div> <!-- panel panel-info -->     
              </div> <!-- container fluid -->      
 	                 
-         
+          
            
               
         <!--- complemento -->
