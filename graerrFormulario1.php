@@ -1723,6 +1723,18 @@
             </form>  
             
             
+            <div class="panel panel-info">
+	               <div class="panel-heading">
+        	          <div class="btn-group pull-right">        	    
+          	            <a href="graerrFormulario1.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
+	                  </div>
+        	          <h4><i class='glyphicon glyphicon-search'></i> Buscar Registro</h4>
+	               </div>
+	               
+	               <div class="panel-body">	
+	                 el body
+	               </div>
+	       </div> <!-- panel panel-info -->             
             <div class="container-fluid">
                  <div class="panel panel-info">
                      <div class="panel-heading">
