@@ -58,6 +58,55 @@
       $s_existe = 0;
       $boton="Grabar";
     }  
+    
+    
+    //============================= CONSULTA EL graerr_tipo_documento
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_tipo_documento order by tipo_documento');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_documento .=" <option value=''>".'- Seleccione el tipo de documento -'."</option>";
+      }
+      if ($line['id']==$tipo_documento)
+      {
+        $combo_tipo_documento .=" <option value='".$line['id']."' selected>".$line['tipo_documento']." </option>"; 
+      }
+      $combo_tipo_documento .=" <option value='".$line['id']."'>".$line['tipo_documento']."</option>"; 
+      $i++; 
+    }
+    
+    
+     //============================= CONSULTA LOS DEPARTAMENTOS
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT coddepto, nomdepto  FROM reu_municipios GROUP BY coddepto, nomdepto;');
+  
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $comboDepto .=" <option value=''>".'- Seleccione el departamento -'."</option>";
+      }
+      if ($line['coddepto']==$departamento)
+      {
+        $comboDepto .=" <option value='".$line['coddepto']."' selected>".$line['nomdepto']." </option>"; 
+      }
+      $comboDepto .=" <option value='".$line['coddepto']."'>".$line['nomdepto']."</option>"; 
+      $i++; 
+    }
+   
+    //TOMA EL NOMBRE DEL MUNICIPIO
+    //trae nombre del municipio
+    if ($municipio>0)
+    {
+	  $sqlDep       = "SELECT nommunicipio FROM reu_municipios where codmunicipio ='$municipio' and coddepto=$departamento";
+	  $stmtDep      = $pdo->query($sqlDep);
+	  $rowDep       = $stmtDep->fetch(PDO::FETCH_ASSOC);
+      $nommunicipio = $rowDep['nommunicipio'];
+    }
   ?> 
   
   
@@ -126,6 +175,23 @@
                         <input type="number" class="form-control" id="no_documento_beneficiario_colectivo" name="no_documento_beneficiario_colectivo"  value="<?=$no_documento_beneficiario_colectivo?>" required>
                     </div>
                 </div> <!--row-->
+                
+                <div class="row" style="margin-top:5px;">   
+                                <div class="col-sm-4" align="left">
+                                    <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES DEL BENEFICIARIO DEL COLECTIVOO</label>
+                                    <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_beneficiario_colectivo" name="nombres_beneficiario_colectivo"  value="<?=$nombres_beneficiario_colectivo?>" required>
+                                </div>
+                           
+                                <div class="col-sm-4" align="left">
+                                    <label style="font-size:12px;" for="nombres_apellidos_peticionario">APELLIDOS DEL DEL BENEFICIARIO DEL COLECTIVO</label>
+                                    <input  style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_beneficiario_colectivo" name="apellidos_beneficiario_colectivo"  value="<?=$apellidos_beneficiario_colectivo?>" required>
+                                </div>
+                                
+                                <div class="col-sm-4" align="left">
+                                    <label for="seudonimo">SEUDONIMO</label>
+                                    <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo_beneficiario_colectivo" name="seudonimo_beneficiario_colectivo"  value="<?=$seudonimo_beneficiario_colectivo?>">
+                                </div>
+                            </div> <!--row-->
                 
             </form>    
                  
