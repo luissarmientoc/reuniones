@@ -87,6 +87,13 @@
                      // Actualizar el campo de resultado
                      document.getElementById('no_personas_evaluar').value = totalPersonas;
              }
+             
+             function confirmarBeneficiario(){
+                 if(confirm('¿Estas seguro de eliminar el beneficiario del colectivo?'))
+                   return true;
+                 else
+                   return false;
+             }
             
           </script>
 
@@ -113,6 +120,36 @@
     
     $s_registro   = $partir[0];
     $tipAccion            = $partir[1];
+    
+    
+    if(isset($_POST['borrarBeneficiario']))
+    {
+       $borrarBen  = $_POST['borrarBeneficiario'];
+       $partir  = explode ("-", $borrarBen);   
+       
+       $s_registro     = $partir[0];
+       
+       $no_documento_ben_colectivo     = $partir[1];
+       
+       // Consulta preparada con marcadores de posición
+       $sql = "DELETE FROM graerr_colectivo WHERE registro = :registro AND no_documento_ben_colectivo = :no_documento_ben_colectivo ";
+        
+        $sql = "DELETE FROM reu_compromisos WHERE idreunion = :idreunion AND numeroidparticipante = :numeroidparticipante AND idcompromiso = :idcompromiso";
+        
+       // Preparar la consulta
+       $stmt = $pdo->prepare($sql);
+        
+         // Asignar valores a los marcadores de posición
+         $stmt->bindParam(':registro', $s_registro, PDO::PARAM_INT);
+         $stmt->bindParam(':no_documento_ben_colectivo', $no_documento_ben_colectivo, PDO::PARAM_INT);
+
+         // Ejecutar la consulta
+         if ($stmt->execute()) {
+             echo "Se eliminó el registro correctamente.";
+         } else {
+             echo "Error al intentar eliminar el registro.";
+         }
+    }   
     
     
     if ( $s_registro != "" )
@@ -1100,10 +1137,10 @@
     //trae nombre del municipio
     if ($municipio>0)
     {
-	$sqlDep  ="SELECT nommunicipio FROM reu_municipios where codmunicipio ='$municipio' and coddepto=$departamento";
-	$stmtDep = $pdo->query($sqlDep);
-	$rowDep  = $stmtDep->fetch(PDO::FETCH_ASSOC);
-    $nommunicipio     = $rowDep['nommunicipio'];
+	  $sqlDep       = "SELECT nommunicipio FROM reu_municipios where codmunicipio ='$municipio' and coddepto=$departamento";
+	  $stmtDep      = $pdo->query($sqlDep);
+	  $rowDep       = $stmtDep->fetch(PDO::FETCH_ASSOC);
+      $nommunicipio = $rowDep['nommunicipio'];
     }
  ?>  
               <!-- Page Content Holder -->
@@ -1119,8 +1156,8 @@
                              </div>
                           </div>
                     <!-- </nav>  ---->
-                <!--- FIN MENU CERRAR ---->
-                <br>
+                 <!--- FIN MENU CERRAR ---->
+                 <br>
                   
                   <!--- BARRA DE TITULO ---->
                   <div class="fondo"> 
@@ -1680,20 +1717,95 @@
                 </div>	 
               </div>
          
-             <input style="visibility:hidden" name="idGrupoInterno" id="idGrupoInterno" value="<?=$s_registro?>"/>
+             <input style="visibility:hidden" name="registro" id="registro" value="<?=$s_registro?>"/>
              <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
              <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
             </form>                                
-              </div> <!-- content -->   
+         </div> <!-- content -->   
+         
+         <?php
+           if ($no_personas_evaluar > 0 )
+           {
+         ?>   
+             <div class="container-fluid">
+                 <div class="panel panel-info">
+                     <div class="panel-heading">
+        	            <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
+        	            <div class="btn-group pull-right">        	    
+          	                <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
+	                     </div>
+	                 </div>
+	                 
+	                 <?php
+                       $sql="select * from  graerr_colectivo where registro = $s_registro";
+                       $stmt = $pdo->query($sql);
+                      ?>
+	                 
+	                 <div class="panel-body" align="left">
+	                   <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+	                      <table class='tablaResponsive table table-striped table-bordered table-hover'>
+	                            <th>No.Registro</th>
+					            <tj>Documento</th>
+  					            <th>Nombres</th>
+					            <th>Apellidos</th>
+					            <th>Seudonimo</th>
+					            <th class='text-center' colspan="4">Acciones</th>     
+					            
+					            <?php
+			                       $i=1;
+			                       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			                         $s_registro                   = $row['registro'];
+			                         $tipo_documento_ben_colectivo = $row['tipo_documento_ben_colectivo'];
+  			                         $no_documento_ben_colectivo   = $row['no_documento_ben_colectivo'];
+  			                         $nombres_ben_colectivo        = $row['nombres_ben_colectivo'];
+  			                         $apellidos_ben_colectivo      = $row['apellidos_ben_colectivo'];
+  			                         $seudonimo_ben_colectivo      = $row['seudonimo_ben_colectivo'];
+			                    
+			                         $borrarB = $s_registro . "-" . $no_documento_ben_colectivo;
+			                         $lv      = $s_registro."/". $no_documento_ben_colectivo. "/MOD1234567890qwertyuiopasdfghjkl";
+					                 $lVDX    = base64_encode($lv);
+    			                 ?>    
+    			                 
+    			                 <tr>	
+  		   			               <td><?php echo $tipo_documento_ben_colectivo; ?></td>
+  					                <td><?php echo $no_documento_ben_colectivo; ?></td>
+  					                <td><?php echo $nombres_ben_colectivo; ?></td>
+  					                <td><?php echo $apellidos_ben_colectivo; ?></td>
+  					                <td><?php echo $seudonimo_ben_colectivo; ?></td>
+  					       
+					                <td class='text-center'>
+					                  <a href="beneficiarioColectivo.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a> 
+					                  <input class='btn btn-danger btn-sm' type='submit' id='borrarBeneficiario' name='borrarBeneficiario' value='<?=$borrarB?> '  style='width:40' onclick='return confirmarBeneficiario()'>  <i class="fa fa-trash" aria-hidden="true"></i>  
+					                 </td>  
+					              </tr>
+					           
+					           <?php
+                                 }//while
+					           ?> 
+    			             
+    			          </table>
+    			            
+	                      <input style="visibility:hidden" name="registro" id="registro" value="<?=$s_registro?>"/>
+                          <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
+                          <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
+	                   </form>
+	                 </div> <!-- panel-body -->
+	                 
+                 </div> <!-- panel panel-info -->     
+             </div> <!-- container fluid -->
+         
+         <?
+           } // $no_personas_evaluar > 0 
+         ?>  
               
-              <!--- complemento -->
-              <?php
-               include("complemento.html");             
-              ?>
-              <!--- fin complemento -->
-            </div> <!-- wrapper -->
+        <!--- complemento -->
+        <?php
+           include("complemento.html");             
+        ?>
+        <!--- fin complemento -->
+        </div> <!-- wrapper -->
             
-           <hr>
+     <hr>
      <?php
       // include("footer.php");
      ?>
