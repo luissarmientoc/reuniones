@@ -282,7 +282,7 @@
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
                     echo '<br>';
-                    echo "tres.." . $sql;
+                    echo "tres......" . $sql;
                     echo '<br>';
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
