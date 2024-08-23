@@ -1726,24 +1726,15 @@
             <div class="panel panel-info">
 	               <div class="panel-heading">
         	          <div class="btn-group pull-right">        	    
-          	            <a href="graerrFormulario1.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
+          	            <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
 	                  </div>
-        	          <h4><i class='glyphicon glyphicon-search'></i> Buscar Registro</h4>
+        	          <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
 	               </div>
 	               
 	               <div class="panel-body">	
 	                 el body
 	               </div>
-	       </div> <!-- panel panel-info -->             
-            <div class="container-fluid">
-                 <div class="panel panel-info">
-                     <div class="panel-heading">
-        	            <div class="btn-group pull-right">        	    
-        	               <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
-	                     </div>
-        	            <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
-	               </div> <!-- panel panel-info -->     
-             </div> <!-- container fluid -->     
+	        
             
             
             
