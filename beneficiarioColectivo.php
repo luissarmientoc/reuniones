@@ -174,7 +174,9 @@
       if ($s_existe == "0")
       {
          $sqlCts = "select count(*) AS cuantos from graerr_colectivo where registro=$registro and no_documento_ben_colectivo =$no_documento_ben_colectivo";
+         echo  "ww.." . $sqlCts;
          $stmt = $pdo->query($sqlCts);
+         
          // Obtener el resultado (¨²nica fila)
          $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
          // N¨²mero total de filas
