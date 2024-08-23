@@ -194,6 +194,23 @@
                     </div>
                 </div> <!--row-->
                 
+                <div class="row" style="margin-top:5px;">
+	                <<div class="col-sm-4" align="left">
+                        <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES DEL BENEFICIARIO DEL COLECTIVO</label>
+                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_beneficiario_colectivo" name="nombres_beneficiario_colectivo"  value="<?=$nombres_beneficiario_colectivo?>" required>
+                    </div>
+                                
+                    <div class="col-sm-4" align="left">
+                        <label style="font-size:12px;" for="nombres_apellidos_peticionario">APELLIDOS DEL DEL BENEFICIARIO DEL COLECTIVO</label>
+                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_beneficiario_colectivo" name="apellidos_beneficiario_colectivo"  value="<?=$apellidos_beneficiario_colectivo?>" required>
+                    </div>
+                    
+                    <div class="col-sm-4" align="left">
+                        <label for="seudonimo">SEUDONIMO</label>
+                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo_beneficiario_colectivo" name="seudonimo_beneficiario_colectivo"  value="<?=$seudonimo_beneficiario_colectivo?>">
+                    </div>
+                </div> <!--row-->
+                
                 <div class="row" style="margin-top:5px;"> 
                     <div class="col-sm-4" align="left">
                         <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES DEL BENEFICIARIO DEL COLECTIVO</label>
@@ -258,7 +275,7 @@
    <?php
     // include("footer.php");
    ?>
-   
+     <script type="text/javascript" src="buscarCiudad.js"></script>
   </body>
 </html>            
             
