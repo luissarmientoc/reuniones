@@ -45,6 +45,9 @@
     
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
+    
+    echo $linDeco;
+    echo '<br>';
    
     //PARTE LA LINEA
     $partir      = explode ("/", $linDeco);   
@@ -52,12 +55,14 @@
     $s_ot                       = $partir[1];
     $no_documento_ben_colectivo = $partir[2];
     $tipAccion                  = $partir[3];
-    /*
+    
     echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
     echo "registro.." . $s_registro;
     echo '<br>';
-    echo "registro.." . $no_documento_ben_colectivo;
-    */
+    echo "s_ot.." . $s_ot;
+    echo '<br>';
+    echo "dto.." . $no_documento_ben_colectivo;
+    echo '<br>';
     
     if ( $no_documento_ben_colectivo != "" )
     {  
