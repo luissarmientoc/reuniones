@@ -12,7 +12,7 @@
   */
   
   $active_marca="active";
-  $title="UNP | Formulario GRAERR ";    
+  $title="UNP | GRAERR Formulario ";    
   $nombreUsuario = $_SESSION['user_firstname'] ." " .$_SESSION['user_lastname']; 
 ?>
 
@@ -124,7 +124,7 @@
 			              
 			              <div class='col-md-3'>
          		             <label>Filtrar por OT</label>
-         		             <input type="number" class="form-control" id="q4" placeholder="Número de OT" onkeyup='load(1);'>
+         		             <input type="text" class="form-control" id="q4" placeholder="Número de OT" onkeyup='load(1);'>
          		     
 	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
          		          </div>
