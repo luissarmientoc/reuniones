@@ -24,6 +24,20 @@
     ?>
   </head>
   
+  
+    <script>
+      function datoCiiu() {
+                 // Obtener el valor del select
+                 var cod = document.getElementById("id_ciudad").value;
+                 document.getElementById("municipio").value = cod;
+
+                 // Obtener el texto del select
+                 var combo = document.getElementById("id_ciudad");
+                 var selected = combo.options[combo.selectedIndex].text;
+                 document.getElementById("nommunicipio").value = selected;
+             }
+    </script>
+  
   <?php  
     include("navbar.php");
     // Crear una nueva instancia de conexión PDO
@@ -180,7 +194,7 @@
                     </div>
                 </div> <!--row-->
                 
-                <div class="row" style="margin-top:5px;">   
+                <div class="row" style="margin-top:5px;"> 
                     <div class="col-sm-4" align="left">
                         <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES DEL BENEFICIARIO DEL COLECTIVO</label>
                         <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_beneficiario_colectivo" name="nombres_beneficiario_colectivo"  value="<?=$nombres_beneficiario_colectivo?>" required>
@@ -197,7 +211,7 @@
                     </div>
                 </div> <!--row-->
                 
-                <div class="row" style="margin-top:5px;">    
+                <div class="row" style="margin-top:5px;">   
                           <div class="col-sm-4" align="left"> 
                                 <label for="departamento">DEPARTAMENTO</label>
                                 <select class="form-control" id="departamento" name="departamento" onchange="loadCiudadD(this.value)">
@@ -214,7 +228,7 @@
                           </div>
                            
                            
-                          <div class="col-sm-3">
+                          <div class="col-sm-4">
                               <b>Municipio: </b>     
                                <input style ="display:none;" class="form-control" type="text" readonly value="<?=$municipio?>" name="municipio" id="municipio">                         
                                <input type="text" class="form-control" id="nommunicipio" name="nommunicipio" value="<?=$nommunicipio?> " placeholder="Municipio" readonly><br>  
@@ -232,7 +246,7 @@
                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
                           </div>
                           
-                       </div> <!--row-->
+                </div> <!--row-->
                 
             </form>    
             </div>     
