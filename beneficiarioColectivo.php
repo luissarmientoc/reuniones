@@ -10,7 +10,7 @@
   */
   
   $active_marca="active";
-  $title="UNP | Reuniones";  
+  $title="UNP | Beneficiarios Colectivo";  
   $nombreUsuario = $_SESSION['user_firstname'] ." " .$_SESSION['user_lastname']; 
 ?>
 
@@ -114,55 +114,3 @@
             <?php 
               }
             ?>
-                        <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
-	                        <div class="row" style="margin-top:5px;">
-	                            <div class="col-sm-6" align="left">
-                                    <label for="tipo_documento">TIPO DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
-                                    <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento_beneficiario_colectivo?>" required>-->
-                                    <select <?=$active?> required class="form-control" name="tipo_documento_beneficiario_colectivo">
-                                          <?php echo $combo_tipo_documento; ?>
-                                    </select> 
-                                </div>
-                                
-                                <div class="col-sm-6" align="left">
-                                    <label for="no_documento">No DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
-                                    <input type="number" class="form-control" id="no_documento_beneficiario_colectivo" name="no_documento_beneficiario_colectivo"  value="<?=$no_documento_beneficiario_colectivo?>" required>
-                                </div>
-                            </div> <!--row-->
-                       
-                            <div class="row" style="margin-top:5px;">   
-                                <div class="col-sm-4" align="left">
-                                    <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES DEL BENEFICIARIO DEL COLECTIVOO</label>
-                                    <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_beneficiario_colectivo" name="nombres_beneficiario_colectivo"  value="<?=$nombres_beneficiario_colectivo?>" required>
-                                </div>
-                           
-                                <div class="col-sm-4" align="left">
-                                    <label style="font-size:12px;" for="nombres_apellidos_peticionario">APELLIDOS DEL DEL BENEFICIARIO DEL COLECTIVO</label>
-                                    <input  style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_beneficiario_colectivo" name="apellidos_beneficiario_colectivo"  value="<?=$apellidos_beneficiario_colectivo?>" required>
-                                </div>
-                                
-                                <div class="col-sm-4" align="left">
-                                    <label for="seudonimo">SEUDONIMO</label>
-                                    <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo_beneficiario_colectivo" name="seudonimo_beneficiario_colectivo"  value="<?=$seudonimo_beneficiario_colectivo?>">
-                                </div>
-                            </div> <!--row-->    
-                           
-	                        
-	                        <div class="modal-footer"> 
-                                <div class="col-sm-11" align="center">  					  			 
-                                   <button type="submit" name='grabar' class="btn btn-md btn-success btn-lg"><i class="glyphicon glyphicon-refresh"></i> <?=$boton?> </button>
-                                </div>	 
-                            </div>
-	                        
-	                        <input style="visibility:hidden" name="registro" id="registro" value="<?=$s_registro?>"/>
-                            <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
-                            <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
-	                     </form>
-	                     
-	           </div> <!-- content -->            
-	           
-	           
-        <!--- complemento -->
-        <?php
-           include("complemento.html");             
-        ?>
