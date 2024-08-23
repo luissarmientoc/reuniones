@@ -162,7 +162,7 @@
             
             <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
 	            <div class="row" style="margin-top:5px;">
-	                <div class="col-sm-6" align="left">
+	                <div class="col-sm-4" align="left">
                         <label for="tipo_documento">TIPO DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
                         <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento_beneficiario_colectivo?>" required>-->
                         <select <?=$active?> required class="form-control" name="tipo_documento_beneficiario_colectivo">
@@ -170,28 +170,65 @@
                         </select> 
                     </div>
                                 
-                    <div class="col-sm-6" align="left">
+                    <div class="col-sm-4" align="left">
                         <label for="no_documento">No DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
                         <input type="number" class="form-control" id="no_documento_beneficiario_colectivo" name="no_documento_beneficiario_colectivo"  value="<?=$no_documento_beneficiario_colectivo?>" required>
                     </div>
                 </div> <!--row-->
                 
                 <div class="row" style="margin-top:5px;">   
-                                <div class="col-sm-4" align="left">
-                                    <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES DEL BENEFICIARIO DEL COLECTIVOO</label>
-                                    <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_beneficiario_colectivo" name="nombres_beneficiario_colectivo"  value="<?=$nombres_beneficiario_colectivo?>" required>
-                                </div>
+                    <div class="col-sm-4" align="left">
+                        <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES DEL BENEFICIARIO DEL COLECTIVOO</label>
+                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_beneficiario_colectivo" name="nombres_beneficiario_colectivo"  value="<?=$nombres_beneficiario_colectivo?>" required>
+                    </div>
                            
-                                <div class="col-sm-4" align="left">
-                                    <label style="font-size:12px;" for="nombres_apellidos_peticionario">APELLIDOS DEL DEL BENEFICIARIO DEL COLECTIVO</label>
-                                    <input  style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_beneficiario_colectivo" name="apellidos_beneficiario_colectivo"  value="<?=$apellidos_beneficiario_colectivo?>" required>
-                                </div>
+                    <div class="col-sm-4" align="left">
+                        <label style="font-size:12px;" for="nombres_apellidos_peticionario">APELLIDOS DEL DEL BENEFICIARIO DEL COLECTIVO</label>
+                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_beneficiario_colectivo" name="apellidos_beneficiario_colectivo"  value="<?=$apellidos_beneficiario_colectivo?>" required>
+                    </div>
                                 
-                                <div class="col-sm-4" align="left">
-                                    <label for="seudonimo">SEUDONIMO</label>
-                                    <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo_beneficiario_colectivo" name="seudonimo_beneficiario_colectivo"  value="<?=$seudonimo_beneficiario_colectivo?>">
-                                </div>
-                            </div> <!--row-->
+                    <div class="col-sm-4" align="left">
+                        <label for="seudonimo">SEUDONIMO</label>
+                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo_beneficiario_colectivo" name="seudonimo_beneficiario_colectivo"  value="<?=$seudonimo_beneficiario_colectivo?>">
+                    </div>
+                </div> <!--row-->
+                
+                <div class="row" style="margin-top:5px;">    
+                          <div class="col-sm-4" align="left"> 
+                                <label for="departamento">DEPARTAMENTO</label>
+                                <select class="form-control" id="departamento" name="departamento" onchange="loadCiudadD(this.value)">
+                                <!--<select required class="form-control" name="departments" id="departments" onchange="loadCities(this.value)">-->
+                                        <?php echo $comboDepto; ?>
+                                </select>
+                             <!-- <input type="text" class="form-control" id="departamento" name="departamento"required>-->
+                             <br><br>
+                          </div>
+                          
+                          <div class="col-sm-4">
+                               <b>Municipio:</b>  
+                               <div id="myDiv"> </div> 
+                          </div>
+                           
+                           
+                          <div class="col-sm-3">
+                              <b>Municipio: </b>     
+                               <input style ="display:none;" class="form-control" type="text" readonly value="<?=$municipio?>" name="municipio" id="municipio">                         
+                               <input type="text" class="form-control" id="nommunicipio" name="nommunicipio" value="<?=$nommunicipio?> " placeholder="Municipio" readonly><br>  
+                          </div>
+                </div> <!--row-->
+                
+                <div class="row" style="margin-top:5px;">  
+                          <div class="col-sm-6" align="left">  
+                              <label for="direccion">DIRECCION</label>
+                              <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
+                          </div>
+                       
+                          <div class="col-sm-6" align="left">
+                              <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
+                              <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
+                          </div>
+                          
+                       </div> <!--row-->
                 
             </form>    
                  
