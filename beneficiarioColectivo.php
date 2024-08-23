@@ -180,14 +180,15 @@
                        departamento_ben_colectivo, municipio_ben_colectivo
                       ) VALUES (?, ?, ?,
                                 ?, ?, ?,
-                                ?, ?');     
+                                ?, ?, ?)');     
                                 
                        $stmt->execute([
                             $registro, $ot, $tipo_documento_ben_colectivo, $no_documento_ben_colectivo,
                             $nombres_bene_colectivo, $apellidos_ben_colectivo, $seudonimo_beno_colectivo,  
                             $departamento, $municipio
-                      ]);              
-                   
+                      ]);  
+                      
+                      
                       $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
                     //echo "Datos insertados correctamente.";  
              
