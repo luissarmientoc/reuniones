@@ -52,8 +52,8 @@
     //PARTE LA LINEA
     $partir      = explode ("/", $linDeco);   
     $s_registro                 = $partir[0];
-    $s_ot                       = $partir[1];
-    $no_documento_ben_colectivo = $partir[2];
+    $no_documento_ben_colectivo = $partir[1];
+    $s_ot                       = $partir[2];
     $tipAccion                  = $partir[3];
     
     echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
