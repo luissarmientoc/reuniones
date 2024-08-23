@@ -1189,14 +1189,13 @@
         <?php 
             }
         ?>
-                  
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">			 
                <div class="panel-body">
                    <div class="container-fluid" style="margin-bottom:10px;">
                        <!--------------------------------------------------------- 
                        ----------------------DATOS DEL TRAMITE--------------------
                        ---------------------------------------------------------->
-                            <!--D8544F-->
+                       <!--D8544F-->
                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
                            <div class="col-sm-12" align="center">
                                <h4>DATOS DEL TRAMITE</h4>
@@ -1409,7 +1408,7 @@
                           </div>
                            
                            
-                          <div class="col-sm-3">
+                          <div class="col-sm-4">
                               <b>Municipio: </b>     
                                <input style ="display:none;" class="form-control" type="text" readonly value="<?=$municipio?>" name="municipio" id="municipio">                         
                                <input type="text" class="form-control" id="nommunicipio" name="nommunicipio" value="<?=$nommunicipio?> " placeholder="Municipio" readonly><br>  
@@ -1723,14 +1722,14 @@
             </form>  
             
             <?php
-              if ($no_personas_evaluar > 0 )
+              if ($no_personas_evaluar > 1 )
               {
             ?>  
                  <div class="panel panel-info">
 	               <div class="panel-heading">
         	          <div class="btn-group pull-right">    
         	             <?php 
-        	              $lv      = $s_registro."/". $no_documento_ben_colectivo. "/MOD1234567890qwertyuiopasdfghjkl";
+        	              $lv      = $s_registro."/". $no_documento_ben_colectivo. "/". $ot . "/MOD1234567890qwertyuiopasdfghjkl";
 					      $lVDX    = base64_encode($lv);
         	             ?>
           	            <a href="beneficiarioColectivo.php?LA=<?=$lVDX?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Beneficiario</a>
@@ -1759,6 +1758,7 @@
 			                       $i=1;
 			                       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 			                         $s_registro                   = $row['registro'];
+			                         $s_ot                         = $row['ot'];
 			                         $tipo_documento_ben_colectivo = $row['tipo_documento_ben_colectivo'];
   			                         $no_documento_ben_colectivo   = $row['no_documento_ben_colectivo'];
   			                         $nombres_ben_colectivo        = $row['nombres_ben_colectivo'];
@@ -1766,7 +1766,7 @@
   			                         $seudonimo_ben_colectivo      = $row['seudonimo_ben_colectivo'];
 			                    
 			                         $borrarB = $s_registro . "-" . $no_documento_ben_colectivo;
-			                         $lv      = $s_registro."/". $no_documento_ben_colectivo. "/MOD1234567890qwertyuiopasdfghjkl";
+			                         $lv      = $s_registro."/". $no_documento_ben_colectivo. "/". $ot . "/MOD1234567890qwertyuiopasdfghjkl";
 					                 $lVDX    = base64_encode($lv);
     			                 ?>    
     			                 
