@@ -1720,7 +1720,23 @@
              <input style="visibility:hidden" name="registro" id="registro" value="<?=$s_registro?>"/>
              <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
              <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
-            </form>                                
+            </form>  
+            
+            
+            <div class="container-fluid">
+                 <div class="panel panel-info">
+                     <div class="panel-heading">
+        	            <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
+        	            <div class="btn-group pull-right">        	    
+          	                <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
+	                     </div>
+	                 </div>
+	            </div> <!-- panel panel-info -->     
+             </div> <!-- container fluid -->     
+            
+            
+            
+            
          </div> <!-- content -->   
            
         <!--- complemento -->
@@ -1730,16 +1746,7 @@
         <!--- fin complemento -->
         </div> <!-- wrapper -->
         
-        <div class="container-fluid">
-                 <div class="panel panel-info">
-                     <div class="panel-heading">
-        	            <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
-        	            <div class="btn-group pull-right">        	    
-          	                <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
-	                     </div>
-	                 </div>
-	            </div> <!-- panel panel-info -->     
-             </div> <!-- container fluid -->      
+             
         
         
         
