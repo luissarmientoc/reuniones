@@ -1746,6 +1746,7 @@
                         $stmt = $pdo->query($sql);
                       ?>
                       <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+                         <div class="table-responsive">
 	                      <table class='tablaResponsive table table-striped table-bordered table-hover'>
 	                            <th>No.Registro</th>
 					            <th>Documento</th>
@@ -1761,6 +1762,7 @@
 					            
 					            
 					      </table>
+					      </div>
 					  </form>    
 	             </div> <!-- panel body -->
 	        
