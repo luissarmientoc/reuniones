@@ -38,6 +38,11 @@
     $no_documento_ben_colectivo = $partir[1];
     $tipAccion                  = $partir[2];
     
+    echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
+    echo "registro.." . $s_registro;
+    echo '<br>';
+    echo "registro.." . $no_documento_ben_colectivo;
+    
     if ( $s_registro != "" )
     {  
       ///////////////////////////////////////////////////////  
@@ -82,6 +87,8 @@
                          
                          <?php
                           $lv   = $s_registro . "/MOD1234567890qwertyuiopasdfghjkl";
+                          echo "el regreso..." . $lv;
+                          
 					      $lVDX = base64_encode($lv);
 					     ?> 
                          
@@ -153,3 +160,9 @@
 	                     </form>
 	                     
 	           </div> <!-- content -->            
+	           
+	           
+        <!--- complemento -->
+        <?php
+           include("complemento.html");             
+        ?>
