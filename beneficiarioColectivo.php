@@ -73,16 +73,17 @@
       $boton  = "Actualizar";
       
       $sql = "select * from graerr_formulario_b where registro=$s_registro";
+      echo $sql;
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       
       $registro = $row['registro'];
-      $ot = $row['ot'];
+      $ot       = $row['ot'];
       $tipo_documento_ben_colectivo = $row['tipo_documento_ben_colectivo'];
       $no_documento_ben_colectivo   = $row['no_documento_ben_colectivo'];
-      $nombres_ben_colectivo       = $row['nombres_ben_colectivo'];
+      $nombres_ben_colectivo        = $row['nombres_ben_colectivo'];
       $apellidos_ben_colectivo      = $row['apellidos_ben_colectivo'];
-      $seudonimo_ben_colectivo     = $row['seudonimo_ben_colectivo'];
+      $seudonimo_ben_colectivo      = $row['seudonimo_ben_colectivo'];
       $direccion_ben_colectivo      = $row['direccion_ben_colectivo'];
       $departamento                 = $row['departamento_ben_colectivo'];
       $municipio                    = $row['municipio_ben_colectivo'];
