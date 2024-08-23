@@ -1726,9 +1726,19 @@
             <div class="container-fluid">
                  <div class="panel panel-info">
                      <div class="panel-heading">
-        	            <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
+        	           
         	            <div class="btn-group pull-right">        	    
-          	                <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
+        	                <div class="row">
+        	                    <div class="col-sm-8">
+        	                      <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>        
+        	                    </div>
+        	                    <div class="col-sm-4">
+        	                        <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
+        	                   </div>
+        	                        
+        	                </div>
+        	                 
+          	                
 	                     </div>
 	                 </div>
 	            </div> <!-- panel panel-info -->     
