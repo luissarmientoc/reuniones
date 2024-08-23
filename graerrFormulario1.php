@@ -1723,10 +1723,7 @@
             </form>                                
          </div> <!-- content -->   
          
-         <?php
-           if ($no_personas_evaluar > 0 )
-           {
-         ?> 
+          
             <div class="container-fluid">
                  <div class="panel panel-info">
                      <div class="panel-heading">
@@ -1739,9 +1736,7 @@
              </div> <!-- container fluid -->      
 	                 
          
-         <?
-           } // $no_personas_evaluar > 0 
-         ?>  
+           
               
         <!--- complemento -->
         <?php
