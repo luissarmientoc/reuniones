@@ -177,15 +177,15 @@
                $stmt = $pdo->prepare('INSERT INTO graerr_colectivo (
                        registro, ot,  tipo_documento_ben_colectivo, no_documento_ben_colectivo , 
                        nombres_bene_colectivo, apellidos_ben_colectivo, seudonimo_beno_colectivo, 
-                       direccion_ben_colectivo, departamento_ben_colectivo
-                      ) VALUES (?, ?, ?, ?,
-                                ?, ?, ?
+                       departamento_ben_colectivo, municipio_ben_colectivo
+                      ) VALUES (?, ?, ?,
+                                ?, ?, ?,
                                 ?, ?');     
                                 
                        $stmt->execute([
                             $registro, $ot, $tipo_documento_ben_colectivo, $no_documento_ben_colectivo,
                             $nombres_bene_colectivo, $apellidos_ben_colectivo, $seudonimo_beno_colectivo,  
-                            $direccion_ben_colectivo, $departamento, $municipio
+                            $departamento, $municipio
                       ]);              
                    
                       $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
