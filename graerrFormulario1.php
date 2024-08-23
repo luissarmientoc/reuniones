@@ -1748,7 +1748,7 @@
                       <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
 	                      <table class='tablaResponsive table table-striped table-bordered table-hover'>
 	                            <th>No.Registro</th>
-					            <tj>Documento</th>
+					            <th>Documento</th>
   					            <th>Nombres</th>
 					            <th>Apellidos</th>
 					            <th>Seudonimo</th>
