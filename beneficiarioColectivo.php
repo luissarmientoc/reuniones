@@ -175,7 +175,7 @@
             ?>
             <div class="container-fluid">
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
-	            <div class="row" style="margin-top:5px;">
+	            <div class="row" style="margin:5px;">
 	                <div class="col-sm-4" align="left">
                         <label for="tipo_documento">TIPO DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
                         <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento_beneficiario_colectivo?>" required>-->
@@ -194,7 +194,7 @@
                     </div>
                 </div> <!--row-->
                 
-                <div class="row" style="margin-top:5px;">
+                <div class="row" style="margin:5px;">
 	                <div class="col-sm-4" align="left">
                         <label for="tipo_documento">TIPO DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
                         <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento_beneficiario_colectivo?>" required>-->
