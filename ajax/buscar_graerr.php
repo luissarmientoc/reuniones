@@ -83,8 +83,9 @@
             $q3_str = isset($_REQUEST['q3']) ? strip_tags($_REQUEST['q3']) : ''; //Ruta
             $q3 = intval($q3_str); // Convierte $q3_str a entero
             
-            $q4_str = isset($_REQUEST['q4']) ? strip_tags($_REQUEST['q4']) : ''; //Ot
-            $q4 = intval($q4_str); // Convierte $q4_str a entero
+            $q4_str = strip_tags($_REQUEST['q4']); //Ot
+            $q4 = htmlentities($q4_str, ENT_QUOTES, 'UTF-8');// Convierte $q4_str a string
+            
             
             $q5_str = isset($_REQUEST['q5']) ? strip_tags($_REQUEST['q5']) : ''; //No MEM
             $q5 = intval($q5_str); // Convierte $q5_str a entero
@@ -109,7 +110,7 @@
                     {
                         if($q3==0)
                         {
-                            if($q4==0)
+                            if($q4!="")
                             {
                                 if($q5==0)
                                 {
@@ -127,7 +128,7 @@
                 }
             }      
              
-            if ($q==0 and $q1==0 and $q2=="" and $q3==0 and $q4==0 and $q5==0 ) {
+            if ($q==0 and $q1==0 and $q2=="" and $q3==0 and $q4=="" and $q5==0 ) {
                 $sWhere = "";
                 $sWhere1 = "";
             }
@@ -250,12 +251,7 @@
 	        // Consulta SQL para contar las filas
             $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
             $sql1 = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
-            
-            echo "1.." . $sql;
-            echo '<br>';
-            echo "2.." . $sql1;
-            
-            
+         
             $stmt = $pdo->query($sql);
             // Obtener el resultado (única fila)
             $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
