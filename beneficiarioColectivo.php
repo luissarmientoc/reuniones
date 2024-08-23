@@ -118,7 +118,7 @@
       $municipio                    = $_POST['municipio'];
       //// validar
       
-      /*
+      
       echo "1..". $s_registro;              
       echo '<br>';
       echo "2..". $registro;   
@@ -139,7 +139,7 @@
       echo '<br>';
       echo "11..". $municipio;      
       echo '<br>';
-      */
+      
       
       //MODIFICA
       if ($s_existe == "1")  
