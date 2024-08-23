@@ -1728,8 +1728,12 @@
             ?>  
                  <div class="panel panel-info">
 	               <div class="panel-heading">
-        	          <div class="btn-group pull-right">        	    
-          	            <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Beneficiario</a>
+        	          <div class="btn-group pull-right">    
+        	             <?php 
+        	              $lv      = $s_registro."/". $no_documento_ben_colectivo. "/MOD1234567890qwertyuiopasdfghjkl";
+					      $lVDX    = base64_encode($lv);
+        	             ?>
+          	            <a href="beneficiarioColectivo.php?LA=<?=$lVDX?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Beneficiario</a>
 	                  </div>
         	          <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
 	             </div>
