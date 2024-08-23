@@ -174,6 +174,9 @@
                         <label for="no_documento">No DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
                         <input type="number" class="form-control" id="no_documento_beneficiario_colectivo" name="no_documento_beneficiario_colectivo"  value="<?=$no_documento_beneficiario_colectivo?>" required>
                     </div>
+                    
+                    <div class="col-sm-4" align="left">
+                        </div>
                 </div> <!--row-->
                 
                 <div class="row" style="margin-top:5px;">   
