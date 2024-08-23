@@ -127,7 +127,7 @@
                 }
             }      
              
-            if ($q==0 and $q1==0 and $q2=="" and $q3==0 and $q4=="" and $q5!="" ) {
+            if ($q==0 and $q1==0 and $q2=="" and $q3==0 and $q4=="" and $q5=="" ) {
                 $sWhere = "";
                 $sWhere1 = "";
             }
