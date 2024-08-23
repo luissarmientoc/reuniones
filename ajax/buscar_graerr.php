@@ -86,9 +86,8 @@
             $q4_str = strip_tags($_REQUEST['q4']); //Ot
             $q4 = htmlentities($q4_str, ENT_QUOTES, 'UTF-8');// Convierte $q4_str a string
             
-            
-            $q5_str = isset($_REQUEST['q5']) ? strip_tags($_REQUEST['q5']) : ''; //No MEM
-            $q5 = intval($q5_str); // Convierte $q5_str a entero
+            $q5_str = strip_tags($_REQUEST['q5']); //Ot
+            $q5 = htmlentities($q5_str, ENT_QUOTES, 'UTF-8');//No MEM
             
             /*
              echo '<br>';
@@ -112,7 +111,7 @@
                         {
                             if($q4!="")
                             {
-                                if($q5==0)
+                                if($q5!="")
                                 {
                                     $sWhere = "";
                                     $sWhere1 = "";
@@ -128,7 +127,7 @@
                 }
             }      
              
-            if ($q==0 and $q1==0 and $q2=="" and $q3==0 and $q4=="" and $q5==0 ) {
+            if ($q==0 and $q1==0 and $q2=="" and $q3==0 and $q4=="" and $q5!="" ) {
                 $sWhere = "";
                 $sWhere1 = "";
             }

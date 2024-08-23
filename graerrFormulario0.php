@@ -131,7 +131,7 @@
 			              
 			              <div class='col-md-3'>
          		             <label>Filtrar por No MEM </label>
-         		             <input type="number" class="form-control" id="q5" placeholder="No MEM" onkeyup='load(1);'>
+         		             <input type="text" class="form-control" id="q5" placeholder="No MEM" onkeyup='load(1);'>
          		     
 	         	             <!--<input type="text" class="form-control" id="q" placeholder="Reunión" onkeyup='load(1);'>-->
          		          </div>
