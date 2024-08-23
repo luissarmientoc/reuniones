@@ -1737,7 +1737,10 @@
 	             <div class="panel-body">	
 	                  <?php
                         $sql="select * from  graerr_colectivo where registro = $s_registro";
-                       $stmt = $pdo->query($sql);
+                        echo '<br>';echo '<br>';echo '<br>';echo '<br>'; 
+                        echo "el sql.." . $sql;
+                        echo '<br>';echo '<br>';echo '<br>';echo '<br>';
+                        $stmt = $pdo->query($sql);
                       ?>
                       <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
 	                      <table class='tablaResponsive table table-striped table-bordered table-hover'>
