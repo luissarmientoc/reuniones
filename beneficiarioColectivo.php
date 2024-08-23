@@ -77,10 +77,10 @@
       $no_documento_ben_colectivo   = $row['no_documento_ben_colectivo'];
       $nombres_bene_colectivo       = $row['nombres_bene_colectivo'];
       $apellidos_ben_colectivo      = $row['apellidos_ben_colectivo'];
-      $seudonimo_beno_colectivo     = $row['seudonimo_beno_colectivo'];
+      $seudonimo_beno_colectivo     = $row['seudonimo_ben_colectivo'];
       $direccion_ben_colectivo      = $row['direccion_ben_colectivo'];
-      $departamento_ben_colectivo   = $row['departamento_ben_colectivo'];
-      $municipio_ben_colectivo      = $row['municipio_ben_colectivo'];
+      $departamento                 = $row['departamento_ben_colectivo'];
+      $municipio                    = $row['municipio_ben_colectivo'];
     }
      else
     {
@@ -106,10 +106,10 @@
       $no_documento_ben_colectivo   = $_POST['no_documento_ben_colectivo'];
       $nombres_bene_colectivo       = $_POST['nombres_bene_colectivo'];
       $apellidos_ben_colectivo      = $_POST['apellidos_ben_colectivo'];
-      $seudonimo_beno_colectivo     = $_POST['seudonimo_beno_colectivo'];
+      $seudonimo_beno_colectivo     = $_POST['seudonimo_ben_colectivo'];
       $direccion_ben_colectivo      = $_POST['direccion_ben_colectivo'];
-      $departamento_ben_colectivo   = $_POST['departamento_ben_colectivo'];
-      $municipio_ben_colectivo      = $_POST['municipio_ben_colectivo'];
+      $departamento                 = $_POST['departamento'];
+      $municipio                    = $_POST['municipio'];
       
       
       echo "1..". $s_registro;              
@@ -126,13 +126,11 @@
       echo '<br>';
       echo "7..". $apellidos_ben_colectivo;     
       echo '<br>';
-      echo "8..". $seudonimo_beno_colectivo;  
+      echo "8..". $seudonimo_ben_colectivo;  
       echo '<br>';
-      echo "9..". $direccion_ben_colectivo;     
+      echo "10..". $departamento;   
       echo '<br>';
-      echo "10..". $departamento_ben_colectivo;   
-      echo '<br>';
-      echo "11..". $municipio_ben_colectivo;      
+      echo "11..". $municipio;      
       echo '<br>';
       
       //MODIFICA
@@ -155,7 +153,7 @@
               $stmt->execute([
                      $registro, $ot, $tipo_documento_ben_colectivo,
                      $no_documento_ben_colectivo, $nombres_bene_colectivo, $apellidos_ben_colectivo,
-                     $seudonimo_beno_colectivo,  $direccion_ben_colectivo, $departamento_ben_colectivo, $municipio_ben_colectivo,
+                     $seudonimo_beno_colectivo,  $direccion_ben_colectivo, $departamento, $municipio,
                      $registro, $no_documento_ben_colectivo  // La llave del registro que se actualiza
              ]);
                 
@@ -181,7 +179,7 @@
                        $stmt->execute([
                             $registro, $ot, $tipo_documento_ben_colectivo, $no_documento_ben_colectivo,
                             $nombres_bene_colectivo, $apellidos_ben_colectivo, $seudonimo_beno_colectivo,  
-                            $direccion_ben_colectivo, $departamento_ben_colectivo, $municipio_ben_colectivo
+                            $direccion_ben_colectivo, $departamento, $municipio
                       ]);              
                    
                       $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
@@ -300,15 +298,15 @@
                 <div class="row" style="margin:5px;">
 	                <div class="col-sm-6" align="left">
                         <label style="font-size:12px;"  for="tipo_documento">TIPO DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
-                        <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento_beneficiario_colectivo?>" required>-->
-                        <select <?=$active?> required class="form-control" name="tipo_documento_beneficiario_colectivo">
+                        <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento_ben_colectivo?>" required>-->
+                        <select <?=$active?> required class="form-control" name="tipo_documento_ben_colectivo">
                             <?php echo $combo_tipo_documento; ?>
                         </select> 
-                    </div>
+                    </div>  
                                 
                     <div class="col-sm-6" align="left">
                         <label style="font-size:12px;"  for="no_documento">No DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
-                        <input type="number" class="form-control" id="no_documento_beneficiario_colectivo" name="no_documento_beneficiario_colectivo"  value="<?=$no_documento_beneficiario_colectivo?>" required>
+                        <input type="number" class="form-control" id="no_documento_ben_colectivo" name="no_documento_ben"  value="<?=$no_documento_ben_colectivo?>" required>
                     </div>
                     
                     <div class="col-sm-4" align="left">
@@ -316,20 +314,21 @@
                     </div>
                 </div> <!--row-->
                 
+                
                 <div class="row" style="margin:5px;">
 	                <div class="col-sm-4" align="left">
                         <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES DEL BENEFICIARIO DEL COLECTIVO</label>
-                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_beneficiario_colectivo" name="nombres_beneficiario_colectivo"  value="<?=$nombres_beneficiario_colectivo?>" required>
+                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_ben_colectivo" name="nombres_ben_colectivo"  value="<?=$nombres_ben_colectivo?>" required>
                     </div>
                                 
                     <div class="col-sm-4" align="left">
                         <label style="font-size:12px;" for="nombres_apellidos_peticionario">APELLIDOS DEL DEL BENEFICIARIO DEL COLECTIVO</label>
-                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_beneficiario_colectivo" name="apellidos_beneficiario_colectivo"  value="<?=$apellidos_beneficiario_colectivo?>" required>
+                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_ben_colectivo" name="apellidos_ben_colectivo"  value="<?=$apellidos_ben_colectivo?>" required>
                     </div>
                     
                     <div class="col-sm-4" align="left">
                         <label style="font-size:12px;" for="seudonimo">SEUDONIMO</label>
-                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo_beneficiario_colectivo" name="seudonimo_beneficiario_colectivo"  value="<?=$seudonimo_beneficiario_colectivo?>">
+                        <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo_ben_colectivo" name="seudonimo_ben_colectivo"  value="<?=$seudonimo_ben_colectivo?>">
                     </div>
                 </div> <!--row-->
                 
@@ -357,6 +356,7 @@
                           </div>    
                 </div> <!--row-->    
                 
+                <!--
                  <div class="row" style="margin:5px;">
                           <div class="col-sm-6" align="left">  
                               <label for="direccion">DIRECCION</label>
@@ -367,7 +367,7 @@
                               <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
                           </div>
-                 </div> <!--row-->    
+                 </div>  row-->    
                 
                  <div class="modal-footer"> 
                     <div class="col-sm-11" align="center">  					  			 
