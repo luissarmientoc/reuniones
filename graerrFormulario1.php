@@ -1723,7 +1723,25 @@
             </form>                                
          </div> <!-- content -->   
          
+         <?php
+           if ($no_personas_evaluar > 0 )
+           {
+         ?> 
+            <div class="container-fluid">
+                 <div class="panel panel-info">
+                     <div class="panel-heading">
+        	            <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
+        	            <div class="btn-group pull-right">        	    
+          	                <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
+	                     </div>
+	                 </div>
+	            </div> <!-- panel panel-info -->     
+             </div> <!-- container fluid -->      
+	                 
          
+         <?
+           } // $no_personas_evaluar > 0 
+         ?>  
               
         <!--- complemento -->
         <?php
