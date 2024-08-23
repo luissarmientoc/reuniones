@@ -177,7 +177,7 @@
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
 	            <div class="row" style="margin:5px;">
 	                <div class="col-sm-4" align="left">
-                        <label for="tipo_documento">TIPO DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
+                        <label style="font-size:12px;"  for="tipo_documento">TIPO DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
                         <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento_beneficiario_colectivo?>" required>-->
                         <select <?=$active?> required class="form-control" name="tipo_documento_beneficiario_colectivo">
                             <?php echo $combo_tipo_documento; ?>
@@ -185,7 +185,7 @@
                     </div>
                                 
                     <div class="col-sm-4" align="left">
-                        <label for="no_documento">No DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
+                        <label style="font-size:12px;"  for="no_documento">No DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
                         <input type="number" class="form-control" id="no_documento_beneficiario_colectivo" name="no_documento_beneficiario_colectivo"  value="<?=$no_documento_beneficiario_colectivo?>" required>
                     </div>
                     
