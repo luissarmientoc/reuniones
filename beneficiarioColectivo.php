@@ -80,7 +80,7 @@
       $ot = $row['ot'];
       $tipo_documento_ben_colectivo = $row['tipo_documento_ben_colectivo'];
       $no_documento_ben_colectivo   = $row['no_documento_ben_colectivo'];
-      $nombres_bene_colectivo       = $row['nombres_ben_colectivo'];
+      $nombres_ben_colectivo       = $row['nombres_ben_colectivo'];
       $apellidos_ben_colectivo      = $row['apellidos_ben_colectivo'];
       $seudonimo_ben_colectivo     = $row['seudonimo_ben_colectivo'];
       $direccion_ben_colectivo      = $row['direccion_ben_colectivo'];
@@ -115,7 +115,7 @@
       $direccion_ben_colectivo      = $_POST['direccion_ben_colectivo'];
       $departamento                 = $_POST['departamento'];
       $municipio                    = $_POST['municipio'];
-      
+      //// validar
       
       
       echo "1..". $s_registro;              
@@ -126,7 +126,7 @@
       echo '<br>';
       echo "4..". $tipo_documento_ben_colectivo; 
       echo '<br>';
-      echo "5..". $no_documento_ben_colectivo;   
+      echo "57777..". $no_documento_ben_colectivo;   
       echo '<br>';
       echo "6..". $nombres_bene_colectivo;      
       echo '<br>';
@@ -150,16 +150,16 @@
             $stmt = $pdo->prepare('
             UPDATE graerr_colectivo
             SET registro = ?, ot = ?, tipo_documento_ben_colectivo = ?,
-                no_documento_ben_colectivo = ?, nombres_bene_colectivo = ?, apellidos_ben_colectivo = ?,
-                seudonimo_beno_colectivo = ?, direccion_ben_colectivo = ?, departamento_ben_colectivo = ?,
+                no_documento_ben_colectivo = ?, nombres_ben_colectivo = ?, apellidos_ben_colectivo = ?,
+                seudonimo_ben_colectivo = ?, departamento_ben_colectivo = ?,
                 municipio_ben_colectivo = ?
                 WHERE registro = ? and  no_documento_ben_colectivo = ? 
              ');
             
               $stmt->execute([
                      $registro, $ot, $tipo_documento_ben_colectivo,
-                     $no_documento_ben_colectivo, $nombres_bene_colectivo, $apellidos_ben_colectivo,
-                     $seudonimo_beno_colectivo,  $direccion_ben_colectivo, $departamento, $municipio,
+                     $no_documento_ben_colectivo, $nombres_ben_colectivo, $apellidos_ben_colectivo,
+                     $seudonimo_ben_colectivo,  $departamento, $municipio,
                      $registro, $no_documento_ben_colectivo  // La llave del registro que se actualiza
              ]);
                 
@@ -173,10 +173,22 @@
       ///ADICIONA
       if ($s_existe == "0")
       {
-         try {
+         $sqlCts = "select count(*) AS cuantos from graerr_colectivo where registro=$registro and no_documento_ben_colectivo =$no_documento_ben_colectivo";
+         $stmt = $pdo->query($sql);
+         // Obtener el resultado (única fila)
+         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+         // Número total de filas
+         $cuantos = $resultado['cuantos'];
+         
+         if ($cuantos>0){
+            $mensaje=" <b>Atención!</b> El Beneficiario ya existe en un colectivo¡";  
+         }
+         else  
+         {
+            try {
                $stmt = $pdo->prepare('INSERT INTO graerr_colectivo (
                        registro, ot,  tipo_documento_ben_colectivo, no_documento_ben_colectivo , 
-                       nombres_bene_colectivo, apellidos_ben_colectivo, seudonimo_beno_colectivo, 
+                       nombres_bene_colectivo, apellidos_ben_colectivo, seudonimo_ben_colectivo, 
                        departamento_ben_colectivo, municipio_ben_colectivo
                       ) VALUES (?, ?, ?,
                                 ?, ?, ?,
@@ -190,12 +202,13 @@
                       
                       
                       $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
-                    //echo "Datos insertados correctamente.";  
+                      //echo "Datos insertados correctamente.";  
              
                  //echo "Datos insertados correctamente.";
                 } catch (PDOException $e) {
             echo "Error al insertar los datos: " . $e->getMessage();
-        }
+           }
+        }    
     }//existe=0    
       
     }//grabar
