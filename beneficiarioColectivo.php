@@ -109,7 +109,7 @@
       $ot                           = $_POST['ot'];
       $tipo_documento_ben_colectivo = $_POST['tipo_documento_ben_colectivo'];
       $no_documento_ben_colectivo   = $_POST['no_documento_ben_colectivo'];
-      $nombres_bene_colectivo       = $_POST['nombres_ben_colectivo'];
+      $nombres_ben_colectivo       = $_POST['nombres_ben_colectivo'];
       $apellidos_ben_colectivo      = $_POST['apellidos_ben_colectivo'];
       $seudonimo_ben_colectivo     = $_POST['seudonimo_ben_colectivo'];
       $direccion_ben_colectivo      = $_POST['direccion_ben_colectivo'];
@@ -128,7 +128,7 @@
       echo '<br>';
       echo "57777..". $no_documento_ben_colectivo;   
       echo '<br>';
-      echo "6..". $nombres_bene_colectivo;      
+      echo "6..". $nombres_ben_colectivo;      
       echo '<br>';
       echo "7..". $apellidos_ben_colectivo;     
       echo '<br>';
