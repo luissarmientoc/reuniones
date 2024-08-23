@@ -235,6 +235,18 @@
                           </div>    
                 </div> <!--row-->    
                 
+                <div class="row" style="margin:5px;">
+                          <div class="col-sm-6" align="left">  
+                              <label for="direccion">DIRECCION</label>
+                              <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
+                          </div>
+                       
+                          <div class="col-sm-6" align="left">
+                              <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
+                              <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
+                          </div>
+                </div> <!--row-->    
+                
               </form>    
             </div>     
              <!--- complemento -->
