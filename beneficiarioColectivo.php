@@ -37,13 +37,14 @@
     $s_registro                 = $partir[0];
     $no_documento_ben_colectivo = $partir[1];
     $tipAccion                  = $partir[2];
-    
+    /*
     echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
     echo "registro.." . $s_registro;
     echo '<br>';
     echo "registro.." . $no_documento_ben_colectivo;
+    */
     
-    if ( $s_registro != "" )
+    if ( $no_documento_ben_colectivo != "" )
     {  
       ///////////////////////////////////////////////////////  
       ////// REALIZA LA CONSULTA DE LA marca SELECCIONADA 
@@ -84,15 +85,10 @@
                        
                        <div class="col-sm-6" align="right">  					  			 
                          <p style="font-size:12px;"><i class="fas fa-user"></i> <?=$_SESSION['nombre_perfil']?></p>
-                         
                          <?php
                           $lv   = $s_registro . "/MOD1234567890qwertyuiopasdfghjkl";
-                          echo "el regreso..." . $lv;
-                          
 					      $lVDX = base64_encode($lv);
 					     ?> 
-                         
-                         
                          <a href="graerrFormulario1.php?LA=<?=$lVDX?>" class='btn btn-default pull-right btn-md' title='Regresar' ><<i class="fas fa-reply"></i> Regresar</a> 
                         </div>                
                       </div>
@@ -114,3 +110,34 @@
             <?php 
               }
             ?>
+            
+            <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+	            <div class="row" style="margin-top:5px;">
+	                <div class="col-sm-6" align="left">
+                        <label for="tipo_documento">TIPO DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
+                        <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento_beneficiario_colectivo?>" required>-->
+                        <select <?=$active?> required class="form-control" name="tipo_documento_beneficiario_colectivo">
+                            <?php echo $combo_tipo_documento; ?>
+                        </select> 
+                    </div>
+                                
+                    <div class="col-sm-6" align="left">
+                        <label for="no_documento">No DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
+                        <input type="number" class="form-control" id="no_documento_beneficiario_colectivo" name="no_documento_beneficiario_colectivo"  value="<?=$no_documento_beneficiario_colectivo?>" required>
+                    </div>
+                </div> <!--row-->
+                
+            </form>    
+                 
+             <!--- complemento -->
+              <?php
+              include("complemento.html");
+            ?>
+         <hr>
+   <?php
+    // include("footer.php");
+   ?>
+   
+  </body>
+</html>            
+            
