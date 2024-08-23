@@ -190,7 +190,7 @@
             try {
                $stmt = $pdo->prepare('INSERT INTO graerr_colectivo (
                        registro, ot,  tipo_documento_ben_colectivo, no_documento_ben_colectivo , 
-                       nombres_bene_colectivo, apellidos_ben_colectivo, seudonimo_ben_colectivo, 
+                       nombres_ben_colectivo, apellidos_ben_colectivo, seudonimo_ben_colectivo, 
                        departamento_ben_colectivo, municipio_ben_colectivo
                       ) VALUES (?, ?, ?,
                                 ?, ?, ?,
