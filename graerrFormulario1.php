@@ -1746,7 +1746,43 @@
   					            <th>Nombres</th>
 					            <th>Apellidos</th>
 					            <th>Seudonimo</th>
-					            <th class='text-center' colspan="4">Acciones</th>     
+					            <th class='text-center' colspan="4">Acciones</th>   
+					            
+					            <?php
+			                       $i=1;
+			                       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			                         $s_registro                   = $row['registro'];
+			                         $tipo_documento_ben_colectivo = $row['tipo_documento_ben_colectivo'];
+  			                         $no_documento_ben_colectivo   = $row['no_documento_ben_colectivo'];
+  			                         $nombres_ben_colectivo        = $row['nombres_ben_colectivo'];
+  			                         $apellidos_ben_colectivo      = $row['apellidos_ben_colectivo'];
+  			                         $seudonimo_ben_colectivo      = $row['seudonimo_ben_colectivo'];
+			                    
+			                         $borrarB = $s_registro . "-" . $no_documento_ben_colectivo;
+			                         $lv      = $s_registro."/". $no_documento_ben_colectivo. "/MOD1234567890qwertyuiopasdfghjkl";
+					                 $lVDX    = base64_encode($lv);
+    			                 ?>    
+    			                 
+    			                 <tr>	
+  		   			                <td><?php echo $tipo_documento_ben_colectivo; ?></td>
+  					                <td><?php echo $no_documento_ben_colectivo; ?></td>
+  					                <td><?php echo $nombres_ben_colectivo; ?></td>
+  					                <td><?php echo $apellidos_ben_colectivo; ?></td>
+  					                <td><?php echo $seudonimo_ben_colectivo; ?></td>
+  					       
+					                <td class='text-center'>
+					                  <a href="beneficiarioColectivo.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a> 
+					                  <input class='btn btn-danger btn-sm' type='submit' id='borrarBeneficiario' name='borrarBeneficiario' value='<?=$borrarB?> '  style='width:40' onclick='return confirmarBeneficiario()'>  <i class="fa fa-trash" aria-hidden="true"></i>  
+					                 </td>  
+					              </tr>
+					           
+					           <?php
+                                 }//while
+					           ?> 
+					            
+					            
+					            
+					            
 					      </table>
 					  </form>    
 	             </div> <!-- panel body -->
