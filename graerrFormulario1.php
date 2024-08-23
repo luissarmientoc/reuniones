@@ -1722,18 +1722,28 @@
              <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
             </form>  
             
-            
+            <?php
+              if ($no_personas_evaluar > 0 )
+              {
+                   echo '<br>';echo '<br>';echo '<br>';echo '<br>';
+                   echo "entra";
+                   echo '<br>';echo '<br>';echo '<br>';echo '<br>';
+            ?>  
             <div class="panel panel-info">
-	               <div class="panel-heading">
-        	          <div class="btn-group pull-right">        	    
-          	            <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Registro</a>
-	                  </div>
-        	          <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
-	               </div>
+	          <div class="panel-heading">
+        	   <div class="btn-group pull-right">        	    
+          	     <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Beneficiario</a>
+	          </div>
+        	    <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
+	        </div>
 	               
-	               <div class="panel-body">	
+	        <div class="panel-body">	
 	                 el body
-	               </div>
+	        </div>
+	        
+	        <?php
+              }
+            ?>
 	        
             
             
