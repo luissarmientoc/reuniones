@@ -1725,21 +1725,31 @@
             <?php
               if ($no_personas_evaluar > 0 )
               {
-                   echo '<br>';echo '<br>';echo '<br>';echo '<br>';
-                   echo "entra";
-                   echo '<br>';echo '<br>';echo '<br>';echo '<br>';
             ?>  
-            <div class="panel panel-info">
-	          <div class="panel-heading">
-        	   <div class="btn-group pull-right">        	    
-          	     <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Beneficiario</a>
-	          </div>
-        	    <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
-	        </div>
+                 <div class="panel panel-info">
+	               <div class="panel-heading">
+        	          <div class="btn-group pull-right">        	    
+          	            <a href="beneficiarioColectivo.php?grupoAdic=<?=$s_grupo?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Beneficiario</a>
+	                  </div>
+        	          <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
+	             </div>
 	               
-	        <div class="panel-body">	
-	                 el body
-	        </div>
+	             <div class="panel-body">	
+	                  <?php
+                        $sql="select * from  graerr_colectivo where registro = $s_registro";
+                       $stmt = $pdo->query($sql);
+                      ?>
+                      <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+	                      <table class='tablaResponsive table table-striped table-bordered table-hover'>
+	                            <th>No.Registro</th>
+					            <tj>Documento</th>
+  					            <th>Nombres</th>
+					            <th>Apellidos</th>
+					            <th>Seudonimo</th>
+					            <th class='text-center' colspan="4">Acciones</th>     
+					      </table>
+					  </form>    
+	             </div> <!-- panel body -->
 	        
 	        <?php
               }
