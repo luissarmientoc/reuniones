@@ -270,7 +270,7 @@
                 <div class="table-responsive">
 			      <table class='tablaResponsive table table-striped table-bordered table-hover'>
 				    <th>No.Registro</th>
-					<tj>OT</th>
+					<th>OT</th>
   					<th>No.MEM EXT</th>
 					<th>Fecha UNP</th>
 					<th>Fecha GRAERR</th>

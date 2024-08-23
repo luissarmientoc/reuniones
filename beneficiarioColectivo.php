@@ -75,9 +75,9 @@
       $ot = $row['ot'];
       $tipo_documento_ben_colectivo = $row['tipo_documento_ben_colectivo'];
       $no_documento_ben_colectivo   = $row['no_documento_ben_colectivo'];
-      $nombres_bene_colectivo       = $row['nombres_bene_colectivo'];
+      $nombres_bene_colectivo       = $row['nombres_ben_colectivo'];
       $apellidos_ben_colectivo      = $row['apellidos_ben_colectivo'];
-      $seudonimo_beno_colectivo     = $row['seudonimo_ben_colectivo'];
+      $seudonimo_ben_colectivo     = $row['seudonimo_ben_colectivo'];
       $direccion_ben_colectivo      = $row['direccion_ben_colectivo'];
       $departamento                 = $row['departamento_ben_colectivo'];
       $municipio                    = $row['municipio_ben_colectivo'];
@@ -104,12 +104,13 @@
       $ot                           = $_POST['ot'];
       $tipo_documento_ben_colectivo = $_POST['tipo_documento_ben_colectivo'];
       $no_documento_ben_colectivo   = $_POST['no_documento_ben_colectivo'];
-      $nombres_bene_colectivo       = $_POST['nombres_bene_colectivo'];
+      $nombres_bene_colectivo       = $_POST['nombres_ben_colectivo'];
       $apellidos_ben_colectivo      = $_POST['apellidos_ben_colectivo'];
-      $seudonimo_beno_colectivo     = $_POST['seudonimo_ben_colectivo'];
+      $seudonimo_ben_colectivo     = $_POST['seudonimo_ben_colectivo'];
       $direccion_ben_colectivo      = $_POST['direccion_ben_colectivo'];
       $departamento                 = $_POST['departamento'];
       $municipio                    = $_POST['municipio'];
+      
       
       
       echo "1..". $s_registro;              
@@ -157,7 +158,7 @@
                      $registro, $no_documento_ben_colectivo  // La llave del registro que se actualiza
              ]);
                 
-                $mensaje=" <b>Atenci車n!</b> Actualizaci車n exitosa";
+            $mensaje=" <b>Atenci車n!</b> Actualizaci車n exitosa";
            //echo "Datos actualizados correctamente.";
         } catch (PDOException $e) {
             echo "Error al actualizar los datos: " . $e->getMessage();
@@ -202,7 +203,7 @@
       {
         $combo_tipo_documento .=" <option value=''>".'- Seleccione el tipo de documento -'."</option>";
       }
-      if ($line['id']==$tipo_documento)
+      if ($line['id']==$tipo_documento_ben_colectivo)
       {
         $combo_tipo_documento .=" <option value='".$line['id']."' selected>".$line['tipo_documento']." </option>"; 
       }
