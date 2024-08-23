@@ -49,8 +49,9 @@
     //PARTE LA LINEA
     $partir      = explode ("/", $linDeco);   
     $s_registro                 = $partir[0];
-    $no_documento_ben_colectivo = $partir[1];
-    $tipAccion                  = $partir[2];
+    $s_ot                       = $partir[1];
+    $no_documento_ben_colectivo = $partir[2];
+    $tipAccion                  = $partir[3];
     /*
     echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
     echo "registro.." . $s_registro;
@@ -65,6 +66,21 @@
       $titulo = "MODIFICAR BENEFICIARIO DEL COLECTIVO";
       $s_existe = 1;
       $boton  = "Actualizar";
+      
+      $sql = "select * from graerr_formulario_b where registro=$s_registro";
+      $stmt = $pdo->query($sql);
+      $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+      
+      $registro = $row['registro'];
+      $ot = $row['ot'];
+      $tipo_documento_ben_colectivo = $row['tipo_documento_ben_colectivo'];
+      $no_documento_ben_colectivo   = $row['no_documento_ben_colectivo'];
+      $nombres_bene_colectivo       = $row['nombres_bene_colectivo'];
+      $apellidos_ben_colectivo      = $row['apellidos_ben_colectivo'];
+      $seudonimo_beno_colectivo     = $row['seudonimo_beno_colectivo'];
+      $direccion_ben_colectivo      = $row['direccion_ben_colectivo'];
+      $departamento_ben_colectivo   = $row['departamento_ben_colectivo'];
+      $municipio_ben_colectivo      = $row['municipio_ben_colectivo'];
     }
      else
     {
@@ -74,6 +90,87 @@
     }  
     
     
+    if(isset($_POST['grabar']))
+    { 
+      $s_existe         = $_POST['existe'];
+      $s_yaGrabo        = $_POST['yaGrabo'];
+      date_default_timezone_set('America/Bogota');
+      //$s_fecha  = date("Y-m-d",time());
+      //$s_fecha  = date("Y/m/d H:i:s");
+      $date_added=date("Y-m-d H:i:s");
+      
+      $s_registro                    = $row['registro'];
+      $registro                     = $row['registro'];
+      $ot                           = $row['ot'];
+      $tipo_documento_ben_colectivo = $_POST['tipo_documento_ben_colectivo'];
+      $no_documento_ben_colectivo   = $_POST['no_documento_ben_colectivo'];
+      $nombres_bene_colectivo       = $_POST['nombres_bene_colectivo'];
+      $apellidos_ben_colectivo      = $_POST['apellidos_ben_colectivo'];
+      $seudonimo_beno_colectivo     = $_POST['seudonimo_beno_colectivo'];
+      $direccion_ben_colectivo      = $_POST['direccion_ben_colectivo'];
+      $departamento_ben_colectivo   = $_POST['departamento_ben_colectivo'];
+      $municipio_ben_colectivo      = $_POST['municipio_ben_colectivo'];
+      
+      
+      //MODIFICA
+      if ($s_existe == "1")  
+      {
+        try {
+            // Conectar a la base de datos
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Preparar la consulta SQL para actualizar
+            $stmt = $pdo->prepare('
+            UPDATE graerr_colectivo
+            SET registro = ?, ot = ?, tipo_documento_ben_colectivo = ?,
+                no_documento_ben_colectivo = ?, nombres_bene_colectivo = ?, apellidos_ben_colectivo = ?,
+                seudonimo_beno_colectivo = ?, direccion_ben_colectivo = ?, departamento_ben_colectivo = ?,
+                municipio_ben_colectivo = ?
+                WHERE registro = ? and  no_documento_ben_colectivo = ? 
+             ');
+            
+              $stmt->execute([
+                     $registro, $ot, $tipo_documento_ben_colectivo,
+                     $no_documento_ben_colectivo, $nombres_bene_colectivo, $apellidos_ben_colectivo,
+                     $seudonimo_beno_colectivo,  $direccion_ben_colectivo, $departamento_ben_colectivo, $municipio_ben_colectivo,
+                     $registro, $no_documento_ben_colectivo  // La llave del registro que se actualiza
+             ]);
+                
+                $mensaje=" <b>Atención!</b> Actualización exitosa";
+           //echo "Datos actualizados correctamente.";
+        } catch (PDOException $e) {
+            echo "Error al actualizar los datos: " . $e->getMessage();
+        }
+      }//modificar
+      
+      ///ADICIONA
+      if ($s_existe == "0")
+      {
+         try {
+               $stmt = $pdo->prepare('INSERT INTO graerr_colectivo (
+                       registro, ot,  tipo_documento_ben_colectivo, no_documento_ben_colectivo , 
+                       nombres_bene_colectivo, apellidos_ben_colectivo, seudonimo_beno_colectivo, 
+                       direccion_ben_colectivo, departamento_ben_colectivo
+                      ) VALUES (?, ?, ?, ?,
+                                ?, ?, ?
+                                ?, ?');     
+                                
+                       $stmt->execute([
+                            $registro, $ot, $tipo_documento_ben_colectivo, $no_documento_ben_colectivo,
+                            $nombres_bene_colectivo, $apellidos_ben_colectivo, $seudonimo_beno_colectivo,  
+                            $direccion_ben_colectivo, $departamento_ben_colectivo, $municipio_ben_colectivo
+                      ]);              
+                   
+                      $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
+                    //echo "Datos insertados correctamente.";  
+             
+                 //echo "Datos insertados correctamente.";
+                } catch (PDOException $e) {
+            echo "Error al insertar los datos: " . $e->getMessage();
+        }
+    }//existe=0    
+      
+    }//grabar
     //============================= CONSULTA EL graerr_tipo_documento
     //============================================================================ 
     $stmt = $pdo->query('select * from graerr_tipo_documento order by tipo_documento');
@@ -256,9 +353,9 @@
                  </div>
          
                  <input style="visibility:hidden" name="registro" id="registro" value="<?=$s_registro?>"/>
+                 <input style="visibility:hidden" name="ot" id="ot" value="<?=$s_ot?>"/>
                  <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
                  <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
-                
               </form>    
             </div>     
              <!--- complemento -->
