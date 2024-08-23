@@ -190,7 +190,7 @@
                     </div>
                     
                     <div class="col-sm-4" align="left">
-                        ADDDDADADADADADADAD
+                        
                     </div>
                 </div> <!--row-->
                 
@@ -210,6 +210,30 @@
                         <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo_beneficiario_colectivo" name="seudonimo_beneficiario_colectivo"  value="<?=$seudonimo_beneficiario_colectivo?>">
                     </div>
                 </div> <!--row-->
+                
+                <div class="row" style="margin:5px;">
+                         <div class="col-sm-4" align="left"> 
+                                <label for="departamento">DEPARTAMENTO</label>
+                                <select class="form-control" id="departamento" name="departamento" onchange="loadCiudadD(this.value)">
+                                <!--<select required class="form-control" name="departments" id="departments" onchange="loadCities(this.value)">-->
+                                        <?php echo $comboDepto; ?>
+                                </select>
+                             <!-- <input type="text" class="form-control" id="departamento" name="departamento"required>-->
+                             <br><br>
+                          </div>
+                          
+                          <div class="col-sm-4">
+                               <b>Municipio:</b>  
+                               <div id="myDiv"> </div> 
+                          </div>
+                           
+                           
+                          <div class="col-sm-4">
+                              <b>Municipio: </b>     
+                               <input style ="display:none;" class="form-control" type="text" readonly value="<?=$municipio?>" name="municipio" id="municipio">                         
+                               <input type="text" class="form-control" id="nommunicipio" name="nommunicipio" value="<?=$nommunicipio?> " placeholder="Municipio" readonly><br>  
+                          </div>    
+                </div> <!--row-->    
                 
               </form>    
             </div>     
