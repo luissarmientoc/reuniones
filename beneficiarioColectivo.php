@@ -328,7 +328,7 @@
                                 
                     <div class="col-sm-6" align="left">
                         <label style="font-size:12px;"  for="no_documento">No DE DOCUMENTO DEL BENEFICIARIO DEL COLECTIVO</label>
-                        <input type="number" class="form-control" id="no_documento_ben_colectivo" name="no_documento_ben"  value="<?=$no_documento_ben_colectivo?>" required>
+                        <input type="number" class="form-control" id="no_documento_ben_colectivo" name="no_documento_ben_colectivo"  value="<?=$no_documento_ben_colectivo?>" required>
                     </div>
                     
                     <div class="col-sm-4" align="left">
