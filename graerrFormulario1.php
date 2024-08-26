@@ -66,8 +66,6 @@
                       document.getElementById("descripcion_colectivo").removeAttribute("readonly");
                       document.getElementById("nombre_colectivo").removeAttribute("readonly");
                       
-
-                     
                      miDiv1.style.display = 'block';
                      miDiv2.style.display = 'none';
                  }
@@ -251,16 +249,25 @@
              if ($tipo_ruta==1) //Individual
              {
                 $prendeColectivo = "display: none;"; 
+                $enciendeColectivo = "readonly";
+                $enciendeIndividual = "";
+                $descripcion_colectivo = 'N/A';
+                $nombre_colectivo = 'N/A';
              }
              
              if ($tipo_ruta==2) //Colectivo
              {
                 $prendeColectivo = "display: block;";  
+                $enciendeColectivo = "";
+                $enciendeIndividual = "readonly";
+                $apellidos_peticionario ='N/A';
              }
              
              if ($tipo_ruta==3) //Sedes Residencias
              {
                 $prendeColectivo = "display: none;";   
+                $descripcion_colectivo = '';
+                $nombre_colectivo = '';
              }
              
              //es_tramite_emergencia
@@ -582,7 +589,7 @@
                $noTramite = "";
              }
              
-   
+   /*
     echo "entra a grabar";
     echo '<br>';
     echo "1.." . $_POST['registro'];
@@ -701,7 +708,7 @@
     echo '<br>';
     echo "61.." . $otros;
     echo '<br>';
-     
+     */
     //MODIFICA
     if ($s_existe == "1")  
     {
