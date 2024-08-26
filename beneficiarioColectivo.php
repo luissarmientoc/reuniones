@@ -45,9 +45,10 @@
     
     $s_LA    = $_GET['LA'];
     $linDeco = base64_decode($s_LA);
-    
+    /*
     echo $linDeco;
     echo '<br>';
+    */
    
     //PARTE LA LINEA
     $partir      = explode ("/", $linDeco);   
@@ -56,6 +57,7 @@
     $s_ot                       = $partir[2];
     $tipAccion                  = $partir[3];
     
+    /*
     echo '<br>';echo '<br>';echo '<br>';echo '<br>';echo '<br>';
     echo "registro.." . $s_registro;
     echo '<br>';
@@ -63,6 +65,7 @@
     echo '<br>';
     echo "dto.." . $no_documento_ben_colectivo;
     echo '<br>';
+    */
     
     if ( $no_documento_ben_colectivo != "" )
     {  
@@ -105,20 +108,20 @@
       //$s_fecha  = date("Y/m/d H:i:s");
       $date_added=date("Y-m-d H:i:s");
       
-      $s_registro                    = $_POST['registro'];
+      $s_registro                   = $_POST['registro'];
       $registro                     = $_POST['registro'];
       $ot                           = $_POST['ot'];
       $tipo_documento_ben_colectivo = $_POST['tipo_documento_ben_colectivo'];
       $no_documento_ben_colectivo   = $_POST['no_documento_ben_colectivo'];
-      $nombres_ben_colectivo       = $_POST['nombres_ben_colectivo'];
+      $nombres_ben_colectivo        = $_POST['nombres_ben_colectivo'];
       $apellidos_ben_colectivo      = $_POST['apellidos_ben_colectivo'];
-      $seudonimo_ben_colectivo     = $_POST['seudonimo_ben_colectivo'];
+      $seudonimo_ben_colectivo      = $_POST['seudonimo_ben_colectivo'];
       $direccion_ben_colectivo      = $_POST['direccion_ben_colectivo'];
       $departamento                 = $_POST['departamento'];
       $municipio                    = $_POST['municipio'];
       //// validar
       
-      
+      /*
       echo "1..". $s_registro;              
       echo '<br>';
       echo "2..". $registro;   
@@ -139,7 +142,7 @@
       echo '<br>';
       echo "11..". $municipio;      
       echo '<br>';
-      
+      */
       
       //MODIFICA
       if ($s_existe == "1")  
@@ -200,7 +203,7 @@
                                 
                        $stmt->execute([
                             $registro, $ot, $tipo_documento_ben_colectivo, $no_documento_ben_colectivo,
-                            $nombres_bene_colectivo, $apellidos_ben_colectivo, $seudonimo_beno_colectivo,  
+                            $nombres_ben_colectivo, $apellidos_ben_colectivo, $seudonimo_ben_colectivo,  
                             $departamento, $municipio
                       ]);  
                       
@@ -213,7 +216,10 @@
             echo "Error al insertar los datos: " . $e->getMessage();
            }
         }    
-    }//existe=0    
+          $s_existe ="1";
+      }//existe=0    
+      
+      $s_tocoBoton = "S";  
       
     }//grabar
     //============================= CONSULTA EL graerr_tipo_documento

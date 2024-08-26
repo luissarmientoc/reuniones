@@ -164,7 +164,7 @@
              $stmt = $pdo->query($sql);
              $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       
-             $s_registro                      = $row['registro'];
+             $s_registro                    = $row['registro'];
              $registro                      = $row['registro'];
              $vigencia                      = $row['vigencia'];
              $fecha_recepcion_unp           = $row['fecha_recepcion_unp'];
@@ -173,7 +173,7 @@
              $no_mem_ext                    = $row['no_mem_ext'];
              $otras_entradas_sigob          = $row['otras_entradas_sigob'];
              $no_folios                     = $row['no_folios'];
-             $entidad_persona_solicitante  =$row['entidad_persona_solicitante'];
+             $entidad_persona_solicitante   = $row['entidad_persona_solicitante'];
              $destinatario                  = $row['destinatario'];
              $tipo_documento                = $row['tipo_documento'];
              $no_documento                  = $row['no_documento'];
@@ -414,29 +414,29 @@
              $fecha_recepcion_unp           = $_POST['fecha_recepcion_unp'];
              $fecha_recepcion_graerr        = $_POST['fecha_recepcion_graerr'];
              $fecha_carta_solicitante       = $_POST['fecha_carta_solicitante'];
-             $no_mem_ext                    = $_POST['no_mem_ext'];
-             $otras_entradas_sigob          = $_POST['otras_entradas_sigob'];
+             $no_mem_ext                    = trim($_POST['no_mem_ext']);
+             $otras_entradas_sigob          = trim($_POST['otras_entradas_sigob']);
              $no_folios                     = $_POST['no_folios'];
-             $entidad_persona_solicitante   = $_POST['entidad_persona_solicitante'];
-             $destinatario                  = $_POST['destinatario'];
+             $entidad_persona_solicitante   = trim($_POST['entidad_persona_solicitante']);
+             $destinatario                  = trim($_POST['destinatario']);
              $tipo_documento                = $_POST['tipo_documento'];
              $no_documento                  = $_POST['no_documento'];
-             $nombres_peticionario          = $_POST['nombres_peticionario'];
-             $apellidos_peticionario        = $_POST['apellidos_peticionario'];
-             $seudonimo                     = $_POST['seudonimo'];
+             $nombres_peticionario          = trim($_POST['nombres_peticionario']);
+             $apellidos_peticionario        = trim($_POST['apellidos_peticionario']);
+             $seudonimo                     = trim($_POST['seudonimo']);
              $tipo_ruta                     = $_POST['tipo_ruta'];
-             $descripcion_colectivo         = $_POST['descripcion_colectivo'];
-             $nombre_colectivo              = $_POST['nombre_colectivo'];
+             $descripcion_colectivo         = trim($_POST['descripcion_colectivo']);
+             $nombre_colectivo              = trim($_POST['nombre_colectivo']);
              $no_personas_evaluar           = $_POST['no_personas_evaluar'];
              $genero                        = $_POST['genero'];
              $grupo_etnico                  = $_POST['grupo_etnico'];
-             $correo_electronico            = $_POST['correo_electronico'];
+             $correo_electronico            = trim($_POST['correo_electronico']);
              $no_de_contacto                = $_POST['no_de_contacto'];
              $otros_numeros_contacto        = $_POST['otros_numeros_contacto'];
-             $direccion                     = $_POST['direccion'];
+             $direccion                     = trim($_POST['direccion']);
              $departamento                  = $_POST['departamento'];
              $municipio                     = $_POST['municipio'];
-             $corregimiento_vereda          = $_POST['corregimiento_vereda'];
+             $corregimiento_vereda          = trim($_POST['corregimiento_vereda']);
              $autoriza_envio_info           = $_POST['autoriza_envio_info'];
              $fecha_asignacion_analisis     = $_POST['fecha_asignacion_analisis'];
              $analista_solicitudes          = $_POST['analista_solicitudes'];
@@ -458,21 +458,69 @@
              $ingreso_calidad               = $_POST['ingreso_calidad'];
              $fecha_aprobacion_calidad      = $_POST['fecha_aprobacion_calidad'];
              $fecha_presentacion_premesa    = $_POST['fecha_presentacion_premesa'];
-             $recomendacion_riesgo_premesa  = $_POST['recomendacion_riesgo_premesa'];
+             $recomendacion_riesgo_premesa  = trim($_POST['recomendacion_riesgo_premesa']);
              $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
              $observaciones_premesa         = $_POST['observaciones_premesa'];
              $remision_mesa_tecnica         = $_POST['remision_mesa_tecnica'];
-             $observaciones                 = $_POST['observaciones'];
-             $otros                         = $_POST['otros'];
+             $observaciones                 = trim($_POST['observaciones']);
+             $otros                         = trim($_POST['otros']);
              $factor_diferencial            = $_POST['factor_diferencial'];
              $cantidad_hombres              = $_POST['cantidad_hombres'];
              $cantidad_mujeres              = $_POST['cantidad_mujeres'];
              $cantidad_binarios             = $_POST['cantidad_binarios'];
              
-             $nombres_peticionario          = strtoupper($_POST['nombres_peticionario']);
-             $apellidos_peticionario        = strtoupper($_POST['apellidos_peticionario']);
+             //PONE TODO EN MAYUSCULAS
+             $no_mem_ext                   = strtoupper($no_mem_ext);
+             $entidad_persona_solicitante  = strtoupper($entidad_persona_solicitante);
+             $destinatario                 = strtoupper($destinatario);
+             $nombres_peticionario         = strtoupper($nombres_peticionario);    
+             $apellidos_peticionario       = strtoupper($apellidos_peticionario);
+             $seudonimo                    = strtoupper($seudonimo);
+             $descripcion_colectivo        = strtoupper($descripcion_colectivo);
+             $nombre_colectivo             = strtoupper($nombre_colectivo);
+             $direccion                    = strtoupper($direccion);
+             $corregimiento_vereda         = strtoupper($corregimiento_vereda);
+             $recomendacion_riesgo_premesa = strtoupper($recomendacion_riesgo_premesa);
+             $observaciones                = strtoupper($observaciones);
+             $otros                        = strtoupper($otros);
              
-             //Realiza la validació del tipo de ruta y si es tramite de emergencia
+             // asigna valores vacios a las fechas que lo requieren
+             if ($fecha_recepcion_unp === "") {
+                 $fecha_recepcion_unp = '0000-00-00'; // o
+                 $fecha_recepcion_unp = null; 
+             }
+             
+             if ($fecha_recepcion_graerr === "") {
+                 $fecha_recepcion_graerr = '0000-00-00'; // o
+                 $fecha_recepcion_graerr = null; 
+             }
+             
+             if ($fecha_carta_solicitante === "") {
+                 $fecha_carta_solicitante = '0000-00-00'; // o
+                 $fecha_carta_solicitante = null; 
+             }
+             
+             if ($fecha_asignado_ot === "") {
+                 $fecha_asignado_ot = '0000-00-00'; // o
+                 $fecha_asignado_ot = null; 
+             }
+             
+             if ($fecha_reasignacion_ot === "") {
+                 $fecha_reasignacion_ot = '0000-00-00'; // o
+                 $fecha_reasignacion_ot = null; 
+             }
+             
+             if ($fecha_aprobacion_calidad === "") {
+                 $fecha_aprobacion_calidad = '0000-00-00'; // o
+                 $fecha_aprobacion_calidad = null; 
+             }
+             
+             if ($fecha_presentacion_premesa === "") {
+                 $fecha_presentacion_premesa = '0000-00-00'; // o
+                 $fecha_presentacion_premesa = null; 
+             }
+
+             //Realiza la validación del tipo de ruta y si es tramite de emergencia
                            
              //tipo_ruta
              if ($tipo_ruta==1) //Individual
@@ -485,6 +533,7 @@
              if ($tipo_ruta==2) //Colectivo
              {
                 $prendeColectivo = "display: block;";  
+                $apellidos_peticionario ='';
              }
              
              if ($tipo_ruta==3) //Sedes Residencias
@@ -1282,9 +1331,6 @@
                                </select>
                            </div>
                            
-                           <div id="individual"></div>
-                           
-                           
                            <div class="col-sm-4" align="left">
                                <label for="tipo_documento">TIPO DE DOCUMENTO</label>
                                <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required>-->
@@ -1299,7 +1345,11 @@
                            </div>
                        </div> <!--row-->
                        
-                       <div class="row" style="margin-top:5px;">   
+                       <! --------------------->
+                       <!----- INDIVIDUAL ----->
+                       <! --------------------->
+                       <div id="individual">
+                         <div class="row" style="margin-top:5px;">   
                            <div class="col-sm-4" align="left">
                                <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES PETICIONARIO O BENEFICIARIO</label>
                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
@@ -1314,8 +1364,13 @@
                                <label for="seudonimo">SEUDONIMO</label>
                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
                            </div>
-                       </div> <!--row-->
-                        
+                         </div> <!--row-->  
+                       </div>
+                       
+                         
+                       <! --------------------->
+                       <!----- COLECTIVO  ----->
+                       <! --------------------->
                        <div id="elColectivo" style="<?=$prendeColectivo?>">
                          <div class="row" style="margin-top:5px;">   
                              <div class="col-sm-4" align="left">
@@ -1327,6 +1382,11 @@
                                <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
                              </div>  
+                             <!--aqui-->
+                             <div class="col-sm-4" align="left">
+                               <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES PETICIONARIO O BENEFICIARIO</label>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
+                            </div>
                          </div>
                        </div> <!--- colectivo -->
                            
