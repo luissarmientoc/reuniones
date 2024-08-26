@@ -1676,7 +1676,7 @@
                                </select>
                            </div>
                            
-                         <!--  <div id='emergencia' style="<?=$prendeEmergencia?>"> -->
+                          <div id='emergencia' style="<?=$prendeEmergencia?>"> 
                              <div class="col-sm-4" align="left">
                                <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
                                <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
@@ -1686,7 +1686,7 @@
                                <input type="date" class="form-control" id="fecha_tramite_emergencia" name="fecha_tramite_emergencia" value="<?=$fecha_tramite_emergencia?>">
                              </div>
                            </div>
-                        <!-- </div>   -->
+                         </div>   
                        
                        <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-4" align="left">
