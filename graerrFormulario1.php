@@ -52,9 +52,9 @@
                  if (seleccion1 === 1) {
                       document.getElementById("descripcion_colectivo").setAttribute("readonly", "readonly");
                       document.getElementById("nombre_colectivo").setAttribute("readonly", "readonly");
-                      document.getElementById("seudonimo").setAttribute("readonly", "readonly");
                       document.getElementById("nombres_peticionario").removeAttribute("readonly");
                       document.getElementById("apellidos_peticionario").removeAttribute("readonly");
+                      document.getElementById("seudonimo").setAttribute("readonly");
 
                      
                      miDiv1.style.display = 'none';
@@ -62,9 +62,10 @@
                  } else {
                       document.getElementById("nombres_peticionario").setAttribute("readonly", "readonly");
                       document.getElementById("apellidos_peticionario").setAttribute("readonly", "readonly");
+                      document.getElementById("seudonimo").removeAttribute("readonly", "readonly");
                       document.getElementById("descripcion_colectivo").removeAttribute("readonly");
                       document.getElementById("nombre_colectivo").removeAttribute("readonly");
-                      document.getElementById("seudonimo").removeAttribute("readonly");
+                      
 
                      
                      miDiv1.style.display = 'block';
