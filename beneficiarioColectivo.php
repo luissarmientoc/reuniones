@@ -76,7 +76,7 @@
       $boton  = "Actualizar";
       
       $sql = "select * from graerr_colectivo where registro=$s_registro and no_documento_ben_colectivo=$no_documento_ben_colectivo";
-      echo $sql;
+      //echo $sql;
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
       
