@@ -50,21 +50,19 @@
 
                  // INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
                  if (seleccion1 === 1) {
-                      document.getElementById("nombres_peticionario").setAttribute("readonly");
-                      document.getElementById("apellidos_peticionario").setAttribute("readonly");
-                      document.getElementById("seudonimo").setAttribute("readonly");
-                      document.getElementById("descripcion_colectivo").removeAttribute("readonly", "readonly");
-                      document.getElementById("nombre_colectivo").removeAttribute("readonly", "readonly");
+                      document.getElementById("nombres_peticionario").setAttribute("readonly", "readonly");
+                      document.getElementById("apellidos_peticionario").setAttribute("readonly", "readonly");
+                      document.getElementById("descripcion_colectivo").removeAttribute("readonly");
+                      document.getElementById("nombre_colectivo").removeAttribute("readonly");
 
                      
                      miDiv1.style.display = 'none';
                      miDiv2.style.display = 'block';
                  } else {
-                      document.getElementById("descripcion_colectivo").setAttribute("readonly");
-                      document.getElementById("nombre_colectivo").setAttribute("readonly");
-                      document.getElementById("seudonimo").setAttribute("readonly");
-                      document.getElementById("nombres_peticionario").removeAttribute("readonly", "readonly");
-                      document.getElementById("apellidos_peticionario").removeAttribute("readonly", "readonly");
+                      document.getElementById("descripcion_colectivo").setAttribute("readonly", "readonly");
+                      document.getElementById("nombre_colectivo").setAttribute("readonly", "readonly");
+                      document.getElementById("nombres_peticionario").removeAttribute("readonly");
+                      document.getElementById("apellidos_peticionario").removeAttribute("readonly");
 
                      
                      miDiv1.style.display = 'block';
