@@ -1841,8 +1841,8 @@
   					                <td><?php echo $seudonimo_ben_colectivo; ?></td>
   					       
 					                <td class='text-center'>
-					                  <a href="beneficiarioColectivo.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a> 
-					                  <input class='btn btn-danger btn-sm' type='submit' id='borrarBeneficiario' name='borrarBeneficiario' value='<?=$borrarB?> ' style="width:40, color:#D7524E" onclick='return confirmarBeneficiario()'>  <i class="fa fa-trash" aria-hidden="true"></i>  
+					                  <a href="beneficiarioColectivo.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a>  
+					                  <input class='btn btn-danger btn-sm' type='submit' id='borrarBeneficiario' name='borrarBeneficiario' value='<?=$borrarB?> ' style="color:#D7524E;" onclick='return confirmarBeneficiario()'>  <i class="fa fa-trash" aria-hidden="true"></i>  
 					                 </td>  
 					              </tr>
 					           
