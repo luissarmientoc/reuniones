@@ -50,9 +50,19 @@
 
                  // INDIVIDUAL=1, COLECTIVO=2, SEDES RESIDENCIAS=3.
                  if (seleccion1 === 1) {
+                      document.getElementById("nombres_peticionario").setAttribute("readonly", "readonly", false)';
+                      document.getElementById("apellidos_peticionario").setAttribute("readonly", "readonly", false)';
+                      document.getElementById("descripcion_colectivo").removeAttribute("readonly", false)';
+                      document.getElementById("nombre_colectivo").removeAttribute("readonly", false)';
+                     
                      miDiv1.style.display = 'none';
                      miDiv2.style.display = 'block';
                  } else {
+                      document.getElementById("descripcion_colectivo").setAttribute("readonly", "readonly", false)';
+                      document.getElementById("nombre_colectivo").setAttribute("readonly", "readonly", false)';
+                      document.getElementById("nombres_peticionario").removeAttribute("readonly", false)';
+                      document.getElementById("apellidos_peticionario").removeAttribute("readonly", false)';
+                     
                      miDiv1.style.display = 'block';
                      miDiv2.style.display = 'none';
                  }
@@ -531,6 +541,8 @@
              if ($tipo_ruta==1) //Individual
              {
                 $prendeColectivo = "display: none;"; 
+                $enciendeColectivo = "readonly";
+                $enciendeIndividual = "";
                 $descripcion_colectivo = 'N/A';
                 $nombre_colectivo = 'N/A';
              }
@@ -538,6 +550,8 @@
              if ($tipo_ruta==2) //Colectivo
              {
                 $prendeColectivo = "display: block;";  
+                $enciendeColectivo = "";
+                $enciendeIndividual = "readonly";
                 $apellidos_peticionario ='N/A';
              }
              
@@ -1355,49 +1369,49 @@
                        <! --------------------->
                        <!----- INDIVIDUAL ----->
                        <! --------------------->
-                      <div id="individual"> 
+                      <!--<div id="individual"> -->
                          <div class="row" style="margin-top:5px;">   
                            <div class="col-sm-4" align="left">
-                               <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES PETICIONARIO O BENEFICIARIO</label>
-                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
+                               <label style="font-size:12px;" for="nombres_peticionario">NOMBRES PETICIONARIO O BENEFICIARIO</label>
+                               <input  <?=$enciendeIndividual?> style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
                            </div>
                            
                            <div class="col-sm-4" align="left">
-                               <label style="font-size:12px;" for="nombres_apellidos_peticionario">APELLIDOS PETICIONARIO O BENEFICIARIO</label>
-                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_peticionario" name="apellidos_peticionario"  value="<?=$apellidos_peticionario?>" required>
+                               <label style="font-size:12px;" for="apellidos_peticionario">APELLIDOS PETICIONARIO O BENEFICIARIO</label>
+                               <input  <?=$enciendeIndividual?> style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_peticionario" name="apellidos_peticionario"  value="<?=$apellidos_peticionario?>" required>
                            </div>
                            
                            <div class="col-sm-4" align="left">
                                <label for="seudonimo">SEUDONIMO</label>
-                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
+                               <input  <?=$enciendeIndividual?> style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
                            </div>
                          </div> <!--row-->  
-                        </div>
+                        <!--</div>-->
                        
                          
                        <! --------------------->
                        <!----- COLECTIVO  ----->
                        <! --------------------->
-                      <div id="elColectivo" style="<?=$prendeColectivo?>">
+                      <!--<div id="elColectivo" style="<?=$prendeColectivo?>">-->
                          <div class="row" style="margin-top:5px;">   
                              <!--aqui-->
                              <div class="col-sm-4" align="left">
                                <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRE DEL COLECTIVO</label>
-                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
+                               <input  <?=$enciendeColectivo?> style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
                             </div>
                             
                              <div class="col-sm-4" align="left">
                                 <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
-                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
+                                <input <?=$enciendeColectivo?> style="text-transform:uppercase;" type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
                              </div>
                           
                              <div class="col-sm-4" align="left">
                                <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
-                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
+                               <input  <?=$enciendeColectivo?> style="text-transform:uppercase;" type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
                              </div>  
                              
                          </div>
-                       </div> 
+                       <!--</div> -->
                        <!--- colectivo -->   
                        
                        <div class="row" style="margin-top:5px;">   
