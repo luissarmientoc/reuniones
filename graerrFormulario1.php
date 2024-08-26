@@ -463,12 +463,12 @@
              $ingreso_calidad               = $_POST['ingreso_calidad'];
              $fecha_aprobacion_calidad      = $_POST['fecha_aprobacion_calidad'];
              $fecha_presentacion_premesa    = $_POST['fecha_presentacion_premesa'];
-             $recomendacion_riesgo_premesa  = trim($_POST['recomendacion_riesgo_premesa']);
+             $recomendacion_riesgo_premesa  = $_POST['recomendacion_riesgo_premesa'];
              $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
              $observaciones_premesa         = $_POST['observaciones_premesa'];
              $remision_mesa_tecnica         = $_POST['remision_mesa_tecnica'];
-             $observaciones                 = trim($_POST['observaciones']);
-             $otros                         = trim($_POST['otros']);
+             $observaciones                 = $_POST['observaciones'];
+             $otros                         = $_POST['otros'];
              $factor_diferencial            = $_POST['factor_diferencial'];
              $cantidad_hombres              = $_POST['cantidad_hombres'];
              $cantidad_mujeres              = $_POST['cantidad_mujeres'];
