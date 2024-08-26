@@ -1842,7 +1842,7 @@
   					       
 					                <td class='text-center'>
 					                  <a href="beneficiarioColectivo.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a> 
-					                  <input class='btn btn-danger btn-sm' type='submit' id='borrarBeneficiario' name='borrarBeneficiario' value='<?=$borrarB?> '  style='width:40' onclick='return confirmarBeneficiario()'>  <i class="fa fa-trash" aria-hidden="true"></i>  
+					                  <input class='btn btn-danger btn-sm' type='submit' id='borrarBeneficiario' name='borrarBeneficiario' value='<?=$borrarB?> ' color:'#D7524E' style='width:40' onclick='return confirmarBeneficiario()'>  <i class="fa fa-trash" aria-hidden="true"></i>  
 					                 </td>  
 					              </tr>
 					           
