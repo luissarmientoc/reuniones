@@ -270,7 +270,7 @@
 					<th>Fecha UNP</th>
 					<th>Fecha GRAERR</th>
 					<th>Documento</th>
-					<th COLSPAN="2">Peticionario</th> 
+					<th COLSPAN="2">Peticionario / Colectivo</th> 
 					<th>Ruta</th>
 					<th class='text-center' colspan="4">Acciones</th>
         <?php    
