@@ -52,6 +52,7 @@
                  if (seleccion1 === 1) {
                       document.getElementById("descripcion_colectivo").setAttribute("readonly", "readonly");
                       document.getElementById("nombre_colectivo").setAttribute("readonly", "readonly");
+                      document.getElementById("seudonimo").setAttribute("readonly", "readonly");
                       document.getElementById("nombres_peticionario").removeAttribute("readonly");
                       document.getElementById("apellidos_peticionario").removeAttribute("readonly");
 
@@ -63,6 +64,7 @@
                       document.getElementById("apellidos_peticionario").setAttribute("readonly", "readonly");
                       document.getElementById("descripcion_colectivo").removeAttribute("readonly");
                       document.getElementById("nombre_colectivo").removeAttribute("readonly");
+                      document.getElementById("seudonimo").removeAttribute("readonly");
 
                      
                      miDiv1.style.display = 'block';
@@ -1397,11 +1399,6 @@
                       <!--<div id="elColectivo" style="<?=$prendeColectivo?>">-->
                          <div class="row" style="margin-top:5px;">   
                              <!--aqui-->
-                             <div class="col-sm-4" align="left">
-                               <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRE DEL COLECTIVO</label>
-                               <input  <?=$enciendeColectivo?> style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
-                            </div>
-                            
                              <div class="col-sm-4" align="left">
                                 <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
                                 <input <?=$enciendeColectivo?> style="text-transform:uppercase;" type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
