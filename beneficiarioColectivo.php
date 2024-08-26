@@ -168,7 +168,7 @@
                      $registro, $no_documento_ben_colectivo  // La llave del registro que se actualiza
              ]);
                 
-            $mensaje=" <b>Atención!</b> Actualización exitosa";
+            $mensaje=" <b>Atenci锟斤拷n!</b> Actualizaci锟斤拷n exitosa";
            //echo "Datos actualizados correctamente.";
         } catch (PDOException $e) {
             echo "Error al actualizar los datos: " . $e->getMessage();
@@ -182,13 +182,13 @@
          echo  "ww.." . $sqlCts;
          $stmt = $pdo->query($sqlCts);
          
-         // Obtener el resultado (única fila)
+         // Obtener el resultado (煤nica fila)
          $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-         // Número total de filas
+         // N煤mero total de filas
          $cuantos = $resultado['cuantos'];
          
          if ($cuantos>0){
-            $mensaje=" <b>Atención!</b> El Beneficiario ya existe en un colectivo¡";  
+            $mensaje=" <b>Atenci贸n!</b> El Beneficiario ya existe en un colectivo隆";  
          }
          else  
          {
@@ -208,7 +208,7 @@
                       ]);  
                       
                       
-                      $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
+                      $mensaje=" <b>Atenci贸n!</b> Grabaci贸n exitosa隆";        
                       //echo "Datos insertados correctamente.";  
              
                  //echo "Datos insertados correctamente.";
