@@ -75,7 +75,7 @@
       $s_existe = 1;
       $boton  = "Actualizar";
       
-      $sql = "select * from graerr_colectivo where registro=$s_registro";
+      $sql = "select * from graerr_colectivo where registro=$s_registro and no_documento_ben_colectivo=$no_documento_ben_colectivo";
       echo $sql;
       $stmt = $pdo->query($sql);
       $row  = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -113,13 +113,19 @@
       $ot                           = $_POST['ot'];
       $tipo_documento_ben_colectivo = $_POST['tipo_documento_ben_colectivo'];
       $no_documento_ben_colectivo   = $_POST['no_documento_ben_colectivo'];
-      $nombres_ben_colectivo        = $_POST['nombres_ben_colectivo'];
-      $apellidos_ben_colectivo      = $_POST['apellidos_ben_colectivo'];
-      $seudonimo_ben_colectivo      = $_POST['seudonimo_ben_colectivo'];
-      $direccion_ben_colectivo      = $_POST['direccion_ben_colectivo'];
+      $nombres_ben_colectivo        = trim($_POST['nombres_ben_colectivo']);
+      $apellidos_ben_colectivo      = trim($_POST['apellidos_ben_colectivo']);
+      $seudonimo_ben_colectivo      = trim($_POST['seudonimo_ben_colectivo']);
+      $direccion_ben_colectivo      = trim($_POST['direccion_ben_colectivo']);
       $departamento                 = $_POST['departamento'];
       $municipio                    = $_POST['municipio'];
       //// validar
+      
+      //poner mayusculas
+      $nombres_ben_colectivo        = strtoupper($nombres_ben_colectivo);
+      $apellidos_ben_colectivo      = strtoupper($apellidos_ben_colectivo);
+      $seudonimo_ben_colectivo      = strtoupper($seudonimo_ben_colectivo);
+      $direccion_ben_colectivo      = strtoupper($direccion_ben_colectivo);
       
       /*
       echo "1..". $s_registro;              
@@ -168,7 +174,7 @@
                      $registro, $no_documento_ben_colectivo  // La llave del registro que se actualiza
              ]);
                 
-            $mensaje=" <b>Atenci��n!</b> Actualizaci��n exitosa";
+            $mensaje=" <b>Atención!</b> Actualización exitosa";
            //echo "Datos actualizados correctamente.";
         } catch (PDOException $e) {
             echo "Error al actualizar los datos: " . $e->getMessage();
