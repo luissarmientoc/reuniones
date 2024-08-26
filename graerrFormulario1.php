@@ -531,14 +531,14 @@
              if ($tipo_ruta==1) //Individual
              {
                 $prendeColectivo = "display: none;"; 
-                $descripcion_colectivo = '';
-                $nombre_colectivo = '';
+                $descripcion_colectivo = 'N/A';
+                $nombre_colectivo = 'N/A';
              }
              
              if ($tipo_ruta==2) //Colectivo
              {
                 $prendeColectivo = "display: block;";  
-                $apellidos_peticionario ='';
+                $apellidos_peticionario ='N/A';
              }
              
              if ($tipo_ruta==3) //Sedes Residencias
@@ -1780,7 +1780,12 @@
                 </div> <!-- panel body -->	 
               
                <div class="modal-footer"> 
-                <div class="col-sm-11" align="center">  					  			 
+                <div class="col-sm-11" align="center">  
+                   <?php
+                     echo '<br>'; 
+                     echo "el boton.." . $boton;
+                     echo '<br>';
+                   ?>
                   <button type="submit" name='grabar' class="btn btn-md btn-success btn-lg"><i class="glyphicon glyphicon-refresh"></i> <?=$boton?> </button>
                 </div>	 
               </div>
