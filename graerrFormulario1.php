@@ -1802,12 +1802,7 @@
               
                <div class="modal-footer"> 
                 <div class="col-sm-11" align="center">  
-                   <?php
-                     echo '<br>'; 
-                     echo "el boton.." . $boton;
-                     echo '<br>';
-                   ?>
-                  <button type="submit" name='grabar' class="btn btn-md btn-success btn-lg"><i class="glyphicon glyphicon-refresh"></i> <?=$boton?> </button>
+                   <button type="submit" name='grabar' class="btn btn-md btn-success btn-lg"><i class="glyphicon glyphicon-refresh"></i> <?=$boton?> </button>
                 </div>	 
               </div>
          

@@ -271,7 +271,7 @@
 					<th>Fecha GRAERR</th>
 					<th>Documento</th>
 					<th COLSPAN="2">Peticionario</th> 
-					<th>Estado</th>
+					<th>Ruta</th>
 					<th class='text-center' colspan="4">Acciones</th>
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
@@ -285,6 +285,7 @@
 						$apellidos_peticionario=$row['apellidos_peticionario'];
 						$estado_solicitud=$row['estado_solicitud'];
 						$no_mem_ext=$row['no_mem_ext'];
+						$tipo_ruta=$row['tipo_ruta'];
 						$ot=$row['ot'];
 						
 						//trae estado solicitud
@@ -292,6 +293,12 @@
 						$stmtSol   = $pdo->query($sqlSol);
 					    $rowSol    = $stmtSol->fetch(PDO::FETCH_ASSOC);
 					    $solicitud = $rowSol['estado_solicitud'];
+					    
+					    //trae el tipo ruta
+						$sqlRut    = "select * from graerr_tipo_ruta where id=$tipo_ruta";
+						$stmtRut   = $pdo->query($sqlRut);
+					    $rowRut    = $stmtRut->fetch(PDO::FETCH_ASSOC);
+					    $ruta = $rowRut['estado_solicitud'];
 						
  					    $lv   = $registro. "/MOD1234567890qwertyuiopasdfghjkl";
 					    $lVDX = base64_encode($lv);
@@ -305,7 +312,7 @@
   					       <td><?php echo number_format($no_documento); ?></td>
   					       <td><?php echo $nombres_peticionario; ?></td>
   					       <td><?php echo $apellidos_peticionario; ?></td>
-  					       <td><?php echo $solicitud; ?></td>
+  					       <td><?php echo $ruta; ?></td>
  
 					       <td class='text-center'>
 					         <a href="graerrFormulario1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a> 
