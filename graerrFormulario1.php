@@ -1668,7 +1668,7 @@
                        <div class="row" style="margin-top:5px;"> 
                            <div class="col-sm-4" align="left">
                                <label for="tramite_emergencia">ES TRAMITE DE EMERGENCIA?</label>
-                               <select class="form-control" id="es_tramite_emergencia" name="es_tramite_emergencia" >
+                               <select class="form-control" id="es_tramite_emergencia" name="es_tramite_emergencia" required>
                                   <option value="">Seleccione la opción</option>
                                   <option value="si" <?=$siTramite?>>Sí</option>
                                   <option value="no" <?=$noTramite?>>No</option>
@@ -1707,8 +1707,7 @@
                            
                            <div class="col-sm-6" align="left">
                                <label for="recomendacion_medidas_premesa">RECOMENDACION DE MEDIDAS PREMESA</label>
-                               <!--<input type="text" class="form-control" id="recomendacion_medidas_premesa" name="recomendacion_medidas_premesa" value="<?=$recomendacion_medidas_premesa?>">-->
-                               <select <?=$active?> required class="form-control" name="recomendacion_medidas_premesa">
+                               <select <?=$active?>  class="form-control" name="recomendacion_medidas_premesa">
                                   <?php echo $combo_recomendacion_premesa; ?>
                                </select>
                            </div>
