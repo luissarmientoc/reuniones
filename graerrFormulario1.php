@@ -128,28 +128,29 @@
        $partir  = explode ("-", $borrarBen);   
        
        $s_registro     = $partir[0];
-       
        $no_documento_ben_colectivo     = $partir[1];
        
        // Consulta preparada con marcadores de posición
-       $sql = "DELETE FROM graerr_colectivo WHERE registro = :registro AND no_documento_ben_colectivo = :no_documento_ben_colectivo ";
-        
-        $sql = "DELETE FROM reu_compromisos WHERE idreunion = :idreunion AND numeroidparticipante = :numeroidparticipante AND idcompromiso = :idcompromiso";
+        $sql = "DELETE FROM graerr_colectivo WHERE registro = :registro AND no_documento_ben_colectivo = :no_documento_ben_colectivo ";
         
        // Preparar la consulta
        $stmt = $pdo->prepare($sql);
         
-         // Asignar valores a los marcadores de posición
-         $stmt->bindParam(':registro', $s_registro, PDO::PARAM_INT);
-         $stmt->bindParam(':no_documento_ben_colectivo', $no_documento_ben_colectivo, PDO::PARAM_INT);
+       // Asignar valores a los marcadores de posición
+       $stmt->bindParam(':registro', $s_registro, PDO::PARAM_INT);
+       $stmt->bindParam(':no_documento_ben_colectivo', $no_documento_ben_colectivo, PDO::PARAM_INT);
 
-         // Ejecutar la consulta
-         if ($stmt->execute()) {
+       // Ejecutar la consulta
+       if ($stmt->execute()) {
              echo "Se eliminó el registro correctamente.";
-         } else {
+       } else {
              echo "Error al intentar eliminar el registro.";
-         }
-    }   
+       }
+       
+       $s_existe              = $_POST['existe'];
+       $s_yaGrabo             = $_POST['yaGrabo'];
+         
+    }   // borrarBeneficiario
     
     
     if ( $s_registro != "" )
