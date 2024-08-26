@@ -1355,7 +1355,7 @@
                        <! --------------------->
                        <!----- INDIVIDUAL ----->
                        <! --------------------->
-                       <div id="individual">
+                      <!-- <div id="individual">-->
                          <div class="row" style="margin-top:5px;">   
                            <div class="col-sm-4" align="left">
                                <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES PETICIONARIO O BENEFICIARIO</label>
@@ -1372,13 +1372,13 @@
                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
                            </div>
                          </div> <!--row-->  
-                       </div>
+                   <!--    </div> -->
                        
                          
                        <! --------------------->
                        <!----- COLECTIVO  ----->
                        <! --------------------->
-                       <div id="elColectivo" style="<?=$prendeColectivo?>">
+                      <!-- <div id="elColectivo" style="<?=$prendeColectivo?>">-->
                          <div class="row" style="margin-top:5px;">   
                              <!--aqui-->
                              <div class="col-sm-4" align="left">
@@ -1397,8 +1397,9 @@
                              </div>  
                              
                          </div>
-                       </div> <!--- colectivo -->
-                           
+                       <!-- </div> --> 
+                       <!--- colectivo -->   
+                       
                        <div class="row" style="margin-top:5px;">   
                           <div class="col-sm-4" align="left">
                                <label for="no_personas_evaluar">CANTIDAD DE HOMBRES</label>
