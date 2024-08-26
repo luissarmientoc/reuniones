@@ -142,7 +142,8 @@
 
        // Ejecutar la consulta
        if ($stmt->execute()) {
-             echo "Se eliminó el registro correctamente.";
+             $mensaje=" <b>Atención!</b> Se elimino el beneficiario de forma exitosa";
+             //echo "Se eliminó el registro correctamente.";
        } else {
              echo "Error al intentar eliminar el registro.";
        }
