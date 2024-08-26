@@ -1247,7 +1247,12 @@
         ?>
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">			 
                <div class="panel-body">
-                   <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                   <div class="container-fluid" style="margin-bottom:10px;">
+                       <!--------------------------------------------------------- 
+                       ----------------------DATOS DEL TRAMITE--------------------
+                       ---------------------------------------------------------->
+                       <!--D8544F-->
+                       <div class="row"  style="background-color:#337AB8; color:#fff;" >
                            <div class="col-sm-12" align="center">
                                <h4>DATOS DEL TRAMITE</h4>
                            </div>
@@ -1313,6 +1318,343 @@
                        </div> <!--row-->
                     </div> <!--container-->
                     
+                    <div class="container"  style="margin-bottom:10px;">   
+                       <!--------------------------------------------------------- 
+                       -----------DATOS DEL BENEFICIARIO O SOLICITANTE------------
+                       ---------------------------------------------------------->
+                       <div class="row" style="background-color:#5CC0DE; color:#fff;">
+                           <div class="col-sm-12" align="center">
+                               <h4>DATOS DEL BENEFICIARIO O SOLICITANTE</h4>
+                           </div>
+                       </div>
+                       
+                       <div class="row" style="margin-top:5px;">   
+                           <div class="col-sm-4" align="left">
+                              <label for="tipo_ruta">TIPO DE RUTA</label>
+                              <?php echo $tipo_ruta; ?> 
+                              <!--<input type="text" class="form-control" id="tipo_ruta" name="tipo_ruta"  value="<?=$tipo_ruta?>">-->
+                               <select <?=$active?> required class="form-control" id="tipo_ruta" name="tipo_ruta">
+                                 <?php echo $combo_tipo_ruta; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="tipo_documento">TIPO DE DOCUMENTO</label>
+                               <!--<input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required>-->
+                               <select <?=$active?> required class="form-control" name="tipo_documento">
+                                  <?php echo $combo_tipo_documento; ?>
+                               </select> 
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="no_documento">No DE DOCUMENTO</label>
+                               <input type="number" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
+                           </div>
+                       </div> <!--row-->
+                       
+                       <! --------------------->
+                       <!----- INDIVIDUAL ----->
+                       <! --------------------->
+                       <div id="individual">
+                         <div class="row" style="margin-top:5px;">   
+                           <div class="col-sm-4" align="left">
+                               <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES PETICIONARIO O BENEFICIARIO</label>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label style="font-size:12px;" for="nombres_apellidos_peticionario">APELLIDOS PETICIONARIO O BENEFICIARIO</label>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="apellidos_peticionario" name="apellidos_peticionario"  value="<?=$apellidos_peticionario?>" required>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="seudonimo">SEUDONIMO</label>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="seudonimo" name="seudonimo"  value="<?=$seudonimo?>">
+                           </div>
+                         </div> <!--row-->  
+                       </div>
+                       
+                         
+                       <! --------------------->
+                       <!----- COLECTIVO  ----->
+                       <! --------------------->
+                       <div id="elColectivo" style="<?=$prendeColectivo?>">
+                         <div class="row" style="margin-top:5px;">   
+                             <!--aqui-->
+                             <div class="col-sm-4" align="left">
+                               <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRE DEL COLECTIVO</label>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
+                            </div>
+                            
+                             <div class="col-sm-4" align="left">
+                                <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
+                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
+                             </div>
+                          
+                             <div class="col-sm-4" align="left">
+                               <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
+                             </div>  
+                             
+                         </div>
+                       </div> <!--- colectivo -->
+                           
+                       <div class="row" style="margin-top:5px;">   
+                          <div class="col-sm-4" align="left">
+                               <label for="no_personas_evaluar">CANTIDAD DE HOMBRES</label>
+                               <input min="0" type="number" class="form-control" id="cantidad_hombres" name="cantidad_hombres"  value="<?=$cantidad_hombres?>" required  onchange="calcularTotal()">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="no_personas_evaluar">CANTIDAD DE MUJERES</label>
+                               <input min="0" type="number" class="form-control" id="cantidad_mujeres" name="cantidad_mujeres"  value="<?=$cantidad_mujeres?>" required  onchange="calcularTotal()">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="no_personas_evaluar">CANTIDAD DE BINARIOS</label>
+                               <input min="0" type="number" class="form-control" id="cantidad_binarios" name="cantidad_binarios"  value="<?=$cantidad_binarios?>" required  oninput="calcularTotal()">
+                           </div>
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;">   
+                           <div class="col-sm-3" align="left">
+                               <label for="no_personas_evaluar">No PERSONAS A EVALUAR</label>
+                               <input min="0" type="number" class="form-control" id="no_personas_evaluar" name="no_personas_evaluar"  value="<?=$no_personas_evaluar?>" readonly>
+                           </div>
+                           
+                           <div class="col-sm-3" align="left">
+                               <label for="genero">GENERO</label>
+                               <!--<input type="text" class="form-control" id="genero" name="genero"  value="<?=$genero?>">-->
+                               <select <?=$active?> required class="form-control" name="genero">
+                                  <?php echo $combo_genero; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-3" align="left">
+                               <label for="grupo_etnico">GRUPO ETNICO</label>
+                               <!--<input type="text" class="form-control" id="grupo_etnico" name="grupo_etnico"  value="<?=$grupo_etnico?>">-->
+                               <select <?=$active?> required class="form-control" name="grupo_etnico">
+                                  <?php echo $combo_grupo_etnico; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-3" align="left">
+                               <label for="factor_diferencial">FACTOR DIFERENCIAL</label>
+                               <!--<input type="text" class="form-control" id="factor_diferencial" name="factor_diferencial" value="<?=$factor_diferencial?>">-->
+                               <select <?=$active?> required class="form-control" name="factor_diferencial">
+                                  <?php echo $combo_factor_diferencial; ?>
+                               </select>
+                           </div>
+                       </div> <!--row-->
+                        
+                       <div class="row" style="margin-top:5px;">                          
+                          <div class="col-sm-4" align="left"> 
+                              <label for="correo_electronico">CORREO ELECTRONICO</label>
+                              <input style="text-transform:lowercase;" type="email" class="form-control" id="correo_electronico" name="correo_electronico"   value="<?=$correo_electronico?>"required>
+                          </div> 
+                          <div class="col-sm-4" align="left">
+                              <label for="no_contacto">No DE CONTACTO</label>
+                              <input type="number" class="form-control" id="no_de_contacto" name="no_de_contacto"  value="<?=$no_de_contacto?>" required>
+                          </div>
+                          <div class="col-sm-4" align="left">
+                              <label for="otros_numeros_contacto">OTROS NUMEROS DE CONTACTO</label>
+                              <input type="number" class="form-control" id="otros_numeros_contacto" name="otros_numeros_contacto"  value="<?=$otros_numeros_contacto?>">
+                          </div>
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;">    
+                          <div class="col-sm-4" align="left"> 
+                                <label for="departamento">DEPARTAMENTO</label>
+                                <select class="form-control" id="departamento" name="departamento" onchange="loadCiudadD(this.value)">
+                                <!--<select required class="form-control" name="departments" id="departments" onchange="loadCities(this.value)">-->
+                                        <?php echo $comboDepto; ?>
+                                </select>
+                             <!-- <input type="text" class="form-control" id="departamento" name="departamento"required>-->
+                             <br><br>
+                          </div>
+                          
+                          <div class="col-sm-4">
+                               <b>Municipio:</b>  
+                               <div id="myDiv"> </div> 
+                          </div>
+                           
+                           
+                          <div class="col-sm-4">
+                              <b>Municipio: </b>     
+                               <input style ="display:none;" class="form-control" type="text" readonly value="<?=$municipio?>" name="municipio" id="municipio">                         
+                               <input type="text" class="form-control" id="nommunicipio" name="nommunicipio" value="<?=$nommunicipio?> " placeholder="Municipio" readonly><br>  
+                          </div>
+                          
+                          <!-- 
+                            necesito un campo lista  dependiente de otro campo lista, por ejemplo departamanto y ciudad
+                         
+                          <div class="col-sm-4" align="left">
+                              <label for="ciudad">Ciudad:</label>
+                              <select required class="form-control"  id="cities1" name="cities1">
+                                  <option value="">Seleccione una ciudad</option>
+                                  <!-- Opciones de ciudades que se actualizarán mediante AJAX  
+                              </select>
+                          
+                              <!--<label for="municipio">MUNICIPIO</label>
+                              <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required> 
+                          </div>
+                           -->
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;">  
+                          <div class="col-sm-6" align="left">  
+                              <label for="direccion">DIRECCION</label>
+                              <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
+                          </div>
+                       
+                          <div class="col-sm-6" align="left">
+                              <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
+                              <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
+                          </div>
+                          
+                       </div> <!--row-->
+                       
+                    </div> <!--container-->
+                    
+                    <div class="container" style="margin-bottom:10px;">
+                       <!--------------------------------------------------------- 
+                       ---------------------------ASIGNACIÓN----------------------
+                       ---------------------------------------------------------->
+                       <div class="row"  style="background-color:#D9EDF7; color:#2f79b9;" >
+                           <div class="col-sm-12" align="center">
+                               <h4>ASIGNACIÓN</h4>
+                           </div>
+                       </div>
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                          <div class="col-sm-4" align="left">
+                              <label for="autoriza_envio_info">AUTORIZA ENVIO DE INFO POR CORREO</label>
+                              <select class="form-control" id="autoriza_envio_info" name="autoriza_envio_info" value="<?=$autoriza_envio_info?>">
+                                  <option value="Si">Sí</option>
+                                  <option value="No">No</option>
+                                  <option value="Si">No reporta</option>
+                              </select>
+                          </div>
+                          
+                          <div class="col-sm-4" align="left">
+                              <label for="fecha_asignacion_analisis">FECHA ASIGNACION ANALISIS PRELIMINAR</label>
+                              <input type="date" class="form-control" id="fecha_asignacion_analisis" name="fecha_asignacion_analisis" value="<?=$fecha_asignacion_analisis?>">
+                          </div>
+                          
+                          <div class="col-sm-4" align="left">
+                              <label for="analista_solicitudes">ANALISTA DE SOLICITUDES</label>
+                              <select <?=$active?> required class="form-control" name="analista_solicitudes">
+                                 <?php echo $combo_analista_solicitudes; ?>
+                              </select>
+                          </div>
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="medidas_preventivas">MEDIDAS PREVENTIVAS</label>
+                               <!--<input type="text" class="form-control" id="medidas_preventivas" name="medidas_preventivas" value="<?=$medidas_preventivas?>">-->
+                               <select <?=$active?> required class="form-control" name="medidas_preventivas">
+                                  <?php echo $combo_medidas_preventivas; ?>
+                               </select>
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="estado_solicitud">ESTADO DE LA SOLICITUD</label>
+                               <!--<input type="text" class="form-control" id="estado_solicitud" name="estado_solicitud" value="<?=$estado_solicitud?>">-->
+                               <select <?=$active?> required class="form-control" name="estado_solicitud">
+                                  <?php echo $combo_estado_solicitud; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="fecha_asignado_ot">FECHA ASIGNADO OT</label>
+                               <input type="date" class="form-control" id="fecha_asignado_ot" name="fecha_asignado_ot" value="<?=$fecha_asignado_ot?>">
+                           </div>
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="fecha_reasignacion_ot">FECHA REASIGNACION OT</label>
+                               <input type="date" class="form-control" id="fecha_reasignacion_ot" name="fecha_reasignacion_ot" value="<?=$fecha_reasignacion_ot?>">
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="estado_ot">ESTADO OT</label>
+                               <!--<input type="text" class="form-control" id="estado_ot" name="estado_ot" value="<?=$estado_ot?>">-->
+                               <select <?=$active?> required class="form-control" name="estado_ot">
+                                  <?php echo $combo_estado_ot; ?>
+                               </select>
+                           </div>
+                          <div class="col-sm-4" align="left">
+                               <label for="ot">OT</label>
+                               <input type="text" class="form-control" id="ot" name="ot" value="<?=$ot?>">
+                           </div>
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="analista_riesgo">ANALISTA DE RIESGO</label>
+                               <!--<input type="text" class="form-control" id="analista_riesgo" name="analista_riesgo" value="<?=$analista_riesgo?>">-->
+                               <select <?=$active?> required class="form-control" name="analista_riesgo">
+                                  <?php echo $combo_analista_riesgo; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="analista_riesgo_dos">ANALISTA DE RIESGO DOS</label>
+                               <!--<input type="text" class="form-control" id="analista_riesgo_dos" name="analista_riesgo_dos" value="<?=$analista_riesgo_dos?>">-->
+                               <select <?=$active?> required class="form-control" name="analista_riesgo_dos">
+                                  <?php echo $combo_analista_riesgo; ?>
+                               </select>
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                               <label for="analista_calidad">ANALISTA DE CALIDAD</label>
+                               <!--<input type="text" class="form-control" id="analista_calidad" name="analista_calidad" value="<?=$analista_calidad?>">-->
+                               <select <?=$active?> required class="form-control" name="analista_calidad">
+                                  <?php echo $combo_analista_calidad; ?>
+                               </select>
+                           </div>
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                          <div class="col-sm-4" align="left">
+                              <label for="subpoblacion">SUBPOBLACION</label>
+                              <!--<input type="text" class="form-control" id="subpoblacion" name="subpoblacion" value="<?=$subpoblacion?>">-->
+                              <select <?=$active?> required class="form-control" name="subpoblacion">
+                                 <?php echo $combo_subpoblacion; ?>
+                              </select>
+                          </div>
+                
+                          <div class="col-sm-4" align="left">
+                              <label for="tipo_estudio_riesgo">TIPO ESTUDIO DE RIESGO</label>
+                              <!--<input type="text" class="form-control" id="tipo_estudio_riesgo" name="tipo_estudio_riesgo" value="<?=$tipo_estudio_riesgo?>">-->
+                              <select <?=$active?> required class="form-control" name="tipo_estudio_riesgo">
+                                 <?php echo $combo_tipo_estudio_riesgo; ?>
+                              </select>
+                          </div>
+                          
+                           <div class="col-sm-4" align="left">
+                               <label for="seguimiento">SEGUIMIENTO</label>
+                               <!--<input type="text" class="form-control" id="seguimiento" name="seguimiento" value="<?=$seguimiento?>">-->
+                               <select <?=$active?> required class="form-control" name="seguimiento">
+                                  <?php echo $combo_seguimiento; ?>
+                               </select>
+                           </div>
+                       </div> <!--row-->
+                       
+                       <!--
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="reporte_936">REPORTE 936</label>
+                               <input type="text" class="form-control" id="reporte_936" name="reporte_936" value="<?=$reporte_936?>">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                               <label for="verificacion">VERIFICACION</label>
+                               <input type="text" class="form-control" id="verificacion" name="verificacion" value="<?=$verificacion?>">
+                           </div>
+                       </div> <!--row
+                       -->
+                        
+                    </div> <!--container-->
+                    
                     <div class="container" style="margin-bottom:10px;">
                        <!--------------------------------------------------------- 
                        ---------------------------PREMESA Y SUBCOMISIÓN----------------------
@@ -1322,7 +1664,116 @@
                                <h4>PREMESA Y SUBCOMISIÓN</h4>
                            </div>
                        </div>
-                              
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="tramite_emergencia">ES TRAMITE DE EMERGENCIA?</label>
+                               <select class="form-control" id="es_tramite_emergencia" name="es_tramite_emergencia" required>
+                                  <option value="">Seleccione la opción</option>
+                                  <option value="si" <?=$siTramite?>>Sí</option>
+                                  <option value="no" <?=$noTramite?>>No</option>
+                               </select>
+                           </div>
+                           
+                         <!--  <div id='emergencia' style="<?=$prendeEmergencia?>"> -->
+                             <div class="col-sm-4" align="left">
+                               <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
+                               <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
+                             </div>
+                             <div class="col-sm-4" align="left">
+                               <label for="fecha_tramite_emergencia">FECHA TRAMITE DE EMERGENCIA</label>
+                               <input type="date" class="form-control" id="fecha_tramite_emergencia" name="fecha_tramite_emergencia" value="<?=$fecha_tramite_emergencia?>">
+                             </div>
+                           </div>
+                        <!-- </div>   -->
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-4" align="left">
+                               <label for="ingreso_calidad">INGRESO A CALIDAD</label>
+                               <input type="date" class="form-control" id="ingreso_calidad" name="ingreso_calidad" value="<?=$ingreso_calidad?>">
+                           </div>
+                           
+                           <div class="col-sm-4" align="left">
+                              <label for="fecha_aprobacion_calidad">FECHA APROBACION ASESOR TECNICO CALIDAD</label>
+                              <input type="date" class="form-control" id="fecha_aprobacion_calidad" name="fecha_aprobacion_calidad" value="<?=$fecha_aprobacion_calidad?>">
+                           </div>
+                           <div class="col-sm-4" align="left">
+                              <label for="fecha_presentacion_premesa">FECHA PRESENTACION PREMESA</label>
+                              <input type="date" class="form-control" id="fecha_presentacion_premesa" name="fecha_presentacion_premesa" value="<?=$fecha_presentacion_premesa?>">
+                           </div>
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           
+                           <div class="col-sm-6" align="left">
+                               <label for="recomendacion_medidas_premesa">RECOMENDACION DE MEDIDAS PREMESA</label>
+                               <select <?=$active?>  class="form-control" name="recomendacion_medidas_premesa">
+                                  <?php echo $combo_recomendacion_premesa; ?>
+                               </select>
+                           </div>
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-12" align="left">
+                              <label for="recomendacion_riesgo_premesa">RECOMENDACION DEL RIESGO PREMESA</label>
+                              <textarea  style="text-transform:uppercase;" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa" rows="5"> <?=$recomendacion_riesgo_premesa?> </textarea>
+                           </div>
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-12" align="left">
+                               <label for="observaciones_premesa">OBSERVACIONES PREMESA</label>
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="observaciones_premesa" name="observaciones_premesa" rows="5"> <?=$observaciones_premesa?> </textarea>
+                           </div>
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           <!--
+                           <div class="col-sm-3" align="left">
+                               <label for="tiempo_gestion_graerr">TIEMPO GESTION GRAERR</label>
+                               <input type="text" class="form-control" id="tiempo_gestion_graerr" name="tiempo_gestion_graerr" value="<?=$tiempo_gestion_graerr?>">
+                           </div>
+                           -->
+                           <div class="col-sm-3" align="left">
+                               <label for="remision_mesa_tecnica">REMISION MESA TECNICA</label>
+                               <input type="date" class="form-control" id="remision_mesa_tecnica" name="remision_mesa_tecnica" value="<?=$remision_mesa_tecnica?>">
+                           </div>
+                           <!--
+                           <div class="col-sm-3" align="left">
+                               <label for="mes_remision">MES DE REMISION</label>
+                               <input type="number" class="form-control" id="mes_remision" name="mes_remision" min="1" max="12" value="<?=$mes_remision?>">
+                           </div>
+                           <div class="col-sm-3" align="left">
+                               <label for="ano_remision">AÑO DE REMISION</label>
+                               <input type="number" class="form-control" id="ano_remision" name="ano_remision" min="1900" max="2099" value="<?=$ano_remision?>">
+                           </div>
+                           -->
+                        </div> <!--row-->
+                       
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-12" align="left">
+                               <label for="observaciones">OBSERVACIONES</label>
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="observaciones" name="observaciones" rows="5"> <?=$observaciones?> </textarea>
+                           </div>
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-12" align="left">
+                               <label for="otros">OTROS</label>
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="otros" name="otros" rows="5"> <?=$otros?> </textarea>
+                           </div>
+                           <!--
+                           <div class="col-sm-6" align="left">
+                               <label for="dev_traslados_poblacional">DEV/TRASLADOS POBLACIONAL</label>
+                               <input type="text" class="form-control" id="dev_traslados_poblacional" name="dev_traslados_poblacional" value="">
+                           </div>
+                           -->
+                        </div> <!--row-->
+                        
+                        <div class="row" style="margin-top:5px;"> 
+                           <div class="col-sm-6" align="left">
+                            </div>
+                        </div>       
                     </div> <!--container-->
                   </div>
                 </div> <!-- panel body -->	 
@@ -1343,8 +1794,83 @@
              <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
             </form>  
             
-            
-        
+            <?php
+              if ($no_personas_evaluar > 1 )
+              {
+            ?>  
+                 <div class="panel panel-info">
+	               <div class="panel-heading">
+        	          <div class="btn-group pull-right">    
+        	             <?php 
+        	              $lv      = $s_registro."/". $no_documento_ben_colectivo. "/". $ot . "/MOD1234567890qwertyuiopasdfghjkl";
+					      $lVDX    = base64_encode($lv);
+        	             ?>
+          	            <a href="beneficiarioColectivo.php?LA=<?=$lVDX?>" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus" ></span> Nuevo Beneficiario</a>
+	                  </div>
+        	          <h4><i class="fas fa-user-friends" style='color:#2f79b9'></i> BENEFICIARIOS DEL COLECTIVO </h4>
+	             </div>
+	               
+	             <div class="panel-body">	
+	                  <?php
+                        $sql="select * from  graerr_colectivo where registro = $s_registro";
+                        //echo '<br>';echo '<br>';echo '<br>';echo '<br>'; 
+                        //echo "el sql.." . $sql;
+                        //echo '<br>';echo '<br>';echo '<br>';echo '<br>';
+                        $stmt = $pdo->query($sql);
+                      ?>
+                      <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+                         <div class="table-responsive">
+	                      <table class='tablaResponsive table table-striped table-bordered table-hover'>
+	                            <th>No.Registro</th>
+					            <th>Documento</th>
+  					            <th>Nombres</th>
+					            <th>Apellidos</th>
+					            <th>Seudonimo</th>
+					            <th class='text-center' colspan="4">Acciones</th>   
+					            
+					             <?php
+			                       $i=1;
+			                       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			                         $s_registro                   = $row['registro'];
+			                         $s_ot                         = $row['ot'];
+			                         $tipo_documento_ben_colectivo = $row['tipo_documento_ben_colectivo'];
+  			                         $no_documento_ben_colectivo   = $row['no_documento_ben_colectivo'];
+  			                         $nombres_ben_colectivo        = $row['nombres_ben_colectivo'];
+  			                         $apellidos_ben_colectivo      = $row['apellidos_ben_colectivo'];
+  			                         $seudonimo_ben_colectivo      = $row['seudonimo_ben_colectivo'];
+			                    
+			                         $borrarB = $s_registro . "-" . $no_documento_ben_colectivo;
+			                         $lv      = $s_registro."/". $no_documento_ben_colectivo. "/". $ot . "/MOD1234567890qwertyuiopasdfghjkl";
+					                 $lVDX    = base64_encode($lv);
+    			                 ?>    
+    			                 
+    			                 <tr>	
+  		   			                <td><?php echo $tipo_documento_ben_colectivo; ?></td>
+  					                <td><?php echo $no_documento_ben_colectivo; ?></td>
+  					                <td><?php echo $nombres_ben_colectivo; ?></td>
+  					                <td><?php echo $apellidos_ben_colectivo; ?></td>
+  					                <td><?php echo $seudonimo_ben_colectivo; ?></td>
+  					       
+					                <td class='text-center'>
+					                  <a href="beneficiarioColectivo.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a>  
+					                  <input class='btn btn-danger btn-sm' type='submit' id='borrarBeneficiario' name='borrarBeneficiario' value='<?=$borrarB?> ' style="color:#D7524E;" onclick='return confirmarBeneficiario()'>  <i class="fa fa-trash" aria-hidden="true"></i>  
+					                 </td>  
+					              </tr>
+					           
+					           <?php
+                                 }//while
+					           ?> 
+					         </table>
+					      </div>
+					      <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
+                          <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>    
+					  </form>    
+	             </div> <!-- panel body -->
+	        
+	        <?php
+              }
+            ?>
+	        
             
             
             
