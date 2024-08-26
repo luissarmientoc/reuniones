@@ -563,7 +563,7 @@
                $noTramite = "";
              }
              
-    /*
+   
     echo "entra a grabar";
     echo '<br>';
     echo "1.." . $_POST['registro'];
@@ -682,7 +682,7 @@
     echo '<br>';
     echo "61.." . $otros;
     echo '<br>';
-      */
+     
     //MODIFICA
     if ($s_existe == "1")  
     {
@@ -737,6 +737,8 @@
     ///ADICIONA
     if ($s_existe == "0")
     {
+          echo "NUEVO";
+    echo '<br>';
        try {
                 // Conectar a la base de datos
                 //$conn = new PDO("pgsql:host=localhost;dbname=mi_base_de_datos", "mi_usuario", "mi_contraseña");
