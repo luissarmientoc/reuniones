@@ -1247,8 +1247,70 @@
         ?>
               <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">			 
                <div class="panel-body">
-                   <div class="container-fluid" style="margin-bottom:10px;">
-                        
+                   <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                           <div class="col-sm-12" align="center">
+                               <h4>DATOS DEL TRAMITE</h4>
+                           </div>
+                       </div>
+                       
+                       <div class="row" style="margin-top:5px;">
+                           <div class="col-sm-3" align="left">
+                               <label for="registro">REGISTRO</label>
+                               <input type="text" class="form-control" id="registro" name="registro"  value="<?=$s_registro?>" required readonly>
+                           </div>
+                           
+                           <div class="col-sm-3" align="left">
+                               <label for="vigencia">VIGENCIA</label>
+                              
+                                <select <?=$active?> required class="form-control" id="vigencia" name="vigencia" autofocus>
+                                  <?php echo $combo_vigencia; ?>
+                                </select>
+                           </div>
+                           
+                           <div class="col-sm-3" align="left">
+                               <label for="fecha_recepcion_unp">FECHA DE RECEPCION EN LA UNP</label>
+                               <input type="date" class="form-control" id="fecha_recepcion_unp" name="fecha_recepcion_unp"  value="<?=$fecha_recepcion_unp?>" required>
+                           </div>
+                          
+                            <div class="col-sm-3" align="left">
+                               <label for="fecha_recepcion_graerr">FECHA RECEPCION GRAERR</label>
+                               <input type="date" class="form-control" id="fecha_recepcion_graerr" name="fecha_recepcion_graerr"  value="<?=$fecha_recepcion_graerr?>" required>
+                            </div>
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;">
+                           <div class="col-sm-3" align="left">
+                               <label for="fecha_carta_solicitante">FECHA DE CARTA SOLICITANTE</label>
+                               <input type="date" class="form-control" id="fecha_carta_solicitante" name="fecha_carta_solicitante"  value="<?=$fecha_carta_solicitante?>" required>
+                           </div>
+                           
+                           <div  class="col-sm-3" align="left">
+                               <label for="no_mem_ext">No MEM y/o EXT</label>
+                               <input type="text" class="form-control" id="no_mem_ext" name="no_mem_ext"  value="<?=$no_mem_ext?>" required  style="text-transform:uppercase;">
+                           </div>
+                           
+                           <div class="col-sm-3" align="left">
+                                <label for="otras_entradas_sigob">OTRAS ENTRADAS SIGOB</label>
+                                <input type="text" class="form-control" id="otras_entradas_sigob" name="otras_entradas_sigob"  value="<?=$otras_entradas_sigob?>"  style="text-transform:uppercase;">
+                            </div>
+                            
+                            <div class="col-sm-3" align="left">
+                                <label for="no_folios">No FOLIOS</label>
+                                <input min="0" type="number" class="form-control" id="no_folios" name="no_folios"  value="<?=$no_folios?>" required>
+                            </div>
+                       </div> <!--row-->    
+                       
+                       <div class="row" style="margin-top:5px;">    
+                            <div class="col-sm-6" align="left">
+                                <label for="entidad_persona_solicitante">ENTIDAD/PERSONA SOLICITANTE</label>
+                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="entidad_persona_solicitante" name="entidad_persona_solicitante"  value="<?=$entidad_persona_solicitante?>" required>
+                            </div>
+                            
+                            <div class="col-sm-6" align="left">
+                                <label for="destinatario">DESTINATARIO</label>
+                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="destinatario" name="destinatario"  value="<?=$destinatario?>" required>
+                            </div>
+                       </div> <!--row-->
                     </div> <!--container-->
                     
                     <div class="container" style="margin-bottom:10px;">
