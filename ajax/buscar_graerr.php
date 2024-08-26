@@ -298,7 +298,7 @@
 						$sqlRut    = "select * from graerr_tipo_ruta where id=$tipo_ruta";
 						$stmtRut   = $pdo->query($sqlRut);
 					    $rowRut    = $stmtRut->fetch(PDO::FETCH_ASSOC);
-					    $ruta = $rowRut['estado_solicitud'];
+					    $ruta = $rowRut['tipo_ruta'];
 						
  					    $lv   = $registro. "/MOD1234567890qwertyuiopasdfghjkl";
 					    $lVDX = base64_encode($lv);
