@@ -44,6 +44,7 @@
              // Event listener para el cambio en el select con id 'tipo_ruta'
              document.getElementById('tipo_ruta').addEventListener('change', function() {
                  const miDiv1 = document.getElementById('elColectivo');
+                 const miDiv2 = document.getElementById('individual');
                  const seleccion1 = parseInt(this.value, 10); // Convertir el valor a número entero
                  console.log(seleccion1); // Usar console.log para depuración
 
@@ -52,6 +53,7 @@
                      miDiv1.style.display = 'none';
                  } else {
                      miDiv1.style.display = 'block';
+                     miDiv2.style.display = 'none';
                  }
              });
 
@@ -1375,6 +1377,12 @@
                        <! --------------------->
                        <div id="elColectivo" style="<?=$prendeColectivo?>">
                          <div class="row" style="margin-top:5px;">   
+                             <!--aqui-->
+                             <div class="col-sm-4" align="left">
+                               <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRE DEL COLECTIVO</label>
+                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
+                            </div>
+                            
                              <div class="col-sm-4" align="left">
                                 <label for="descripcion_colectivo">DESCRIPCION DEL COLECTIVO</label>
                                 <input  style="text-transform:uppercase;" type="text" class="form-control" id="descripcion_colectivo" name="descripcion_colectivo"  value="<?=$descripcion_colectivo?>">
@@ -1384,11 +1392,7 @@
                                <label for="nombre_colectivo">NOMBRE COLECTIVO</label>
                                <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombre_colectivo" name="nombre_colectivo"  value="<?=$nombre_colectivo?>">
                              </div>  
-                             <!--aqui-->
-                             <div class="col-sm-4" align="left">
-                               <label style="font-size:12px;" for="nombres_apellidos_peticionario">NOMBRES PETICIONARIO O BENEFICIARIO</label>
-                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required>
-                            </div>
+                             
                          </div>
                        </div> <!--- colectivo -->
                            
