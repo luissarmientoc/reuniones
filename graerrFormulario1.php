@@ -510,6 +510,7 @@
              $recomendacion_riesgo_premesa = strtoupper($recomendacion_riesgo_premesa);
              $observaciones                = strtoupper($observaciones);
              $otros                        = strtoupper($otros);
+              
              
              // asigna valores vacios a las fechas que lo requieren
              if ($fecha_recepcion_unp === "") {
@@ -546,6 +547,18 @@
                  // $fecha_presentacion_premesa = '0000-00-00'; // o
                  $fecha_presentacion_premesa = '1900-01-01';
              }
+             
+             if ($fecha_asignacion_analisis === "") {
+                 // $fecha_asignacion_analisis = '0000-00-00'; // o
+                 $fecha_asignacion_analisis = '1900-01-01';
+             }
+             
+             if ($fecha_tramite_emergencia === "") {
+                 // $fecha_tramite_emergencia = '0000-00-00'; // o
+                 $fecha_tramite_emergencia = '1900-01-01';
+             }
+             
+             
 
              //Realiza la validación del tipo de ruta y si es tramite de emergencia
                            
@@ -822,10 +835,7 @@
                    echo "el te..·" . $s_nuevo_te;
                    echo '<br>';
                  }
-                
-                
-                
-
+               
                 // Preparar la consulta SQL
                 $stmt = $pdo->prepare('INSERT INTO graerr_formulario_b (
                         registro, vigencia, fecha_recepcion_unp, fecha_recepcion_graerr, fecha_carta_solicitante,
