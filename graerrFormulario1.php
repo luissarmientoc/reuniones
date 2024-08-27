@@ -514,37 +514,37 @@
              // asigna valores vacios a las fechas que lo requieren
              if ($fecha_recepcion_unp === "") {
                  //$fecha_recepcion_unp = '0000-00-00'; // o
-                 $fecha_recepcion_unp =  "NULL"; 
+                 $fecha_recepcion_unp =  '1900-01-01'; 
              }
              
              if ($fecha_recepcion_graerr === "") {
                 // $fecha_recepcion_graerr = '0000-00-00'; // o
-                 $fecha_recepcion_graerr = "NULL"; 
+                 $fecha_recepcion_graerr = '1900-01-01';
              }
              
              if ($fecha_carta_solicitante === "") {
                 // $fecha_carta_solicitante = '0000-00-00'; // o
-                 $fecha_carta_solicitante = "NULL"; 
+                 $fecha_carta_solicitante = '1900-01-01';
              }
              
              if ($fecha_asignado_ot === "") {
                 // $fecha_asignado_ot = '0000-00-00'; // o
-                 $fecha_asignado_ot = "NULL"; 
+                 $fecha_asignado_ot = '1900-01-01';
              }
              
              if ($fecha_reasignacion_ot === "") {
               //   $fecha_reasignacion_ot = '0000-00-00'; // o
-                 $fecha_reasignacion_ot = "NULL"; 
+                 $fecha_reasignacion_ot = '1900-01-01';
              }
              
              if ($fecha_aprobacion_calidad === "") {
                 // $fecha_aprobacion_calidad = '0000-00-00'; // o
-                 $fecha_aprobacion_calidad = "NULL"; 
+                 $fecha_aprobacion_calidad = '1900-01-01';
              }
              
              if ($fecha_presentacion_premesa === "") {
                  // $fecha_presentacion_premesa = '0000-00-00'; // o
-                 $fecha_presentacion_premesa = "NULL"; 
+                 $fecha_presentacion_premesa = '1900-01-01';
              }
 
              //Realiza la validación del tipo de ruta y si es tramite de emergencia
