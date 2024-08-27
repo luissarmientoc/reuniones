@@ -196,6 +196,8 @@
 		          $sWhere1 .=" nombres_peticionario LIKE '%".$q2M."%' OR apellidos_peticionario LIKE '%".$q2M."%'";
 		        }    
 		    }
+		    
+		    
 		    if ($q3>0){
 		        if ($q2!='')
 		        {
@@ -208,33 +210,36 @@
 		            $sWhere1 .="tipo_ruta ='$q3'";
 		        }
 		    }
-		    if ($q4>0){
+		     
+		    if ($q4!=''){
+		        $q4M= strtoupper($q4);
 		        if ($q3>0)
 		        {
-		          $sWhere .=" and ot ='$q4'";
-		          $sWhere1 .=" and ot ='$q4'";    
-		        }
-		        else    
-		        {
-		            $sWhere .=" ot ='$q4'";
-		            $sWhere1 .=" ot ='$q4'";
-		        }
-		    }
-		    
-		    if ($q5>0){
-		        if ($q4>0)
-		        {     
-		          $sWhere .=" and no_mem_ext ='$q5'";
-		          $sWhere1 .=" and no_mem_ext ='$q5'";    
+		          $sWhere .=" and ot LIKE '%".$q4M."%' OR ot LIKE '%".$q4M."%'";
+		          $sWhere1 .=" and ot LIKE '%".$q4M."%' OR ot LIKE '%".$q4M."%'";    
 		        }
 		        else
 		        {
-		            $sWhere .=" no_mem_ext ='$q5'";
-		            $sWhere1 .=" no_mem_ext ='$q5'";
-		        }
+		          $sWhere .=" ot LIKE '%".$q4M."%' OR ot LIKE '%".$q4M."%'";
+		          $sWhere1 .=" ot LIKE '%".$q4M."%' OR ot LIKE '%".$q4M."%'";
+		        }    
 		    }
-           
-           ///////////////
+		    
+		    if ($q5!=''){
+		        $q5M= strtoupper($q5);
+		        if ($q4!="")
+		        {
+		          $sWhere .=" and no_mem_ext LIKE '%".$q5M."%' OR no_mem_ext LIKE '%".$q5M."%'";
+		          $sWhere1 .=" and no_mem_ext LIKE '%".$q5M."%' OR no_mem_ext LIKE '%".$q5M."%'";    
+		        }
+		        else
+		        {
+		          $sWhere .=" no_mem_ext LIKE '%".$q5M."%' OR no_mem_ext LIKE '%".$q5M."%'";
+		          $sWhere1 .=" no_mem_ext LIKE '%".$q5M."%' OR no_mem_ext LIKE '%".$q5M."%'";
+		        }    
+		    }
+		   
+            ///////////////
             // Configurar el modo de error para excepciones
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		    

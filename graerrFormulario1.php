@@ -797,7 +797,6 @@
                 //calcula y conforma nuevo consecutivo de la OT
                 //toma el año actual
                 $ano_actual = date('Y');
-                echo $ano_actual;
                 //consulta el maximo conscutivo
                 $sql = "SELECT MAX(consecutivo_ot) AS maximo_te FROM graerr_formulario_b";
                 $stmt = $pdo->query($sql);
