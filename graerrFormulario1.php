@@ -489,8 +489,8 @@
              $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
              $observaciones_premesa         = $_POST['observaciones_premesa'];
              $remision_mesa_tecnica         = $_POST['remision_mesa_tecnica'];
-             $observaciones                 = $_POST['observaciones'];
-             $otros                         = $_POST['otros'];
+             $observaciones                 = trim($_POST['observaciones']);
+             $otros                         = trim($_POST['otros']);
              $factor_diferencial            = $_POST['factor_diferencial'];
              $cantidad_hombres              = $_POST['cantidad_hombres'];
              $cantidad_mujeres              = $_POST['cantidad_mujeres'];
@@ -499,6 +499,7 @@
              //PONE TODO EN MAYUSCULAS
              $no_mem_ext                   = strtoupper($no_mem_ext);
              $entidad_persona_solicitante  = strtoupper($entidad_persona_solicitante);
+             $otras_entradas_sigob         = strtoupper($otras_entradas_sigob);
              $destinatario                 = strtoupper($destinatario);
              $nombres_peticionario         = strtoupper($nombres_peticionario);    
              $apellidos_peticionario       = strtoupper($apellidos_peticionario);
@@ -514,59 +515,48 @@
              
              // asigna valores vacios a las fechas que lo requieren
              if ($fecha_recepcion_unp === "") {
-                 //$fecha_recepcion_unp = '0000-00-00'; // o
                  $fecha_recepcion_unp =  '1900-01-01'; 
              }
              
              if ($fecha_recepcion_graerr === "") {
-                // $fecha_recepcion_graerr = '0000-00-00'; // o
                  $fecha_recepcion_graerr = '1900-01-01';
              }
              
              if ($fecha_carta_solicitante === "") {
-                // $fecha_carta_solicitante = '0000-00-00'; // o
                  $fecha_carta_solicitante = '1900-01-01';
              }
              
              if ($fecha_asignado_ot === "") {
-                // $fecha_asignado_ot = '0000-00-00'; // o
                  $fecha_asignado_ot = '1900-01-01';
              }
              
              if ($fecha_reasignacion_ot === "") {
-              //   $fecha_reasignacion_ot = '0000-00-00'; // o
                  $fecha_reasignacion_ot = '1900-01-01';
              }
              
              
              if ($ingreso_calidad === "") {
-                // $ingreso_calidad = '0000-00-00'; // o
                  $ingreso_calidad = '1900-01-01';
              }
              
              if ($fecha_aprobacion_calidad === "") {
-                // $fecha_aprobacion_calidad = '0000-00-00'; // o
                  $fecha_aprobacion_calidad = '1900-01-01';
              }
              
              
              if ($fecha_presentacion_premesa === "") {
-                 // $fecha_presentacion_premesa = '0000-00-00'; // o
                  $fecha_presentacion_premesa = '1900-01-01';
              }
              
              if ($fecha_asignacion_analisis === "") {
-                 // $fecha_asignacion_analisis = '0000-00-00'; // o
                  $fecha_asignacion_analisis = '1900-01-01';
              }
              
              if ($fecha_tramite_emergencia === "") {
-                 // $fecha_tramite_emergencia = '0000-00-00'; // o
                  $fecha_tramite_emergencia = '1900-01-01';
              }
              
-             
-
+              
              //Realiza la validación del tipo de ruta y si es tramite de emergencia
                            
              //tipo_ruta
@@ -585,6 +575,7 @@
                 $enciendeColectivo = "";
                 $enciendeIndividual = "readonly";
                 $apellidos_peticionario ='N/A';
+                $seudonimo = "N/A";
              }
              
              if ($tipo_ruta==3) //Sedes Residencias
@@ -783,8 +774,6 @@
     ///ADICIONA
     if ($s_existe == "0")
     {
-          echo "NUEVO";
-    echo '<br>';
        try {
                 // Conectar a la base de datos
                 //$conn = new PDO("pgsql:host=localhost;dbname=mi_base_de_datos", "mi_usuario", "mi_contraseña");
@@ -817,12 +806,14 @@
         
                 $s_nuevo_con_ot = $s_maximo + 1;
                 $s_nuevo_ot     = $ano_actual . "-" . $s_nuevo_con_ot;
+                $ot = $s_nuevo_ot;
                 
                 echo '<br>';
                 echo "el ot..·" . $s_nuevo_ot;
                 echo '<br>';
                 
                 // ¿es tramite de emergencia?
+                $s_nuevo_con_te=0;
                 if ($es_tramite_emergencia=="si" or $es_tramite_emergencia=="s")
                 {
                    //calcula y conforma nuevo consecutivo del tremite de emergencia
@@ -835,8 +826,9 @@
                    $row  = $stmt->fetch(PDO::FETCH_ASSOC);
                    $s_maximo = $row['maximo_te'];
         
-                   $s_nuevo_con_te = $s_maximo + 1;
-                   $s_nuevo_te     = $ano_actual . "-" . $s_nuevo_con_te;
+                   $s_nuevo_con_te     = $s_maximo + 1;
+                   $s_nuevo_te         = $ano_actual . "-" . $s_nuevo_con_te;
+                   $tramite_emergencia = $s_nuevo_te;
                    
                    echo '<br>';
                    echo "el te..·" . $s_nuevo_te;
@@ -856,7 +848,8 @@
                         analista_calidad, subpoblacion, tipo_estudio_riesgo, seguimiento, es_tramite_emergencia, 
                         tramite_emergencia, fecha_tramite_emergencia, ingreso_calidad, fecha_aprobacion_calidad, fecha_presentacion_premesa,
                         recomendacion_riesgo_premesa, recomendacion_medidas_premesa, observaciones_premesa, remision_mesa_tecnica, observaciones, 
-                        otros, cantidad_hombres, cantidad_mujeres, cantidad_binarios	           
+                        otros, cantidad_hombres, cantidad_mujeres, cantidad_binarios,
+                        consecutivo_ot, consecutivo_te
                       ) VALUES (?, ?, ?, ?, ?, 
                                 ?, ?, ?, ?, ?,
                                 ?, ?, ?, ?, ?, 
@@ -868,7 +861,8 @@
                                 ?, ?, ?, ?, ?, 
                                 ?, ?, ?, ?, ?, 
                                 ?, ?, ?, ?, ?, 
-                                ?, ?, ?, ?)');
+                                ?, ?, ?, ?,
+                                ?, ?)');
 
                 // Ejecutar la consulta con los valores correspondientes
                 $stmt->execute([
@@ -883,7 +877,8 @@
                        $analista_calidad, $subpoblacion, $tipo_estudio_riesgo, $seguimiento, $es_tramite_emergencia, 
                        $tramite_emergencia, $fecha_tramite_emergencia, $ingreso_calidad, $fecha_aprobacion_calidad, $fecha_presentacion_premesa,
                        $recomendacion_riesgo_premesa, $recomendacion_medidas_premesa, $observaciones_premesa, $remision_mesa_tecnica, $observaciones, 
-                       $otros, $cantidad_hombres, $cantidad_mujeres , $cantidad_binarios	           
+                       $otros, $cantidad_hombres, $cantidad_mujeres , $cantidad_binarios, 
+                       $s_nuevo_con_ot, $s_nuevo_con_te	           
                       ]);              
                    
                       $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
@@ -1664,7 +1659,7 @@
                            </div>
                           <div class="col-sm-4" align="left">
                                <label for="ot">OT</label>
-                               <input type="text" class="form-control" id="ot" name="ot" value="<?=$ot?>">
+                               <input type="text" class="form-control" id="ot" name="ot" value="<?=$ot?>" readonly>
                            </div>
                        </div> <!--row-->
                        
@@ -1758,7 +1753,7 @@
                           <div id='emergencia' style="<?=$prendeEmergencia?>"> 
                              <div class="col-sm-4" align="left">
                                <label for="tramite_emergencia">TRAMITE DE EMERGENCIA</label>
-                               <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>">
+                               <input type="text" class="form-control" id="tramite_emergencia" name="tramite_emergencia" value="<?=$tramite_emergencia?>" readonly>
                              </div>
                              <div class="col-sm-4" align="left">
                                <label for="fecha_tramite_emergencia">FECHA TRAMITE DE EMERGENCIA</label>
