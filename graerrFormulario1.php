@@ -806,12 +806,12 @@
         
                 $s_nuevo_con_ot = $s_maximo + 1;
                 $s_nuevo_ot     = $ano_actual . "-" . $s_nuevo_con_ot;
-                $ot = $s_nuevo_ot;
-                
+                $ot = "OT" .$s_nuevo_ot;
+                /*
                 echo '<br>';
                 echo "el ot..·" . $s_nuevo_ot;
                 echo '<br>';
-                
+                */
                 // ¿es tramite de emergencia?
                 $s_nuevo_con_te=0;
                 if ($es_tramite_emergencia=="si" or $es_tramite_emergencia=="s")
@@ -828,11 +828,12 @@
         
                    $s_nuevo_con_te     = $s_maximo + 1;
                    $s_nuevo_te         = $ano_actual . "-" . $s_nuevo_con_te;
-                   $tramite_emergencia = $s_nuevo_te;
-                   
+                   $tramite_emergencia = "TE." . $s_nuevo_te;
+                   /*
                    echo '<br>';
                    echo "el te..·" . $s_nuevo_te;
                    echo '<br>';
+                   */
                  }
                
                 // Preparar la consulta SQL
