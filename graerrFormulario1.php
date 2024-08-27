@@ -538,6 +538,12 @@
                  $fecha_reasignacion_ot = '1900-01-01';
              }
              
+             
+             if ($ingreso_calidad === "") {
+                // $ingreso_calidad = '0000-00-00'; // o
+                 $ingreso_calidad = '1900-01-01';
+             }
+             
              if ($fecha_aprobacion_calidad === "") {
                 // $fecha_aprobacion_calidad = '0000-00-00'; // o
                  $fecha_aprobacion_calidad = '1900-01-01';
