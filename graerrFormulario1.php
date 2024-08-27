@@ -574,7 +574,7 @@
                 $nombre_colectivo = '';
              }
              
-              //es_tramite_emergencia
+             //es_tramite_emergencia
              if ($es_tramite_emergencia=="no" or $es_tramite_emergencia=="n")
              {
                $prendeEmergencia = "display: none;";   
@@ -582,7 +582,7 @@
                $noTramite = "selected";
              }
              
-             if ($es_tramite_emergencia=="si")
+             if ($es_tramite_emergencia=="si" or $es_tramite_emergencia=="s")
              {
                $prendeEmergencia = "display: block;";
                $siTramite = "selected";
@@ -784,6 +784,47 @@
                 //echo '<br>';
                 //echo "el regi..·" . $s_registro;
                 //echo '<br>';
+                
+                //calcula y conforma nuevo consecutivo de la OT
+                //toma el año actual
+                $ano_actual = date('Y');
+                echo $ano_actual;
+                //consulta el maximo conscutivo
+                $sql = "SELECT MAX(consecutivo_ot) AS maximo_te FROM graerr_formulario_b";
+                $stmt = $pdo->query($sql);
+                $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+                $s_maximo = $row['maximo_ot'];
+        
+                $s_nuevo_con_ot = $s_maximo + 1;
+                $s_nuevo_ot     = $ano_actual . "-" . $s_nuevo_con_ot;
+                
+                echo '<br>';
+                echo "el ot..·" . $s_nuevo_ot;
+                echo '<br>';
+                
+                // ¿es tramite de emergencia?
+                if ($es_tramite_emergencia=="si" or $es_tramite_emergencia=="s")
+                {
+                   //calcula y conforma nuevo consecutivo del tremite de emergencia
+                   //toma el año actual
+                   $ano_actual = date('Y');
+                   echo $ano_actual;
+                   //consulta el maximo conscutivo
+                   $sql = "SELECT MAX(consecutivo_te) AS maximo_te FROM graerr_formulario_b";
+                   $stmt = $pdo->query($sql);
+                   $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+                   $s_maximo = $row['maximo_te'];
+        
+                   $s_nuevo_con_te = $s_maximo + 1;
+                   $s_nuevo_te     = $ano_actual . "-" . $s_nuevo_con_te;
+                   
+                   echo '<br>';
+                   echo "el te..·" . $s_nuevo_te;
+                   echo '<br>';
+                 }
+                
+                
+                
 
                 // Preparar la consulta SQL
                 $stmt = $pdo->prepare('INSERT INTO graerr_formulario_b (
