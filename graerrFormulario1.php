@@ -802,7 +802,7 @@
                 $sql = "SELECT MAX(consecutivo_ot) AS maximo_te FROM graerr_formulario_b";
                 $stmt = $pdo->query($sql);
                 $row  = $stmt->fetch(PDO::FETCH_ASSOC);
-                $s_maximo = $row['maximo_ot'];
+                $s_maximo = $row['maximo_te'];
         
                 $s_nuevo_con_ot = $s_maximo + 1;
                 $s_nuevo_ot     = $ano_actual . "-" . $s_nuevo_con_ot;
@@ -828,7 +828,7 @@
         
                    $s_nuevo_con_te     = $s_maximo + 1;
                    $s_nuevo_te         = $ano_actual . "-" . $s_nuevo_con_te;
-                   $tramite_emergencia = "TE." . $s_nuevo_te;
+                   $tramite_emergencia = "T." . $s_nuevo_te;
                    /*
                    echo '<br>';
                    echo "el te..·" . $s_nuevo_te;
