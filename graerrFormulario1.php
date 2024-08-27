@@ -543,6 +543,7 @@
                  $fecha_aprobacion_calidad = '1900-01-01';
              }
              
+             
              if ($fecha_presentacion_premesa === "") {
                  // $fecha_presentacion_premesa = '0000-00-00'; // o
                  $fecha_presentacion_premesa = '1900-01-01';
