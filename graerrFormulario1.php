@@ -1300,19 +1300,19 @@
                            
                            <div class="col-sm-3" align="left">
                                <label for="fecha_recepcion_unp">FECHA DE RECEPCION EN LA UNP</label>
-                               <input type="date" class="form-control" id="fecha_recepcion_unp" name="fecha_recepcion_unp"  value="<?=$fecha_recepcion_unp?>" required>
+                               <input type="date" class="form-control" id="fecha_recepcion_unp" name="fecha_recepcion_unp"  value="<?=$fecha_recepcion_unp?>" >
                            </div>
                           
                             <div class="col-sm-3" align="left">
                                <label for="fecha_recepcion_graerr">FECHA RECEPCION GRAERR</label>
-                               <input type="date" class="form-control" id="fecha_recepcion_graerr" name="fecha_recepcion_graerr"  value="<?=$fecha_recepcion_graerr?>" required>
+                               <input type="date" class="form-control" id="fecha_recepcion_graerr" name="fecha_recepcion_graerr"  value="<?=$fecha_recepcion_graerr?>" >
                             </div>
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">
                            <div class="col-sm-3" align="left">
                                <label for="fecha_carta_solicitante">FECHA DE CARTA SOLICITANTE</label>
-                               <input type="date" class="form-control" id="fecha_carta_solicitante" name="fecha_carta_solicitante"  value="<?=$fecha_carta_solicitante?>" required>
+                               <input type="date" class="form-control" id="fecha_carta_solicitante" name="fecha_carta_solicitante"  value="<?=$fecha_carta_solicitante?>" >
                            </div>
                            
                            <div  class="col-sm-3" align="left">
