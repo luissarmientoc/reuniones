@@ -408,6 +408,15 @@
       $s_existe = 0;
       $boton="Grabar";
       
+      //inicializa valores numericos en 0
+      
+      $otros_numeros_contacto = 0;
+      $cantidad_hombres       = 0;
+      $cantidad_mujeres       = 0;
+      $cantidad_binarios      = 0;
+      $no_folios              = 0;
+        
+      
       /*
         // GENERA EL NUMERO DEL NUEVO REGISTRO
         $sql = "SELECT MAX(registro) AS maximo FROM graerr_formulario_b";
@@ -1277,6 +1286,93 @@
 	  $rowDep       = $stmtDep->fetch(PDO::FETCH_ASSOC);
       $nommunicipio = $rowDep['nommunicipio'];
     }
+    
+    
+    //===========================================================
+    //===================== MODAL ===============================
+    
+    //============================= CUADRANTE
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT cuadrante  FROM graerr_bas_cuadrante order by cuadrante');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_cuadrante .=" <option value=''>".'- Seleccione el cuadrante -'."</option>";
+      }
+      
+       $combo_cuadrante .=" <option value='".$line['cuadrante']."'>".$line['cuadrante']."</ano>"; 
+      $i++; 
+    }
+    
+    //============================= MANZANA
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT id, manzana  FROM graerr_bas_manzana order by manzana');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_manzana .=" <option value=''>".'- Seleccione la manzana -'."</option>";
+      }
+      
+      $combo_manzana .=" <option value='".$line['id']."'>".$line['manzana']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= graerr_bas_tipo_predio
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT id, tipo  FROM graerr_bas_tipo_predio order by tipo');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_predio .=" <option value=''>".'- Seleccione el tipo de predio -'."</option>";
+      }
+      
+      $combo_tipo_predio .=" <option value='".$line['id']."'>".$line['tipo']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= graerr_bas_tipo_predio
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT id, tipo_via  FROM graerr_bas_tipo_via order by tipo');
+    
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_via .=" <option value=''>".'- Seleccione el tipo de via -'."</option>";
+      }
+      
+      $combo_tipo_via .=" <option value='".$line['id']."'>".$line['tipo']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= graerr_bas_urbanizacion
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT id, tipo  FROM graerr_bas_urbanizacion order by tipo');
+    
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_urbanizacion .=" <option value=''>".'- Seleccione el tipo urbanización -'."</option>";
+      }
+      
+      $combo_urbanizacion .=" <option value='".$line['id']."'>".$line['tipo']."</option>"; 
+      $i++; 
+    }
+    
+    
+    //===========================================================
+    //===================== MODAL ===============================
+    
+    
  ?>  
               <!-- Page Content Holder -->
               <div id="content">  
@@ -1375,7 +1471,7 @@
                            
                            <div class="col-sm-3" align="left">
                                 <label for="otras_entradas_sigob">OTRAS ENTRADAS SIGOB</label>
-                                <input type="text" class="form-control" id="otras_entradas_sigob" name="otras_entradas_sigob"  value="<?=$otras_entradas_sigob?>"  style="text-transform:uppercase;">
+                                <input type="text" class="form-control" id="otras_entradas_sigob" name="otras_entradas_sigob"  value="<?=$otras_entradas_sigob?>"  style="text-transform:uppercase;" required>
                             </div>
                             
                             <div class="col-sm-3" align="left">
@@ -1427,7 +1523,7 @@
                            
                            <div class="col-sm-4" align="left">
                                <label for="no_documento">No DE DOCUMENTO</label>
-                               <input type="number" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
+                               <input min="4" type="number" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required>
                            </div>
                        </div> <!--row-->
                        
@@ -1527,7 +1623,7 @@
                           </div> 
                           <div class="col-sm-4" align="left">
                               <label for="no_contacto">No DE CONTACTO</label>
-                              <input type="number" class="form-control" id="no_de_contacto" name="no_de_contacto"  value="<?=$no_de_contacto?>" required>
+                              <input min="0" type="number" class="form-control" id="no_de_contacto" name="no_de_contacto"  value="<?=$no_de_contacto?>" required>
                           </div>
                           <div class="col-sm-4" align="left">
                               <label for="otros_numeros_contacto">OTROS NUMEROS DE CONTACTO</label>
@@ -1942,7 +2038,69 @@
             ?>
 	        
             
-            
+        <!---============================= mODAL ===========->
+        
+        <!-- Botón para abrir el modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Abrir Modal
+    </button>
+    
+    <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccionvv" name="direccionvv"  value="<?=$direccion?>" required>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Selecciona Dirección</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addressForm">
+                        <div class="form-group">
+                            <label for="addressType">Tipo de dirección:</label>
+                            <select class="form-control" id="addressType" required>
+                                <option value="" disabled selected>Selecciona una opción</option>
+                                <option value="rural">Rural</option>
+                                <option value="urbano">Urbano</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="ruralOptions" style="display: none;">
+                            <label for="ruralType">Tipo de rural:</label>
+                            <select class="form-control" id="ruralType">
+                                <option value="" disabled selected>Selecciona un tipo</option>
+                                <option value="corregimiento">Corregimiento</option>
+                                <option value="centro_poblado">Centro Poblado</option>
+                                <option value="vereda">Vereda</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="urbanoOptions" style="display: none;">
+                            <label for="urbanoType">Tipo de urbano:</label>
+                            <select class="form-control" id="urbanoType">
+                                <option value="" disabled selected>Selecciona un tipo</option>
+                                <option value="tipo_via">Tipo de Vía</option>
+                                <option value="barrio">Barrio</option>
+                                <option value="campo_abierto">Campo Abierto</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección:</label>
+                            <input style="text-transform:uppercase;" type="text" class="form-control" id="direccion" name="direccion" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="saveAddress">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!---- =========================!----->
             
             
          </div> <!-- content -->   
