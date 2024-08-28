@@ -2071,6 +2071,28 @@
                 </div>
                 <div class="modal-body">
                     <form id="addressForm">
+                      <div class col-sm-4>
+                            1.DESPLEGABLE: TIPO DE VIA:
+                            <div class="form-group">
+                               <select <?=$active?> required class="form-control" id="tipo_via">
+                                  <?php echo $combo_tipo_via; ?>
+                               </select>
+                            </div>    
+                       </div>
+                       
+                       <div class col-sm-4>
+                             2.DESPLEGABLE: CUADRANTE:
+                            <div class="form-group">
+                              <select <?=$active?> required class="form-control" id="cuadrante">
+                                  <?php echo $combo_cuadrante; ?>
+                               </select>
+                            </div>      
+                       </div>
+                       
+                       <div class col-sm-4>
+                             3.Número de la vía generadora   
+                       </div>
+                       
                         <div class="form-group">
                             <label for="addressType">Tipo de dirección:</label>
                             <select class="form-control" id="addressType" required>
@@ -2080,18 +2102,26 @@
                             </select>
                             
                             
-                              
+                           
+                            3.Número de la vía generadora
+                            4.Letra, letra-letra o letra-número-letra que acompañan la vía generadora
+                            5.Sufijo (BIS):
+                            6.Letra, letra-letra o letra-número-letra que acompaña el prefijo (BIS) desde la A hasta la Z
+                            7.Número de la placa: 
+                            8.DESPLEGABLE: CUADRANTE:
+                            9. Complemento
+                            10. BARRIO
+                            11.DESPLEGBLE: URBANIZACION:
+                             12. desplegable MANZANA: 
+                             13.desplegable: TIPO PREDIO:
+
                              
                              
                              
                             
                         </div>
                         
-                        <div class="form-group">
-                              <select <?=$active?> required class="form-control" id="cuadrante">
-                                  <?php echo $combo_cuadrante; ?>
-                               </select>
-                        </div>   
+                        
                         
                         <div class="form-group">
                             <select <?=$active?> required class="form-control" id="manzana">
@@ -2105,11 +2135,7 @@
                                </select>
                         </div>
                         
-                        <div class="form-group">
-                            <select <?=$active?> required class="form-control" id="tipo_via">
-                                  <?php echo $combo_tipo_via; ?>
-                               </select>
-                        </div>    
+                        
                             
                             <div class="form-group">
                             <select <?=$active?> required class="form-control" id="urbanizacion">
