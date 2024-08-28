@@ -2088,31 +2088,31 @@
                         </div>
                         
                         <div class="form-group">
-                              <select <?=$active?> required class="form-control" name="cuadrante">
+                              <select <?=$active?> required class="form-control" id="cuadrante">
                                   <?php echo $combo_cuadrante; ?>
                                </select>
                         </div>   
                         
                         <div class="form-group">
-                            <select <?=$active?> required class="form-control" name="manzana">
+                            <select <?=$active?> required class="form-control" id="manzana">
                                   <?php echo $combo_manzana; ?>
                                </select>
                         </div>
                         
                         <div class="form-group">
-                            <select <?=$active?> required class="form-control" name="tipo_predio">
+                            <select <?=$active?> required class="form-control" id="tipo_predio">
                                   <?php echo $combo_tipo_predio; ?>
                                </select>
                         </div>
                         
                         <div class="form-group">
-                            <select <?=$active?> required class="form-control" name="tipo_via">
+                            <select <?=$active?> required class="form-control" id="tipo_via">
                                   <?php echo $combo_tipo_via; ?>
                                </select>
                         </div>    
                             
                             <div class="form-group">
-                            <select <?=$active?> required class="form-control" name="urbanizacion">
+                            <select <?=$active?> required class="form-control" id="urbanizacion">
                                   <?php echo $combo_urbanizacion; ?>
                                </select>
                         </div>  
