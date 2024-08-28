@@ -1363,7 +1363,7 @@
       $combo_tipo_via .=" <option value='".$line['id']."'>".$line['tipo_via']."</option>"; 
       $i++; 
     }
-    
+   
     //============================= graerr_bas_urbanizacion
     //============================================================================ 
     $stmt = $pdo->query('SELECT id, tipo  FROM graerr_bas_urbanizacion order by tipo');
@@ -1379,7 +1379,7 @@
       $combo_urbanizacion .=" <option value='".$line['id']."'>".$line['tipo']."</option>"; 
       $i++; 
     }
-    
+     
     
     //===========================================================
     //===================== MODAL ===============================
@@ -2078,7 +2078,46 @@
                                 <option value="rural">Rural</option>
                                 <option value="urbano">Urbano</option>
                             </select>
+                            
+                            
+                              
+                             
+                             
+                             
+                            
                         </div>
+                        
+                        <div class="form-group">
+                              <select <?=$active?> required class="form-control" name="cuadrante">
+                                  <?php echo $combo_cuadrante; ?>
+                               </select>
+                        </div>   
+                        
+                        <div class="form-group">
+                            <select <?=$active?> required class="form-control" name="manzana">
+                                  <?php echo $combo_manzana; ?>
+                               </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select <?=$active?> required class="form-control" name="tipo_predio">
+                                  <?php echo $combo_tipo_predio; ?>
+                               </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select <?=$active?> required class="form-control" name="tipo_via">
+                                  <?php echo $combo_tipo_via; ?>
+                               </select>
+                        </div>    
+                            
+                            <div class="form-group">
+                            <select <?=$active?> required class="form-control" name="urbanizacion">
+                                  <?php echo $combo_urbanizacion; ?>
+                               </select>
+                        </div>  
+                        
+                        
                         <div class="form-group" id="ruralOptions" style="display: none;">
                             <label for="ruralType">Tipo de rural:</label>
                             <select class="form-control" id="ruralType">
