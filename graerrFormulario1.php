@@ -120,7 +120,19 @@
               #elColectivo {
                display: none; /* Inicialmente visible */
               }
-       </style>
+              
+              .modal-content {
+            border-radius: 8px;
+        }
+        .modal-header {
+            border-bottom: none;
+        }
+        .modal-footer {
+            border-top: none;
+        }
+        </style>
+       
+       
   </head>
   
   <?php  
@@ -2111,12 +2123,6 @@
         ?>
         <!--- fin complemento -->
         </div> <!-- wrapper -->
-        
-             
-        
-        
-        
-            
      <hr>
      <?php
       // include("footer.php");
@@ -2141,6 +2147,56 @@
       
       <script type="text/javascript" src="js/bootstrap-filestyle.js"> </script>
       <script type="text/javascript" src="buscarCiudad.js"></script>
+      
+      
+        <!-- Scripts de Bootstrap y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script para mostrar opciones según el tipo seleccionado -->
+    <script>
+        document.getElementById('addressType').addEventListener('change', function() {
+            const addressType = this.value;
+            const ruralOptions = document.getElementById('ruralOptions');
+            const urbanoOptions = document.getElementById('urbanoOptions');
+
+            if (addressType === 'rural') {
+                ruralOptions.style.display = 'block';
+                urbanoOptions.style.display = 'none';
+            } else if (addressType === 'urbano') {
+                ruralOptions.style.display = 'none';
+                urbanoOptions.style.display = 'block';
+            } else {
+                ruralOptions.style.display = 'none';
+                urbanoOptions.style.display = 'none';
+            }
+        });
+
+        document.getElementById('saveAddress').addEventListener('click', function() {
+            // Obtener los valores de los campos
+            const direccion = document.getElementById('direccion').value;
+            const addressType = document.getElementById('addressType').value;
+            const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
+            const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
+
+            const concatenatedInfo = `Dirección: ${direccion}, Tipo de Dirección: ${addressType}, Tipo Rural: ${ruralType}, Tipo Urbano: ${urbanoType}`;
+
+
+            document.getElementById('direccionvv').value = concatenatedInfo;
+
+            // Mostrar el valor de dirección y tipo seleccionado
+            console.log(`Dirección: ${direccion}`);
+            console.log(`Tipo de dirección: ${addressType}`);
+            console.log(`Tipo rural: ${ruralType}`);
+            console.log(`Tipo urbano: ${urbanoType}`);
+
+            // Aquí podrías hacer algo con la dirección, como enviar el formulario o actualizar algún campo
+
+            // Cerrar el modal
+            $('#myModal').modal('hide');
+        });
+    </script>
      
       <!-- Bootstrap core JavaScript
       ================================================== -->
