@@ -2218,8 +2218,15 @@
             const addressType = document.getElementById('addressType').value;
             const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
             const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
+            
+            
+            const laManzana      = document.getElementById('cuadrante manzana') ? document.getElementById('cuadrante').value : '';
+            const elTipoPredio   = document.getElementById('tipo_predio') ? document.getElementById('tipo_predio').value : '';
+            const elTipoVia      = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
+            const laUrbanizacion = document.getElementById('urbanizacion')? document.getElementById('urbanizacion').value : '';
 
-            const concatenatedInfo = `Dirección: ${direccion}, Tipo de Dirección: ${addressType}, Tipo Rural: ${ruralType}, Tipo Urbano: ${urbanoType}`;
+
+            const concatenatedInfo = `Dirección: ${direccion}, Tipo de Dirección: ${addressType}, Tipo Rural: ${ruralType}, Tipo Urbano: ${urbanoType}, La manzana: ${laManzana}, El tipo predio: ${elTipoPredio}, El tipo via: ${elTipoVia}, La urbanizacion: ${laUrbanizacion}, `;
 
 
             document.getElementById('direccionvv').value = concatenatedInfo;
