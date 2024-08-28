@@ -1338,7 +1338,7 @@
     
     //============================= graerr_bas_tipo_predio
     //============================================================================ 
-    $stmt = $pdo->query('SELECT id, tipo_via  FROM graerr_bas_tipo_via order by tipo');
+    $stmt = $pdo->query('SELECT id, tipo_via  FROM graerr_bas_tipo_via order by tipo_via');
     
     $i=0;
     while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
@@ -1348,7 +1348,7 @@
         $combo_tipo_via .=" <option value=''>".'- Seleccione el tipo de via -'."</option>";
       }
       
-      $combo_tipo_via .=" <option value='".$line['id']."'>".$line['tipo']."</option>"; 
+      $combo_tipo_via .=" <option value='".$line['id']."'>".$line['tipo_via']."</option>"; 
       $i++; 
     }
     
