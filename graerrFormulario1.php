@@ -2339,26 +2339,8 @@
             const ruralType   = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
             const urbanoType  = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
             const tipo_via    = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
-            const cuadrante_tipo_via = document.getElementById('cuadrante_tipo_via') ? document.getElementById('cuadrante_tipo_via').value : '';
-            const via_generadora = document.getElementById('via_generadora').value; 
-            const letra_via_generadora = document.getElementById('letra_via_generadora') ? document.getElementById('letra_via_generadora').value : '';
-            const sufijo = document.getElementById('sufijo') ? document.getElementById('sufijo').value : '';
-            const letra_sufijo = document.getElementById('letra_sufijo') ? document.getElementById('letra_sufijo').value : '';
-            const numero_placa = document.getElementById('numero_placa').value;
-            const cuadrante_numero_placa = document.getElementById('cuadrante_numero_placa') ? document.getElementById('cuadrante_numero_placa').value : '';
-            const complemento = document.getElementById('complemento').value;
-            
-            //const concatenatedInfo = `Dirección: ${direccion}, Tipo de Dirección: ${addressType}, Tipo Rural: ${ruralType}, Tipo Urbano: ${urbanoType}`;
 
-
-            const concatenatedInfo = ${addressType}, ${ruralType}, ${urbanoType}, ${tipo_via}, ${cuadrante_tipo_via},
-                                     ${via_generadora}, ${letra_via_generadora}, ${sufijo}, ${letra_sufijo}, ${numero_placa},
-                                     ${cuadrante_numero_placa}, ${complemento};
-
-
-
-            document.getElementById('direccionvv').value = concatenatedInfo;
-
+           
             // Mostrar el valor de dirección y tipo seleccionado
             // console.log(`Dirección: ${direccion}`);
             // console.log(`Tipo de dirección: ${addressType}`);
