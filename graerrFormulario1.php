@@ -142,8 +142,12 @@
                         concatenatedInfo += concatenatedInfo ? ` ${urbanoType}` : `${urbanoType}`;
                     }
                     
-                    if (cuadrante_tipo_via) {
-                        concatenatedInfo += concatenatedInfo ? ` ${cuadrante_tipo_via}` : `${cuadrante_tipo_via}`;
+                    if (tipo_via) {
+                        concatenatedInfo += concatenatedInfo ? ` ${tipo_via}` : `${tipo_via}`;
+                    }
+                    
+                    if (cuadrante) {
+                        concatenatedInfo += cuadrante ? ` ${cuadrante}` : `${cuadrante}`;
                     }
                     
                     if (via_generadora) {
@@ -152,10 +156,6 @@
                     
                     if (letra_via_generadora) {
                         concatenatedInfo += concatenatedInfo ? ` ${letra_via_generadora}` : `${letra_via_generadora}`;
-                    }
-                    
-                    if (letra_via_generadora) {
-                        concatenatedInfo += concatenatedInfo ? ` ${sufijo}` : `${sufijo}`;
                     }
                     
                     if (letra_via_generadora) {
