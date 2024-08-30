@@ -113,6 +113,9 @@
              }
              
              function concatenarDir() {
+                 
+                    alert('Entre a direccion.');
+
                    
                    const addressType = document.getElementById('addressType').value;
                    const ruralType   = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
@@ -126,7 +129,7 @@
                    const cuadrante_numero_placa = document.getElementById('cuadrante_numero_placa') ? document.getElementById('cuadrante_numero_placa').value : '';
                    const complemento = document.getElementById('complemento').value;
                    
-                  
+                   alert(addressType);
                    
                    const concatenatedInfo = ${addressType}, ${ruralType}, ${urbanoType}, ${tipo_via}, ${cuadrante_tipo_via},
                                             ${via_generadora}, ${letra_via_generadora}, ${sufijo}, ${letra_sufijo}, ${numero_placa},
