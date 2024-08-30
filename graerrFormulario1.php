@@ -2078,8 +2078,9 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                     </div> <!-- modal-header -->    
-                   
-                    <div class="modal-body" style="max-width: 90%; width: 90%;">
+                    
+                    <form id="addressForm"> <!-- Agregué un formulario para manejar la validación -->
+                      <div class="modal-body" style="max-width: 90%; width: 90%;">
                          <hr>
                         <div class="row" style="margin:5px;">
                             <div class="col-sm-6">
@@ -2134,7 +2135,7 @@
                                 <div class="form-group" id="cuadrante_tipo_via">
                                    <label class="labelDireccion" for="cuadrante_tipo_via">Cuadrante:</label>
                                    <div class="form-group">
-                                     <select <?=$active?> required class="form-control" id="cuadrante">
+                                     <select <?=$active?> class="form-control" id="cuadrante">
                                          <?php echo $combo_cuadrante; ?>
                                       </select>
                                    </div> 
@@ -2144,7 +2145,7 @@
                             <div class="col-sm-2">
                                 <div class="form-group" id="via_generadora">
                                    <label class="labelDireccion" class="labelDireccion" for="via_generadora">No. inical placa:</label>
-                                   <input type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora">
+                                   <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora">
                                 </div>  
                             </div>
                             
@@ -2237,7 +2238,7 @@
                                 <div class="col-sm-2">
                                     <div class="form-group" id="numero_placa">
                                         <label class="labelDireccion" for="numero_placa">Número de placa:</label>
-                                         <input type="number" class="form-control" id="numero_placa" name="numero_placa" min="0">
+                                         <input required  type="number" class="form-control" id="numero_placa" name="numero_placa" min="0">
                                     </div>  
                                 </div>
                                  
@@ -2245,7 +2246,7 @@
                                     <div class="form-group" id="cuadrante_numero_placa">
                                       <label class="labelDireccion" for="cuadrante_numero_placa">Cuadrante:</label>
                                       <div class="form-group">
-                                          <select <?=$active?> required class="form-control" id="cuadrante_numero_placa">
+                                          <select <?=$active?>  class="form-control" id="cuadrante_numero_placa">
                                             <?php echo $combo_cuadrante; ?>
                                           </select>
                                       </div>
@@ -2264,9 +2265,10 @@
                        
                         <div class="modal-footer">
                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                           <button type="button" class="btn btn-primary" id="saveAddress">Guardar</button>
+                           <button type="submit" class="btn btn-primary" id="saveAddress">Guardar</button>
                         </div>
-                    </div> <!-- modal-body -->    
+                      </div> <!-- modal-body -->    
+                    </form>
                         
                 </div> <!-- modal-content -->    
                
@@ -2353,6 +2355,19 @@
             $('#myModal').modal('hide');
         });
     </script>
+    
+    <script>
+    // Validación en el submit del formulario
+    document.getElementById('addressForm').addEventListener('submit', function(event) {
+        // Verifica que los campos requeridos no estén vacíos
+        let isValid = this.checkValidity();
+        
+        if (!isValid) {
+            event.preventDefault(); // Evita que el formulario se envíe si no es válido
+            alert('Por favor, complete todos los campos requeridos.');
+        }
+    }); 
+   </script>
      
       <!-- Bootstrap core JavaScript
       ================================================== -->
