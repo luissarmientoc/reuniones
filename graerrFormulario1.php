@@ -111,6 +111,29 @@
                  else
                    return false;
              }
+             
+             function myFunction() {
+                   
+                   const addressType = document.getElementById('addressType').value;
+                   const ruralType   = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
+                   const urbanoType  = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
+                   const cuadrante_tipo_via = document.getElementById('cuadrante_tipo_via') ? document.getElementById('cuadrante_tipo_via').value : '';
+                   const via_generadora = document.getElementById('via_generadora').value; 
+                   const letra_via_generadora = document.getElementById('letra_via_generadora') ? document.getElementById('letra_via_generadora').value : '';
+                   const sufijo = document.getElementById('sufijo') ? document.getElementById('sufijo').value : '';
+                   const letra_sufijo = document.getElementById('letra_sufijo') ? document.getElementById('letra_sufijo').value : '';
+                   const numero_placa = document.getElementById('numero_placa').value;
+                   const cuadrante_numero_placa = document.getElementById('cuadrante_numero_placa') ? document.getElementById('cuadrante_numero_placa').value : '';
+                   const complemento = document.getElementById('complemento').value;
+                   
+                  
+                   
+                   const concatenatedInfo = ${addressType}, ${ruralType}, ${urbanoType}, ${tipo_via}, ${cuadrante_tipo_via},
+                                            ${via_generadora}, ${letra_via_generadora}, ${sufijo}, ${letra_sufijo}, ${numero_placa},
+                                            ${cuadrante_numero_placa}, ${complemento};
+                   
+                   document.getElementById("direccion").innerHTML = "You wrote: " + concatenatedInfo;
+             }
             
           </script>
 
@@ -1739,7 +1762,7 @@
                             </div>
                             
                             <div class="col-sm-2">
-                                   <label class="labelDireccion" for="cuadrante_tipo_via">Cuadrante:</label>
+                                   <label for="cuadrante_tipo_via">Cuadrante:</label>
                                    <div class="form-group">
                                      <select <?=$active?>  class="form-control" id="cuadrante">
                                          <?php echo $combo_cuadrante; ?>
@@ -1748,7 +1771,7 @@
                             </div>
                        
                             <div class="col-sm-2">
-                                   <label class="labelDireccion" for="via_generadora">* No. inical placa:</label>
+                                   <label for="via_generadora">* No. inical placa:</label>
                                    <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora">
                             </div>
                             
@@ -1855,7 +1878,7 @@
                        <div class="row" style="margin-top:5px;">  
                           <div class="col-sm-6" align="left">  
                               <label for="direccion">DIRECCION</label>
-                              <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
+                              <input style="text-transform:uppercase;" readonly type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
                           </div>
                        
                           <div class="col-sm-6" align="left">
@@ -2248,7 +2271,7 @@
                             <div class="col-sm-6">
                                <div class="form-group">
                                     <label class="labelDireccion" for="addressType">Tipo de dirección:</label>
-                                    <select class="form-control" id="addressType" required>
+                                    <select class="form-control" id="addressType" required  onchange="concatenarDir();">
                                         <option value="" disabled selected>Selecciona una opción</option>
                                         <option value="">Seleccione una opción</option>
                                         <option value="rural">Rural</option>
@@ -2260,7 +2283,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group" id="ruralOptions" style="display: none;">
                                      <label class="labelDireccion" for="ruralType">Tipo de rural:</label>
-                                     <select class="form-control" id="ruralType">
+                                     <select class="form-control" id="ruralType" onchange="concatenarDir();">
                                          <option value="" disabled selected>Selecciona un tipo</option>
                                          <option value="corregimiento">Corregimiento</option>
                                          <option value="centro_poblado">Centro Poblado</option>
@@ -2271,7 +2294,7 @@
                              
                                 <div class="form-group" id="urbanoOptions" style="display: none;">
                                     <label class="labelDireccion" for="urbanoType">Tipo de urbano:</label>
-                                    <select class="form-control" id="urbanoType">
+                                    <select class="form-control" id="urbanoType" onchange="concatenarDir();">
                                         <option value="" disabled selected>Selecciona un tipo</option>
                                         <option value="tipo_via">Tipo de Vía</option>
                                         <option value="barrio">Barrio</option>
@@ -2286,7 +2309,7 @@
                                 <div class="form-group" id="tipo_via">
                                     <label class="labelDireccion" for="tipo_via">Tipo de vía:</label>
                                     <div class="form-group">
-                                        <select <?=$active?> required class="form-control" id="tipo_via">
+                                        <select <?=$active?> required class="form-control" id="tipo_via" onchange="concatenarDir();">
                                             <?=$combo_tipo_via?>
                                         </select>
                                     </div> 
@@ -2297,7 +2320,7 @@
                                 <div class="form-group" id="cuadrante_tipo_via">
                                    <label class="labelDireccion" for="cuadrante_tipo_via">Cuadrante:</label>
                                    <div class="form-group">
-                                     <select <?=$active?> class="form-control" id="cuadrante">
+                                     <select <?=$active?> class="form-control" id="cuadrante" onchange="concatenarDir();">
                                          <?php echo $combo_cuadrante; ?>
                                       </select>
                                    </div> 
@@ -2307,14 +2330,14 @@
                             <div class="col-sm-2">
                                 <div class="form-group" id="via_generadora">
                                    <label class="labelDireccion" class="labelDireccion" for="via_generadora">No. inical placa:</label>
-                                   <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora">
+                                   <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora" oninput="concatenarDir();">
                                 </div>  
                             </div>
                             
                             <div class="col-sm-2">
                                 <div class="form-group" id="letra_via_generadora">
                                    <label class="labelDireccion" for="letra_via_generadora">Letra:</label>
-                                   <select class="form-control" id="letra_via_generadora" name="letra_via_generadora">
+                                   <select class="form-control" id="letra_via_generadora" name="letra_via_generadora" onchange="concatenarDir();">
                                        <!-- Opciones del A a la Z -->
                                        <option value="">Seleccione una letra</option>
                                         <option value="A">A</option>
@@ -2350,7 +2373,7 @@
                                 <div class="col-sm-2">
                                     <div class="form-group" id="sufijo">
                                        <label class="labelDireccion" for="via_generadora">Sufijo:</label>
-                                       <select class="form-control" id="sufijo" name="sufijo">
+                                       <select class="form-control" id="sufijo" name="sufijo" onchange="concatenarDir();">
                                           <!-- Opciones del A a la Z -->
                                           <option value="">Seleccione el Sufijo</option>
                                           <option value="Bis">Bis</option>
@@ -2361,7 +2384,7 @@
                                 <div class="col-sm-2">
                                 <div class="form-group" id="letra_sufijo">
                                    <label class="labelDireccion" for="letra_sufijo">Letra:</label>
-                                   <select class="form-control" id="letra_sufijo" name="letra_sufijo">
+                                   <select class="form-control" id="letra_sufijo" name="letra_sufijo" onchange="concatenarDir();">
                                        <!-- Opciones del A a la Z -->
                                        <option value="">Seleccione una letra</option>
                                         <option value="A">A</option>
@@ -2400,7 +2423,7 @@
                                 <div class="col-sm-2">
                                     <div class="form-group" id="numero_placa">
                                         <label class="labelDireccion" for="numero_placa">Número de placa:</label>
-                                         <input required  type="number" class="form-control" id="numero_placa" name="numero_placa" min="0">
+                                         <input required  type="number" class="form-control" id="numero_placa" name="numero_placa" min="0" oninput="concatenarDir();">
                                     </div>  
                                 </div>
                                  
@@ -2408,7 +2431,7 @@
                                     <div class="form-group" id="cuadrante_numero_placa">
                                       <label class="labelDireccion" for="cuadrante_numero_placa">Cuadrante:</label>
                                       <div class="form-group">
-                                          <select <?=$active?>  class="form-control" id="cuadrante_numero_placa">
+                                          <select <?=$active?>  class="form-control" id="cuadrante_numero_placa" onchange="concatenarDir();">
                                             <?php echo $combo_cuadrante; ?>
                                           </select>
                                       </div>
@@ -2418,7 +2441,7 @@
                                 <div class="col-sm-8">
                                     <div class="form-group" id="complemento">
                                       <label class="labelDireccion" for="complemento">Complemento:</label>
-                                      <textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1">  </textarea>
+                                      <textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1" oninput="concatenarDir();">  </textarea>
                                     </div>  
                                 </div>
                             </div>
