@@ -115,8 +115,18 @@
              function concatenarDir() {
                  
                     alert('Entre a direccion.');
+                    
+                    const addressType = document.getElementById('addressType').value;
+                    const ruralType   = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
+                    const urbanoType  = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
 
-                   
+                    alert(addressType);
+                    alert(ruralType);
+                    alert(urbanoType);
+                    
+                    const concatenatedInfo = `${addressType}, ${ruralType}, ${urbanoType}`;
+                    alert(concatenatedInfo);
+
                    
              }
             
