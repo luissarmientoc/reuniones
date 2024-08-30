@@ -121,18 +121,27 @@
                display: none; /* Inicialmente visible */
               }
               
-              .modal-content {
-            border-radius: 8px;
-        }
-        .modal-header {
-            border-bottom: none;
-        }
-        .modal-footer {
-            border-top: none;
-        }
+            .modal-content {
+                border-radius: 8px;
+            }
+            .modal-header {
+                border-bottom: none;
+            }
+            .modal-footer {
+                border-top: none;
+            }
+        
+            .custom-modal-dialog {
+                max-width: 80%; /* Ajusta el valor según el ancho deseado */
+            }
+        
+            .labelDireccion {
+               font-weight: bold;          /* Establece el texto en negrita */
+               font-family: Arial, sans-serif; /* Usa la fuente Arial o sans-serif como alternativa */
+               font-size: 12px;            /* Tamaño de fuente de 12px */
+               text-align: center;         /* Centra el texto */
+            }
         </style>
-       
-       
   </head>
   
   <?php  
@@ -2060,123 +2069,219 @@
     <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccionvv" name="direccionvv"  value="<?=$direccion?>" required>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                
-                <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Selecciona Dirección</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="addressForm">
-                      <div class col-sm-4>
-                            1.DESPLEGABLE: TIPO DE VIA:
-                            <div class="form-group">
-                               <select <?=$active?> required class="form-control" id="tipo_via">
-                                  <?php echo $combo_tipo_via; ?>
-                               </select>
-                            </div>    
-                       </div>
-                       
-                       <div class col-sm-4>
-                             2.DESPLEGABLE: CUADRANTE:
-                            <div class="form-group">
-                              <select <?=$active?> required class="form-control" id="cuadrante">
-                                  <?php echo $combo_cuadrante; ?>
-                               </select>
-                            </div>      
-                       </div>
-                       
-                       <div class col-sm-4>
-                             3.Número de la vía generadora   
-                       </div>
-                       
-                        <div class="form-group">
-                            <label for="addressType">Tipo de dirección:</label>
-                            <select class="form-control" id="addressType" required>
-                                <option value="" disabled selected>Selecciona una opción</option>
-                                <option value="rural">Rural</option>
-                                <option value="urbano">Urbano</option>
-                            </select>
+    <div class="container">   
+       <!-- Botón para abrir el modal -->
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+             Abrir Modal
+        </button>
+        <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccionvv" name="direccionvv"  value="<?=$direccion?>" required>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="max-width: 80%; width: 80%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Datos de la Dirección</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> <!-- modal-header -->    
+                   
+                    <div class="modal-body" style="max-width: 90%; width: 90%;">
+                         <hr>
+                        <div class="row" style="margin:5px;">
+                            <div class="col-sm-6">
+                               <div class="form-group">
+                                    <label class="labelDireccion" for="addressType">Tipo de dirección:</label>
+                                    <select class="form-control" id="addressType" required>
+                                        <option value="" disabled selected>Selecciona una opción</option>
+                                        <option value="rural">Rural</option>
+                                        <option value="urbano">Urbano</option>
+                                    </select>
+                                </div>
+                            </div>
                             
-                            
-                           <!--
-                            3.Número de la vía generadora
-                            4.Letra, letra-letra o letra-número-letra que acompañan la vía generadora
-                            5.Sufijo (BIS):
-                            6.Letra, letra-letra o letra-número-letra que acompaña el prefijo (BIS) desde la A hasta la Z
-                            7.Número de la placa: 
-                            8.DESPLEGABLE: CUADRANTE:
-                            9. Complemento
-                            10. BARRIO
-                            11.DESPLEGBLE: URBANIZACION:
-                             12. desplegable MANZANA: 
-                             13.desplegable: TIPO PREDIO:
-
-                             -->
+                            <div class="col-sm-6">
+                                <div class="form-group" id="ruralOptions" style="display: none;">
+                                     <label class="labelDireccion" for="ruralType">Tipo de rural:</label>
+                                     <select class="form-control" id="ruralType">
+                                         <option value="" disabled selected>Selecciona un tipo</option>
+                                         <option value="corregimiento">Corregimiento</option>
+                                         <option value="centro_poblado">Centro Poblado</option>
+                                         <option value="vereda">Vereda</option>
+                                         <option value="otro">Otro</option>
+                                     </select>
+                                </div>
                              
-                             
+                                <div class="form-group" id="urbanoOptions" style="display: none;">
+                                    <label class="labelDireccion" for="urbanoType">Tipo de urbano:</label>
+                                    <select class="form-control" id="urbanoType">
+                                        <option value="" disabled selected>Selecciona un tipo</option>
+                                        <option value="tipo_via">Tipo de Vía</option>
+                                        <option value="barrio">Barrio</option>
+                                        <option value="campo_abierto">Campo Abierto</option>
+                                    </select>
+                                </div>
+                            </div> 
+                        </div><!--row-->
+                        
+                        <div class="row" style="margin:5px;">
+                            <div class="col-sm-2">
+                                <div class="form-group" id="tipo_via">
+                                    <label class="labelDireccion" for="tipo_via">Tipo de vía:</label>
+                                    <div class="form-group">
+                                        <select <?=$active?> required class="form-control" id="tipo_via">
+                                          <option value="">Seleccione una letra</option>
+                                        <option value="A">A</option>
+                                       <option value="B">B</option>
+                                        </select>
+                                    </div> 
+                                </div>   
+                            </div>
                             
-                        </div>
-                        
-                        
-                        
-                        <div class="form-group">
-                            <select <?=$active?> required class="form-control" id="manzana">
-                                  <?php echo $combo_manzana; ?>
-                               </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <select <?=$active?> required class="form-control" id="tipo_predio">
-                                  <?php echo $combo_tipo_predio; ?>
-                               </select>
-                        </div>
-                        
-                        
+                            <div class="col-sm-2">
+                                <div class="form-group" id="cuadrante_tipo_via">
+                                   <label class="labelDireccion" for="cuadrante_tipo_via">Cuadrante:</label>
+                                   <div class="form-group">
+                                     <select <?=$active?> required class="form-control" id="cuadrante">
+                                         <?php echo $combo_cuadrante; ?>
+                                      </select>
+                                   </div> 
+                                </div>  
+                            </div>
+                       
+                            <div class="col-sm-2">
+                                <div class="form-group" id="via_generadora">
+                                   <label class="labelDireccion" class="labelDireccion" for="via_generadora">Vía Generadora:</label>
+                                   <input type="number" class="form-control" id="via_generadora" name="via_generadora" min="0">
+                                </div>  
+                            </div>
                             
-                            <div class="form-group">
-                            <select <?=$active?> required class="form-control" id="urbanizacion">
-                                  <?php echo $combo_urbanizacion; ?>
-                               </select>
-                        </div>  
+                            <div class="col-sm-2">
+                                <div class="form-group" id="letra_via_generadora">
+                                   <label class="labelDireccion" for="letra_via_generadora">Letra:</label>
+                                   <select class="form-control" id="letra_via_generadora" name="letra_via_generadora">
+                                       <!-- Opciones del A a la Z -->
+                                       <option value="">Seleccione una letra</option>
+                                        <option value="A">A</option>
+                                       <option value="B">B</option>
+                                       <option value="C">C</option>
+                                       <option value="D">D</option>
+                                       <option value="E">E</option>
+                                       <option value="F">F</option>
+                                       <option value="G">G</option>
+                                       <option value="H">H</option>
+                                       <option value="I">I</option>
+                                       <option value="J">J</option>
+                                       <option value="K">K</option>
+                                       <option value="L">L</option>
+                                       <option value="M">M</option>
+                                       <option value="N">N</option>
+                                       <option value="O">O</option>
+                                       <option value="P">P</option>
+                                       <option value="Q">Q</option>
+                                       <option value="R">R</option>
+                                       <option value="S">S</option>
+                                       <option value="T">T</option>
+                                       <option value="U">U</option>
+                                       <option value="V">V</option>
+                                       <option value="W">W</option>
+                                       <option value="X">X</option>
+                                       <option value="Y">Y</option>
+                                       <option value="Z">Z</option>
+                                     </select>
+                                   </div>  
+                                </div> 
+                                
+                                <div class="col-sm-2">
+                                    <div class="form-group" id="sufijo">
+                                       <label class="labelDireccion" for="via_generadora">Sufijo:</label>
+                                       <select class="form-control" id="sufijo" name="sufijo">
+                                          <!-- Opciones del A a la Z -->
+                                          <option value="">Seleccione el Sufijo</option>
+                                          <option value="Bis">Bis</option>
+                                        </select>          
+                                    </div>  
+                                </div>
+                                
+                                <div class="col-sm-2">
+                                <div class="form-group" id="letra_sufijo">
+                                   <label class="labelDireccion" for="letra_sufijo">Letra:</label>
+                                   <select class="form-control" id="letra_sufijo" name="letra_sufijo">
+                                       <!-- Opciones del A a la Z -->
+                                       <option value="">Seleccione una letra</option>
+                                        <option value="A">A</option>
+                                       <option value="B">B</option>
+                                       <option value="C">C</option>
+                                       <option value="D">D</option>
+                                       <option value="E">E</option>
+                                       <option value="F">F</option>
+                                       <option value="G">G</option>
+                                       <option value="H">H</option>
+                                       <option value="I">I</option>
+                                       <option value="J">J</option>
+                                       <option value="K">K</option>
+                                       <option value="L">L</option>
+                                       <option value="M">M</option>
+                                       <option value="N">N</option>
+                                       <option value="O">O</option>
+                                       <option value="P">P</option>
+                                       <option value="Q">Q</option>
+                                       <option value="R">R</option>
+                                       <option value="S">S</option>
+                                       <option value="T">T</option>
+                                       <option value="U">U</option>
+                                       <option value="V">V</option>
+                                       <option value="W">W</option>
+                                       <option value="X">X</option>
+                                       <option value="Y">Y</option>
+                                       <option value="Z">Z</option>
+                                     </select>
+                                   </div>  
+                                </div> 
+                             </div><!--row-->
+                       
+                             <div class="row" style="margin:5px;">    
+                                
+                                <div class="col-sm-2">
+                                    <div class="form-group" id="numero_placa">
+                                        <label class="labelDireccion" for="numero_placa">Número de placa:</label>
+                                         <input type="number" class="form-control" id="numero_placa" name="numero_placa" min="0">
+                                    </div>  
+                                </div>
+                                 
+                                <div class="col-sm-2">
+                                    <div class="form-group" id="cuadrante_numero_placa">
+                                      <label class="labelDireccion" for="cuadrante_numero_placa">Cuadrante:</label>
+                                      <div class="form-group">
+                                          <select <?=$active?> required class="form-control" id="cuadrante_numero_placa">
+                                            <?php echo $combo_cuadrante; ?>
+                                          </select>
+                                      </div>
+                                    </div>  
+                                </div>
+                                
+                                <div class="col-sm-8">
+                                    <div class="form-group" id="complemento">
+                                      <label class="labelDireccion" for="complemento">Complemento:</label>
+                                      <textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1">  </textarea>
+                                    </div>  
+                                </div>
+                            </div>
+                             <hr>
+                        </div><!--row-->
+                       
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                           <button type="button" class="btn btn-primary" id="saveAddress">Guardar</button>
+                        </div>
+                    </div> <!-- modal-body -->    
                         
-                        
-                        <div class="form-group" id="ruralOptions" style="display: none;">
-                            <label for="ruralType">Tipo de rural:</label>
-                            <select class="form-control" id="ruralType">
-                                <option value="" disabled selected>Selecciona un tipo</option>
-                                <option value="corregimiento">Corregimiento</option>
-                                <option value="centro_poblado">Centro Poblado</option>
-                                <option value="vereda">Vereda</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="form-group" id="urbanoOptions" style="display: none;">
-                            <label for="urbanoType">Tipo de urbano:</label>
-                            <select class="form-control" id="urbanoType">
-                                <option value="" disabled selected>Selecciona un tipo</option>
-                                <option value="tipo_via">Tipo de Vía</option>
-                                <option value="barrio">Barrio</option>
-                                <option value="campo_abierto">Campo Abierto</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="direccion">Dirección:</label>
-                            <input style="text-transform:uppercase;" type="text" class="form-control" id="direccion" name="direccion" required>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" id="saveAddress">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                </div> <!-- modal-content -->    
+               
+            </div> <!-- modal-dialog -->
+        </div> <!-- modal -->
+     </div> <!-- container -->
     
     <!---- =========================!----->
             
@@ -2220,7 +2325,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Script para mostrar opciones según el tipo seleccionado -->
+     <!-- Script para mostrar opciones según el tipo seleccionado -->
     <script>
         document.getElementById('addressType').addEventListener('change', function() {
             const addressType = this.value;
@@ -2241,28 +2346,35 @@
 
         document.getElementById('saveAddress').addEventListener('click', function() {
             // Obtener los valores de los campos
-            const direccion = document.getElementById('direccion').value;
             const addressType = document.getElementById('addressType').value;
-            const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
-            const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
+            const ruralType   = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
+            const urbanoType  = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
+            const tipo_via    = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
+            const cuadrante_tipo_via = document.getElementById('cuadrante_tipo_via') ? document.getElementById('cuadrante_tipo_via').value : '';
+            const via_generadora = document.getElementById('via_generadora').value; 
+            const letra_via_generadora = document.getElementById('letra_via_generadora') ? document.getElementById('letra_via_generadora').value : '';
+            const sufijo = document.getElementById('sufijo') ? document.getElementById('sufijo').value : '';
+            const letra_sufijo = document.getElementById('letra_sufijo') ? document.getElementById('letra_sufijo').value : '';
+            const numero_placa = document.getElementById('numero_placa').value;
+            const cuadrante_numero_placa = document.getElementById('cuadrante_numero_placa') ? document.getElementById('cuadrante_numero_placa').value : '';
+            const complemento = document.getElementById('complemento').value;
             
-            
-            const laManzana      = document.getElementById('cuadrante manzana') ? document.getElementById('cuadrante').value : '';
-            const elTipoPredio   = document.getElementById('tipo_predio') ? document.getElementById('tipo_predio').value : '';
-            const elTipoVia      = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
-            const laUrbanizacion = document.getElementById('urbanizacion')? document.getElementById('urbanizacion').value : '';
+            //const concatenatedInfo = `Dirección: ${direccion}, Tipo de Dirección: ${addressType}, Tipo Rural: ${ruralType}, Tipo Urbano: ${urbanoType}`;
 
 
-            const concatenatedInfo = `Dirección: ${direccion}, Tipo de Dirección: ${addressType}, Tipo Rural: ${ruralType}, Tipo Urbano: ${urbanoType}, La manzana: ${laManzana}, El tipo predio: ${elTipoPredio}, El tipo via: ${elTipoVia}, La urbanizacion: ${laUrbanizacion}, `;
+            const concatenatedInfo = ${addressType}, ${ruralType}, ${urbanoType}, ${tipo_via}, ${cuadrante_tipo_via},
+                                     ${via_generadora}, ${letra_via_generadora}, ${sufijo}, ${letra_sufijo}, ${numero_placa},
+                                     ${cuadrante_numero_placa}, ${complemento};
+
 
 
             document.getElementById('direccionvv').value = concatenatedInfo;
 
             // Mostrar el valor de dirección y tipo seleccionado
-            console.log(`Dirección: ${direccion}`);
-            console.log(`Tipo de dirección: ${addressType}`);
-            console.log(`Tipo rural: ${ruralType}`);
-            console.log(`Tipo urbano: ${urbanoType}`);
+            // console.log(`Dirección: ${direccion}`);
+            // console.log(`Tipo de dirección: ${addressType}`);
+            // console.log(`Tipo rural: ${ruralType}`);
+            // nsole.log(`Tipo urbano: ${urbanoType}`);
 
             // Aquí podrías hacer algo con la dirección, como enviar el formulario o actualizar algún campo
 
