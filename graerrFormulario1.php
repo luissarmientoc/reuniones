@@ -2061,14 +2061,6 @@
             
         <!---============================= mODAL ===========->
         
-        <!-- Botón para abrir el modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Abrir Modal
-    </button>
-    
-    <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccionvv" name="direccionvv"  value="<?=$direccion?>" required>
-
-    <!-- Modal -->
     <div class="container">   
        <!-- Botón para abrir el modal -->
          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -2095,6 +2087,7 @@
                                     <label class="labelDireccion" for="addressType">Tipo de dirección:</label>
                                     <select class="form-control" id="addressType" required>
                                         <option value="" disabled selected>Selecciona una opción</option>
+                                        <option value="">Seleccione una opción</option>
                                         <option value="rural">Rural</option>
                                         <option value="urbano">Urbano</option>
                                     </select>
@@ -2131,9 +2124,7 @@
                                     <label class="labelDireccion" for="tipo_via">Tipo de vía:</label>
                                     <div class="form-group">
                                         <select <?=$active?> required class="form-control" id="tipo_via">
-                                          <option value="">Seleccione una letra</option>
-                                        <option value="A">A</option>
-                                       <option value="B">B</option>
+                                            <?=$combo_tipo_via?>
                                         </select>
                                     </div> 
                                 </div>   
@@ -2152,8 +2143,8 @@
                        
                             <div class="col-sm-2">
                                 <div class="form-group" id="via_generadora">
-                                   <label class="labelDireccion" class="labelDireccion" for="via_generadora">Vía Generadora:</label>
-                                   <input type="number" class="form-control" id="via_generadora" name="via_generadora" min="0">
+                                   <label class="labelDireccion" class="labelDireccion" for="via_generadora">No. inical placa:</label>
+                                   <input type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora">
                                 </div>  
                             </div>
                             
@@ -2282,8 +2273,6 @@
             </div> <!-- modal-dialog -->
         </div> <!-- modal -->
      </div> <!-- container -->
-    
-    <!---- =========================!----->
             
             
          </div> <!-- content -->   
