@@ -139,7 +139,7 @@
                     //}
 
                     //if (urbanoType) {
-                        concatenatedInfo += concatenatedInfo ? ` ${urbanoType}` : `${urbanoType}`;
+                    //    concatenatedInfo += concatenatedInfo ? ` ${urbanoType}` : `${urbanoType}`;
                     //}
                     
                     if (tipo_via) {
