@@ -2059,6 +2059,13 @@
             ?>
 	        
             
+        
+            
+            
+         </div> <!-- content -->   
+           
+        
+        
         <!---============================= mODAL ===========-->
         
     <div class="container">   
@@ -2275,10 +2282,13 @@
             </div> <!-- modal-dialog -->
         </div> <!-- modal -->
      </div> <!-- container -->
-            
-            
-         </div> <!-- content -->   
-           
+        
+        
+        
+        
+        
+        
+        
         <!--- complemento -->
         <?php
            include("complemento.html");             
