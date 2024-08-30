@@ -31,6 +31,95 @@
     </style>
 </head>
 <body>
+    
+    <?php
+     require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
+     require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
+     
+    //===========================================================
+    //===================== MODAL ===============================
+    
+    //============================= CUADRANTE
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT cuadrante  FROM graerr_bas_cuadrante order by cuadrante');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_cuadrante .=" <option value=''>".'- Seleccione el cuadrante -'."</option>";
+      }
+      
+       $combo_cuadrante .=" <option value='".$line['cuadrante']."'>".$line['cuadrante']."</ano>"; 
+      $i++; 
+    }
+    
+    //============================= MANZANA
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT id, manzana  FROM graerr_bas_manzana order by manzana');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_manzana .=" <option value=''>".'- Seleccione la manzana -'."</option>";
+      }
+      
+      $combo_manzana .=" <option value='".$line['id']."'>".$line['manzana']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= graerr_bas_tipo_predio
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT id, tipo  FROM graerr_bas_tipo_predio order by tipo');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_predio .=" <option value=''>".'- Seleccione el tipo de predio -'."</option>";
+      }
+      
+      $combo_tipo_predio .=" <option value='".$line['id']."'>".$line['tipo']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= graerr_bas_tipo_predio
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT id, tipo_via  FROM graerr_bas_tipo_via order by tipo_via');
+    
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_via .=" <option value=''>".'- Seleccione el tipo de via -'."</option>";
+      }
+      
+      $combo_tipo_via .=" <option value='".$line['id']."'>".$line['tipo_via']."</option>"; 
+      $i++; 
+    }
+   
+    //============================= graerr_bas_urbanizacion
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT id, tipo  FROM graerr_bas_urbanizacion order by tipo');
+    
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_urbanizacion .=" <option value=''>".'- Seleccione el tipo urbanización -'."</option>";
+      }
+      
+      $combo_urbanizacion .=" <option value='".$line['id']."'>".$line['tipo']."</option>"; 
+      $i++; 
+    }
+     
+    
+    //===========================================================
+    //===================== MODAL ===============================
+    ?>
    
      <div class="container">   
        
