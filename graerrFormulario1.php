@@ -114,9 +114,9 @@
              
              function concatenarDir() {
                 
-                    const addressType = document.getElementById('addressType').value;
-                    const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
-                    const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
+                   // const addressType = document.getElementById('addressType').value;
+                   // const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
+                   // const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
                     const tipo_via = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
                     const cuadrante = document.getElementById('cuadrante') ? document.getElementById('cuadrante').value : '';
                     const via_generadora = document.getElementById('via_generadora').value; 
@@ -130,17 +130,17 @@
                     let concatenatedInfo = '';
 
                     // Verifica si cada campo no está vacío antes de concatenar
-                    if (addressType) {
-                        concatenatedInfo += `${addressType}`;
-                    }
+                    //if (addressType) {
+                    //    concatenatedInfo += `${addressType}`;
+                    //}
 
-                    if (ruralType) {
-                        concatenatedInfo += concatenatedInfo ? ` ${ruralType}` : `${ruralType}`;
-                    }
+                    //if (ruralType) {
+                    //    concatenatedInfo += concatenatedInfo ? ` ${ruralType}` : `${ruralType}`;
+                    //}
 
-                    if (urbanoType) {
+                    //if (urbanoType) {
                         concatenatedInfo += concatenatedInfo ? ` ${urbanoType}` : `${urbanoType}`;
-                    }
+                    //}
                     
                     if (tipo_via) {
                         concatenatedInfo += concatenatedInfo ? ` ${tipo_via}` : `${tipo_via}`;
