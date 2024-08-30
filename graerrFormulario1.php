@@ -1732,36 +1732,27 @@
                        
                        <div class="row" style="margin-top:5px;"> 
                             <div class="col-sm-2">
-                                <div class="form-group" id="tipo_via">
-                                    <label class="labelDireccion" for="tipo_via">Tipo de vía:</label>
-                                    <div class="form-group">
-                                        <select <?=$active?> required class="form-control" id="tipo_via">
-                                            <?=$combo_tipo_via?>
-                                        </select>
-                                    </div> 
-                                </div>   
+                                <label class="labelDireccion" for="tipo_via">Tipo de vía:</label>
+                                <select <?=$active?> required class="form-control" id="tipo_via">
+                                    <?=$combo_tipo_via?>
+                                </select>
                             </div>
                             
                             <div class="col-sm-2">
-                                <div class="form-group" id="cuadrante_tipo_via">
                                    <label class="labelDireccion" for="cuadrante_tipo_via">Cuadrante:</label>
                                    <div class="form-group">
                                      <select <?=$active?> required class="form-control" id="cuadrante">
                                          <?php echo $combo_cuadrante; ?>
                                       </select>
                                    </div> 
-                                </div>  
                             </div>
                        
                             <div class="col-sm-2">
-                                <div class="form-group" id="via_generadora">
                                    <label class="labelDireccion" class="labelDireccion" for="via_generadora">No. inical placa:</label>
                                    <input type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora">
-                                </div>  
                             </div>
                             
                             <div class="col-sm-2">
-                                <div class="form-group" id="letra_via_generadora">
                                    <label class="labelDireccion" for="letra_via_generadora">Letra:</label>
                                    <select class="form-control" id="letra_via_generadora" name="letra_via_generadora">
                                        <!-- Opciones del A a la Z -->
@@ -1793,22 +1784,18 @@
                                        <option value="Y">Y</option>
                                        <option value="Z">Z</option>
                                      </select>
-                                   </div>  
                                 </div> 
                                 
                                 <div class="col-sm-2">
-                                    <div class="form-group" id="sufijo">
                                        <label class="labelDireccion" for="via_generadora">Sufijo:</label>
                                        <select class="form-control" id="sufijo" name="sufijo">
                                           <!-- Opciones del A a la Z -->
                                           <option value="">Seleccione el Sufijo</option>
                                           <option value="Bis">Bis</option>
                                         </select>          
-                                    </div>  
                                 </div>
                                 
                                 <div class="col-sm-2">
-                                <div class="form-group" id="letra_sufijo">
                                    <label class="labelDireccion" for="letra_sufijo">Letra:</label>
                                    <select class="form-control" id="letra_sufijo" name="letra_sufijo">
                                        <!-- Opciones del A a la Z -->
@@ -1841,33 +1828,26 @@
                                        <option value="Z">Z</option>
                                      </select>
                                    </div>  
-                                </div> 
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;"> 
                                 <div class="col-sm-2">
-                                    
                                         <label class="labelDireccion" for="numero_placa">Número de placa:</label>
                                          <input type="number" class="form-control" id="numero_placa" name="numero_placa" min="0">
-                                    
                                 </div>
                                  
                                 <div class="col-sm-2">
-                                    
                                       <label class="labelDireccion" for="cuadrante_numero_placa">Cuadrante:</label>
                                       <div class="form-group">
                                           <select <?=$active?> required class="form-control" id="cuadrante_numero_placa">
                                             <?php echo $combo_cuadrante; ?>
                                           </select>
                                       </div>
-                                    
                                 </div>
                                 
                                 <div class="col-sm-8">
-                                    
                                       <label class="labelDireccion" for="complemento">Complemento:</label>
                                       <textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1">  </textarea>
-                                    
                                 </div>
                          <hr>
                        </div> <!--row-->
