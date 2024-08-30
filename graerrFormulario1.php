@@ -117,19 +117,75 @@
                     alert('Entre a direccion.');
                     
                     const addressType = document.getElementById('addressType').value;
-                    const ruralType   = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
-                    const urbanoType  = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
+                    const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
+                    const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
+                    const cuadrante_tipo_via = document.getElementById('cuadrante_tipo_via') ? document.getElementById('cuadrante_tipo_via').value : '';
+                    const via_generadora = document.getElementById('via_generadora').value; 
+                    const letra_via_generadora = document.getElementById('letra_via_generadora') ? document.getElementById('letra_via_generadora').value : '';
+                    const sufijo = document.getElementById('sufijo') ? document.getElementById('sufijo').value : '';
+                    const letra_sufijo = document.getElementById('letra_sufijo') ? document.getElementById('letra_sufijo').value : '';
+                    const numero_placa = document.getElementById('numero_placa').value;
+                    const cuadrante_numero_placa = document.getElementById('cuadrante_numero_placa') ? document.getElementById('cuadrante_numero_placa').value : '';
+                    const complemento = document.getElementById('complemento').value;
 
-                    alert(addressType);
-                    alert(ruralType);
-                    alert(urbanoType);
+                    let concatenatedInfo = '';
+
+                    // Verifica si cada campo no está vacío antes de concatenar
+                    if (addressType) {
+                        concatenatedInfo += `${addressType}`;
+                    }
+
+                    if (ruralType) {
+                        concatenatedInfo += concatenatedInfo ? `, ${ruralType}` : `${ruralType}`;
+                    }
+
+                    if (urbanoType) {
+                        concatenatedInfo += concatenatedInfo ? `, ${urbanoType}` : `${urbanoType}`;
+                    }
                     
-                    const concatenatedInfo = `${addressType}, ${ruralType}, ${urbanoType}`;
-                    alert(concatenatedInfo);
+                    if (cuadrante_tipo_via) {
+                        concatenatedInfo += concatenatedInfo ? `, ${cuadrante_tipo_via}` : `${cuadrante_tipo_via}`;
+                    }
+                    
+                    if (via_generadora) {
+                        concatenatedInfo += concatenatedInfo ? `, ${via_generadora}` : `${via_generadora}`;
+                    }
+                    
+                    if (letra_via_generadora) {
+                        concatenatedInfo += concatenatedInfo ? `, ${letra_via_generadora}` : `${letra_via_generadora}`;
+                    }
+                    
+                    if (letra_via_generadora) {
+                        concatenatedInfo += concatenatedInfo ? `, ${sufijo}` : `${sufijo}`;
+                    }
+                    
+                    if (letra_via_generadora) {
+                        concatenatedInfo += concatenatedInfo ? `, ${sufijo}` : `${sufijo}`;
+                    }
+                    
+                    if (letra_sufijo) {
+                        concatenatedInfo += concatenatedInfo ? `, ${letra_sufijo}` : `${letra_sufijo}`;
+                    }
+                    
+                    if (numero_placa) {
+                        concatenatedInfo += concatenatedInfo ? `, ${numero_placa}` : `${numero_placa}`;
+                    }
+                    
+                    if (cuadrante_numero_placa) {
+                        concatenatedInfo += concatenatedInfo ? `, ${cuadrante_numero_placa}` : `${cuadrante_numero_placa}`;
+                    }
+                    
+                    if (complemento) {
+                        concatenatedInfo += concatenatedInfo ? `, ${complemento}` : `${complemento}`;
+                    }
 
-                   
+                    // Si concatenatedInfo no está vacío, muestra la alerta
+                    if (concatenatedInfo) {
+                        alert(concatenatedInfo);
+                        document.getElementById('direccion').value = concatenatedInfo;
+                    }
+
              }
-            
           </script>
 
           <style>
