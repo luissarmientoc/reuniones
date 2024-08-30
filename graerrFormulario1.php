@@ -117,12 +117,8 @@
                     const addressType = document.getElementById('addressType').value;
                     const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
                     const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
-                    
                     const tipo_via = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
-                    const cuadrante = document.getElementById('cuadrante') ? document.getElementById('cuadrante').value : '';
-                    
-                     
-                    
+                    const cuadrante_tipo_via = document.getElementById('cuadrante_tipo_via') ? document.getElementById('cuadrante_tipo_via').value : '';
                     const via_generadora = document.getElementById('via_generadora').value; 
                     const letra_via_generadora = document.getElementById('letra_via_generadora') ? document.getElementById('letra_via_generadora').value : '';
                     const sufijo = document.getElementById('sufijo') ? document.getElementById('sufijo').value : '';
