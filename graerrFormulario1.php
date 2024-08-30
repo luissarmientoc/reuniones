@@ -126,6 +126,7 @@
                     const numero_placa = document.getElementById('numero_placa').value;
                     const cuadrante_numero_placa = document.getElementById('cuadrante_numero_placa') ? document.getElementById('cuadrante_numero_placa').value : '';
                     const complemento = document.getElementById('complemento').value;
+                    const corregimiento_vereda = document.getElementById('corregimiento_vereda').value;
 
                     let concatenatedInfo = '';
 
@@ -177,12 +178,20 @@
                     if (complemento) {
                         concatenatedInfo += concatenatedInfo ? ` ${complemento}` : `${complemento}`;
                     }
+                    
+                    if (corregimiento_vereda) {
+                        concatenatedInfo += concatenatedInfo ? ` ${corregimiento_vereda}` : `${corregimiento_vereda}`;
+                    }
+
+
 
                     // Si concatenatedInfo no está vacío, muestra la alerta
                     if (concatenatedInfo) {
                        // alert(concatenatedInfo);
                         document.getElementById('direccion').value = concatenatedInfo;
                     }
+                    
+                    
 
              }
           </script>
@@ -1926,16 +1935,17 @@
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;">  
-                          <div class="col-sm-6" align="left">  
-                              <label for="direccion">DIRECCION</label>
-                              <input style="text-transform:uppercase;" readonly type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
-                          </div>
-                       
-                          <div class="col-sm-6" align="left">
+                          <div class="col-sm-12" align="left">
                               <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
                           </div>
-                          
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;">  
+                          <div class="col-sm-12" align="left">  
+                              <label for="direccion">DIRECCION</label>
+                              <input style="text-transform:uppercase;" readonly type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
+                          </div>
                        </div> <!--row-->
                        
                        
