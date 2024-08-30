@@ -1695,7 +1695,7 @@
                        <div class="row" style="margin-top:5px;"> 
                        <hr>
                             <div class="col-sm-6">
-                               <div class="form-group">
+                               <div>
                                     <label class="labelDireccion" for="addressType">Tipo de dirección:</label>
                                     <select class="form-control" id="addressType" required>
                                         <option value="" disabled selected>Selecciona una opción</option>
@@ -1707,7 +1707,7 @@
                             </div>
                             
                             <div class="col-sm-6">
-                                <div class="form-group" id="ruralOptions" style="display: none;">
+                                <div id="ruralOptions" style="display: none;">
                                      <label class="labelDireccion" for="ruralType">Tipo de rural:</label>
                                      <select class="form-control" id="ruralType">
                                          <option value="" disabled selected>Selecciona un tipo</option>
@@ -1718,7 +1718,7 @@
                                      </select>
                                 </div>
                              
-                                <div class="form-group" id="urbanoOptions" style="display: none;">
+                                <div id="urbanoOptions" style="display: none;">
                                     <label class="labelDireccion" for="urbanoType">Tipo de urbano:</label>
                                     <select class="form-control" id="urbanoType">
                                         <option value="" disabled selected>Selecciona un tipo</option>
@@ -1846,28 +1846,28 @@
                        
                        <div class="row" style="margin-top:5px;"> 
                                 <div class="col-sm-2">
-                                    <div class="form-group" id="numero_placa">
+                                    
                                         <label class="labelDireccion" for="numero_placa">Número de placa:</label>
                                          <input type="number" class="form-control" id="numero_placa" name="numero_placa" min="0">
-                                    </div>  
+                                    
                                 </div>
                                  
                                 <div class="col-sm-2">
-                                    <div class="form-group" id="cuadrante_numero_placa">
+                                    
                                       <label class="labelDireccion" for="cuadrante_numero_placa">Cuadrante:</label>
                                       <div class="form-group">
                                           <select <?=$active?> required class="form-control" id="cuadrante_numero_placa">
                                             <?php echo $combo_cuadrante; ?>
                                           </select>
                                       </div>
-                                    </div>  
+                                    
                                 </div>
                                 
                                 <div class="col-sm-8">
-                                    <div class="form-group" id="complemento">
+                                    
                                       <label class="labelDireccion" for="complemento">Complemento:</label>
                                       <textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1">  </textarea>
-                                    </div>  
+                                    
                                 </div>
                          <hr>
                        </div> <!--row-->
