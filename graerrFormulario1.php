@@ -2061,7 +2061,10 @@
             
         
             
-            
+             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+             Abrir Modal
+        </button>
+        <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccionvv" name="direccionvv"  value="<?=$direccion?>" required>
          </div> <!-- content -->   
            
         
@@ -2070,10 +2073,7 @@
         
     <div class="container">   
        <!-- Botón para abrir el modal -->
-         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-             Abrir Modal
-        </button>
-        <input style="text-transform:uppercase;"  type="text" class="form-control" id="direccionvv" name="direccionvv"  value="<?=$direccion?>" required>
+        
         
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
