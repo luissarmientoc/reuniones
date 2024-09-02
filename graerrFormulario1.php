@@ -1103,6 +1103,14 @@
         
         
         try {
+                
+                 $stmt1 = $pdo->prepare('INSERT INTO graerr_direccion (
+                                    registro, tipo_via, cuadrante, via_generadora, letra_via_generadora, 
+                                    sufijo, letra_sufijo, numero_placa, cuadrante_numero_placa, complemento
+                                    ) VALUES (?, ?, ?, ?, ?, 
+                                              ?, ?, ?, ?, ?)'); 
+                
+                
                 $stmt1->execute([
                 $tipo_via,
                 $cuadrante,
@@ -1117,11 +1125,7 @@
             ]);
 
 
-             $stmt1 = $pdo->prepare('INSERT INTO graerr_direccion (
-                                    registro, tipo_via, cuadrante, via_generadora, letra_via_generadora, 
-                                    sufijo, letra_sufijo, numero_placa, cuadrante_numero_placa, complemento
-                                    ) VALUES (?, ?, ?, ?, ?, 
-                                              ?, ?, ?, ?, ?)'); 
+            
         } catch (PDOException $e) {
             echo "Error al insertar los datos de la direccion: " . $e->getMessage();
         }
@@ -2045,7 +2049,7 @@
                                 <div class="col-sm-8">
                                       <label for="complemento">Complemento:</label>
                                       <!--<textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1" oninput="concatenarDir();">  </textarea>-->
-                                      <textarea  style="text-transform:uppercase;" class="form-control" id="$corregimiento_vereda" name="$corregimiento_vereda" rows="1" oninput="concatenarDir();">  </textarea>
+                                      <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required oninput="concatenarDir();">
                                 </div>
                          <hr>
                        </div> <!--row-->
