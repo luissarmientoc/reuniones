@@ -1983,7 +1983,7 @@
                             <div class="col-sm-6">
                                <div>
                                     <label for="addressType">* Tipo de dirección:</label>
-                                    <select class="form-control" id="addressType" required onchange="concatenarDir();">
+                                    <select class="form-control" id="addressType" name="addressType" required onchange="concatenarDir();">
                                         <option value="" disabled selected>Selecciona una opción</option>
                                         <option value="">Seleccione una opción</option>
                                         <option value="rural" <?=$aTr?>>Rural</option>
@@ -1995,7 +1995,7 @@
                            <div class="col-sm-6">
                                 <div id="ruralOptions" style="display: none;" >
                                      <label class="labelDireccion" for="ruralType">Tipo de rural:</label>
-                                     <select class="form-control" id="ruralType" onchange="concatenarDir();">
+                                     <select class="form-control" id="ruralType" name="ruralType" onchange="concatenarDir();">
                                          <option value="" disabled selected>Selecciona un tipo</option>
                                          <option value="corregimiento" <?=$rsCor?>>Corregimiento</option>
                                          <option value="centro_poblado" <?=$rsCp?>>Centro Poblado</option>
@@ -2006,7 +2006,7 @@
                                 
                                 <div id="urbanoOptions" style="display: none;">
                                     <label class="labelDireccion" for="urbanoType">Tipo de urbano:</label>
-                                    <select class="form-control" id="urbanoType" onchange="concatenarDir();">
+                                    <select class="form-control" id="urbanoType" name="urbanoType" onchange="concatenarDir();">
                                         <option value="" disabled selected>Selecciona un tipo</option>
                                         <option value="tipo_via" <?=$uTv?>>Tipo de Vía</option>
                                         <option value="barrio" <?=$uBa?>>Barrio</option>
@@ -2019,7 +2019,7 @@
                        <div class="row" style="margin-top:5px;"> 
                             <div class="col-sm-2">
                                 <label for="tipo_via">* Tipo de vía:</label>
-                                <select <?=$active?> required class="form-control" id="tipo_via" onchange="concatenarDir();">
+                                <select <?=$active?> required class="form-control" id="tipo_via" name="tipo_via" onchange="concatenarDir();">
                                     <?=$combo_tipo_via?>
                                 </select>
                             </div>
@@ -2027,7 +2027,7 @@
                             <div class="col-sm-2">
                                    <label for="cuadrante_tipo_via">Cuadrante:</label>
                                    <div class="form-group">
-                                     <select <?=$active?>  class="form-control" id="cuadrante" onchange="concatenarDir();">
+                                     <select <?=$active?>  class="form-control" id="cuadrante" name="cuadrante" onchange="concatenarDir();">
                                          <?php echo $combo_cuadrante; ?>
                                       </select>
                                    </div> 
@@ -2071,7 +2071,7 @@
                                 <div class="col-sm-2">
                                       <label  for="cuadrante_numero_placa">Cuadrante:</label>
                                       <div class="form-group">
-                                          <select <?=$active?> required class="form-control" id="cuadrante_numero_placa" onchange="concatenarDir();">
+                                          <select <?=$active?> required class="form-control" id="cuadrante_numero_placa" name="cuadrante_numero_placa" onchange="concatenarDir();">
                                             <?php echo $combo_cuadrante; ?>
                                           </select>
                                       </div>
