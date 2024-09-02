@@ -23,8 +23,7 @@
     // require("modal.php");
      include("head.php");
   ?>
-        
-            
+
          <script>
               document.addEventListener('DOMContentLoaded', function() {
              // Función para actualizar los campos con la información seleccionada
@@ -125,7 +124,7 @@
                     const letra_sufijo = document.getElementById('letra_sufijo') ? document.getElementById('letra_sufijo').value : '';
                     const numero_placa = document.getElementById('numero_placa').value;
                     const cuadrante_numero_placa = document.getElementById('cuadrante_numero_placa') ? document.getElementById('cuadrante_numero_placa').value : '';
-                    const complemento = document.getElementById('complemento').value;
+                    //const complemento = document.getElementById('complemento').value;
                     const corregimiento_vereda = document.getElementById('corregimiento_vereda').value;
 
                     let concatenatedInfo = '';
@@ -159,10 +158,6 @@
                         concatenatedInfo += concatenatedInfo ? ` ${letra_via_generadora}` : `${letra_via_generadora}`;
                     }
                     
-                    if (letra_via_generadora) {
-                        concatenatedInfo += concatenatedInfo ? ` ${sufijo}` : `${sufijo}`;
-                    }
-                    
                     if (letra_sufijo) {
                         concatenatedInfo += concatenatedInfo ? ` ${letra_sufijo}` : `${letra_sufijo}`;
                     }
@@ -175,13 +170,13 @@
                         concatenatedInfo += concatenatedInfo ? ` ${cuadrante_numero_placa}` : `${cuadrante_numero_placa}`;
                     }
                     
-                    if (complemento) {
-                        concatenatedInfo += concatenatedInfo ? ` ${complemento}` : `${complemento}`;
-                    }
+                   // if (complemento) {
+                   //        concatenatedInfo += concatenatedInfo ? ` ${complemento}` : `${complemento}`;
+                   // }
                     
-                    if (corregimiento_vereda) {
-                        concatenatedInfo += concatenatedInfo ? ` ${corregimiento_vereda}` : `${corregimiento_vereda}`;
-                    }
+                   if (corregimiento_vereda) {
+                       concatenatedInfo += concatenatedInfo ? ` ${corregimiento_vereda}` : `${corregimiento_vereda}`;
+                   }
 
 
 
@@ -190,9 +185,6 @@
                        // alert(concatenatedInfo);
                         document.getElementById('direccion').value = concatenatedInfo;
                     }
-                    
-                    
-
              }
           </script>
 
@@ -624,7 +616,71 @@
              $recomendacion_riesgo_premesa = strtoupper($recomendacion_riesgo_premesa);
              $observaciones                = strtoupper($observaciones);
              $otros                        = strtoupper($otros);
-              
+             
+             //TOMA DATOS DE LA DIRECCION
+             $addressType                  = $_POST['addressType'];                     
+             $ruralType                    = $_POST['ruralType'];
+             $urbanoType                   = $_POST['urbanoType'];
+             $tipo_via                     = $_POST['tipo_via'];
+             $cuadrante                    = $_POST['cuadrante'];
+             $via_generadora               = $_POST['via_generadora'];
+             $letra_via_generadora         = $_POST['letra_via_generadora']; 
+             $sufijo                       = $_POST['sufijo'];
+             $letra_sufijo                 = $_POST['letra_sufijo'];
+             $numero_placa                 = $_POST['numero_placa'];
+             $cuadrante_numero_placa       = $_POST['cuadrante_numero_placa'];
+             $complemento                  = $_POST['complemento'];
+
+             // valores para tipo de via
+             if ($addressType=='rural'){
+                 $aTr = 'selected';
+                 $aTu = '';
+             }
+             if ($addressType=='urbano'){
+                $aTr = '';
+                $aTu = 'selected'; 
+             }
+            
+             if ($ruralType == "corregimiento"){
+                 $rsCor = "selected";
+                 $rsCp  = '';
+                 $rsVe  = '';
+                 $rsOt  = '';
+             }
+             if ($ruralType == "centro_poblado"){
+                 $rsCor = '';
+                 $rsCp  = 'selected';
+                 $rsVe  = '';
+                 $rsOt  = '';
+             }
+             if($ruralType == "vereda"){
+                 $rsCor = '';
+                 $rsCp  = '';
+                 $rsVe  = 'selected';
+                 $rsOt  = ''; 
+             }
+             if($ruralType == "otro"){
+                 $rsCor = '';
+                 $rsCp  = '';
+                 $rsVe  = '';
+                 $rsOt  = 'selected';  
+             }
+             
+             if($urbanoType=="tipo_via"){
+                 $uTv="selected";
+                 $uBa='';
+                 $uCa='';
+             }
+             if($urbanoType=="barrio"){
+                $uTv="";
+                $uBa='selected';
+                $uCa=''; 
+             }
+             if($urbanoType=="campo_abierto"){
+                $uTv="";
+                $uBa='';
+                $uCa='selected'; 
+             }
              
              // asigna valores vacios a las fechas que lo requieren
              if ($fecha_recepcion_unp === "") {
@@ -880,8 +936,42 @@
            $mensaje=" <b>Atención!</b> Actualización exitosa";
            //echo "Datos actualizados correctamente.";
         } catch (PDOException $e) {
-            echo "Error al actualizar los datos: " . $e->getMessage();
+            echo "Error al actualizar los datos de formulario: " . $e->getMessage();
         }
+        
+        try {
+           $stmt1 = $pdo->prepare('
+           UPDATE graerr_direccion
+           SET tipo_via = ?,
+               cuadrante = ?,
+               via_generadora = ?,
+               letra_via_generadora = ?,
+               sufijo = ?,
+               letra_sufijo varchar = ?,
+               numero_placa = ?,
+               cuadrante_numero_placa = ?,
+               complemento = ?,
+              WHERE registro = ?
+           ');
+
+            $stmt1->execute([
+                $tipo_via,
+                $cuadrante,
+                $via_generadora,
+                $letra_via_generadora,
+                $sufijo,
+                $letra_sufijo,
+                $numero_placa,
+                $cuadrante_numero_placa,
+                $complemento,
+              $registro  // El ID del registro que se actualiza
+            ]);
+           //$mensaje=" <b>Atención!</b> Actualización exitosa";
+           //echo "Datos actualizados correctamente.";
+        } catch (PDOException $e) {
+            echo "Error al actualizar los datos de direccion: " . $e->getMessage();
+        }
+        
     }//modificar
       
     ///ADICIONA
@@ -997,8 +1087,36 @@
                       $mensaje=" <b>Atención!</b> Grabación exitosa ¡";        
                     //echo "Datos insertados correctamente.";
                 } catch (PDOException $e) {
-            echo "Error al insertar los datos: " . $e->getMessage();
+            echo "Error al insertar los datos del formulario: " . $e->getMessage();
         }
+        
+        
+        try {
+                $stmt1->execute([
+                $tipo_via,
+                $cuadrante,
+                $via_generadora,
+                $letra_via_generadora,
+                $sufijo,
+                $letra_sufijo,
+                $numero_placa,
+                $cuadrante_numero_placa,
+                $complemento,
+              $registro  // El ID del registro que se actualiza
+            ]);
+
+
+             $stmt1 = $pdo->prepare('INSERT INTO graerr_direccion (
+                                    registro, tipo_via, cuadrante, via_generadora, letra_via_generadora, 
+                                    sufijo, letra_sufijo, numero_placa, cuadrante_numero_placa, complemento
+                                    ) VALUES (?, ?, ?, ?, ?, 
+                                              ?, ?, ?, ?, ?)'); 
+        } catch (PDOException $e) {
+            echo "Error al insertar los datos de la direccion: " . $e->getMessage();
+        }
+            
+        
+        
     }//existe=0
     
     $s_tocoBoton = "S";  
@@ -1395,6 +1513,43 @@
     //===========================================================
     //===================== MODAL ===============================
     
+    //============================= ALFABETO
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT letra FROM graerr_bas_alfabeto order by letra');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_via_generadora .=" <option value=''>".'- Seleccione la letra -'."</option>";
+      }
+      if ($line['letra']==$letra_via_generadora)
+      {
+        $combo_via_generadora .=" <option value='".$line['letra']."' selected>".$line['letra']." </option>"; 
+      }
+      
+       $combo_via_generadora .=" <option value='".$line['letra']."'>".$line['letra']."</ano>"; 
+      $i++; 
+    }
+    
+    //SUFIJO
+    $stmt = $pdo->query('SELECT letra  FROM graerr_bas_alfabeto order by letra');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_letra_sufijo .=" <option value=''>".'- Seleccione la letra -'."</option>";
+      }
+      if ($line['letra']==$letra_sufijo)
+      {
+        $combo_letra_sufijo .=" <option value='".$line['letra']."' selected>".$line['letra']." </option>"; 
+      }
+      
+       $combo_letra_sufijo .=" <option value='".$line['letra']."'>".$line['letra']."</ano>"; 
+      $i++; 
+    }
+
     //============================= CUADRANTE
     //============================================================================ 
     $stmt = $pdo->query('SELECT cuadrante  FROM graerr_bas_cuadrante order by cuadrante');
@@ -1404,6 +1559,10 @@
       if ($i==0)
       {
         $combo_cuadrante .=" <option value=''>".'- Seleccione el cuadrante -'."</option>";
+      }
+      if ($line['cuadrante']==$cuadrante)
+      {
+        $combo_cuadrante .=" <option value='".$line['cuadrante']."' selected>".$line['cuadrante']." </option>"; 
       }
       
        $combo_cuadrante .=" <option value='".$line['cuadrante']."'>".$line['cuadrante']."</ano>"; 
@@ -1773,7 +1932,7 @@
                           </div>
                            -->
                        </div> <!--row-->
-                       
+                                        
                        <div class="row" style="margin-top:5px;"> 
                        <hr>
                             <div class="col-sm-6">
@@ -1782,31 +1941,31 @@
                                     <select class="form-control" id="addressType" required onchange="concatenarDir();">
                                         <option value="" disabled selected>Selecciona una opción</option>
                                         <option value="">Seleccione una opción</option>
-                                        <option value="rural">Rural</option>
-                                        <option value="urbano">Urbano</option>
+                                        <option value="rural" <?=$aTr?>>Rural</option>
+                                        <option value="urbano" <?=$aTu?>>Urbano</option>
                                     </select>
                                 </div>
-                            </div>
-                            
-                            <div class="col-sm-6">
+                           </div>
+                           
+                           <div class="col-sm-6">
                                 <div id="ruralOptions" style="display: none;" >
                                      <label class="labelDireccion" for="ruralType">Tipo de rural:</label>
                                      <select class="form-control" id="ruralType" onchange="concatenarDir();">
                                          <option value="" disabled selected>Selecciona un tipo</option>
-                                         <option value="corregimiento">Corregimiento</option>
-                                         <option value="centro_poblado">Centro Poblado</option>
-                                         <option value="vereda">Vereda</option>
-                                         <option value="otro">Otro</option>
+                                         <option value="corregimiento" <?=$rsCor?>>Corregimiento</option>
+                                         <option value="centro_poblado" <?=$rsCp?>>Centro Poblado</option>
+                                         <option value="vereda" <?=$rsVe?>>Vereda</option>
+                                         <option value="otro" <?=$rsOt?>>Otro</option>
                                      </select>
                                 </div>
-                             
+                                
                                 <div id="urbanoOptions" style="display: none;">
                                     <label class="labelDireccion" for="urbanoType">Tipo de urbano:</label>
                                     <select class="form-control" id="urbanoType" onchange="concatenarDir();">
                                         <option value="" disabled selected>Selecciona un tipo</option>
-                                        <option value="tipo_via">Tipo de Vía</option>
-                                        <option value="barrio">Barrio</option>
-                                        <option value="campo_abierto">Campo Abierto</option>
+                                        <option value="tipo_via" <?=$uTv?>>Tipo de Vía</option>
+                                        <option value="barrio" <?=$uBa?>>Barrio</option>
+                                        <option value="campo_abierto" <?=$uCa?>>Campo Abierto</option>
                                     </select>
                                 </div>
                             </div> 
@@ -1836,36 +1995,9 @@
                             
                             <div class="col-sm-2">
                                    <label  for="letra_via_generadora">Letra:</label>
-                                   <select class="form-control" id="letra_via_generadora" name="letra_via_generadora" onchange="concatenarDir();">
-                                       <!-- Opciones del A a la Z -->
-                                       <option value="">Seleccione una letra</option>
-                                       <option value="A">A</option>
-                                       <option value="B">B</option>
-                                       <option value="C">C</option>
-                                       <option value="D">D</option>
-                                       <option value="E">E</option>
-                                       <option value="F">F</option>
-                                       <option value="G">G</option>
-                                       <option value="H">H</option>
-                                       <option value="I">I</option>
-                                       <option value="J">J</option>
-                                       <option value="K">K</option>
-                                       <option value="L">L</option>
-                                       <option value="M">M</option>
-                                       <option value="N">N</option>
-                                       <option value="O">O</option>
-                                       <option value="P">P</option>
-                                       <option value="Q">Q</option>
-                                       <option value="R">R</option>
-                                       <option value="S">S</option>
-                                       <option value="T">T</option>
-                                       <option value="U">U</option>
-                                       <option value="V">V</option>
-                                       <option value="W">W</option>
-                                       <option value="X">X</option>
-                                       <option value="Y">Y</option>
-                                       <option value="Z">Z</option>
-                                     </select>
+                                    <select class="form-control" id="letra_via_generadora" name="letra_via_generadora" onchange="concatenarDir();">
+                                       <?php echo $combo_via_generadora;?>
+                                    </select>
                                 </div> 
                                 
                                 <div class="col-sm-2">
@@ -1879,36 +2011,9 @@
                                 
                                 <div class="col-sm-2">
                                    <label  for="letra_sufijo">Letra:</label>
-                                   <select class="form-control" id="letra_sufijo" name="letra_sufijo" onchange="concatenarDir();">
-                                       <!-- Opciones del A a la Z -->
-                                       <option value="">Seleccione una letra</option>
-                                        <option value="A">A</option>
-                                       <option value="B">B</option>
-                                       <option value="C">C</option>
-                                       <option value="D">D</option>
-                                       <option value="E">E</option>
-                                       <option value="F">F</option>
-                                       <option value="G">G</option>
-                                       <option value="H">H</option>
-                                       <option value="I">I</option>
-                                       <option value="J">J</option>
-                                       <option value="K">K</option>
-                                       <option value="L">L</option>
-                                       <option value="M">M</option>
-                                       <option value="N">N</option>
-                                       <option value="O">O</option>
-                                       <option value="P">P</option>
-                                       <option value="Q">Q</option>
-                                       <option value="R">R</option>
-                                       <option value="S">S</option>
-                                       <option value="T">T</option>
-                                       <option value="U">U</option>
-                                       <option value="V">V</option>
-                                       <option value="W">W</option>
-                                       <option value="X">X</option>
-                                       <option value="Y">Y</option>
-                                       <option value="Z">Z</option>
-                                     </select>
+                                   <select class="form-control" id="letra_via_generadora" name="letra_via_generadora" onchange="concatenarDir();">
+                                       <?php echo combo_letra_sufijo;?>
+                                    </select>
                                    </div>  
                        </div> <!--row-->
                        
@@ -1929,12 +2034,13 @@
                                 
                                 <div class="col-sm-8">
                                       <label for="complemento">Complemento:</label>
-                                      <textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1" oninput="concatenarDir();">  </textarea>
+                                      <!--<textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1" oninput="concatenarDir();">  </textarea>-->
+                                      <textarea  style="text-transform:uppercase;" class="form-control" id="$corregimiento_vereda" name="$corregimiento_vereda" rows="1" oninput="concatenarDir();">  </textarea>
                                 </div>
                          <hr>
                        </div> <!--row-->
                        
-                       <div class="row" style="margin-top:5px;">  
+                       <!--<div class="row" style="margin-top:5px;">  
                           <div class="col-sm-12" align="left">
                               <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
                               <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
@@ -2411,7 +2517,6 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
       <script src="js/jasny-bootstrap.min.js"></script>
     
-  
     </body>
   </html>
   
