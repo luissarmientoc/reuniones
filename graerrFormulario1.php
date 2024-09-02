@@ -1590,7 +1590,61 @@
     
     //===========================================================
     //===================== MODAL ===============================
+    //============================= ALFABETO
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT letra FROM graerr_bas_alfabeto order by letra');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_via_generadora .=" <option value=''>".'- Seleccione la letra -'."</option>";
+      }
+      if ($line['letra']==$letra_via_generadora)
+      {
+        $combo_via_generadora .=" <option value='".$line['letra']."' selected>".$line['letra']." </option>"; 
+      }
+      
+       $combo_via_generadora .=" <option value='".$line['letra']."'>".$line['letra']."</ano>"; 
+      $i++; 
+    }
     
+    //SUFIJO
+    $stmt = $pdo->query('SELECT letra  FROM graerr_bas_alfabeto order by letra');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_letra_sufijo .=" <option value=''>".'- Seleccione la letra -'."</option>";
+      }
+      if ($line['letra']==$letra_sufijo)
+      {
+        $combo_letra_sufijo .=" <option value='".$line['letra']."' selected>".$line['letra']." </option>"; 
+      }
+      
+       $combo_letra_sufijo .=" <option value='".$line['letra']."'>".$line['letra']."</ano>"; 
+      $i++; 
+    }
+
+    //============================= CUADRANTE
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT cuadrante  FROM graerr_bas_cuadrante order by cuadrante');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_cuadrante .=" <option value=''>".'- Seleccione el cuadrante -'."</option>";
+      }
+      if ($line['cuadrante']==$cuadrante)
+      {
+        $combo_cuadrante .=" <option value='".$line['cuadrante']."' selected>".$line['cuadrante']." </option>"; 
+      }
+      
+       $combo_cuadrante .=" <option value='".$line['cuadrante']."'>".$line['cuadrante']."</ano>"; 
+      $i++; 
+    }
     
  ?>  
               <!-- Page Content Holder -->
