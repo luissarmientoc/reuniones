@@ -112,20 +112,21 @@
              }
              
              function concatenarDir() {
-                
+                alert(entra);
                    // const addressType = document.getElementById('addressType').value;
                    // const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
                    // const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
                     const tipo_via = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
                     const cuadrante = document.getElementById('cuadrante') ? document.getElementById('cuadrante').value : '';
-                    const via_generadora = document.getElementById('via_generadora').value; 
+                    const via_generadora = document.getElementById('via_generadora') ? document.getElementById('via_generadora').value : '';
                     const letra_via_generadora = document.getElementById('letra_via_generadora') ? document.getElementById('letra_via_generadora').value : '';
                     const sufijo = document.getElementById('sufijo') ? document.getElementById('sufijo').value : '';
                     const letra_sufijo = document.getElementById('letra_sufijo') ? document.getElementById('letra_sufijo').value : '';
                     const numero_placa = document.getElementById('numero_placa').value;
+                    const numero_placa = document.getElementById('numero_placa') ? document.getElementById('numero_placa').value : '';
                     const cuadrante_numero_placa = document.getElementById('cuadrante_numero_placa') ? document.getElementById('cuadrante_numero_placa').value : '';
                     //const complemento = document.getElementById('complemento').value;
-                    const corregimiento_vereda = document.getElementById('corregimiento_vereda').value;
+                    const corregimiento_vereda = document.getElementById('corregimiento_vereda') ? document.getElementById('corregimiento_vereda').value : '';
 
                     let concatenatedInfo = '';
 
@@ -149,6 +150,11 @@
                     if (cuadrante) {
                         concatenatedInfo += cuadrante ? ` ${cuadrante}` : `${cuadrante}`;
                     }
+                    
+                    if (cuadrante) {
+                        concatenatedInfo += concatenatedInfo ? ` ${cuadrante}` : `${cuadrante}`;
+                    }
+
                     
                     if (via_generadora) {
                         concatenatedInfo += concatenatedInfo ? ` ${via_generadora}` : `${via_generadora}`;
@@ -185,6 +191,9 @@
                        // alert(concatenatedInfo);
                         document.getElementById('direccion').value = concatenatedInfo;
                     }
+                    
+                    
+                    
              }
           </script>
 
