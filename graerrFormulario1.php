@@ -131,6 +131,70 @@
                     
                     alert("entra11111");
                     
+                    // Verifica si cada campo no está vacío antes de concatenar
+                    //if (addressType) {
+                    //    concatenatedInfo += `${addressType}`;
+                    //}
+
+                    //if (ruralType) {
+                    //    concatenatedInfo += concatenatedInfo ? ` ${ruralType}` : `${ruralType}`;
+                    //}
+
+                    //if (urbanoType) {
+                    //    concatenatedInfo += concatenatedInfo ? ` ${urbanoType}` : `${urbanoType}`;
+                    //}
+                    
+                    if (tipo_via) {
+                        concatenatedInfo += concatenatedInfo ? ` ${tipo_via}` : `${tipo_via}`;
+                    }
+                    
+                    if (cuadrante) {
+                        concatenatedInfo += cuadrante ? ` ${cuadrante}` : `${cuadrante}`;
+                    }
+                    
+                    if (cuadrante) {
+                        concatenatedInfo += concatenatedInfo ? ` ${cuadrante}` : `${cuadrante}`;
+                    }
+
+                    
+                    if (via_generadora) {
+                        concatenatedInfo += concatenatedInfo ? ` ${via_generadora}` : `${via_generadora}`;
+                    }
+                    
+                    if (letra_via_generadora) {
+                        concatenatedInfo += concatenatedInfo ? ` ${letra_via_generadora}` : `${letra_via_generadora}`;
+                    }
+                    
+                    if (letra_sufijo) {
+                        concatenatedInfo += concatenatedInfo ? ` ${letra_sufijo}` : `${letra_sufijo}`;
+                    }
+                    
+                    if (numero_placa) {
+                        concatenatedInfo += concatenatedInfo ? ` ${numero_placa}` : `${numero_placa}`;
+                    }
+                    
+                    if (cuadrante_numero_placa) {
+                        concatenatedInfo += concatenatedInfo ? ` ${cuadrante_numero_placa}` : `${cuadrante_numero_placa}`;
+                    }
+                    
+                   // if (complemento) {
+                   //        concatenatedInfo += concatenatedInfo ? ` ${complemento}` : `${complemento}`;
+                   // }
+                    
+                   if (corregimiento_vereda) {
+                       concatenatedInfo += concatenatedInfo ? ` ${corregimiento_vereda}` : `${corregimiento_vereda}`;
+                   }
+
+
+
+                    // Si concatenatedInfo no está vacío, muestra la alerta
+                    if (concatenatedInfo) {
+                       // alert(concatenatedInfo);
+                        document.getElementById('direccion').value = concatenatedInfo;
+                    }
+                    
+                    
+                    
                     
              }
           </script>
