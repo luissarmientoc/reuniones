@@ -112,7 +112,7 @@
              }
              
              function concatenarDir() {
-                alert("entra");
+                
                     // const addressType = document.getElementById('addressType').value;
                    // const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
                    // const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
@@ -129,7 +129,7 @@
 
                     let concatenatedInfo = '';
                     
-                    alert("entra11111");
+                    //alert("entra11111");
                     
                     // Verifica si cada campo no está vacío antes de concatenar
                     //if (addressType) {
