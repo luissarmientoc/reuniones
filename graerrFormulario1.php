@@ -2012,7 +2012,7 @@
                                 <div class="col-sm-2">
                                    <label  for="letra_sufijo">Letra:</label>
                                    <select class="form-control" id="letra_via_generadora" name="letra_via_generadora" onchange="concatenarDir();">
-                                       <?php echo combo_letra_sufijo;?>
+                                       <?php echo $combo_letra_sufijo;?>
                                     </select>
                                    </div>  
                        </div> <!--row-->
