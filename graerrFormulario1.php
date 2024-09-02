@@ -122,7 +122,6 @@
                     const letra_via_generadora = document.getElementById('letra_via_generadora') ? document.getElementById('letra_via_generadora').value : '';
                     const sufijo = document.getElementById('sufijo') ? document.getElementById('sufijo').value : '';
                     const letra_sufijo = document.getElementById('letra_sufijo') ? document.getElementById('letra_sufijo').value : '';
-                    const numero_placa = document.getElementById('numero_placa').value;
                     const numero_placa = document.getElementById('numero_placa') ? document.getElementById('numero_placa').value : '';
                     const cuadrante_numero_placa = document.getElementById('cuadrante_numero_placa') ? document.getElementById('cuadrante_numero_placa').value : '';
                     //const complemento = document.getElementById('complemento').value;
