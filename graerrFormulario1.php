@@ -643,6 +643,37 @@
              $complemento                  = $_POST['complemento'];
 
              // valores para tipo de via
+             
+             echo "ADRESS TIPO: " . $addressType;
+             ECHO '<BR>';
+             
+             echo "ruralType TIPO: " . $ruralType;
+             ECHO '<BR>';
+             
+             echo "urbanoType TIPO: " . $urbanoType;
+             ECHO '<BR>';
+             
+             
+             echo "1.." . $tipo_via;
+             ECHO '<BR>';
+             echo "1.." . $cuadrante;
+             ECHO '<BR>';
+             echo "1.." . $via_generadora;
+             ECHO '<BR>';
+             echo "1.." . $letra_via_generadora;
+             ECHO '<BR>';
+             echo "1.." . $sufijo;     
+             ECHO '<BR>';
+             echo "1.." . $letra_sufijo;
+             ECHO '<BR>';
+             echo "1.." . $numero_placa;
+             ECHO '<BR>';
+             echo "1.." . $cuadrante_numero_placa;
+             ECHO '<BR>';
+             echo "1.." . $complemento;
+             ECHO '<BR>';
+             
+             
              if ($addressType=='rural'){
                  $aTr = 'selected';
                  $aTu = '';
