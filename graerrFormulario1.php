@@ -1151,10 +1151,15 @@
         try {
                 
                  $stmt1 = $pdo->prepare('INSERT INTO graerr_direccion (
-                                    registro, tipo_via, cuadrante, via_generadora, letra_via_generadora, 
+                                    registro, addressType, ruralType, tipo_via, urbanoType, cuadrante, via_generadora, letra_via_generadora, 
                                     sufijo, letra_sufijo, numero_placa, cuadrante_numero_placa, complemento
-                                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?,
-                                              ?, ?, ?, ?, ?)'); 
+                                    ) VALUES (?, ?, 
+                                              ?, ?, 
+                                              ?, ?, 
+                                              ?, ?,
+                                              ?, ?, 
+                                              ?, ?, 
+                                              ?)'); 
                 
                 $stmt1->execute([
                 $registro,
