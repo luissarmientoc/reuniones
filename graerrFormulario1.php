@@ -369,6 +369,16 @@
              $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
              $complemento                  = $row1['complemento'];
              
+             echo '<br>';
+             echo "Adress.." . $addressType;
+             echo '<br>';
+             
+             echo "Rural.." . $ruralType;
+             echo '<br>';
+             
+             echo "Urbano.." . $urbanoType;
+             echo '<br>';
+             
             //SUFIJO Y DATOS DE DIRECCION
             if ($sufijo==""){
                 $sufN="selected";
@@ -2174,10 +2184,7 @@
                                 <input type="text" class="form-control" id="nomtipodireccion" name="nomtipodireccion" value="<?=$nomtipodireccion?> " placeholder="Tipo dirección" readonly><br>  
                             </div>
                                 
-                            <div class="col-sm-4">
-                                <label class="labelDireccion" for="urbanoType"><?=$tipoRuralUrbano?>:</label>
-                                <input type="text" class="form-control" id="nomtipodireccion" name="nomtipodireccion" value="<?=$nomtipodireccion?> " placeholder="Tipo dirección" readonly><br>  
-                            </div>
+                            
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;"> 
