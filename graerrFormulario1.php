@@ -845,14 +845,13 @@
              
             if ($ruralType!=="")
             {
-                $tipoRuralUrbano="Tipo Urbano";
+                $tipoRuralUrbano="Tipo Rural";
             }
             if ($urbanoType!=="")
             {
-                $tipoRuralUrbano="Tipo Rural";
+              $tipoRuralUrbano="Tipo Urbano";   
             }
-            
-            
+             
             echo '<br>';
             echo "nomtipodireccion .." . $nomtipodireccion;
             echo '<br>';
