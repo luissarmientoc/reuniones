@@ -389,70 +389,69 @@
                 $aTu = 'selected'; 
              }
             
-             if ($ruralType == "corregimiento"){
-                 $rsCor = "selected";
-                 $rsCp  = '';
-                 $rsVe  = '';
-                 $rsOt  = '';
-                 $nomtipodireccion = "Corregimiento";
-             } 
-             
-             if ($ruralType == "centro_poblado"){
-                 $rsCor = '';
-                 $rsCp  = 'selected';
-                 $rsVe  = '';
-                 $rsOt  = '';
-                 $nomtipodireccion = "Centro Poblado";
-             }
-             if($ruralType == "vereda"){
-                 $rsCor = '';
-                 $rsCp  = '';
-                 $rsVe  = 'selected';
-                 $rsOt  = ''; 
-                 $nomtipodireccion = "Vereda";
-             }
-             if($ruralType == "otro"){
-                 $rsCor = '';
-                 $rsCp  = '';
-                 $rsVe  = '';
-                 $rsOt  = 'selected';  
-                 $nomtipodireccion = "Otro";
-             }
-             
-             if($urbanoType=="tipo_via"){
-                 $uTv="selected";
-                 $uBa='';
-                 $uCa='';
-                 $nomtipodireccion = "Tipo de Vía";
-             }
-             if($urbanoType=="barrio"){
-                $uTv="";
-                $uBa='selected';
-                $uCa=''; 
-                $nomtipodireccion = "Barrio";
-             }
-             if($urbanoType=="campo_abierto"){
-                $uTv="";
-                $uBa='';
-                $uCa='selected'; 
-                $nomtipodireccion = "Campo Abierto";
-             }
-             
-            if ($ruralType!=="")
-            {
-                $tipoRuralUrbano="Tipo Urbano";
-            }
-            if ($urbanoType!=="")
-            {
+             if ($ruralType != ""){
+                $urbanoType = "";
                 $tipoRuralUrbano="Tipo Rural";
-            }
-            
-            
-            echo '<br>';
-            echo "nomtipodireccion .." . $nomtipodireccion;
-            echo '<br>';
-            echo "nomtipodireccion .." . $nomtipodireccion;
+                
+                 if ($ruralType == "corregimiento"){
+                     $rsCor = "selected";
+                     $rsCp  = '';
+                     $rsVe  = '';
+                     $rsOt  = '';
+                     $nomtipodireccion = "Corregimiento";
+                 }
+                 if ($ruralType == "centro_poblado"){
+                     $rsCor = '';
+                     $rsCp  = 'selected';
+                     $rsVe  = '';
+                     $rsOt  = '';
+                     $nomtipodireccion = "Centro Poblado";
+                 }
+                 if($ruralType == "vereda"){
+                     $rsCor = '';
+                     $rsCp  = '';
+                     $rsVe  = 'selected';
+                     $rsOt  = ''; 
+                     $nomtipodireccion = "Vereda";
+                 }
+                 if($ruralType == "otro"){
+                     $rsCor = '';
+                     $rsCp  = '';
+                     $rsVe  = '';
+                     $rsOt  = 'selected';  
+                     $nomtipodireccion = "Otro";
+                 }
+             }
+             else{
+                if($urbanoType!=""){
+                   $ruralType = "";
+                   $tipoRuralUrbano="Tipo Urbano";  
+                   if($urbanoType=="tipo_via"){
+                       $uTv="selected";
+                       $uBa='';
+                       $uCa='';
+                       $nomtipodireccion = "Tipo de Vía";
+                   }
+                   if($urbanoType=="barrio"){
+                      $uTv="";
+                      $uBa='selected';
+                      $uCa=''; 
+                      $nomtipodireccion = "Barrio";
+                   }
+                   if($urbanoType=="campo_abierto"){
+                      $uTv="";
+                      $uBa='';
+                      $uCa='selected'; 
+                      $nomtipodireccion = "Campo Abierto";
+                   }
+                }
+             }    
              
+            echo '<br>';
+            echo "nomtipodireccion .." . $nomtipodireccion;
+            echo '<br>';
+            echo "nomtipodireccion .." . $nomtipodireccion;
+            
              //Realiza la validación del tipo de ruta y si es tramite de emergencia
              
              //tipo_ruta
@@ -796,62 +795,63 @@
                 $aTu = 'selected'; 
              }
             
-             if ($ruralType == "corregimiento"){
-                 $rsCor = "selected";
-                 $rsCp  = '';
-                 $rsVe  = '';
-                 $rsOt  = '';
-                 $nomtipodireccion = "Corregimiento";
+             if ($ruralType != ""){
+                $urbanoType = "";
+                $tipoRuralUrbano="Tipo Rural";
+                
+                 if ($ruralType == "corregimiento"){
+                     $rsCor = "selected";
+                     $rsCp  = '';
+                     $rsVe  = '';
+                     $rsOt  = '';
+                     $nomtipodireccion = "Corregimiento";
+                 }
+                 if ($ruralType == "centro_poblado"){
+                     $rsCor = '';
+                     $rsCp  = 'selected';
+                     $rsVe  = '';
+                     $rsOt  = '';
+                     $nomtipodireccion = "Centro Poblado";
+                 }
+                 if($ruralType == "vereda"){
+                     $rsCor = '';
+                     $rsCp  = '';
+                     $rsVe  = 'selected';
+                     $rsOt  = ''; 
+                     $nomtipodireccion = "Vereda";
+                 }
+                 if($ruralType == "otro"){
+                     $rsCor = '';
+                     $rsCp  = '';
+                     $rsVe  = '';
+                     $rsOt  = 'selected';  
+                     $nomtipodireccion = "Otro";
+                 }
              }
-             if ($ruralType == "centro_poblado"){
-                 $rsCor = '';
-                 $rsCp  = 'selected';
-                 $rsVe  = '';
-                 $rsOt  = '';
-                 $nomtipodireccion = "Centro Poblado";
-             }
-             if($ruralType == "vereda"){
-                 $rsCor = '';
-                 $rsCp  = '';
-                 $rsVe  = 'selected';
-                 $rsOt  = ''; 
-                 $nomtipodireccion = "Vereda";
-             }
-             if($ruralType == "otro"){
-                 $rsCor = '';
-                 $rsCp  = '';
-                 $rsVe  = '';
-                 $rsOt  = 'selected';  
-                 $nomtipodireccion = "Otro";
-             }
-             
-             if($urbanoType=="tipo_via"){
-                 $uTv="selected";
-                 $uBa='';
-                 $uCa='';
-                 $nomtipodireccion = "Tipo de Vía";
-             }
-             if($urbanoType=="barrio"){
-                $uTv="";
-                $uBa='selected';
-                $uCa=''; 
-                $nomtipodireccion = "Barrio";
-             }
-             if($urbanoType=="campo_abierto"){
-                $uTv="";
-                $uBa='';
-                $uCa='selected'; 
-                $nomtipodireccion = "Campo Abierto";
-             }
-             
-            if ($ruralType!=="")
-            {
-            $tipoRuralUrbano="Tipo Rural";
-            }
-            if ($urbanoType!=="")
-            {
-              $tipoRuralUrbano="Tipo Urbano";   
-            }
+             else{
+                if($urbanoType!=""){
+                   $ruralType = "";
+                   $tipoRuralUrbano="Tipo Urbano";  
+                   if($urbanoType=="tipo_via"){
+                       $uTv="selected";
+                       $uBa='';
+                       $uCa='';
+                       $nomtipodireccion = "Tipo de Vía";
+                   }
+                   if($urbanoType=="barrio"){
+                      $uTv="";
+                      $uBa='selected';
+                      $uCa=''; 
+                      $nomtipodireccion = "Barrio";
+                   }
+                   if($urbanoType=="campo_abierto"){
+                      $uTv="";
+                      $uBa='';
+                      $uCa='selected'; 
+                      $nomtipodireccion = "Campo Abierto";
+                   }
+                }
+             }    
              
             echo '<br>';
             echo "nomtipodireccion .." . $nomtipodireccion;
