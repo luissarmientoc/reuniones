@@ -394,7 +394,8 @@
                  $rsVe  = '';
                  $rsOt  = '';
                  $nomtipodireccion = "Corregimiento";
-             }
+             } 
+             
              if ($ruralType == "centro_poblado"){
                  $rsCor = '';
                  $rsCp  = 'selected';
@@ -438,12 +439,18 @@
              
             if ($ruralType!=="")
             {
-                $tipoRuralUrbano="Tipo Rural";
+                $tipoRuralUrbano="Tipo Urbano";
             }
-            if ($ruralType!=="")
+            if ($urbanoType!=="")
             {
                 $tipoRuralUrbano="Tipo Rural";
             }
+            
+            
+            echo '<br>';
+            echo "nomtipodireccion .." . $nomtipodireccion;
+            echo '<br>';
+            echo "nomtipodireccion .." . $nomtipodireccion;
              
              //Realiza la validación del tipo de ruta y si es tramite de emergencia
              
@@ -793,42 +800,64 @@
                  $rsCp  = '';
                  $rsVe  = '';
                  $rsOt  = '';
+                 $nomtipodireccion = "Corregimiento";
              }
              if ($ruralType == "centro_poblado"){
                  $rsCor = '';
                  $rsCp  = 'selected';
                  $rsVe  = '';
                  $rsOt  = '';
+                 $nomtipodireccion = "Centro Poblado";
              }
              if($ruralType == "vereda"){
                  $rsCor = '';
                  $rsCp  = '';
                  $rsVe  = 'selected';
                  $rsOt  = ''; 
+                 $nomtipodireccion = "Vereda";
              }
              if($ruralType == "otro"){
                  $rsCor = '';
                  $rsCp  = '';
                  $rsVe  = '';
                  $rsOt  = 'selected';  
+                 $nomtipodireccion = "Otro";
              }
              
              if($urbanoType=="tipo_via"){
                  $uTv="selected";
                  $uBa='';
                  $uCa='';
+                 $nomtipodireccion = "Tipo de Vía";
              }
              if($urbanoType=="barrio"){
                 $uTv="";
                 $uBa='selected';
                 $uCa=''; 
+                $nomtipodireccion = "Barrio";
              }
              if($urbanoType=="campo_abierto"){
                 $uTv="";
                 $uBa='';
                 $uCa='selected'; 
+                $nomtipodireccion = "Campo Abierto";
              }
              
+            if ($ruralType!=="")
+            {
+                $tipoRuralUrbano="Tipo Urbano";
+            }
+            if ($urbanoType!=="")
+            {
+                $tipoRuralUrbano="Tipo Rural";
+            }
+            
+            
+            echo '<br>';
+            echo "nomtipodireccion .." . $nomtipodireccion;
+            echo '<br>';
+            echo "nomtipodireccion .." . $nomtipodireccion;
+            
              // asigna valores vacios a las fechas que lo requieren
              if ($fecha_recepcion_unp === "") {
                  $fecha_recepcion_unp =  '1900-01-01'; 
