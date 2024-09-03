@@ -1152,8 +1152,8 @@
                                     ) VALUES (?, ?, ?, ?, ?, 
                                               ?, ?, ?, ?, ?)'); 
                 
-                
                 $stmt1->execute([
+                $registro,
                 $tipo_via,
                 $cuadrante,
                 $via_generadora,
@@ -1162,8 +1162,7 @@
                 $letra_sufijo,
                 $numero_placa,
                 $cuadrante_numero_placa,
-                $complemento,
-              $registro  // El ID del registro que se actualiza
+                $complemento
             ]);
 
 
