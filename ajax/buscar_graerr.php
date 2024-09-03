@@ -338,6 +338,7 @@
  
 					       <td class='text-center'>
 					         <a href="graerrFormulario1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a> 
+					         <a href="graerrEnviarApoyoMt.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-ok"></i></a> 
 					       </td>  
 					   </tr>
         <?php
