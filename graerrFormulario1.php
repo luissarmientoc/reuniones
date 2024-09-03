@@ -349,8 +349,103 @@
              $cantidad_hombres              = $row['cantidad_hombres'];
              $cantidad_mujeres              = $row['cantidad_mujeres'];
              $cantidad_binarios             = $row['cantidad_binarios'];
+            
+             //trae los datos e la direccion
+             $sql1 = "select * from graerr_direccion where registro=$s_registro";
+             $stmt1 = $pdo->query($sql1);
+             $row1  = $stmt1->fetch(PDO::FETCH_ASSOC);
              
-             //Realiza la validació del tipo de ruta y si es tramite de emergencia
+             $addressType                  = $row1['addressType'];                     
+             $ruralType                    = $row1['ruralType'];
+             $urbanoType                   = $row1['urbanoType'];
+             $tipo_via                     = $row1['tipo_via'];
+             $cuadrante                    = $row1['cuadrante'];
+             $via_generadora               = $row1['via_generadora'];
+             $letra_via_generadora         = $row1['letra_via_generadora']; 
+             $sufijo                       = $row1['sufijo'];
+             $letra_sufijo                 = $row1['letra_sufijo'];
+             $numero_placa                 = $row1['numero_placa'];
+             $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
+             $complemento                  = $row1['complemento'];
+             
+            //SUFIJO Y DATOS DE DIRECCION
+            if ($sufijo==""){
+                $sufN="selected";
+                $sufS="";
+             }
+             else
+             {
+                $sufS="selected"; 
+                $sufN="";
+             }
+             
+             if ($addressType=='rural'){
+                 $aTr = 'selected';
+                 $aTu = '';
+             }
+             if ($addressType=='urbano'){
+                $aTr = '';
+                $aTu = 'selected'; 
+             }
+            
+             if ($ruralType == "corregimiento"){
+                 $rsCor = "selected";
+                 $rsCp  = '';
+                 $rsVe  = '';
+                 $rsOt  = '';
+                 $nomtipodireccion = "Corregimiento";
+             }
+             if ($ruralType == "centro_poblado"){
+                 $rsCor = '';
+                 $rsCp  = 'selected';
+                 $rsVe  = '';
+                 $rsOt  = '';
+                 $nomtipodireccion = "Centro Poblado";
+             }
+             if($ruralType == "vereda"){
+                 $rsCor = '';
+                 $rsCp  = '';
+                 $rsVe  = 'selected';
+                 $rsOt  = ''; 
+                 $nomtipodireccion = "Vereda";
+             }
+             if($ruralType == "otro"){
+                 $rsCor = '';
+                 $rsCp  = '';
+                 $rsVe  = '';
+                 $rsOt  = 'selected';  
+                 $nomtipodireccion = "Otro";
+             }
+             
+             if($urbanoType=="tipo_via"){
+                 $uTv="selected";
+                 $uBa='';
+                 $uCa='';
+                 $nomtipodireccion = "Tipo de Vía";
+             }
+             if($urbanoType=="barrio"){
+                $uTv="";
+                $uBa='selected';
+                $uCa=''; 
+                $nomtipodireccion = "Barrio";
+             }
+             if($urbanoType=="campo_abierto"){
+                $uTv="";
+                $uBa='';
+                $uCa='selected'; 
+                $nomtipodireccion = "Campo Abierto";
+             }
+             
+            if ($ruralType!=="")
+            {
+                $tipoRuralUrbano="Tipo Rural";
+            }
+            if ($ruralType!=="")
+            {
+                $tipoRuralUrbano="Tipo Rural";
+            }
+             
+             //Realiza la validación del tipo de ruta y si es tramite de emergencia
              
              //tipo_ruta
              if ($tipo_ruta==1) //Individual
@@ -654,7 +749,7 @@
              }
              
              // valores para tipo de via
-             
+             /*
              echo "ADRESS TIPO: " . $addressType;
              ECHO '<BR>';
              
@@ -682,7 +777,7 @@
              ECHO '<BR>';
              echo "9.." . $complemento;
              ECHO '<BR>';
-             
+             */
              
              if ($addressType=='rural'){
                  $aTr = 'selected';
@@ -2003,7 +2098,7 @@
                                         
                        <div class="row" style="margin-top:5px;">  
                        <hr>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                <div>
                                     <label for="addressType">* Tipo de dirección:</label>
                                     <select class="form-control" id="addressType" name="addressType" required onchange="concatenarDir();">
@@ -2015,7 +2110,7 @@
                                 </div>
                            </div>
                            
-                           <div class="col-sm-6">
+                           <div class="col-sm-4">
                                 <div id="ruralOptions" style="display: none;" >
                                      <label class="labelDireccion" for="ruralType">Tipo de rural:</label>
                                      <select class="form-control" id="ruralType" name="ruralType" onchange="concatenarDir();">
@@ -2028,7 +2123,7 @@
                                 </div>
                                 
                                 <div id="urbanoOptions" style="display: none;">
-                                    <label class="labelDireccion" for="urbanoType">Tipo de urbano:</label>
+                                    <label for="urbanoType">Tipo de urbano:</label>
                                     <select class="form-control" id="urbanoType" name="urbanoType" onchange="concatenarDir();">
                                         <option value="" disabled selected>Selecciona un tipo</option>
                                         <option value="tipo_via" <?=$uTv?>>Tipo de Vía</option>
@@ -2037,6 +2132,12 @@
                                     </select>
                                 </div>
                             </div> 
+                            
+                            
+                            <div class="col-sm-4">
+                                <label class="labelDireccion" for="urbanoType"><?=$tipoRuralUrbano?>:</label>
+                                <input type="text" class="form-control" id="nomtipodireccion" name="nomtipodireccion" value="<?=nomtipodireccion?> " placeholder="Tipo dirección" readonly><br>  
+                            </div>
                        </div> <!--row-->
                        
                        <div class="row" style="margin-top:5px;"> 
