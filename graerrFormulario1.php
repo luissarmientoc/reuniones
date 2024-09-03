@@ -356,9 +356,9 @@
              $stmt1 = $pdo->query($sql1);
              $row1  = $stmt1->fetch(PDO::FETCH_ASSOC);
              
-             $addressType                  = $row1['addressType'];                     
-             $ruralType                    = $row1['ruralType'];
-             $urbanoType                   = $row1['urbanoType'];
+             $addressType                  = $row1['addresstype'];                     
+             $ruralType                    = $row1['ruraltype'];
+             $urbanoType                   = $row1['urbanotype'];
              $tipo_via                     = $row1['tipo_via'];
              $cuadrante                    = $row1['cuadrante'];
              $via_generadora               = $row1['via_generadora'];
@@ -1131,9 +1131,9 @@
         try {
            $stmt1 = $pdo->prepare('
            UPDATE graerr_direccion
-           SET addressType = ?,
-               ruralType = ?,
-               urbanoType = ?,
+           SET addresstype = ?,
+               ruraltype = ?,
+               urbanotype = ?,
                tipo_via = ?,
                cuadrante = ?,
                via_generadora = ?,
@@ -1289,7 +1289,7 @@
         try {
                 
                  $stmt1 = $pdo->prepare('INSERT INTO graerr_direccion (
-                                    registro, addressType, ruralType, urbanoType, tipo_via,cuadrante, via_generadora, letra_via_generadora, 
+                                    registro, addresstype, ruraltype, urbanotype, tipo_via,cuadrante, via_generadora, letra_via_generadora, 
                                     sufijo, letra_sufijo, numero_placa, cuadrante_numero_placa, complemento
                                     ) VALUES (?, ?, 
                                               ?, ?, 
