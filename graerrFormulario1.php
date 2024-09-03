@@ -640,8 +640,8 @@
              $letra_sufijo                 = $_POST['letra_sufijo'];
              $numero_placa                 = $_POST['numero_placa'];
              $cuadrante_numero_placa       = $_POST['cuadrante_numero_placa'];
-             $complemento                  = $_POST['complemento'];
-
+             $complemento                  = $_POST['corregimiento_vereda'];
+            
              // valores para tipo de via
              
              echo "ADRESS TIPO: " . $addressType;
@@ -656,21 +656,21 @@
              
              echo "1.." . $tipo_via;
              ECHO '<BR>';
-             echo "1.." . $cuadrante;
+             echo "2.." . $cuadrante;
              ECHO '<BR>';
-             echo "1.." . $via_generadora;
+             echo "3.." . $via_generadora;
              ECHO '<BR>';
-             echo "1.." . $letra_via_generadora;
+             echo "4.." . $letra_via_generadora;
              ECHO '<BR>';
-             echo "1.." . $sufijo;     
+             echo "5.." . $sufijo;     
              ECHO '<BR>';
-             echo "1.." . $letra_sufijo;
+             echo "6.." . $letra_sufijo;
              ECHO '<BR>';
-             echo "1.." . $numero_placa;
+             echo "7.." . $numero_placa;
              ECHO '<BR>';
-             echo "1.." . $cuadrante_numero_placa;
+             echo "8.." . $cuadrante_numero_placa;
              ECHO '<BR>';
-             echo "1.." . $complemento;
+             echo "9.." . $complemento;
              ECHO '<BR>';
              
              
@@ -1978,7 +1978,7 @@
                            -->
                        </div> <!--row-->
                                         
-                       <div class="row" style="margin-top:5px;"> 
+                       <div class="row" style="margin-top:5px;">  
                        <hr>
                             <div class="col-sm-6">
                                <div>
@@ -2025,7 +2025,7 @@
                             </div>
                             
                             <div class="col-sm-2">
-                                   <label for="cuadrante_tipo_via">Cuadrante:</label>
+                                   <label for="cuadrante_tipo_via">Cuadrante:</label> 
                                    <div class="form-group">
                                      <select <?=$active?>  class="form-control" id="cuadrante" name="cuadrante" onchange="concatenarDir();">
                                          <?php echo $combo_cuadrante; ?>
@@ -2046,7 +2046,7 @@
                                 </div> 
                                 
                                 <div class="col-sm-2">
-                                       <label  for="via_generadora">Sufijo:</label>
+                                       <label  for="via_generadora">Sufijo:</label> 
                                        <select class="form-control" id="sufijo" name="sufijo" onchange="concatenarDir();">
                                           <!-- Opciones del A a la Z -->
                                           <option value="">Seleccione el Sufijo</option>
@@ -2056,7 +2056,7 @@
                                 
                                 <div class="col-sm-2">
                                    <label  for="letra_sufijo">Letra:</label>
-                                   <select class="form-control" id="letra_via_generadora" name="letra_via_generadora" onchange="concatenarDir();">
+                                   <select class="form-control" id="letra_sufijo" name="letra_sufijo" onchange="concatenarDir();">
                                        <?php echo $combo_letra_sufijo;?>
                                     </select>
                                    </div>  
