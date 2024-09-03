@@ -383,10 +383,12 @@
              if ($addressType=='rural'){
                  $aTr = 'selected';
                  $aTu = '';
+                 $eltipodireccion="Rural";
              }
              if ($addressType=='urbano'){
                 $aTr = '';
                 $aTu = 'selected'; 
+                $eltipodireccion="Urbanol";
              }
             
              if ($ruralType != ""){
@@ -789,10 +791,12 @@
              if ($addressType=='rural'){
                  $aTr = 'selected';
                  $aTu = '';
+                 $eltipodireccion="Rural";
              }
              if ($addressType=='urbano'){
                 $aTr = '';
                 $aTu = 'selected'; 
+                $eltipodireccion="Urbanol";
              }
             
              if ($ruralType != ""){
@@ -2127,7 +2131,7 @@
                                         
                        <div class="row" style="margin-top:5px;">  
                        <hr>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                <div>
                                     <label for="addressType">* Tipo de dirección:</label>
                                     <select class="form-control" id="addressType" name="addressType" required onchange="concatenarDir();">
@@ -2139,7 +2143,7 @@
                                 </div>
                            </div>
                            
-                           <div class="col-sm-4">
+                           <div class="col-sm-6">
                                 <div id="ruralOptions" style="display: none;" >
                                      <label class="labelDireccion" for="ruralType">Tipo de rural:</label>
                                      <select class="form-control" id="ruralType" name="ruralType" onchange="concatenarDir();">
@@ -2162,7 +2166,14 @@
                                 </div>
                             </div> 
                             
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="eltipodireccion" name="eltipodireccion" value="<?=$eltipodireccion?> " placeholder="Tipo dirección" readonly><br>  
+                            </div>
                             
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="nomtipodireccion" name="nomtipodireccion" value="<?=$nomtipodireccion?> " placeholder="Tipo dirección" readonly><br>  
+                            </div>
+                                
                             <div class="col-sm-4">
                                 <label class="labelDireccion" for="urbanoType"><?=$tipoRuralUrbano?>:</label>
                                 <input type="text" class="form-control" id="nomtipodireccion" name="nomtipodireccion" value="<?=$nomtipodireccion?> " placeholder="Tipo dirección" readonly><br>  
