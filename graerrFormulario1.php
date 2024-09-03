@@ -1298,8 +1298,7 @@
             echo "Error al insertar los datos de la direccion: " . $e->getMessage();
         }
             
-        
-        
+         $s_existe ="1";
     }//existe=0
     
     $s_tocoBoton = "S";  
