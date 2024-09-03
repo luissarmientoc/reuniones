@@ -352,6 +352,7 @@
             
              //trae los datos e la direccion
              $sql1 = "select * from graerr_direccion where registro=$s_registro";
+             echo  "www.". $sql1;
              $stmt1 = $pdo->query($sql1);
              $row1  = $stmt1->fetch(PDO::FETCH_ASSOC);
              
@@ -845,7 +846,7 @@
              
             if ($ruralType!=="")
             {
-                $tipoRuralUrbano="Tipo Rural";
+            $tipoRuralUrbano="Tipo Rural";
             }
             if ($urbanoType!=="")
             {
