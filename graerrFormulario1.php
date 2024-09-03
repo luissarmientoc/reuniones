@@ -1118,7 +1118,7 @@
                via_generadora = ?,
                letra_via_generadora = ?,
                sufijo = ?,
-               letra_sufijo varchar = ?,
+               letra_sufijo  = ?,
                numero_placa = ?,
                cuadrante_numero_placa = ?,
                complemento = ?,
