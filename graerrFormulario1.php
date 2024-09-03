@@ -352,7 +352,6 @@
             
              //trae los datos e la direccion
              $sql1 = "select * from graerr_direccion where registro=$s_registro";
-             echo  "www.". $sql1;
              $stmt1 = $pdo->query($sql1);
              $row1  = $stmt1->fetch(PDO::FETCH_ASSOC);
              
@@ -368,16 +367,6 @@
              $numero_placa                 = $row1['numero_placa'];
              $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
              $complemento                  = $row1['complemento'];
-             
-             echo '<br>';
-             echo "Adress.." . $addressType;
-             echo '<br>';
-             
-             echo "Rural.." . $ruralType;
-             echo '<br>';
-             
-             echo "Urbano.." . $urbanoType;
-             echo '<br>';
              
             //SUFIJO Y DATOS DE DIRECCION
             if ($sufijo==""){
@@ -398,7 +387,7 @@
              if ($addressType=='urbano'){
                 $aTr = '';
                 $aTu = 'selected'; 
-                $eltipodireccion="Urbanol";
+                $eltipodireccion="Urbano";
              }
             
              if ($ruralType != ""){
@@ -459,11 +448,6 @@
                 }
              }    
              
-            echo '<br>';
-            echo "nomtipodireccion .." . $nomtipodireccion;
-            echo '<br>';
-            echo "nomtipodireccion .." . $nomtipodireccion;
-            
              //Realiza la validación del tipo de ruta y si es tramite de emergencia
              
              //tipo_ruta
@@ -806,7 +790,7 @@
              if ($addressType=='urbano'){
                 $aTr = '';
                 $aTu = 'selected'; 
-                $eltipodireccion="Urbanol";
+                $eltipodireccion="Urbano";
              }
             
              if ($ruralType != ""){
@@ -867,11 +851,6 @@
                 }
              }    
              
-            echo '<br>';
-            echo "nomtipodireccion .." . $nomtipodireccion;
-            echo '<br>';
-            echo "nomtipodireccion .." . $nomtipodireccion;
-            
              // asigna valores vacios a las fechas que lo requieren
              if ($fecha_recepcion_unp === "") {
                  $fecha_recepcion_unp =  '1900-01-01'; 
@@ -2175,7 +2154,9 @@
                                     </select>
                                 </div>
                             </div> 
-                            
+                       </div> <!--row-->        
+                       
+                       <div class="row" style="margin-top:5px;">  
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" id="eltipodireccion" name="eltipodireccion" value="<?=$eltipodireccion?> " placeholder="Tipo dirección" readonly><br>  
                             </div>
