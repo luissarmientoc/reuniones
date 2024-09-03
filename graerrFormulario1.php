@@ -1121,7 +1121,7 @@
                letra_sufijo  = ?,
                numero_placa = ?,
                cuadrante_numero_placa = ?,
-               complemento = ?,
+               complemento = ?
               WHERE registro = ?
            ');
 
