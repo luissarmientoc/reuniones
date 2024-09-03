@@ -2136,7 +2136,7 @@
                             
                             <div class="col-sm-4">
                                 <label class="labelDireccion" for="urbanoType"><?=$tipoRuralUrbano?>:</label>
-                                <input type="text" class="form-control" id="nomtipodireccion" name="nomtipodireccion" value="<?=nomtipodireccion?> " placeholder="Tipo dirección" readonly><br>  
+                                <input type="text" class="form-control" id="nomtipodireccion" name="nomtipodireccion" value="<?=$nomtipodireccion?> " placeholder="Tipo dirección" readonly><br>  
                             </div>
                        </div> <!--row-->
                        
