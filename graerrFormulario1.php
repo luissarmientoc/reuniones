@@ -641,7 +641,18 @@
              $numero_placa                 = $_POST['numero_placa'];
              $cuadrante_numero_placa       = $_POST['cuadrante_numero_placa'];
              $complemento                  = $_POST['corregimiento_vereda'];
-            
+             
+             //SUFIJO
+             if ($sufijo==""){
+                $sufN="selected";
+                $sufS="";
+             }
+             else
+             {
+                $sufS="selected"; 
+                $sufN="";
+             }
+             
              // valores para tipo de via
              
              echo "ADRESS TIPO: " . $addressType;
@@ -1601,7 +1612,10 @@
       {
         $combo_tipo_via .=" <option value=''>".'- Seleccione el tipo de via -'."</option>";
       }
-      
+      if ($line['id']==$tipo_via)
+      {
+        $combo_tipo_via .=" <option value='".$line['id']."' selected>".$line['tipo_via']." </option>"; 
+      }
       $combo_tipo_via .=" <option value='".$line['id']."'>".$line['tipo_via']."</option>"; 
       $i++; 
     }
@@ -1644,7 +1658,7 @@
       $i++; 
     }
     
-    //SUFIJO
+    //LETRA SUFIJO
     $stmt = $pdo->query('SELECT letra  FROM graerr_bas_alfabeto order by letra');
     $i=0;
     while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
@@ -2035,7 +2049,7 @@
                        
                             <div class="col-sm-2">
                                    <label for="via_generadora">* No. inical placa:</label>
-                                   <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora" oninput="concatenarDir();">
+                                   <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora" value="<?=$via_generadora?>" oninput="concatenarDir();">
                             </div>
                             
                             <div class="col-sm-2">
@@ -2049,8 +2063,8 @@
                                        <label  for="via_generadora">Sufijo:</label> 
                                        <select class="form-control" id="sufijo" name="sufijo" onchange="concatenarDir();">
                                           <!-- Opciones del A a la Z -->
-                                          <option value="">Seleccione el Sufijo</option>
-                                          <option value="Bis">Bis</option>
+                                          <option value="" <?=$sufN?>>Seleccione el Sufijo</option>
+                                          <option value="Bis" <?=$sufS?> >Bis</option>
                                         </select>          
                                 </div>
                                 
@@ -2065,7 +2079,7 @@
                        <div class="row" style="margin-top:5px;"> 
                                 <div class="col-sm-2">
                                         <label for="numero_placa">* Número de placa:</label>
-                                         <input required type="number" class="form-control" id="numero_placa" name="numero_placa" min="0" oninput="concatenarDir();">
+                                         <input required type="number" class="form-control" id="numero_placa" name="numero_placa" value="<?=$numero_placa?>" min="0" oninput="concatenarDir();">
                                 </div>
                                  
                                 <div class="col-sm-2">
