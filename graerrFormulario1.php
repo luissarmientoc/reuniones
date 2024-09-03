@@ -640,7 +640,7 @@
              $letra_sufijo                 = $_POST['letra_sufijo'];
              $numero_placa                 = $_POST['numero_placa'];
              $cuadrante_numero_placa       = $_POST['cuadrante_numero_placa'];
-             $complemento                  = $_POST['corregimiento_vereda'];
+             $complemento                  = strtoupper($_POST['corregimiento_vereda']);
              
              //SUFIJO
              if ($sufijo==""){
@@ -663,7 +663,6 @@
              
              echo "urbanoType TIPO: " . $urbanoType;
              ECHO '<BR>';
-             
              
              echo "1.." . $tipo_via;
              ECHO '<BR>';
@@ -777,7 +776,6 @@
              if ($fecha_tramite_emergencia === "") {
                  $fecha_tramite_emergencia = '1900-01-01';
              }
-             
               
              //Realiza la validación del tipo de ruta y si es tramite de emergencia
                            
@@ -995,7 +993,10 @@
         try {
            $stmt1 = $pdo->prepare('
            UPDATE graerr_direccion
-           SET tipo_via = ?,
+           SET addressType = ?,
+               ruralType = ?,
+               urbanoType = ?,
+               tipo_via = ?,
                cuadrante = ?,
                via_generadora = ?,
                letra_via_generadora = ?,
@@ -1008,6 +1009,9 @@
            ');
 
             $stmt1->execute([
+                $addressType,
+                $ruralType,
+                $urbanoType,
                 $tipo_via,
                 $cuadrante,
                 $via_generadora,
@@ -1149,11 +1153,14 @@
                  $stmt1 = $pdo->prepare('INSERT INTO graerr_direccion (
                                     registro, tipo_via, cuadrante, via_generadora, letra_via_generadora, 
                                     sufijo, letra_sufijo, numero_placa, cuadrante_numero_placa, complemento
-                                    ) VALUES (?, ?, ?, ?, ?, 
+                                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?,
                                               ?, ?, ?, ?, ?)'); 
                 
                 $stmt1->execute([
                 $registro,
+                $addressType,
+                $ruralType,
+                $urbanoType,
                 $tipo_via,
                 $cuadrante,
                 $via_generadora,
@@ -1164,8 +1171,6 @@
                 $cuadrante_numero_placa,
                 $complemento
             ]);
-
-
             
         } catch (PDOException $e) {
             echo "Error al insertar los datos de la direccion: " . $e->getMessage();
