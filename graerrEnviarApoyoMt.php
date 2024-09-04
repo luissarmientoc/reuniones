@@ -73,6 +73,22 @@
              $no_de_contacto                = $row['no_de_contacto'];
              $factor_diferencial            = $row['factor_diferencial'];
              $subpoblacion                  = $row['subpoblacion'];
+             
+              $cuantos=0;
+              $sql = "SELECT count(*) AS cuantos FROM mt_anexotecnico where registro=$s_registro";
+              $stmt = $pdo->query($sql);
+              $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+              $s_cuantos = $row['cuantos'];
+             
+              if ($s_cuantos > 0)
+               {
+                  $mensaje=" <b>Atención!</b> El REGISTRO YA FUE REMITIDO¡";   
+                  $active="disabled";
+               }
+               else
+               {
+                   $active="";
+               }
     } 
     
     if(isset($_POST['enviar']))
@@ -123,9 +139,10 @@
               
               echo "cuantos.." . $s_cuantos;
         
-        if ($cuantos > 0)
+        if ($s_cuantos > 0)
         {
             $mensaje=" <b>Atención!</b> El REGISTRO YA FUE REMITIDO¡";   
+            $active="disabled";
         }
         else
         {
@@ -260,6 +277,7 @@
             <?php  
                 if ($s_tocoBoton=="S")
                 {
+                   $active="disabled";     
             ?> 
                     <div class="alert alert-success" align="center"><?=$mensaje?></div>
             <?php 
@@ -413,7 +431,7 @@
                 
                 <div class="modal-footer"> 
                    <div class="col-sm-11" align="center">  
-                       <button type="submit" name='enviar' class="btn btn-md btn-success btn-lg" onclick='return confirmarEnvio()'> <i class='far fa-check-circle'></i> REALIZAR REMISION A SUBCOMISIÓN MTSP</button>
+                       <button type="submit" <?=$active?> name='enviar' class="btn btn-md btn-success btn-lg" onclick='return confirmarEnvio()'> <i class='far fa-check-circle'></i> REALIZAR REMISION A SUBCOMISIÓN MTSP</button>
                 </div>	 
               </div>
               
