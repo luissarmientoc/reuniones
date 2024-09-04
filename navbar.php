@@ -261,7 +261,7 @@ a.article, a.article:hover {
                             GRAERR
                         </a>
                         <hr>
-                        <a href="graerrFormulario1.php"> 2
+                        <a href="graerrAmtsp.php"> 2
                             <i class="glyphicon glyphicon-home"></i>
                             MTSP
                         </a>
