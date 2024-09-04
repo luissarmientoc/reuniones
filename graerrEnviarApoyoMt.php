@@ -87,6 +87,7 @@
              $s_registro                    = $_POST['registro'];
              $tipo_estudio_riesgo           = $_POST['tipo_estudio_riesgo'];
              $ot                            = $_POST['ot'];
+             $fecha_asignado_ot             = $_POST['fecha_asignado_ot'];
              $tipo_documento                = $_POST['tipo_documento'];
              $no_documento                  = $_POST['no_documento'];
              $nombres_peticionario          = $_POST['nombres_peticionario'];
@@ -134,8 +135,7 @@
              echo '<br>';
              echo "16.." . $obsadicionales_graerr;
              echo '<br>';
-             
-             
+              
              
                  // Preparar la consulta SQL para actualizar
                  //variables que se actualizan en MT
@@ -409,7 +409,7 @@
                        <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-12" align="left">
                              <b>Observaciones / recomendaciones Adicionales: </b> <br>  
-                             <textarea  style="text-transform:uppercase;" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="3" <?=$obsadicionales_graerr?>>  </textarea> 
+                             <textarea  style="text-transform:uppercase;" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="3" > <?=$obsadicionales_graerr?> </textarea> 
                            </div>
                         </div>   
                        
@@ -427,6 +427,7 @@
               <input style="visibility:hidden" name= "registro" value="<?=$s_registro?>"/>
               <input style="visibility:hidden" name= "tipo_estudio_riesgo" value="<?=$tipo_estudio_riesgo?>"/>
               <input style="visibility:hidden" name= "ot" value="<?=$ot?>"/>
+              <input style="visibility:hidden" name= "fecha_asignado_ot" value="<?=$fecha_asignado_ot?>"/>
               <input style="visibility:hidden" name= "tipo_documento" value="<?=$tipo_documento?>"/>
               <input style="visibility:hidden" name= "no_documento" value="<?=$no_documento?>"/>
               <input style="visibility:hidden" name= "nombres_peticionario" value="<?=$nombres_peticionario?>"/>
@@ -445,10 +446,7 @@
              </div>
                     
             </form>
-
-  
-  
-  
+ 
         <!-- Bootstrap core JavaScript
       ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
