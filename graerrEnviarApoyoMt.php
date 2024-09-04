@@ -278,7 +278,7 @@
                             </div>
                         </div> <!-- row -->
                         
-                        <div class="row"  style="margin-top:10px;">
+                        <div class="row"  style="margin-top:10px;"><br>
                           <p><b><i class='fas fa-user-edit'></i> DATOS DEL PETICIONARIO</b></p>
                         </div> <!-- row -->
                         
@@ -293,7 +293,7 @@
                         
                         <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-2" align="left">
-                               <b>Nombre del Peticionario: </b>
+                               <b>Nombre: </b>
                            </div>
                            <div class="col-sm-8" align="left">
                                <?=$nombres_peticionario?> <?=$apellidos_peticionario?>
@@ -301,13 +301,23 @@
                         </div> <!-- row -->
                         
                         <div class="row"  style="margin-top:10px;">
-                            <div class="col-sm-6" align="left">
+                            <div class="col-sm-2" align="left">
                                 <b>Población</b> <br>
+                            </div>    
+                        </div> <!-- row -->    
+                            
+                        <div class="row"  style="margin-top:10px;">
+                            <div class="col-sm-8" align="left">
                                 <?=$subpob?>
                             </div>    
-                            
-                            <div class="col-sm-6" align="left">
+                        </div> <!-- row -->    
+                        
+                        <div class="row"  style="margin-top:10px;">
+                            <div class="col-sm-2" align="left">
                                  <b>Factor Diferencial</b>  <br>
+                                 
+                            </div>    
+                            <div class="col-sm-8" align="left">
                                  <?=$fact_dif?>
                             </div>    
                         </div> <!-- row -->    
