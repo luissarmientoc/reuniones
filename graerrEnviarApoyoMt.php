@@ -72,9 +72,6 @@
              $no_de_contacto                = $row['no_de_contacto'];
              $factor_diferencial            = $row['factor_diferencial'];
              $subpoblacion                  = $row['subpoblacion'];
-             $direccion                     = $row['direccion'];
-             $obsadicionales                = $row['obsadicionales'];
-             $estado                        = $row['estado'];
     } 
     
     if(isset($_POST['enviar']))
@@ -101,8 +98,7 @@
              $no_de_contacto                = $_POST['no_de_contacto'];
              $factor_diferencial            = $_POST['factor_diferencial'];
              $subpoblacion                  = $_POST['subpoblacion'];
-             $direccion                     = $_POST['direccion'];
-             $obsadicionales                = $_POST['obsadicionales'];
+             $obsadicionales_graerr         = $_POST['obsadicionales_graerr'];
              $estado                        = $_POST['estado'];
              
             try {
@@ -110,11 +106,36 @@
                  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                  // Preparar la consulta SQL para actualizar
-                 $stmt = $pdo->prepare('
+                 //variables que se actualizan en MT
+                 $conteo_acta = 0;
+                 $conteo_porsesion = 0;
+                 $consenso = '';
+                 $orden = 0; 
+                 $temporalidad = 0;
+                 $obs_temporalidad="";
+                 $motivacion="";
+                 $observaciones_smt="";
+                 $estado=1;
+                 $fecha_estado = date("Y-m-d");
                  
-                  ');
+                 $stmt = $pdo->prepare('INSERT INTO mt_anexotecnico_1 (
+                        registro, conteo_acta, conteo_porsesion, tipo_estudio, ot,
+                        tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, analista_riesgo, 
+                        recomendacion_riesgo_premesa, recomendacion_medidas_premesa, consenso, orden, temporalidad, 
+                        obs_temporalidad, departamento, municipio, subpoblacion, factor_diferencial, 
+                        no_de_contacto, motivacion, obsadicionales_graerr, observaciones_smt, estado, fecha_estado
+                       ) VALUES (?, ?, ?, ?, ?,
+                                 ?, ?, ?, ?, ?,
+                                 ?, ?, ?, ?, ?,
+                                 ?, ?, ?, ?, ?,
+                                 ?, ?, ?, ?, ?');
                   
                   $stmt->execute([
+                         $s_registro, $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $ot, 
+                         $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $analista_riesgo,
+                         $recomendacion_riesgo_premesa, $recomendacion_medidas_premesa, $consenso, $orden, $temporalidad,
+                         $obs_temporalidad, $departamento,$municipio, $subpoblacion, $factor_diferencial,
+                         $no_de_contacto, $motivacion, $obsadicionales_graerr, $observaciones_smt, $estado, $fecha_estado
                   ]);    
                   
                   $mensaje=" <b>Atención!</b> Envio de Registro Exitoso ¡";     
@@ -170,7 +191,8 @@
              echo "subpob.." . $subpob;
              echo '<br>';
              
-             $sql6 = "select nomdepto from reu_municipios where coddepto=$departamento group by coddepto";
+             $sql6 = "select nomdepto from reu_municipios where coddepto=$departamento group by coddepto, nomdepto";
+             echo $sql6;
              $stmt6  = $pdo->query($sql6);
              $row6   = $stmt6->fetch(PDO::FETCH_ASSOC);
              $depto  = $row6['nomdepto'];
@@ -328,7 +350,7 @@
                        
                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
                            <div class="col-sm-12" align="center">
-                             <textarea  style="text-transform:uppercase;" class="form-control" id="obsAdicionales" name="obsAdicionales" rows="5 <?=$obsAdicionales?>">  </textarea>-->
+                             <textarea  style="text-transform:uppercase;" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="5 <?=$obsadicionales_graerr?>">  </textarea>-->
                            </div>
                         </div>   
                        
@@ -358,7 +380,6 @@
               <input style="visibility:hidden" name= "no_de_contacto" value="<?=$no_de_contacto?>"/>
               <input style="visibility:hidden" name= "factor_diferencial" value="<?=$factor_diferencial?>"/>
               <input style="visibility:hidden" name= "subpoblacion" value="<?=$subpoblacion?>"/>
-              <input style="visibility:hidden" name= "direccion" value="<?=$direccion?>"/>
               
               <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
               <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
