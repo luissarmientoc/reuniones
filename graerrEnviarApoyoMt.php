@@ -143,8 +143,6 @@
               $stmt = $pdo->query($sql);
               $row  = $stmt->fetch(PDO::FETCH_ASSOC);
               $s_cuantos = $row['cuantos'];
-              
-              echo "cuantos.." . $s_cuantos;
         
         if ($s_cuantos > 0)
         {
