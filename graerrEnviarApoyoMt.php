@@ -209,11 +209,11 @@
                   <!--- BARRA DE TITULO ---->
                   <div class="fondo"> 
                       <div class="row">
-                       <div class="col-sm-12" ALIGN="left">
+                       <div class="col-sm-8" ALIGN="left">
                           <h3> <i class='fas fa-project-diagram' style='color:#2f79b9'></i>  Grupo de Recepción, Análisis, Evaluación del Riesgo y Recomendaciones - GRAERR </h3>
                        </div> 
                        
-                       <div class="col-sm-6" align="right">  					  			 
+                       <div class="col-sm-4" align="right">  					  			 
                          <p style="font-size:12px;"><i class="fas fa-user"></i> <?=$_SESSION['nombre_perfil']?></p>
                          <a href="graerrFormulario0.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
                         </div>                
