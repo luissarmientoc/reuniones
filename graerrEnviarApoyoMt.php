@@ -150,65 +150,36 @@
              $stmt1   = $pdo->query($sql1);
              $row1      = $stmt1->fetch(PDO::FETCH_ASSOC);
              $documento = $row1['tipo_documento'];
-             
-             echo '<br>';
-             echo "documento.." . $documento;
-             echo '<br>';
- 
+        
              $sql2 = "select nombre_analista from graerr_analista_riesgo where id=$analista_riesgo";
              $stmt2     = $pdo->query($sql2);
              $row2      = $stmt2->fetch(PDO::FETCH_ASSOC);
              $analista  = $row2['nombre_analista'];
-             
-             echo '<br>';
-             echo "analista.." . $analista;
-             echo '<br>';
              
              $sql3 = "select descripcion from graerr_recomendacion_premesa where id=$recomendacion_medidas_premesa";
              $stmt3     = $pdo->query($sql3);
              $row3      = $stmt3->fetch(PDO::FETCH_ASSOC);
              $rec_med_prem  = $row3['descripcion'];
              
-             echo '<br>';
-             echo "rec_med_prem.." . $rec_med_prem;
-             echo '<br>'; 
-             
              $sql4 = "select factor_diferencial from graerr_factor_diferencial where id=$factor_diferencial";
              $stmt4         = $pdo->query($sql4);
              $row4          = $stmt4->fetch(PDO::FETCH_ASSOC);
              $fact_dif      = $row4['factor_diferencial'];
-              
-             echo '<br>';
-             echo "fact_dif.." . $fact_dif;
-             echo '<br>';
-             
+        
              $sql5 = "select descripcion from graerr_poblacion where id=$subpoblacion";
              $stmt5         = $pdo->query($sql5);
              $row5          = $stmt5->fetch(PDO::FETCH_ASSOC);
              $subpob        = $row5['descripcion'];
-              
-             echo '<br>';
-             echo "subpob.." . $subpob;
-             echo '<br>';
              
              $sql6 = "select nomdepto from reu_municipios where coddepto=$departamento group by coddepto, nomdepto";
-             echo $sql6;
              $stmt6  = $pdo->query($sql6);
              $row6   = $stmt6->fetch(PDO::FETCH_ASSOC);
              $depto  = $row6['nomdepto'];
-             
-             echo '<br>';
-             echo "depto.." . $depto;
-             echo '<br>';
              
              $sql7   = "SELECT nommunicipio FROM reu_municipios where codmunicipio = $municipio and coddepto=$departamento";
 	         $stmt7  = $pdo->query($sql7);
 	         $row7   = $stmt7->fetch(PDO::FETCH_ASSOC);
              $nommun = $row7['nommunicipio'];
-             
-             echo '<br>';
-             echo "depto.." . $nommun;
-             echo '<br>';
              
              $sql   = "SELECT descripcion from graerr_tipo_estudio_riesgo where id = $tipo_estudio_riesgo";
 	         $stmt  = $pdo->query($sql);
@@ -253,7 +224,7 @@
                  <div class="panel-heading">
                 <div class="btn-group pull-right">        	     
                 </div>
-              <h4><i class="fa fa-keyboard-o" style='color:#2f79b9'></i> <?=$titulo?>  </h4>
+              <h4><i class="fa fa-keyboard-o" style='color:#2f79b9'></i> REMISION A SUBCOMISIÓN MTSP </h4>
             </div>
 
             <?php  
@@ -269,13 +240,13 @@
                 <div class="panel-body">	
                     <div class="container-fluid" style="margin-bottom:10px;">
                         
-                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                        <div class="row">
                            <div class="col-sm-12" align="center">
                                <h4>ENVIAR CASO A APOYO DE MESA TÉCNICA</h4>
                            </div>
                         </div> <!-- row -->
                        
-                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                        <div class="row">
                             <div class="col-sm-4" align="center">
                                  <b>Número de Registro: </b> <br> <?=$s_registro?>
                             </div>
@@ -289,7 +260,7 @@
                             </div>
                         </div> <!-- row -->
                        
-                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                        <div class="row">
                            <div class="col-sm-4" align="center">
                               <b>Identificación: </b> <br> 
                               <?=$tipo_documento?>  <b>No.</b> <?=$no_documento?>
@@ -300,7 +271,7 @@
                            </div>          
                         </div> <!-- row -->
                         
-                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                        <div class="row">
                             <div class="col-sm-4" align="center">
                                 <b>Población</b> <br>
                                 <?=$subpob?>
@@ -313,7 +284,7 @@
                         </div> <!-- row -->    
                         
                        
-                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                        <div class="row">
                             <div class="col-sm-4" align="center">
                                <b>Departamento: </b> <br>
                                <?=$depto?> 
@@ -330,7 +301,7 @@
                             </div>
                         </div> <!-- row -->
                         
-                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                        <div class="row">
                             <div class="col-sm-6" align="center">
                                <b>Analista: </b> <br>
                                <?=$analista_riesgo?> 
@@ -341,14 +312,14 @@
                            </div>
                         </div> <!-- row -->
                        
-                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                        <div class="row">
                            <div class="col-sm-12" align="center">
                                <b>Recomendación Riesgo Premesa: </b> <br>
                                <?=$recomendacion_riesgo_premesa?>
                            </div>
                         </div> <!-- row -->       
                        
-                       <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                       <div class="row">
                            <div class="col-sm-12" align="center">
                              <textarea  style="text-transform:uppercase;" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="5 <?=$obsadicionales_graerr?>">  </textarea>-->
                            </div>
@@ -360,7 +331,7 @@
                 
                 <div class="modal-footer"> 
                    <div class="col-sm-11" align="center">  
-                       <button type="submit" name='enviar' class="btn btn-md btn-success btn-lg" onclick='return confirmarEnvio()'><i class="glyphicon glyphicon-refresh"></i>Enviar a Apoyo Mesa Técnica</button>
+                       <button type="submit" name='enviar' class="btn btn-md btn-success btn-lg" onclick='return confirmarEnvio()'><i class="glyphicon glyphicon-refresh"></i>REALIZAR REMISION A SUBCOMISIÓN MTSP</button>
                 </div>	 
               </div>
               
