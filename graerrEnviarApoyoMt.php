@@ -302,7 +302,7 @@
                         
                         <div class="row"  style="margin-top:10px;">
                             <div class="col-sm-2" align="left">
-                                <b>Población</b> <br>
+                                <b>Población</b> 
                             </div>    
                         </div> <!-- row -->    
                             
@@ -315,7 +315,6 @@
                         <div class="row"  style="margin-top:10px;">
                             <div class="col-sm-2" align="left">
                                  <b>Factor Diferencial</b>  <br>
-                                 
                             </div>    
                             <div class="col-sm-8" align="left">
                                  <?=$fact_dif?>
@@ -324,19 +323,20 @@
                         
                        
                         <div class="row"  style="margin-top:10px;">
+                            <div class="col-sm-2" align="left">
+                               <b>Departamento: </b> 
+                            </div>
+                            
                             <div class="col-sm-4" align="left">
-                               <b>Departamento: </b> <br>
                                <?=$depto?> 
                             </div>
                             
-                            <div class="col-sm-4" align="left">
-                               <b>Municipio: </b> <br>
-                               <?=$nommun?> 
+                            <div class="col-sm-2" align="left">
+                               <b>Municipio:</b> 
                             </div>
                             
                             <div class="col-sm-4" align="left">
-                               <b>Direccion: </b> <br>
-                               <?=$direccion?> 
+                               <?=$nommun?> 
                             </div>
                         </div> <!-- row -->
                         
