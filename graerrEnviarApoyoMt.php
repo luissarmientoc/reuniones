@@ -84,6 +84,7 @@
                {
                   $mensaje=" <b>Atención!</b> El REGISTRO YA FUE REMITIDO¡";   
                   $active="disabled";
+                  $s_tocoBoton="S";
                }
                else
                {
@@ -421,7 +422,7 @@
                        <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-12" align="left">
                              <b>Observaciones / recomendaciones Adicionales: </b> <br>  
-                             <textarea  style="text-transform:uppercase;" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="3" > <?=$obsadicionales_graerr?> </textarea> 
+                             <textarea  <?=$active?> style="text-transform:uppercase;" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="3" > <?=$obsadicionales_graerr?> </textarea> 
                            </div>
                         </div>   
                        
