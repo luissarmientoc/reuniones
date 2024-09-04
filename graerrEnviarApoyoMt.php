@@ -241,9 +241,27 @@
                     <div class="container-fluid" style="margin-bottom:10px;">
                         
                         <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-12" align="left">
+                                <b>Número de Registro: </b> <?=$s_registro?> </div>    
+                            </div>
+                        </div> <!-- row -->
+                        
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-6" align="left">
+                                 <b>Tipo de Estudio: </b> <?=$tipo_estudio?>
+                            </div>
+                        </div> <!-- row -->
+                        
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-4" align="left">
+                                 <b>Número de Ot: </b> <?=$ot?>
+                            </div>
+                        </div> <!-- row -->
+                        
+                        <div class="row" style="margin-top:10px;">
                             <div class="col-sm-2" align="left">
                                 <b>Número de Registro: </b>  <br>
-                                     <?=$s_registro?>
+                                 <div align="center"><?=$s_registro?></div>    
                             </div>
                             <div class="col-sm-6" align="left">
                                  <b>Tipo de Estudio: </b> <br>
