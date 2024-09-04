@@ -240,6 +240,9 @@
             <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <div class="panel-body">	
                     <div class="container-fluid" style="margin-bottom:10px;">
+                        <div class="row"  style="margin-top:10px;">
+                          <p>DATOS DE LA OT</p>
+                        </div> <!-- row -->
                         
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-2" align="left">
@@ -275,17 +278,18 @@
                             </div>
                         </div> <!-- row -->
                         
-                         
-                        
                         <div class="row"  style="margin-top:10px;">
-                        
+                          <p>DATOS DEL PETICIONARIO</p>
                         </div> <!-- row -->
                         
                         <div class="row"  style="margin-top:10px;">
-                           <div class="col-sm-4" align="left">
+                           <div class="col-sm-2" align="left">
                               <b>Identificación: </b> <br> 
                               <?=$documento?>:  <b>No.</b> <?=$no_documento?>
                            </div>       
+                        </div> <!-- row -->   
+                        
+                        <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-8" align="left">
                                <b>Nombre del Peticionario: </b> <br>
                                <?=$nombres_peticionario?> <?=$apellidos_peticionario?>
