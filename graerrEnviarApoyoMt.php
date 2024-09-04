@@ -85,6 +85,12 @@
                   $mensaje=" <b>Atención!</b> El REGISTRO YA FUE REMITIDO¡";   
                   $active="disabled";
                   $s_tocoBoton="S";
+                  
+                  //toma las oservaciones adicionales
+                  $sql = "SELECT obsadicionales_graerr FROM mt_anexotecnico where registro=$s_registro";
+                  $stmt = $pdo->query($sql);
+                  $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+                  $obsadicionales_graerr = $row['obsadicionales_graerr'];
                }
                else
                {
