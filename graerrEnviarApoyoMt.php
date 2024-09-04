@@ -242,8 +242,9 @@
                         
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-4" align="left">
-                                <div class="well well-sm">
-                                 <b>Número de Registro: </b> <br> <?=$s_registro?>
+                                <b>Número de Registro: </b>  
+                                 <div class="well well-sm">
+                                     <?=$s_registro?>
                                 </div> 
                             </div>
                             <div class="col-sm-4" align="left">
