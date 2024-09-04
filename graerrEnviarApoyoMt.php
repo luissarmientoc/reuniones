@@ -73,7 +73,8 @@
              $no_de_contacto                = $row['no_de_contacto'];
              $factor_diferencial            = $row['factor_diferencial'];
              $subpoblacion                  = $row['subpoblacion'];
-             
+             $tipo_ruta                     = $row['tipo_ruta'];
+               
               $cuantos=0;
               $sql = "SELECT count(*) AS cuantos FROM mt_anexotecnico where registro=$s_registro";
               $stmt = $pdo->query($sql);
@@ -124,6 +125,8 @@
              $factor_diferencial            = $_POST['factor_diferencial'];
              $subpoblacion                  = $_POST['subpoblacion'];
              $obsadicionales_graerr         = $_POST['obsadicionales_graerr'];
+             $tipo_ruta                     = $_POST['tipo_ruta'];
+             
              
              // Preparar la consulta SQL para actualizar
              //variables que se actualizan en MT
@@ -160,19 +163,19 @@
                         tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, analista_riesgo, 
                         recomendacion_riesgo_premesa, recomendacion_medidas_premesa, consenso, orden, temporalidad, 
                         obs_temporalidad, departamento, municipio, subpoblacion, factor_diferencial, 
-                        no_de_contacto, motivacion, obsadicionales_graerr, observaciones_smt, estado, fecha_estado
+                        no_de_contacto, motivacion, obsadicionales_graerr, observaciones_smt, estado, fecha_estado, fecha_asignado_ot, tipo_ruta
                        ) VALUES (?, ?, ?, ?, ?,
                                  ?, ?, ?, ?, ?,
                                  ?, ?, ?, ?, ?,
                                  ?, ?, ?, ?, ?,
-                                 ?, ?, ?, ?, ?, ?)');
+                                 ?, ?, ?, ?, ?, ?,?,?)');
                   
                   $stmt->execute([
                          $s_registro, $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $ot, 
                          $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $analista_riesgo,
                          $recomendacion_riesgo_premesa, $recomendacion_medidas_premesa, $consenso, $orden, $temporalidad,
                          $obs_temporalidad, $departamento,$municipio, $subpoblacion, $factor_diferencial,
-                         $no_de_contacto, $motivacion, $obsadicionales_graerr, $observaciones_smt, $estado, $fecha_estado
+                         $no_de_contacto, $motivacion, $obsadicionales_graerr, $observaciones_smt, $estado, $fecha_estado, $fecha_asignado_ot, $tipo_ruta
                   ]);    
                   
                   $mensaje=" <b>Atención!</b> Envio de Registro Exitoso ¡";     
@@ -180,7 +183,7 @@
                  echo "Error al insertar los datos del formulario: " . $e->getMessage();
             }// try insert
             
-            // actualiza elk estado en el formnulario del graerr
+            // actualiza el estado en el formnulario del graerr
            
             try {
                  // Conectar a la base de datos
@@ -457,6 +460,9 @@
               <input style="visibility:hidden" name= "no_de_contacto" value="<?=$no_de_contacto?>"/>
               <input style="visibility:hidden" name= "factor_diferencial" value="<?=$factor_diferencial?>"/>
               <input style="visibility:hidden" name= "subpoblacion" value="<?=$subpoblacion?>"/>
+              <input style="visibility:hidden" name= "tipo_ruta" value="<?=$tipo_ruta?>"/>
+              
+            
               
               <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
               <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
