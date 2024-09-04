@@ -342,15 +342,6 @@
                         </div> <!-- row -->
                         
                         <div class="row"  style="margin-top:10px;">
-                            <div class="col-sm-2" align="center">
-                               <b>Analista: </b>
-                           </div>
-                            <div class="col-sm-8" align="left">
-                               <?=$analista?> 
-                           </div>
-                        </div> <!-- row -->    
-                        
-                        <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-2" align="left">
                                <b>Analista: </b>
                            </div>
@@ -360,7 +351,7 @@
                         </div> <!-- row -->
                             
                         <div class="row"  style="margin-top:10px;">
-                           <div class="col-sm-2" align="left">
+                           <div class="col-sm-4" align="left">
                                <b>Recomendación Medidas Premesa: </b>
                            </div>
                            <div class="col-sm-8" align="left">
@@ -368,13 +359,13 @@
                            </div>
                         </div> <!-- row -->
                         
-                        <div class="row">
+                        <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-12" align="left">
                                <b>Recomendación Riesgo Premesa: </b>
                            </div>
                         </div> <!-- row -->   
                         
-                        <div class="row">
+                        <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-12" align="left">
                                <?=$recomendacion_riesgo_premesa?>
                            </div>
