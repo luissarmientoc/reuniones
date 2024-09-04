@@ -183,12 +183,6 @@
            
             try {
                  // Conectar a la base de datos
-                 ECHO "1.." . $estado;
-                 ECHO '<BR>';
-                 ECHO "2.." . $fecha_estado;
-                 ECHO '<BR>';
-                 ECHO "3.." . $registro;
-                 ECHO '<BR>';
                  $stmt = $pdo->prepare('UPDATE graerr_formulario_b
                                SET estado = ?, fecha_estado = ? WHERE registro = ?');
                  $stmt->execute([$estado, $fecha_estado, $s_registro]);
