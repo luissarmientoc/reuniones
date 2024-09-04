@@ -286,22 +286,22 @@
 						$no_documento=$row['no_documento'];
 						$nombres_peticionario=$row['nombres_peticionario'];
 						$apellidos_peticionario=$row['apellidos_peticionario'];
-						$nombre_colectivo=$row['nombre_colectivo'];
-						$estado_solicitud=$row['estado_solicitud'];
-						$tipo_ruta=$row['tipo_ruta'];
+						//$nombre_colectivo=$row['nombre_colectivo'];
+						//$estado_solicitud=$row['estado_solicitud'];
+						//$tipo_ruta=$row['tipo_ruta'];
 						$ot=$row['ot'];
 						
 						//trae estado solicitud
-						$sqlSol    = "select * from graerr_estado_solicitud where id=$estado_solicitud";
-						$stmtSol   = $pdo->query($sqlSol);
-					    $rowSol    = $stmtSol->fetch(PDO::FETCH_ASSOC);
-					    $solicitud = $rowSol['estado_solicitud'];
+						//$sqlSol    = "select * from graerr_estado_solicitud where id=$estado_solicitud";
+						//$stmtSol   = $pdo->query($sqlSol);
+					    //$rowSol    = $stmtSol->fetch(PDO::FETCH_ASSOC);
+					    //$solicitud = $rowSol['estado_solicitud'];
 					    
 					    //trae el tipo ruta
-						$sqlRut    = "select * from graerr_tipo_ruta where id=$tipo_ruta";
-						$stmtRut   = $pdo->query($sqlRut);
-					    $rowRut    = $stmtRut->fetch(PDO::FETCH_ASSOC);
-					    $ruta = $rowRut['tipo_ruta'];
+						//$sqlRut    = "select * from graerr_tipo_ruta where id=$tipo_ruta";
+						//$stmtRut   = $pdo->query($sqlRut);
+					    //$rowRut    = $stmtRut->fetch(PDO::FETCH_ASSOC);
+					    //$ruta = $rowRut['tipo_ruta'];
 						
  					    $lv   = $registro. "/MOD1234567890qwertyuiopasdfghjkl";
 					    $lVDX = base64_encode($lv);
