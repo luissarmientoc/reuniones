@@ -345,7 +345,7 @@
                             <div class="col-sm-2" align="center">
                                <b>Analista: </b>
                            </div>
-                            <div class="col-sm-8" align="center">
+                            <div class="col-sm-8" align="left">
                                <?=$analista?> 
                            </div>
                         </div> <!-- row -->    
