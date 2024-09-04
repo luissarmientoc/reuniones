@@ -240,9 +240,11 @@
                 <div class="panel-body">	
                     <div class="container-fluid" style="margin-bottom:10px;">
                         
-                        <div class="row">
+                        <div class="row" style="margin-top:10px;">
                             <div class="col-sm-4" align="left">
+                                <div class="well well-sm">
                                  <b>Número de Registro: </b> <br> <?=$s_registro?>
+                                </div> 
                             </div>
                             <div class="col-sm-4" align="left">
                                  <b>Tipo de Estudio: </b> <br>
@@ -253,8 +255,12 @@
                                  <?=$ot?>
                             </div>
                         </div> <!-- row -->
-                       
-                        <div class="row">
+                        
+                        <div class="row"  style="margin-top:10px;">
+                        
+                        </div> <!-- row -->
+                        
+                        <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-4" align="left">
                               <b>Identificación: </b> <br> 
                               <?=$documento?>:  <b>No.</b> <?=$no_documento?>
@@ -265,7 +271,7 @@
                            </div>          
                         </div> <!-- row -->
                         
-                        <div class="row">
+                        <div class="row"  style="margin-top:10px;">
                             <div class="col-sm-6" align="left">
                                 <b>Población</b> <br>
                                 <?=$subpob?>
@@ -278,7 +284,7 @@
                         </div> <!-- row -->    
                         
                        
-                        <div class="row">
+                        <div class="row"  style="margin-top:10px;">
                             <div class="col-sm-4" align="left">
                                <b>Departamento: </b> <br>
                                <?=$depto?> 
@@ -295,7 +301,7 @@
                             </div>
                         </div> <!-- row -->
                         
-                        <div class="row">
+                        <div class="row"  style="margin-top:10px;">
                             <div class="col-sm-6" align="center">
                                <b>Analista: </b> <br>
                                <?=$analista_riesgo?> 
@@ -313,9 +319,10 @@
                            </div>
                         </div> <!-- row -->       
                        
-                       <div class="row">
+                       <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-12" align="center">
-                             <textarea  style="text-transform:uppercase;" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="5 <?=$obsadicionales_graerr?>">  </textarea>-->
+                             <b>Observaciones / recomendaciones Adicionales: </b> <br>  
+                             <textarea  style="text-transform:uppercase;" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="3" <?=$obsadicionales_graerr?>>  </textarea> 
                            </div>
                         </div>   
                        
