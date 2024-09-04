@@ -22,12 +22,22 @@
       // require("modal.php");
        include("head.php");
     ?>
+    
+    <script>
+         function confirmarEnvio(){
+                 if(confirm('驴Esta  seguro de enviar el Registro?'))
+                   return true;
+                 else
+                   return false;
+             }
+             
+    </script>
   
   </head>
   
   <?php  
     include("navbar.php");
-    // Crear una nueva instancia de conexión PDO
+    // Crear una nueva instancia de conexi贸n PDO
     $pdo = new PDO($dsn);
    
     $s_LA    = $_GET['LA'];
@@ -52,6 +62,8 @@
              $ot                            = $row['ot'];
              $tipo_documento                = $row['tipo_documento'];
              $no_documento                  = $row['no_documento'];
+             $nombres_peticionario          = $row['nombres_peticionario'];
+             $apellidos_peticionario        = $row['apellidos_peticionario'];
              $analista_riesgo               = $row['analista_riesgo'];
              $recomendacion_riesgo_premesa  = $row['recomendacion_riesgo_premesa'];
              $recomendacion_medidas_premesa = $row['recomendacion_medidas_premesa'];
@@ -61,7 +73,56 @@
              $factor_diferencial            = $row['factor_diferencial'];
              $subpoblacion                  = $row['subpoblacion'];
              $direccion                     = $row['direccion'];
+             $obsadicionales                = $row['obsadicionales'];
+             $estado                        = $row['estado'];
+    } 
+    
+    if(isset($_POST['enviar']))
+    { 
+             $s_existe         = $_POST['existe'];
+             $s_yaGrabo        = $_POST['yaGrabo'];
+             date_default_timezone_set('America/Bogota');
+             //$s_fecha  = date("Y-m-d",time());
+             //$s_fecha  = date("Y/m/d H:i:s");
+             $date_added=date("Y-m-d H:i:s");
              
+             $s_registro                    = $_POST['registro'];
+             $tipo_estudio_riesgo           = $_POST['tipo_estudio_riesgo'];
+             $ot                            = $_POST['ot'];
+             $tipo_documento                = $_POST['tipo_documento'];
+             $no_documento                  = $_POST['no_documento'];
+             $nombres_peticionario          = $_POST['nombres_peticionario'];
+             $apellidos_peticionario        = $_POST['apellidos_peticionario'];
+             $analista_riesgo               = $_POST['analista_riesgo'];
+             $recomendacion_riesgo_premesa  = $_POST['recomendacion_riesgo_premesa'];
+             $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
+             $departamento                  = $_POST['departamento'];
+             $municipio                     = $_POST['municipio'];
+             $no_de_contacto                = $_POST['no_de_contacto'];
+             $factor_diferencial            = $_POST['factor_diferencial'];
+             $subpoblacion                  = $_POST['subpoblacion'];
+             $direccion                     = $_POST['direccion'];
+             $obsadicionales                = $_POST['obsadicionales'];
+             $estado                        = $_POST['estado'];
+             
+            try {
+                 // Conectar a la base de datos
+                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                 // Preparar la consulta SQL para actualizar
+                 $stmt = $pdo->prepare('
+                 
+                  ');
+                  
+                  $stmt->execute([
+                  ]);    
+                  
+                  $mensaje=" <b>Atenci贸n!</b> Envio de Registro Exitoso 隆";     
+               } catch (PDOException $e) {
+                 echo "Error al insertar los datos del formulario: " . $e->getMessage();
+            }
+    }//enviar
+    
              // Decodifica campos
              //tipo_documento
              $sql1 = "select * from graerr_tipo_documento where id=$tipo_documento";
@@ -89,7 +150,7 @@
              
              echo '<br>';
              echo "rec_med_prem.." . $rec_med_prem;
-             echo '<br>';
+             echo '<br>'; 
              
              $sql4 = "select factor_diferencial from graerr_factor_diferencial where id=$factor_diferencial";
              $stmt4         = $pdo->query($sql4);
@@ -108,12 +169,206 @@
              echo '<br>';
              echo "subpob.." . $subpob;
              echo '<br>';
-              
-            
              
+             $sql6 = "select nomdepto from reu_municipios where coddepto=$departamento group by coddepto";
+             $stmt6  = $pdo->query($sql6);
+             $row6   = $stmt6->fetch(PDO::FETCH_ASSOC);
+             $depto  = $row6['nomdepto'];
              
-    }
+             echo '<br>';
+             echo "depto.." . $depto;
+             echo '<br>';
+             
+             $sql7   = "SELECT nommunicipio FROM reu_municipios where codmunicipio = $municipio and coddepto=$departamento";
+	         $stmt7  = $pdo->query($sql7);
+	         $row7   = $stmt7->fetch(PDO::FETCH_ASSOC);
+             $nommun = $row7['nommunicipio'];
+             
+             echo '<br>';
+             echo "depto.." . $nommun;
+             echo '<br>';
+             
+             $sql   = "SELECT descripcion from graerr_tipo_estudio_riesgo where id = $tipo_estudio_riesgo";
+	         $stmt  = $pdo->query($sql);
+	         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+             $tipo_estudio = $row['nommunicipio'];
+             
+            ///////////    
   ?>
+  
+                <!-- Page Content Holder -->
+              <div id="content">  
+                  <!--- MENU CERRAR 
+                     <nav class="navbar navbar-default">  ---->
+                     <nav>  
+                         <div class="container-fluid" style="background-color:#fff; padding:10px;">
+                             <div class="navbar-header">
+                                 <img src="img/usuario_ap.svg" class="img-circle" alt="Cinque Terre" width=40px; > 
+                                 <span style="color:#002857; font-size:1.3em; font-weight:600; "><?=$nombreUsuario?> </span>  
+                                 <p style="color:grey; font-size:14px; font-family:snas-serif:">Fecha de 煤ltimo ingreso: </p>
+                             </div>
+                          </div>
+                    <!-- </nav>  ---->
+                 <!--- FIN MENU CERRAR ---->
+                 <br>
+                  
+                  <!--- BARRA DE TITULO ---->
+                  <div class="fondo"> 
+                      <div class="row">
+                       <div class="col-sm-6" ALIGN="left">
+                          <h3> <i class='fas fa-project-diagram' style='color:#2f79b9'></i>  Grupo de Recepci贸n, An谩lisis, Evaluaci贸n del Riesgo y Recomendaciones - GRAERR </h3>
+                       </div> 
+                       
+                       <div class="col-sm-6" align="right">  					  			 
+                         <p style="font-size:12px;"><i class="fas fa-user"></i> <?=$_SESSION['nombre_perfil']?></p>
+                         <a href="graerrFormulario0.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
+                        </div>                
+                      </div>
+                  </div>
+                  <!--- FIN BARRA DE TITULO ----> 
+                  
+                  <div class="panel panel-info">
+                 <div class="panel-heading">
+                <div class="btn-group pull-right">        	     
+                </div>
+              <h4><i class="fa fa-keyboard-o" style='color:#2f79b9'></i> <?=$titulo?>  </h4>
+            </div>
+
+            <?php  
+                if ($s_tocoBoton=="S")
+                {
+            ?> 
+                    <div class="alert alert-success" align="center"><?=$mensaje?></div>
+            <?php 
+                }
+            ?>    
+            
+            <form class="form-horizontal" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <div class="panel-body">	
+                    <div class="container-fluid" style="margin-bottom:10px;">
+                        
+                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                           <div class="col-sm-12" align="center">
+                               <h4>ENVIAR CASO A APOYO DE MESA T脡CNICA</h4>
+                           </div>
+                        </div> <!-- row -->
+                       
+                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                            <div class="col-sm-4" align="center">
+                                 <b>N煤mero de Registro: </b> <br> <?=$s_registro?>
+                            </div>
+                            <div class="col-sm-4" align="center">
+                                 <b>Tipo de Estudio: </b> <br>
+                                 <?=$tipo_estudio?>
+                            </div>
+                            <div class="col-sm-4" align="center">
+                                 <b>N煤mero de Ot: </b> <br> 
+                                 <?=$ot?>
+                            </div>
+                        </div> <!-- row -->
+                       
+                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                           <div class="col-sm-4" align="center">
+                              <b>Identificaci贸n: </b> <br> 
+                              <?=$tipo_documento?>  <b>No.</b> <?=$no_documento?>
+                           </div>       
+                           <div class="col-sm-8" align="center">
+                               <b>Nombre del Peticionario: </b> <br>
+                               <?=$nombres_peticionario?> <?=$apellidos_peticionario?>
+                           </div>          
+                        </div> <!-- row -->
+                        
+                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                            <div class="col-sm-4" align="center">
+                                <b>Poblaci贸n</b> <br>
+                                <?=$subpob?>
+                            </div>    
+                            
+                            <div class="col-sm-4" align="center">
+                                 <b>Factor Diferencial</b>  <br>
+                                 <?=$fact_dif?>
+                            </div>    
+                        </div> <!-- row -->    
+                        
+                       
+                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                            <div class="col-sm-4" align="center">
+                               <b>Departamento: </b> <br>
+                               <?=$depto?> 
+                            </div>
+                            
+                            <div class="col-sm-4" align="center">
+                               <b>Municipio: </b> <br>
+                               <?=$nommun?> 
+                            </div>
+                            
+                            <div class="col-sm-4" align="center">
+                               <b>Direccion: </b> <br>
+                               <?=$direccion?> 
+                            </div>
+                        </div> <!-- row -->
+                        
+                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                            <div class="col-sm-6" align="center">
+                               <b>Analista: </b> <br>
+                               <?=$analista_riesgo?> 
+                           </div>
+                           <div class="col-sm-6" align="center">
+                               <b>Recomendaci贸n Medidas Premesa: </b> <br>
+                               <?=$rec_med_prem?> 
+                           </div>
+                        </div> <!-- row -->
+                       
+                        <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                           <div class="col-sm-12" align="center">
+                               <b>Recomendaci贸n Riesgo Premesa: </b> <br>
+                               <?=$recomendacion_riesgo_premesa?>
+                           </div>
+                        </div> <!-- row -->       
+                       
+                       <div class="row"  style="background-color:#337AB8; color:#fff;" >
+                           <div class="col-sm-12" align="center">
+                             <textarea  style="text-transform:uppercase;" class="form-control" id="obsAdicionales" name="obsAdicionales" rows="5 <?=$obsAdicionales?>">  </textarea>-->
+                           </div>
+                        </div>   
+                       
+                       
+                    </div> <!--- container -->
+                </div> <!-- body -->
+                
+                <div class="modal-footer"> 
+                   <div class="col-sm-11" align="center">  
+                       <button type="submit" name='enviar' class="btn btn-md btn-success btn-lg" onclick='return confirmarEnvio()'><i class="glyphicon glyphicon-refresh"></i>Enviar a Apoyo Mesa T茅cnica</button>
+                </div>	 
+              </div>
+              
+             <div style="display:none">
+              <input style="visibility:hidden" name= "registro" value="<?=$s_registro?>"/>
+              <input style="visibility:hidden" name= "tipo_estudio_riesgo" value="<?=$tipo_estudio_riesgo?>"/>
+              <input style="visibility:hidden" name= "ot "value="<?=$ot?>"/>
+              <input style="visibility:hidden" name= "tipo_documento" value="<?=$tipo_documento?>"/>
+              <input style="visibility:hidden" name= "no_documento" value="<?=$no_documento?>"/>
+              <input style="visibility:hidden" name= "nombres_peticionario" value="<?=$nombres_peticionario?>"/>
+              <input style="visibility:hidden" name= "apellidos_peticionario" value="<?=$apellidos_peticionario?>"/>
+              <input style="visibility:hidden" name= "analista_riesgo" value="<?=$analista_riesgo?>"/>
+              <input style="visibility:hidden" name= "recomendacion_riesgo_premesa" value="<?=$recomendacion_riesgo_premesa?>"/>
+              <input style="visibility:hidden" name= "recomendacion_medidas_premesa" value="<?=$recomendacion_medidas_premesa?>"/>
+              <input style="visibility:hidden" name= "departamento" value="<?=$departamento?>"/>
+              <input style="visibility:hidden" name= "municipio" value="<?=$municipio?>"/>
+              <input style="visibility:hidden" name= "no_de_contacto" value="<?=$no_de_contacto?>"/>
+              <input style="visibility:hidden" name= "factor_diferencial" value="<?=$factor_diferencial?>"/>
+              <input style="visibility:hidden" name= "subpoblacion" value="<?=$subpoblacion?>"/>
+              <input style="visibility:hidden" name= "direccion" value="<?=$direccion?>"/>
+              
+              <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
+              <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
+             </div>
+                    
+            </form>
+
+  
+  
+  
         <!-- Bootstrap core JavaScript
       ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
