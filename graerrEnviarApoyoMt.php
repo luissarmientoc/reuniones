@@ -342,25 +342,37 @@
                         </div> <!-- row -->
                         
                         <div class="row"  style="margin-top:10px;">
-                            <div class="col-sm-6" align="center">
-                               <b>Analista: </b> <br>
-                               <?=$analista_riesgo?> 
+                            <div class="col-sm-2" align="center">
+                               <b>Analista: </b>
                            </div>
-                           <div class="col-sm-6" align="left">
-                               <b>Recomendación Medidas Premesa: </b> <br>
+                            <div class="col-sm-8" align="center">
+                               <?=$analista?> 
+                           </div>
+                        </div> <!-- row -->    
+                            
+                        <div class="row"  style="margin-top:10px;">
+                           <div class="col-sm-2" align="left">
+                               <b>Recomendación Medidas Premesa: </b>
+                           </div>
+                           <div class="col-sm-8" align="left">
                                <?=$rec_med_prem?> 
                            </div>
                         </div> <!-- row -->
-                       
+                        
                         <div class="row">
-                           <div class="col-sm-12" align="center">
-                               <b>Recomendación Riesgo Premesa: </b> <br>
+                           <div class="col-sm-12" align="left">
+                               <b>Recomendación Riesgo Premesa: </b>
+                           </div>
+                        </div> <!-- row -->   
+                        
+                        <div class="row">
+                           <div class="col-sm-12" align="left">
                                <?=$recomendacion_riesgo_premesa?>
                            </div>
-                        </div> <!-- row -->       
+                        </div> <!-- row -->   
                        
                        <div class="row"  style="margin-top:10px;">
-                           <div class="col-sm-12" align="center">
+                           <div class="col-sm-12" align="left">
                              <b>Observaciones / recomendaciones Adicionales: </b> <br>  
                              <textarea  style="text-transform:uppercase;" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="3" <?=$obsadicionales_graerr?>>  </textarea> 
                            </div>
