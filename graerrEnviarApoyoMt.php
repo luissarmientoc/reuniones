@@ -270,10 +270,10 @@
                                  <?=$ot?>
                             </div>
                             
-                            <div class="col-sm-3" align="left">
+                            <div class="col-sm-2" align="left">
                                  <b>Fecha de Ot:</b>
                             </div>
-                            <div class="col-sm-3" align="left">
+                            <div class="col-sm-4" align="left">
                                  <?=$fecha_asignado_ot?>
                             </div>
                         </div> <!-- row -->
@@ -284,16 +284,20 @@
                         
                         <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-2" align="left">
-                              <b>Identificación: </b> <br> 
+                              <b>Identificación: </b> 
+                           </div>  
+                           <div class="col-sm-8" align="left">
                               <?=$documento?>:  <b>No.</b> <?=$no_documento?>
-                           </div>       
+                           </div>  
                         </div> <!-- row -->   
                         
                         <div class="row"  style="margin-top:10px;">
+                           <div class="col-sm-2" align="left">
+                               <b>Nombre del Peticionario: </b>
+                           </div>
                            <div class="col-sm-8" align="left">
-                               <b>Nombre del Peticionario: </b> <br>
                                <?=$nombres_peticionario?> <?=$apellidos_peticionario?>
-                           </div>          
+                           </div>
                         </div> <!-- row -->
                         
                         <div class="row"  style="margin-top:10px;">
