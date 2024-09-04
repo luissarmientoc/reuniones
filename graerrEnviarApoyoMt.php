@@ -102,7 +102,7 @@
              $subpoblacion                  = $_POST['subpoblacion'];
              $obsadicionales_graerr         = $_POST['obsadicionales_graerr'];
              
-             
+             /*
              echo "1.." . $s_registro;
              echo '<br>';
              echo "2.." . $tipo_estudio_riesgo;
@@ -135,7 +135,7 @@
              echo '<br>';
              echo "16.." . $obsadicionales_graerr;
              echo '<br>';
-              
+              */
              
                  // Preparar la consulta SQL para actualizar
                  //variables que se actualizan en MT
@@ -148,7 +148,11 @@
                  $motivacion="";
                  $observaciones_smt="";
                  $estado=1;
-                 $fecha_estado = date("Y-m-d");
+                 $fecha_estado = date("Y-m-d H:i:s");
+                 
+                 echo '<br>';
+             echo "16.." . $fecha_estado;
+             echo '<br>';
              
             try {
                  // Conectar a la base de datos
@@ -177,7 +181,18 @@
                   $mensaje=" <b>Atención!</b> Envio de Registro Exitoso ¡";     
                } catch (PDOException $e) {
                  echo "Error al insertar los datos del formulario: " . $e->getMessage();
-            }
+            }// try insert
+            
+            // actualiza elk estado en el formnulario del graerr
+            /*
+            try {
+                 // Conectar a la base de datos
+                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                 $mensaje=" <b>Atención!</b> Envio de Registro Exitoso ¡";     
+               } catch (PDOException $e) {
+                 echo "Error al insertar los datos del formulario: " . $e->getMessage();
+            }//try update
+            */
     }//enviar
     
              // Decodifica campos
