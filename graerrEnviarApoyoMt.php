@@ -242,7 +242,7 @@
                     <div class="container-fluid" style="margin-bottom:10px;">
                         
                         <div class="row" style="margin-top:10px;">
-                            <div class="col-sm-4" align="left">
+                            <div class="col-sm-2" align="left">
                                 <b>Número de Registro:</b> 
                             </div>
                             <div class="col-sm-8" align="left">
@@ -251,7 +251,7 @@
                         </div> <!-- row -->
                         
                         <div class="row" style="margin-top:10px;">
-                            <div class="col-sm-4" align="left">
+                            <div class="col-sm-2" align="left">
                                  <b>Tipo de Estudio: </b>
                             </div>
                             <div class="col-sm-8" align="left">
@@ -260,7 +260,7 @@
                         </div> <!-- row -->
                         
                         <div class="row" style="margin-top:10px;">
-                            <div class="col-sm-3" align="left">
+                            <div class="col-sm-2" align="left">
                                  <b>Número de Ot:</b>
                             </div>
                             <div class="col-sm-3" align="left">
