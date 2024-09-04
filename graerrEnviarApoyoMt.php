@@ -303,15 +303,12 @@
                         <div class="row"  style="margin-top:10px;">
                             <div class="col-sm-2" align="left">
                                 <b>Población</b> 
-                            </div>    
-                        </div> <!-- row -->    
-                            
-                        <div class="row"  style="margin-top:10px;">
+                            </div>
                             <div class="col-sm-8" align="left">
                                 <?=$subpob?>
-                            </div>    
+                            </div>
                         </div> <!-- row -->    
-                        
+                            
                         <div class="row"  style="margin-top:10px;">
                             <div class="col-sm-2" align="left">
                                  <b>Factor Diferencial</b>  <br>
@@ -327,7 +324,7 @@
                                <b>Departamento: </b> 
                             </div>
                             
-                            <div class="col-sm-4" align="left">
+                            <div class="col-sm-3" align="left">
                                <?=$depto?> 
                             </div>
                             
@@ -338,6 +335,10 @@
                             <div class="col-sm-4" align="left">
                                <?=$nommun?> 
                             </div>
+                        </div> <!-- row -->
+                        
+                        <div class="row"  style="margin-top:10px;"><br>
+                          <p><b><i class='fas fa-user-cog'></i> DATOS DEL ANALISTA</b></p>
                         </div> <!-- row -->
                         
                         <div class="row"  style="margin-top:10px;">
