@@ -254,13 +254,14 @@
 		
 	        // Consulta SQL para contar las filas
             $sql = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
-            $sql1 = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
+           // $sql1 = "SELECT COUNT(*) AS total_filas FROM $sTable $sWhere1";
             
             $stmt = $pdo->query($sql);
             // Obtener el resultado (única fila)
             $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
             // Número total de filas
             $total_filas = $resultado['total_filas'];
+            
             $total_pages = ceil($total_filas / $per_page);
             $reload = './marcas.php';
             //echo "El número total de filas en la tabla es: $total_filas";
