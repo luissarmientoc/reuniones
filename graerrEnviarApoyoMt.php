@@ -102,54 +102,31 @@
              $subpoblacion                  = $_POST['subpoblacion'];
              $obsadicionales_graerr         = $_POST['obsadicionales_graerr'];
              
-             /*
-             echo "1.." . $s_registro;
-             echo '<br>';
-             echo "2.." . $tipo_estudio_riesgo;
-             echo '<br>';
-             echo "3.." . $ot;
-             echo '<br>';
-             echo "4.." . $tipo_documento;
-             echo '<br>';
-             echo "5.." . $no_documento;
-             echo '<br>';
-             echo "6.." . $nombres_peticionario;
-             echo '<br>';
-             echo "7.." . $apellidos_peticionario;
-             echo '<br>';
-             echo "8.." . $analista_riesgo;
-             echo '<br>';
-             echo "9.." . $recomendacion_riesgo_premesa;
-             echo '<br>';
-             echo "10.." . $recomendacion_medidas_premesa;
-             echo '<br>';
-             echo "11.." . $departamento;
-             echo '<br>';
-             echo "12.." . $municipio;
-             echo '<br>';
-             echo "13.." . $no_de_contacto;
-             echo '<br>';
-             echo "14.." . $factor_diferencial;
-             echo '<br>';
-             echo "15.." . $subpoblacion;
-             echo '<br>';
-             echo "16.." . $obsadicionales_graerr;
-             echo '<br>';
-              */
+             // Preparar la consulta SQL para actualizar
+             //variables que se actualizan en MT
+             $conteo_acta = 0;
+             $conteo_porsesion = 0;
+             $consenso = '';
+             $orden = 0; 
+             $temporalidad = 0;
+             $obs_temporalidad="";
+             $motivacion="";
+             $observaciones_smt="";
+             $estado=1;
+             $fecha_estado = date("Y-m-d H:i:s");
              
-                 // Preparar la consulta SQL para actualizar
-                 //variables que se actualizan en MT
-                 $conteo_acta = 0;
-                 $conteo_porsesion = 0;
-                 $consenso = '';
-                 $orden = 0; 
-                 $temporalidad = 0;
-                 $obs_temporalidad="";
-                 $motivacion="";
-                 $observaciones_smt="";
-                 $estado=1;
-                 $fecha_estado = date("Y-m-d H:i:s");
-                 
+              $cuantos=0;
+              $sql = "SELECT count(*) AS cuantos FROM mt_anexotecnico";
+              $stmt = $pdo->query($sql);
+              $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+              $s_cuantos = $row['cuantos'];
+        
+        if ($cuantos > 0)
+        {
+            $mensaje=" <b>Atención!</b> El REGISTRO YA FUE REMITIDO¡";   
+        }
+        else
+        {
             try {
                  // Conectar a la base de datos
                  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -190,7 +167,9 @@
                } catch (PDOException $e) {
                  echo "Error al modificar los datos del formulario: " . $e->getMessage();
             }//try update
-             
+        }//cuantos  
+        
+        $s_tocoBoton="S";
     }//enviar
     
              // Decodifica campos
