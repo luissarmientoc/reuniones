@@ -243,7 +243,7 @@
                         
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-4" align="left">
-                                <b>Número de Registro: 
+                                <b>Número de Registro:</b> 
                             </div>
                             <div class="col-sm-8" align="left">
                                 <?=$s_registro?>  
@@ -275,20 +275,7 @@
                             </div>
                         </div> <!-- row -->
                         
-                        <div class="row" style="margin-top:10px;">
-                            <div class="col-sm-2" align="left">
-                                <b>Número de Registro: </b>  <br>
-                                 <div align="center"><?=$s_registro?></div>    
-                            </div>
-                            <div class="col-sm-6" align="left">
-                                 <b>Tipo de Estudio: </b> <br>
-                                 <?=$tipo_estudio?>
-                            </div>
-                            <div class="col-sm-4" align="left">
-                                 <b>Número de Ot: </b> <br> 
-                                 <?=$ot?>
-                            </div>
-                        </div> <!-- row -->
+                         
                         
                         <div class="row"  style="margin-top:10px;">
                         
