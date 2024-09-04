@@ -241,7 +241,7 @@
                 <div class="panel-body">	
                     <div class="container-fluid" style="margin-bottom:10px;">
                         <div class="row"  style="margin-top:10px;">
-                          <p>DATOS DE LA OT</p>
+                          <p><b><i class='fas fa-book-open'></i> DATOS DE LA OT</b></p>
                         </div> <!-- row -->
                         
                         <div class="row" style="margin-top:10px;">
@@ -279,7 +279,7 @@
                         </div> <!-- row -->
                         
                         <div class="row"  style="margin-top:10px;">
-                          <p>DATOS DEL PETICIONARIO</p>
+                          <p><b><i class='fas fa-user-edit'></i> DATOS DEL PETICIONARIO</b></p>
                         </div> <!-- row -->
                         
                         <div class="row"  style="margin-top:10px;">
@@ -361,7 +361,7 @@
                 
                 <div class="modal-footer"> 
                    <div class="col-sm-11" align="center">  
-                       <button type="submit" name='enviar' class="btn btn-md btn-success btn-lg" onclick='return confirmarEnvio()'><i class="glyphicon glyphicon-refresh"></i>REALIZAR REMISION A SUBCOMISIÓN MTSP</button>
+                       <button type="submit" name='enviar' class="btn btn-md btn-success btn-lg" onclick='return confirmarEnvio()'><i class="fa fa-check-square-o"></i> REALIZAR REMISION A SUBCOMISIÓN MTSP</button>
                 </div>	 
               </div>
               
