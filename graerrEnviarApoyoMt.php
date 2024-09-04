@@ -184,7 +184,7 @@
              $sql   = "SELECT descripcion from graerr_tipo_estudio_riesgo where id = $tipo_estudio_riesgo";
 	         $stmt  = $pdo->query($sql);
 	         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
-             $tipo_estudio = $row['nommunicipio'];
+             $tipo_estudio = $row['descripcion'];
              
             ///////////    
   ?>
@@ -208,7 +208,7 @@
                   <!--- BARRA DE TITULO ---->
                   <div class="fondo"> 
                       <div class="row">
-                       <div class="col-sm-6" ALIGN="left">
+                       <div class="col-sm-12" ALIGN="left">
                           <h3> <i class='fas fa-project-diagram' style='color:#2f79b9'></i>  Grupo de Recepción, Análisis, Evaluación del Riesgo y Recomendaciones - GRAERR </h3>
                        </div> 
                        
@@ -241,43 +241,37 @@
                     <div class="container-fluid" style="margin-bottom:10px;">
                         
                         <div class="row">
-                           <div class="col-sm-12" align="center">
-                               <h4>ENVIAR CASO A APOYO DE MESA TÉCNICA</h4>
-                           </div>
-                        </div> <!-- row -->
-                       
-                        <div class="row">
-                            <div class="col-sm-4" align="center">
+                            <div class="col-sm-4" align="left">
                                  <b>Número de Registro: </b> <br> <?=$s_registro?>
                             </div>
-                            <div class="col-sm-4" align="center">
+                            <div class="col-sm-4" align="left">
                                  <b>Tipo de Estudio: </b> <br>
                                  <?=$tipo_estudio?>
                             </div>
-                            <div class="col-sm-4" align="center">
+                            <div class="col-sm-4" align="left">
                                  <b>Número de Ot: </b> <br> 
                                  <?=$ot?>
                             </div>
                         </div> <!-- row -->
                        
                         <div class="row">
-                           <div class="col-sm-4" align="center">
+                           <div class="col-sm-4" align="left">
                               <b>Identificación: </b> <br> 
-                              <?=$tipo_documento?>  <b>No.</b> <?=$no_documento?>
+                              <?=$documento?>:  <b>No.</b> <?=$no_documento?>
                            </div>       
-                           <div class="col-sm-8" align="center">
+                           <div class="col-sm-8" align="left">
                                <b>Nombre del Peticionario: </b> <br>
                                <?=$nombres_peticionario?> <?=$apellidos_peticionario?>
                            </div>          
                         </div> <!-- row -->
                         
                         <div class="row">
-                            <div class="col-sm-4" align="center">
+                            <div class="col-sm-6" align="left">
                                 <b>Población</b> <br>
                                 <?=$subpob?>
                             </div>    
                             
-                            <div class="col-sm-4" align="center">
+                            <div class="col-sm-6" align="left">
                                  <b>Factor Diferencial</b>  <br>
                                  <?=$fact_dif?>
                             </div>    
@@ -285,17 +279,17 @@
                         
                        
                         <div class="row">
-                            <div class="col-sm-4" align="center">
+                            <div class="col-sm-4" align="left">
                                <b>Departamento: </b> <br>
                                <?=$depto?> 
                             </div>
                             
-                            <div class="col-sm-4" align="center">
+                            <div class="col-sm-4" align="left">
                                <b>Municipio: </b> <br>
                                <?=$nommun?> 
                             </div>
                             
-                            <div class="col-sm-4" align="center">
+                            <div class="col-sm-4" align="left">
                                <b>Direccion: </b> <br>
                                <?=$direccion?> 
                             </div>
@@ -306,7 +300,7 @@
                                <b>Analista: </b> <br>
                                <?=$analista_riesgo?> 
                            </div>
-                           <div class="col-sm-6" align="center">
+                           <div class="col-sm-6" align="left">
                                <b>Recomendación Medidas Premesa: </b> <br>
                                <?=$rec_med_prem?> 
                            </div>
