@@ -100,12 +100,43 @@
              $factor_diferencial            = $_POST['factor_diferencial'];
              $subpoblacion                  = $_POST['subpoblacion'];
              $obsadicionales_graerr         = $_POST['obsadicionales_graerr'];
-             $estado                        = $_POST['estado'];
              
-            try {
-                 // Conectar a la base de datos
-                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+             
+             echo "1.." . $s_registro;
+             echo '<br>';
+             echo "2.." . $tipo_estudio_riesgo;
+             echo '<br>';
+             echo "3.." . $ot;
+             echo '<br>';
+             echo "4.." . $tipo_documento;
+             echo '<br>';
+             echo "5.." . $no_documento;
+             echo '<br>';
+             echo "6.." . $nombres_peticionario;
+             echo '<br>';
+             echo "7.." . $apellidos_peticionario;
+             echo '<br>';
+             echo "8.." . $analista_riesgo;
+             echo '<br>';
+             echo "9.." . $recomendacion_riesgo_premesa;
+             echo '<br>';
+             echo "10.." . $recomendacion_medidas_premesa;
+             echo '<br>';
+             echo "11.." . $departamento;
+             echo '<br>';
+             echo "12.." . $municipio;
+             echo '<br>';
+             echo "13.." . $no_de_contacto;
+             echo '<br>';
+             echo "14.." . $factor_diferencial;
+             echo '<br>';
+             echo "15.." . $subpoblacion;
+             echo '<br>';
+             echo "16.." . $obsadicionales_graerr;
+             echo '<br>';
+             
+             
+             
                  // Preparar la consulta SQL para actualizar
                  //variables que se actualizan en MT
                  $conteo_acta = 0;
@@ -118,7 +149,11 @@
                  $observaciones_smt="";
                  $estado=1;
                  $fecha_estado = date("Y-m-d");
-                 
+             
+            try {
+                 // Conectar a la base de datos
+                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
                  $stmt = $pdo->prepare('INSERT INTO mt_anexotecnico_1 (
                         registro, conteo_acta, conteo_porsesion, tipo_estudio, ot,
                         tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, analista_riesgo, 
@@ -384,7 +419,7 @@
                 
                 <div class="modal-footer"> 
                    <div class="col-sm-11" align="center">  
-                       <button type="submit" name='enviar' class="btn btn-md btn-success btn-lg" onclick='return confirmarEnvio()'><i class="fa fa-check-square-o"></i> REALIZAR REMISION A SUBCOMISIÓN MTSP</button>
+                       <button type="submit" name='enviar' class="btn btn-md btn-success btn-lg" onclick='return confirmarEnvio()'> <i class='far fa-check-circle'></i> REALIZAR REMISION A SUBCOMISIÓN MTSP</button>
                 </div>	 
               </div>
               
