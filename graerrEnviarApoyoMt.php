@@ -167,7 +167,11 @@
                                  ?, ?, ?, ?, ?, ?)');
                   
                   $stmt->execute([
-                      $estado, $fecha_estado, $s_registro
+                         $s_registro, $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $ot, 
+                         $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $analista_riesgo,
+                         $recomendacion_riesgo_premesa, $recomendacion_medidas_premesa, $consenso, $orden, $temporalidad,
+                         $obs_temporalidad, $departamento,$municipio, $subpoblacion, $factor_diferencial,
+                         $no_de_contacto, $motivacion, $obsadicionales_graerr, $observaciones_smt, $estado, $fecha_estado
                   ]);    
                   
                   $mensaje=" <b>Atención!</b> Envio de Registro Exitoso ¡";     
@@ -180,13 +184,11 @@
             try {
                  // Conectar a la base de datos
                  $stmt = $pdo->prepare('UPDATE graerr_formulario_b
-                              SET estado = ?, fecha_estado = ? WHERE registro = ?');
-                
-                 $stmt->execute([
-                     $estado, $fecha_estado, $registro
-                 ]);     
+                               SET estado = ?, fecha_estado = ? WHERE registro = ?');
+                 $stmt->execute([$estado, $fecha_estado, $registro]);
+                 
                } catch (PDOException $e) {
-                 echo "Error al insertar los datos del formulario: " . $e->getMessage();
+                 echo "Error al modificar los datos del formulario: " . $e->getMessage();
             }//try update
              
     }//enviar
