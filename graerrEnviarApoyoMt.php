@@ -116,10 +116,12 @@
              $fecha_estado = date("Y-m-d H:i:s");
              
               $cuantos=0;
-              $sql = "SELECT count(*) AS cuantos FROM mt_anexotecnico";
+              $sql = "SELECT count(*) AS cuantos FROM mt_anexotecnico where registro=$s_registro";
               $stmt = $pdo->query($sql);
               $row  = $stmt->fetch(PDO::FETCH_ASSOC);
               $s_cuantos = $row['cuantos'];
+              
+              echo "cuantos.." . $s_cuantos;
         
         if ($cuantos > 0)
         {
