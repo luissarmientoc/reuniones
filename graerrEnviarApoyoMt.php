@@ -154,7 +154,7 @@
                  // Conectar a la base de datos
                  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                  
-                 $stmt = $pdo->prepare('INSERT INTO mt_anexotecnico_1 (
+                 $stmt = $pdo->prepare('INSERT INTO mt_anexotecnico (
                         registro, conteo_acta, conteo_porsesion, tipo_estudio, ot,
                         tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, analista_riesgo, 
                         recomendacion_riesgo_premesa, recomendacion_medidas_premesa, consenso, orden, temporalidad, 
