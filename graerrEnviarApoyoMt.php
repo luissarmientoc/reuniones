@@ -164,7 +164,7 @@
                                  ?, ?, ?, ?, ?,
                                  ?, ?, ?, ?, ?,
                                  ?, ?, ?, ?, ?,
-                                 ?, ?, ?, ?, ?');
+                                 ?, ?, ?, ?, ?,?');
                   
                   $stmt->execute([
                          $s_registro, $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $ot, 
@@ -426,7 +426,7 @@
              <div style="display:none">
               <input style="visibility:hidden" name= "registro" value="<?=$s_registro?>"/>
               <input style="visibility:hidden" name= "tipo_estudio_riesgo" value="<?=$tipo_estudio_riesgo?>"/>
-              <input style="visibility:hidden" name= "ot "value="<?=$ot?>"/>
+              <input style="visibility:hidden" name= "ot" value="<?=$ot?>"/>
               <input style="visibility:hidden" name= "tipo_documento" value="<?=$tipo_documento?>"/>
               <input style="visibility:hidden" name= "no_documento" value="<?=$no_documento?>"/>
               <input style="visibility:hidden" name= "nombres_peticionario" value="<?=$nombres_peticionario?>"/>
