@@ -60,6 +60,7 @@
              $s_registro                    = $row['registro'];
              $tipo_estudio_riesgo           = $row['tipo_estudio_riesgo'];
              $ot                            = $row['ot'];
+             $fecha_asignado_ot             = $row['fecha_asignado_ot'];
              $tipo_documento                = $row['tipo_documento'];
              $no_documento                  = $row['no_documento'];
              $nombres_peticionario          = $row['nombres_peticionario'];
@@ -241,20 +242,36 @@
                     <div class="container-fluid" style="margin-bottom:10px;">
                         
                         <div class="row" style="margin-top:10px;">
-                            <div class="col-sm-12" align="left">
-                                <b>Número de Registro: </b> <?=$s_registro?> </div>    
+                            <div class="col-sm-4" align="left">
+                                <b>Número de Registro: 
                             </div>
-                        </div> <!-- row -->
-                        
-                        <div class="row" style="margin-top:10px;">
-                            <div class="col-sm-6" align="left">
-                                 <b>Tipo de Estudio: </b> <?=$tipo_estudio?>
+                            <div class="col-sm-8" align="left">
+                                <?=$s_registro?>  
                             </div>
                         </div> <!-- row -->
                         
                         <div class="row" style="margin-top:10px;">
                             <div class="col-sm-4" align="left">
-                                 <b>Número de Ot: </b> <?=$ot?>
+                                 <b>Tipo de Estudio: </b>
+                            </div>
+                            <div class="col-sm-8" align="left">
+                                 <?=$tipo_estudio?>
+                            </div>
+                        </div> <!-- row -->
+                        
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-3" align="left">
+                                 <b>Número de Ot:</b>
+                            </div>
+                            <div class="col-sm-3" align="left">
+                                 <?=$ot?>
+                            </div>
+                            
+                            <div class="col-sm-3" align="left">
+                                 <b>Fecha de Ot:</b>
+                            </div>
+                            <div class="col-sm-3" align="left">
+                                 <?=$fecha_asignado_ot?>
                             </div>
                         </div> <!-- row -->
                         
