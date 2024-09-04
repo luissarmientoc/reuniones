@@ -349,6 +349,15 @@
                                <?=$analista?> 
                            </div>
                         </div> <!-- row -->    
+                        
+                        <div class="row"  style="margin-top:10px;">
+                           <div class="col-sm-2" align="left">
+                               <b>Analista: </b>
+                           </div>
+                           <div class="col-sm-8" align="left">
+                               <?=$analista?> 
+                           </div>
+                        </div> <!-- row -->
                             
                         <div class="row"  style="margin-top:10px;">
                            <div class="col-sm-2" align="left">
