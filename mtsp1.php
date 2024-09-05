@@ -176,6 +176,104 @@
             $fecha_estado           = $row['fecha_estado'];
             $fecha_asignado_ot      = $row['fecha_asignado_ot']; 
             $tipo_ruta              = $row['tipo_ruta'];
+            
+            //trae los datos e la direccion
+             $sql1 = "select * from graerr_direccion where registro=$s_registro";
+             $stmt1 = $pdo->query($sql1);
+             $row1  = $stmt1->fetch(PDO::FETCH_ASSOC);
+             
+             $addressType                  = $row1['addresstype'];                     
+             $ruralType                    = $row1['ruraltype'];
+             $urbanoType                   = $row1['urbanotype'];
+             $tipo_via                     = $row1['tipo_via'];
+             $cuadrante                    = $row1['cuadrante'];
+             $via_generadora               = $row1['via_generadora'];
+             $letra_via_generadora         = $row1['letra_via_generadora']; 
+             $sufijo                       = $row1['sufijo'];
+             $letra_sufijo                 = $row1['letra_sufijo'];
+             $numero_placa                 = $row1['numero_placa'];
+             $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
+             $complemento                  = $row1['complemento'];
+             
+            //SUFIJO Y DATOS DE DIRECCION
+            if ($sufijo==""){
+                $sufN="selected";
+                $sufS="";
+             }
+             else
+             {
+                $sufS="selected"; 
+                $sufN="";
+             }
+             
+             if ($addressType=='rural'){
+                 $aTr = 'selected';
+                 $aTu = '';
+                 $eltipodireccion="Rural";
+             }
+             if ($addressType=='urbano'){
+                $aTr = '';
+                $aTu = 'selected'; 
+                $eltipodireccion="Urbano";
+             }
+            
+             if ($ruralType != ""){
+                $urbanoType = "";
+                $tipoRuralUrbano="Tipo Rural";
+                
+                 if ($ruralType == "corregimiento"){
+                     $rsCor = "selected";
+                     $rsCp  = '';
+                     $rsVe  = '';
+                     $rsOt  = '';
+                     $nomtipodireccion = "Corregimiento";
+                 }
+                 if ($ruralType == "centro_poblado"){
+                     $rsCor = '';
+                     $rsCp  = 'selected';
+                     $rsVe  = '';
+                     $rsOt  = '';
+                     $nomtipodireccion = "Centro Poblado";
+                 }
+                 if($ruralType == "vereda"){
+                     $rsCor = '';
+                     $rsCp  = '';
+                     $rsVe  = 'selected';
+                     $rsOt  = ''; 
+                     $nomtipodireccion = "Vereda";
+                 }
+                 if($ruralType == "otro"){
+                     $rsCor = '';
+                     $rsCp  = '';
+                     $rsVe  = '';
+                     $rsOt  = 'selected';  
+                     $nomtipodireccion = "Otro";
+                 }
+             }
+             else{
+                if($urbanoType!=""){
+                   $ruralType = "";
+                   $tipoRuralUrbano="Tipo Urbano";  
+                   if($urbanoType=="tipo_via"){
+                       $uTv="selected";
+                       $uBa='';
+                       $uCa='';
+                       $nomtipodireccion = "Tipo de Vía";
+                   }
+                   if($urbanoType=="barrio"){
+                      $uTv="";
+                      $uBa='selected';
+                      $uCa=''; 
+                      $nomtipodireccion = "Barrio";
+                   }
+                   if($urbanoType=="campo_abierto"){
+                      $uTv="";
+                      $uBa='';
+                      $uCa='selected'; 
+                      $nomtipodireccion = "Campo Abierto";
+                   }
+                }
+             } 
       }
       
       
@@ -606,9 +704,24 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-6" align="left">
                                <label for="consenso">Consenso:</label>
+                                    <select class="form-control" id="consenso" name="consenso">
+                                          <option value="">Seleccione Consenso</option>
+                                          <option value="Si" <?=$conS?> >Si</option>
+                                          <option value="No" <?=$conN?> >No</option>
+                                    </select>   
+                               
                                <input type="text" class="form-control" id="consenso" name="consenso"  value="<?=$consenso?>" required >
                             </div>
-                            
+                        </div> <!-- row -->
+                        
+                        <div class="row" style="margin-top:5px;">    
+                            <div class="col-sm-12" align="left">
+                               <label for="detalle_consenso">Detalle del Consenso:</label><br>
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="detalle_consenso" name="detalle_consenso" rows="3"> <?=$detalle_consenso?></textarea>
+                            </div>
+                        </div> <!-- row -->
+                        
+                        <div class="row" style="margin-top:5px;">    
                             <div class="col-sm-6" align="left">
                                <label for="orden">Orden:</label>
                                <input type="text" class="form-control" id="orden" name="orden"  value="<?=$orden?>" required >
@@ -616,7 +729,7 @@
                         </div> <!-- row -->    
                         
                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-3" align="left">
+                            <div class="col-sm-6" align="left">
                                <label for="orden">Temporalidad:</label> 
                                <select class="form-control" id="temporalidad" name="temporalidad">
                                     <?php echo $combo_ano; ?>
