@@ -155,7 +155,7 @@
             $registro               = $row['registro'];
             $conteo_acta            = $row['conteo_acta']; 
             $conteo_porsesion       = $row['conteo_porsesion'];
-            $tipo_estudio_riesgo    = $row['tipo_estudio_riesgo']; 
+            $tipo_estudio_riesgo    = $row['tipo_estudio']; 
             $ot                     = $row['ot'];
             $tipo_documento         = $row['tipo_documento'];
             $no_documento           = $row['no_documento']; 
