@@ -330,84 +330,176 @@
              $obsadicionales_graerr         = $_POST['obsadicionales_graerr'];
              $observaciones_smt             = $_POST['observaciones_smt'];
              
+             
+             
+             if ($sufijo==""){
+                $sufN="selected";
+                $sufS="";
+             }
+             else
+             {
+                $sufS="selected"; 
+                $sufN="";
+             }
+             
+             
+             if($consenso=="Si"){
+                $conS="selected"; 
+                $conN=""; 
+             }  
+             else
+             {
+                $conS=""; 
+                $conN="selected";  
+             }
+             
+             if ($addressType=='rural'){
+                 $aTr = 'selected';
+                 $aTu = '';
+                 $eltipodireccion="Rural";
+             }
+             if ($addressType=='urbano'){
+                $aTr = '';
+                $aTu = 'selected'; 
+                $eltipodireccion="Urbano";
+             }
+            
+             if ($ruralType != ""){
+                $urbanoType = "";
+                $tipoRuralUrbano="Tipo Rural";
+                
+                 if ($ruralType == "corregimiento"){
+                     $rsCor = "selected";
+                     $rsCp  = '';
+                     $rsVe  = '';
+                     $rsOt  = '';
+                     $nomtipodireccion = "Corregimiento";
+                 }
+                 if ($ruralType == "centro_poblado"){
+                     $rsCor = '';
+                     $rsCp  = 'selected';
+                     $rsVe  = '';
+                     $rsOt  = '';
+                     $nomtipodireccion = "Centro Poblado";
+                 }
+                 if($ruralType == "vereda"){
+                     $rsCor = '';
+                     $rsCp  = '';
+                     $rsVe  = 'selected';
+                     $rsOt  = ''; 
+                     $nomtipodireccion = "Vereda";
+                 }
+                 if($ruralType == "otro"){
+                     $rsCor = '';
+                     $rsCp  = '';
+                     $rsVe  = '';
+                     $rsOt  = 'selected';  
+                     $nomtipodireccion = "Otro";
+                 }
+             }
+             else{
+                if($urbanoType!=""){
+                   $ruralType = "";
+                   $tipoRuralUrbano="Tipo Urbano";  
+                   if($urbanoType=="tipo_via"){
+                       $uTv="selected";
+                       $uBa='';
+                       $uCa='';
+                       $nomtipodireccion = "Tipo de Vía";
+                   }
+                   if($urbanoType=="barrio"){
+                      $uTv="";
+                      $uBa='selected';
+                      $uCa=''; 
+                      $nomtipodireccion = "Barrio";
+                   }
+                   if($urbanoType=="campo_abierto"){
+                      $uTv="";
+                      $uBa='';
+                      $uCa='selected'; 
+                      $nomtipodireccion = "Campo Abierto";
+                   }
+                }
+             }
+             
              echo '<br>';
              echo "1.." . $conteo_acta;
              echo '<br>';
-             echo "1.." . $conteo_porsesion;
+             echo "2.." . $conteo_porsesion;
              echo '<br>';
-             echo "1.." . $tipo_estudio;
+             echo "3.." . $tipo_estudio;
              echo '<br>';
-             echo "1.." . $tipo_ruta;
+             echo "4.." . $tipo_ruta;
              echo '<br>';
-             echo "1.." . $ot;
+             echo "5.." . $ot;
              echo '<br>';
-             echo "1.." . $fecha_asignado_ot;
+             echo "6.." . $fecha_asignado_ot;
              echo '<br>';
-             echo "1.." . $tipo_documento;
+             echo "7.." . $tipo_documento;
              echo '<br>';
-             echo "1.." . $no_documento;
+             echo "8.." . $no_documento;
              echo '<br>';
-             echo "1.." . $nombres_peticionario;
+             echo "9.." . $nombres_peticionario;
              echo '<br>';
-             echo "1.." . $apellidos_peticionario;
+             echo "10.." . $apellidos_peticionario;
              echo '<br>';
-             echo "1.." . $analista_riesgo;
+             echo "11.." . $analista_riesgo;
              echo '<br>';
-             echo "1.." . $recomendacion_medidas_premesa;
+             echo "12.." . $recomendacion_medidas_premesa;
              echo '<br>';
-             echo "1.." . $recomendacion_riesgo_premesa;
+             echo "13.." . $recomendacion_riesgo_premesa;
              echo '<br>';
-             echo "1.." . $consenso;
+             echo "14.." . $consenso;
              echo '<br>';
-             echo "1.." . $detalle_consenso;
+             echo "15.." . $detalle_consenso;
              echo '<br>';
-             echo "1.." . $orden;
+             echo "16.." . $orden;
              echo '<br>';
-             echo "1.." . $temporalidad;
+             echo "17.." . $temporalidad;
              echo '<br>';
-             echo "1.." . $obs_temporalidad;
-             echo '<br>';
-             
-             echo "1.." . $departamento;
-             echo '<br>';
-             echo "1.." . $municipio;
-             echo '<br>';
-             echo "1.." . $addressType;
-             echo '<br>';
-             echo "1.." . $ruralType;
-             echo '<br>';
-             echo "1.." . $eltipodireccion;
-             echo '<br>';
-             echo "1.." . $nomtipodireccion;
-             echo '<br>';
-             echo "1.." . $tipo_via;
-             echo '<br>';
-             echo "1.." . $cuadrante;
-             echo '<br>';
-             echo "1.." . $letra_via_generadora;
-             echo '<br>';
-             echo "1.." . $sufijo;
-             echo '<br>';
-             echo "1.." . $letra_sufijo;
-             echo '<br>';
-             echo "1.." . $numero_placa;
-             echo '<br>';
-             echo "1.." . $cuadrante_numero_placa;
-             echo '<br>';
-             echo "1.." . $corregimiento_vereda;
-             echo '<br>';
-             echo "1.." . $direccion;
+             echo "18.." . $obs_temporalidad;
              echo '<br>';
              
-             echo "1.." . $subpoblacion;
+             echo "19.." . $departamento;
              echo '<br>';
-             echo "1.." . $factor_diferencial;
+             echo "20.." . $municipio;
              echo '<br>';
-             echo "1.." . $motivacion;
+             echo "21.." . $addressType;
              echo '<br>';
-             echo "1.." . $obsadicionales_graerr;
+             echo "22.." . $ruralType;
              echo '<br>';
-             echo "1.." . $observaciones_smt;
+             echo "23.." . $eltipodireccion;
+             echo '<br>';
+             echo "24.." . $nomtipodireccion;
+             echo '<br>';
+             echo "25.." . $tipo_via;
+             echo '<br>';
+             echo "26.." . $cuadrante;
+             echo '<br>';
+             echo "27.." . $letra_via_generadora;
+             echo '<br>';
+             echo "28.." . $sufijo;
+             echo '<br>';
+             echo "29.." . $letra_sufijo;
+             echo '<br>';
+             echo "30.." . $numero_placa;
+             echo '<br>';
+             echo "31.." . $cuadrante_numero_placa;
+             echo '<br>';
+             echo "32.." . $corregimiento_vereda;
+             echo '<br>';
+             echo "33.." . $direccion;
+             echo '<br>';
+             
+             echo "34.." . $subpoblacion;
+             echo '<br>';
+             echo "35.." . $factor_diferencial;
+             echo '<br>';
+             echo "36.." . $motivacion;
+             echo '<br>';
+             echo "37.." . $obsadicionales_graerr;
+             echo '<br>';
+             echo "38.." . $observaciones_smt;
              echo '<br>';
              
       }//GRABAR
