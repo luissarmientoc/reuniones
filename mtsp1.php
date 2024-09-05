@@ -409,6 +409,25 @@
       $i++; 
     }
     
+    //============================= ANO
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT ano FROM graerr_bas_ano order by ano');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_ano .=" <option value=''>".'- Seleccione el número de meses -'."</option>";
+      }
+      if ($line['ano']==$temporalidad)
+      {
+        $combo_ano .=" <option value='".$line['ano']."' selected>".$line['ano']." </option>"; 
+      }
+      
+       $combo_ano .=" <option value='".$line['ano']."'>".$line['ano']."</ano>"; 
+      $i++; 
+    }
+    
     //LETRA SUFIJO
     $stmt = $pdo->query('SELECT letra  FROM graerr_bas_alfabeto order by letra');
     $i=0;
@@ -598,10 +617,14 @@
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
-                               <label for="orden">Temporalidad:</label>
-                               <input type="text" class="form-control" id="temporalidad" name="temporalidad"  value="<?=$temporalidad?>" required  >
+                               <label for="orden">Temporalidad:</label> $combo_ano
+                               <select class="form-control" id="temporalidad" name="temporalidad">
+                                    <?php echo $combo_ano; ?>
+                                </select>
                             </div>
-                            
+                        </div>
+                        
+                        <div class="row" style="margin-top:5px;">    
                             <div class="col-sm-9" align="left">
                                <label for="obs_temporalidad">Observaciones Temporalidad:</label>
                                <input type="text" class="form-control" id="obs_temporalidad" name="obs_temporalidad"  value="<?=$obs_temporalidad?>" required  >
@@ -783,9 +806,9 @@
                         </div> <!-- row -->       
                         
                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-3" align="left">
+                            <div class="col-sm-12" align="left">
                                <label for="motivacion">Motivacion:</label>
-                               <input type="text" class="form-control" id="motivacion" name="motivacion"  value="<?=$motivacion?>" required >
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="motivacion" name="motivacion" rows="3"> <?=$motivacion?></textarea>
                             </div>
                         </div> <!-- row -->        
                         
