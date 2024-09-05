@@ -847,7 +847,7 @@
                        
                        <div class="col-sm-4" align="right">  					  			 
                          <p style="font-size:12px;"><i class="fas fa-user"></i> <?=$_SESSION['nombre_perfil']?></p>
-                         <a href="graerrEnviarApoyoMt.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
+                         <a href="graerrAmtsp.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
                         </div>                
                       </div>
                   </div>
