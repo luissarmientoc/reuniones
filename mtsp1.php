@@ -589,7 +589,7 @@
                        
                        <div class="col-sm-4" align="right">  					  			 
                          <p style="font-size:12px;"><i class="fas fa-user"></i> <?=$_SESSION['nombre_perfil']?></p>
-                         <a href="graerrFormulario0.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
+                         <a href="graerrEnviarApoyoMt.php" class="btn btn-default pull-right btn-md"><i class="fas fa-reply"></i> Regresar</a>							
                         </div>                
                       </div>
                   </div>
@@ -709,8 +709,6 @@
                                           <option value="Si" <?=$conS?> >Si</option>
                                           <option value="No" <?=$conN?> >No</option>
                                     </select>   
-                               
-                               <input type="text" class="form-control" id="consenso" name="consenso"  value="<?=$consenso?>" required >
                             </div>
                         </div> <!-- row -->
                         
