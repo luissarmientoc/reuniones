@@ -281,15 +281,12 @@
                     $stmt = $pdo->query($sql);
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $registro=$row['registro'];
-						$fecha_recepcion_unp=$row['fecha_recepcion_unp'];
-						$fecha_recepcion_graerr=$row['fecha_recepcion_graerr'];
+						$fecha_asignado_ot=$row['fecha_asignado_ot'];
 						$no_documento=$row['no_documento'];
 						$nombres_peticionario=$row['nombres_peticionario'];
 						$apellidos_peticionario=$row['apellidos_peticionario'];
-						//$nombre_colectivo=$row['nombre_colectivo'];
-						//$estado_solicitud=$row['estado_solicitud'];
-						//$tipo_ruta=$row['tipo_ruta'];
 						$ot=$row['ot'];
+						$tipo_ruta=$row['tipo_ruta'];
 						
 						//trae estado solicitud
 						//$sqlSol    = "select * from graerr_estado_solicitud where id=$estado_solicitud";
@@ -298,10 +295,10 @@
 					    //$solicitud = $rowSol['estado_solicitud'];
 					    
 					    //trae el tipo ruta
-						//$sqlRut    = "select * from graerr_tipo_ruta where id=$tipo_ruta";
-						//$stmtRut   = $pdo->query($sqlRut);
-					    //$rowRut    = $stmtRut->fetch(PDO::FETCH_ASSOC);
-					    //$ruta = $rowRut['tipo_ruta'];
+						$sqlRut    = "select * from graerr_tipo_ruta where id=$tipo_ruta";
+						$stmtRut   = $pdo->query($sqlRut);
+					    $rowRut    = $stmtRut->fetch(PDO::FETCH_ASSOC);
+					    $ruta = $rowRut['tipo_ruta'];
 						
  					    $lv   = $registro. "/MOD1234567890qwertyuiopasdfghjkl";
 					    $lVDX = base64_encode($lv);
@@ -309,8 +306,7 @@
                         <tr>	
   		   			       <td><?php echo $registro; ?></td>
   					       <td><?php echo $ot; ?></td>
-  					       <td><?php echo $fecha_recepcion_unp; ?></td>
-  					       <td><?php echo $fecha_recepcion_graerr; ?></td>
+  					       <td><?php echo $fecha_asignado_ot; ?></td>
   					       <td><?php echo number_format($no_documento); ?></td>
   					       <td><?php echo $nombres_peticionario; ?></td>
   					       <td><?php echo $apellidos_peticionario; ?></td>
