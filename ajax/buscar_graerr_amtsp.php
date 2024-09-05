@@ -5,7 +5,7 @@
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
  	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
  	
- 	try {
+ //	try {
  	    // Crear una nueva instancia de conexión PDO
         $pdo = new PDO($dsn);
         $sTable = "graerr_formulario_b";
@@ -336,10 +336,10 @@
 				       </tr>
 			     </table>
         <?php
-            }// if>0
-	    }//ajax
- 	}catch (PDOException $e) {
-    echo "Error de conexión: " . $e->getMessage();
+  //          }// if>0
+  //	    }//ajax
+ //	}catch (PDOException $e) {
+  //  echo "Error de conexión: " . $e->getMessage();
 }    
  	
  	
