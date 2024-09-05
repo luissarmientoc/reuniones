@@ -208,7 +208,7 @@
              $sql   = "SELECT descripcion from graerr_tipo_estudio_riesgo where id = $tipo_estudio_riesgo";
 	         $stmt  = $pdo->query($sql);
 	         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
-             $tipo_estudio = $row['descripcion'];
+             $tipo_estudio_riesgo = $row['descripcion'];
              
               if($consenso=="Si"){
                 $conS="selected"; 
@@ -1156,7 +1156,19 @@
                               <label for="direccion">DIRECCION</label>
                               <input style="text-transform:uppercase;" readonly type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
                           </div>
-                       </div> <!--row-->      
+                       </div> <!--row-->     
+                       
+                       
+                       <div class="row" style="margin-top:5px;">                          
+                          <div class="col-sm-6" align="left"> 
+                              <label for="correo_electronico">CORREO ELECTRONICO</label>
+                              <input style="text-transform:lowercase;" type="email" class="form-control" id="correo_electronico" name="correo_electronico"   value="<?=$correo_electronico?>"required>
+                          </div> 
+                          <div class="col-sm-6" align="left">
+                              <label for="no_contacto">No DE CONTACTO</label>
+                              <input min="0" type="number" class="form-control" id="no_de_contacto" name="no_de_contacto"  value="<?=$no_de_contacto?>" required>
+                          </div>
+                       </div> <!--row-->
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-6" align="left">
