@@ -152,17 +152,16 @@
                         concatenatedInfo += cuadrante ? ` ${cuadrante}` : `${cuadrante}`;
                     }
                     
-                    if (cuadrante) {
-                        concatenatedInfo += concatenatedInfo ? ` ${cuadrante}` : `${cuadrante}`;
-                    }
-
-                    
                     if (via_generadora) {
                         concatenatedInfo += concatenatedInfo ? ` ${via_generadora}` : `${via_generadora}`;
                     }
                     
                     if (letra_via_generadora) {
                         concatenatedInfo += concatenatedInfo ? ` ${letra_via_generadora}` : `${letra_via_generadora}`;
+                    }
+                    
+                    if (sufijo) {
+                        concatenatedInfo += concatenatedInfo ? ` ${sufijo}` : `${sufijo}`;
                     }
                     
                     if (letra_sufijo) {
