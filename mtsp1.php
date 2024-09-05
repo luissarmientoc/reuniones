@@ -155,16 +155,21 @@
             $registro               = $row['registro'];
             $conteo_acta            = $row['conteo_acta']; 
             $conteo_porsesion       = $row['conteo_porsesion'];
-            $tipo_estudio           = $row['tipo_estudio']; 
+            $tipo_estudio_riesgo    = $row['tipo_estudio_riesgo']; 
             $ot                     = $row['ot'];
             $tipo_documento         = $row['tipo_documento'];
             $no_documento           = $row['no_documento']; 
             $nombres_peticionario   = $row['nombres_peticionario']; 
             $apellidos_peticionario = $row['apellidos_peticionario']; 
+            $correo_electronico            = $_POST['correo_electronico'];
+            $no_de_contacto                = $_POST['no_de_contacto'];
+            
             $analista_riesgo        = $row['analista_riesgo']; 
             $recomendacion_riesgo_premesa = $row['recomendacion_riesgo_premesa']; 
             $recomendacion_medidas_premesa = $row['recomendacion_medidas_premesa']; 
             $consenso               = $row['consenso']; 
+            $detalle_consenso       = $_POST['detalle_consenso'];
+            
             $orden                  = $row['orden']; 
             $temporalidad           = $row['temporalidad']; 
             $obs_temporalidad       = $row['obs_temporalidad']; 
@@ -198,6 +203,22 @@
              $numero_placa                 = $row1['numero_placa'];
              $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
              $complemento                  = $row1['complemento'];
+             
+             
+             $sql   = "SELECT descripcion from graerr_tipo_estudio_riesgo where id = $tipo_estudio_riesgo";
+	         $stmt  = $pdo->query($sql);
+	         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+             $tipo_estudio = $row['descripcion'];
+             
+              if($consenso=="Si"){
+                $conS="selected"; 
+                $conN=""; 
+             }  
+             else
+             {
+                $conS=""; 
+                $conN="selected";  
+             }
              
             //SUFIJO Y DATOS DE DIRECCION
             if ($sufijo==""){
@@ -291,7 +312,7 @@
       
              $conteo_acta                   = $_POST['conteo_acta'];
              $conteo_porsesion              = $_POST['conteo_porsesion'];
-             $tipo_estudio                  = $_POST['tipo_estudio'];
+             $tipo_estudio_riesgo           = $_POST['tipo_estudio:riesgo'];
              $tipo_ruta                     = $_POST['tipo_ruta'];
              $ot                            = $_POST['ot'];
              $fecha_asignado_ot             = $_POST['fecha_asignado_ot'];
@@ -299,6 +320,10 @@
              $no_documento                  = $_POST['no_documento'];
              $nombres_peticionario          = $_POST['nombres_peticionario'];
              $apellidos_peticionario        = $_POST['apellidos_peticionario'];
+             $correo_electronico            = $_POST['correo_electronico'];
+             $no_de_contacto                = $_POST['no_de_contacto'];
+             
+             
              $analista_riesgo               = $_POST['analista_riesgo'];
              $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
              $recomendacion_riesgo_premesa  = $_POST['recomendacion_riesgo_premesa'];
@@ -331,7 +356,13 @@
              $obsadicionales_graerr         = $_POST['obsadicionales_graerr'];
              $observaciones_smt             = $_POST['observaciones_smt'];
              
+             $estado=2;
+             $fecha_estado = date("Y-m-d H:i:s");
              
+              $sql   = "SELECT descripcion from graerr_tipo_estudio_riesgo where id = $tipo_estudio_riesgo";
+	         $stmt  = $pdo->query($sql);
+	         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+             $tipo_estudio_riesgo = $row['descripcion'];
              
              if ($sufijo==""){
                 $sufN="selected";
@@ -427,7 +458,7 @@
              echo '<br>';
              echo "2.." . $conteo_porsesion;
              echo '<br>';
-             echo "3.." . $tipo_estudio;
+             echo "3.." . $tipo_estudio_riesgo;
              echo '<br>';
              echo "4.." . $tipo_ruta;
              echo '<br>';
@@ -858,7 +889,7 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-6" align="left">
                                <label for="conteo_acta">Tipo de Estudio:</label>
-                               <input type="text" class="form-control" id="tipo_estudio" name="tipo_estudio"  value="<?=$tipo_estudio?>" required  >
+                               <input type="text" class="form-control" id="tipo_estudio_riesgo" name="tipo_estudio_riesgo"  value="<?=$tipo_estudio_riesgo?>" required  >
                             </div>
                            
                             <div class="col-sm-6" align="left">
