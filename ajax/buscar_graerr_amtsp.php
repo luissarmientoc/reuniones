@@ -244,10 +244,11 @@
 		    
 		    $sWhere.=" order by registro desc";
 		    $sWhere1.=" group by registro ";
+		    
 		    include 'pagination.php'; //include pagination file
 		    //paginación variables
 		    $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-		    $per_page = 1; //cuantos registros desea mostrar
+		    $per_page = 10; //cuantos registros desea mostrar
 		    $adjacents  = 4; //gap entre paginas despues del número de adyacentes
 		    $offset = ($page - 1) * $per_page;
 		
@@ -262,6 +263,7 @@
             $total_filas = $resultado['total_filas'];
             $total_pages = ceil($total_filas / $per_page);
             $reload = './marcas.php';
+           
             //echo "El número total de filas en la tabla es: $total_filas";
             if ($total_filas>0)
             {
