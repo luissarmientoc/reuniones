@@ -336,10 +336,10 @@
 				       </tr>
 			     </table>
         <?php
-  //          }// if>0
-  //	    }//ajax
+           }// if>0
+  	    }//ajax
  //	}catch (PDOException $e) {
   //  echo "Error de conexión: " . $e->getMessage();
-}    
+//}    
  	
  	
