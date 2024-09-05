@@ -40,6 +40,87 @@
                  var combo = document.getElementById("id_ciudad");
                  var selected = combo.options[combo.selectedIndex].text;
                  document.getElementById("nommunicipio").value = selected;
+             }   
+             
+          function concatenarDir() {
+                
+                    // const addressType = document.getElementById('addressType').value;
+                   // const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
+                   // const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
+                    const tipo_via = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
+                    const cuadrante = document.getElementById('cuadrante') ? document.getElementById('cuadrante').value : '';
+                    const via_generadora = document.getElementById('via_generadora') ? document.getElementById('via_generadora').value : '';
+                    const letra_via_generadora = document.getElementById('letra_via_generadora') ? document.getElementById('letra_via_generadora').value : '';
+                    const sufijo = document.getElementById('sufijo') ? document.getElementById('sufijo').value : '';
+                    const letra_sufijo = document.getElementById('letra_sufijo') ? document.getElementById('letra_sufijo').value : '';
+                    const numero_placa = document.getElementById('numero_placa') ? document.getElementById('numero_placa').value : '';
+                    const cuadrante_numero_placa = document.getElementById('cuadrante_numero_placa') ? document.getElementById('cuadrante_numero_placa').value : '';
+                    //const complemento = document.getElementById('complemento').value;
+                    const corregimiento_vereda = document.getElementById('corregimiento_vereda') ? document.getElementById('corregimiento_vereda').value : '';
+
+                    let concatenatedInfo = '';
+                    
+                    //alert("entra11111");
+                    
+                    // Verifica si cada campo no está vacío antes de concatenar
+                    //if (addressType) {
+                    //    concatenatedInfo += `${addressType}`;
+                    //}
+
+                    //if (ruralType) {
+                    //    concatenatedInfo += concatenatedInfo ? ` ${ruralType}` : `${ruralType}`;
+                    //}
+
+                    //if (urbanoType) {
+                    //    concatenatedInfo += concatenatedInfo ? ` ${urbanoType}` : `${urbanoType}`;
+                    //}
+                    
+                    if (tipo_via) {
+                        concatenatedInfo += concatenatedInfo ? ` ${tipo_via}` : `${tipo_via}`;
+                    }
+                    
+                    if (cuadrante) {
+                        concatenatedInfo += cuadrante ? ` ${cuadrante}` : `${cuadrante}`;
+                    }
+                    
+                    if (cuadrante) {
+                        concatenatedInfo += concatenatedInfo ? ` ${cuadrante}` : `${cuadrante}`;
+                    }
+
+                    
+                    if (via_generadora) {
+                        concatenatedInfo += concatenatedInfo ? ` ${via_generadora}` : `${via_generadora}`;
+                    }
+                    
+                    if (letra_via_generadora) {
+                        concatenatedInfo += concatenatedInfo ? ` ${letra_via_generadora}` : `${letra_via_generadora}`;
+                    }
+                    
+                    if (letra_sufijo) {
+                        concatenatedInfo += concatenatedInfo ? ` ${letra_sufijo}` : `${letra_sufijo}`;
+                    }
+                    
+                    if (numero_placa) {
+                        concatenatedInfo += concatenatedInfo ? ` ${numero_placa}` : `${numero_placa}`;
+                    }
+                    
+                    if (cuadrante_numero_placa) {
+                        concatenatedInfo += concatenatedInfo ? ` ${cuadrante_numero_placa}` : `${cuadrante_numero_placa}`;
+                    }
+                    
+                   // if (complemento) {
+                   //        concatenatedInfo += concatenatedInfo ? ` ${complemento}` : `${complemento}`;
+                   // }
+                    
+                   if (corregimiento_vereda) {
+                       concatenatedInfo += concatenatedInfo ? ` ${corregimiento_vereda}` : `${corregimiento_vereda}`;
+                   }
+
+                    // Si concatenatedInfo no está vacío, muestra la alerta
+                    if (concatenatedInfo) {
+                       // alert(concatenatedInfo);
+                        document.getElementById('direccion').value = concatenatedInfo;
+                    }
              }     
       </script>
   
@@ -423,18 +504,138 @@
                           </div>
                         </div><!--- row --->     
                          
-                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-3" align="left">
-                               <label for="direccion">Dirección:</label>
-                               <input type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required >
+                         <div class="row" style="margin-top:5px;">  
+                       <hr>
+                            <div class="col-sm-6">
+                               <div>
+                                    <label for="addressType">* Tipo de dirección:</label>
+                                    <select class="form-control" id="addressType" name="addressType" required onchange="concatenarDir();">
+                                        <option value="" disabled selected>Selecciona una opción</option>
+                                        <option value="">Seleccione una opción</option>
+                                        <option value="rural" <?=$aTr?>>Rural</option>
+                                        <option value="urbano" <?=$aTu?>>Urbano</option>
+                                    </select>
+                                </div>
+                           </div>
+                           
+                           <div class="col-sm-6">
+                                <div id="ruralOptions" style="display: none;" >
+                                     <label class="labelDireccion" for="ruralType">Tipo de rural:</label>
+                                     <select class="form-control" id="ruralType" name="ruralType" onchange="concatenarDir();">
+                                         <option value="" disabled selected>Selecciona un tipo</option>
+                                         <option value="corregimiento" <?=$rsCor?>>Corregimiento</option>
+                                         <option value="centro_poblado" <?=$rsCp?>>Centro Poblado</option>
+                                         <option value="vereda" <?=$rsVe?>>Vereda</option>
+                                         <option value="otro" <?=$rsOt?>>Otro</option>
+                                     </select>
+                                </div>
+                                
+                                <div id="urbanoOptions" style="display: none;">
+                                    <label for="urbanoType">Tipo de urbano:</label>
+                                    <select class="form-control" id="urbanoType" name="urbanoType" onchange="concatenarDir();">
+                                        <option value="" disabled selected>Selecciona un tipo</option>
+                                        <option value="tipo_via" <?=$uTv?>>Tipo de Vía</option>
+                                        <option value="barrio" <?=$uBa?>>Barrio</option>
+                                        <option value="campo_abierto" <?=$uCa?>>Campo Abierto</option>
+                                    </select>
+                                </div>
+                            </div> 
+                       </div> <!--row-->        
+                       
+                       <div class="row" style="margin-top:5px;">  
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="eltipodireccion" name="eltipodireccion" value="<?=$eltipodireccion?> " placeholder="Tipo dirección" readonly><br>  
                             </div>
                             
-                            <div class="col-sm-3" align="left">
-                               <label for="no_de_contacto">Contacto:</label>
-                               <input type="text" class="form-control" id="no_de_contacto" name="no_de_contacto"  value="<?=$no_de_contacto?>" required >
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="nomtipodireccion" name="nomtipodireccion" value="<?=$nomtipodireccion?> " placeholder="Tipo dirección" readonly><br>  
+                            </div>
+                                
+                            
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                            <div class="col-sm-2">
+                                <label for="tipo_via">* Tipo de vía:</label>
+                                <select <?=$active?> required class="form-control" id="tipo_via" name="tipo_via" onchange="concatenarDir();">
+                                    <?=$combo_tipo_via?>
+                                </select>
                             </div>
                             
-                        </div> <!-- row -->       
+                            <div class="col-sm-2">
+                                   <label for="cuadrante_tipo_via">Cuadrante:</label> 
+                                   <div class="form-group">
+                                     <select <?=$active?>  class="form-control" id="cuadrante" name="cuadrante" onchange="concatenarDir();">
+                                         <?php echo $combo_cuadrante; ?>
+                                      </select>
+                                   </div> 
+                            </div>
+                       
+                            <div class="col-sm-2">
+                                   <label for="via_generadora">* No. inical placa:</label>
+                                   <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora" value="<?=$via_generadora?>" oninput="concatenarDir();">
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                   <label  for="letra_via_generadora">Letra:</label>
+                                    <select class="form-control" id="letra_via_generadora" name="letra_via_generadora" onchange="concatenarDir();">
+                                       <?php echo $combo_via_generadora;?>
+                                    </select>
+                                </div> 
+                                
+                                <div class="col-sm-2">
+                                       <label  for="via_generadora">Sufijo:</label> 
+                                       <select class="form-control" id="sufijo" name="sufijo" onchange="concatenarDir();">
+                                          <!-- Opciones del A a la Z -->
+                                          <option value="" <?=$sufN?>>Seleccione el Sufijo</option>
+                                          <option value="Bis" <?=$sufS?> >Bis</option>
+                                        </select>          
+                                </div>
+                                
+                                <div class="col-sm-2">
+                                   <label  for="letra_sufijo">Letra:</label>
+                                   <select class="form-control" id="letra_sufijo" name="letra_sufijo" onchange="concatenarDir();">
+                                       <?php echo $combo_letra_sufijo;?>
+                                    </select>
+                                   </div>  
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;"> 
+                                <div class="col-sm-2">
+                                        <label for="numero_placa">* Número de placa:</label>
+                                         <input required type="number" class="form-control" id="numero_placa" name="numero_placa" value="<?=$numero_placa?>" min="0" oninput="concatenarDir();">
+                                </div>
+                                 
+                                <div class="col-sm-2">
+                                      <label  for="cuadrante_numero_placa">Cuadrante:</label>
+                                      <div class="form-group">
+                                          <select <?=$active?> required class="form-control" id="cuadrante_numero_placa" name="cuadrante_numero_placa" onchange="concatenarDir();">
+                                            <?php echo $combo_cuadrante; ?>
+                                          </select>
+                                      </div>
+                                </div>
+                                
+                                <div class="col-sm-8">
+                                      <label for="complemento">Complemento:</label>
+                                      <!--<textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1" oninput="concatenarDir();">  </textarea>-->
+                                      <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required oninput="concatenarDir();">
+                                </div>
+                         <hr>
+                       </div> <!--row-->
+                       
+                       <!--<div class="row" style="margin-top:5px;">  
+                          <div class="col-sm-12" align="left">
+                              <label for="corregimiento_vereda">CORREGIMIENTO O VEREDA</label>
+                              <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required>
+                          </div>
+                       </div> <!--row-->
+                       
+                       <div class="row" style="margin-top:5px;">  
+                          <div class="col-sm-12" align="left">  
+                              <label for="direccion">DIRECCION</label>
+                              <input style="text-transform:uppercase;" readonly type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required>
+                          </div>
+                       </div> <!--row-->      
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-6" align="left">
@@ -491,6 +692,60 @@
                include("complemento.html");             
               ?>
               <!--- fin complemento -->
+        
+         <!-- Script para mostrar opciones según el tipo seleccionado -->
+    <script>
+        document.getElementById('addressType').addEventListener('change', function() {
+            const addressType = this.value;
+            const ruralOptions = document.getElementById('ruralOptions');
+            const urbanoOptions = document.getElementById('urbanoOptions');
+
+            if (addressType === 'rural') {
+                ruralOptions.style.display = 'block';
+                urbanoOptions.style.display = 'none';
+            } else if (addressType === 'urbano') {
+                ruralOptions.style.display = 'none';
+                urbanoOptions.style.display = 'block';
+            } else {
+                ruralOptions.style.display = 'none';
+                urbanoOptions.style.display = 'none';
+            }
+        });
+
+        document.getElementById('saveAddress').addEventListener('click', function() {
+            // Obtener los valores de los campos
+            const addressType = document.getElementById('addressType').value;
+            const ruralType   = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
+            const urbanoType  = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
+            const tipo_via    = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
+
+           
+            // Mostrar el valor de dirección y tipo seleccionado
+            // console.log(`Dirección: ${direccion}`);
+            // console.log(`Tipo de dirección: ${addressType}`);
+            // console.log(`Tipo rural: ${ruralType}`);
+            // nsole.log(`Tipo urbano: ${urbanoType}`);
+
+            // Aquí podrías hacer algo con la dirección, como enviar el formulario o actualizar algún campo
+
+            // Cerrar el modal
+            $('#myModal').modal('hide');
+        });
+    </script>
+    
+    <script>
+    // Validación en el submit del formulario
+    document.getElementById('addressForm').addEventListener('submit', function(event) {
+        // Verifica que los campos requeridos no estén vacíos
+        let isValid = this.checkValidity();
+        
+        if (!isValid) {
+            event.preventDefault(); // Evita que el formulario se envíe si no es válido
+            alert('Por favor, complete todos los campos requeridos.');
+        }
+    }); 
+   </script>      
+              
        <script type="text/javascript" src="buscarCiudad.js"></script>
       <!-- Bootstrap core JavaScript
       ================================================== -->
