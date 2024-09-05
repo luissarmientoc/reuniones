@@ -144,6 +144,10 @@
       {
         ///////////////////////////////////////////////////////  
         ////// REALIZA LA CONSULTA  
+        $titulo = "MODIFICAR ENTIDAD";
+        $s_existe = 1;
+        $boton  = "Actualizar";
+        
         $sql = "select * from mt_anexotecnico where registro=$s_registro";
         $stmt = $pdo->query($sql);
         $row  = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -178,7 +182,7 @@
             $tipo_ruta              = $row['tipo_ruta'];
             
             //trae los datos e la direccion
-             $sql1 = "select * from graerr_direccion where registro=$s_registro";
+             $sql1 = "select * from graerr_direccion where registro=$registro";
              $stmt1 = $pdo->query($sql1);
              $row1  = $stmt1->fetch(PDO::FETCH_ASSOC);
              
@@ -276,6 +280,137 @@
              } 
       }
       
+      if(isset($_POST['grabar']))
+      { 
+             $s_existe         = $_POST['existe'];
+             $s_yaGrabo        = $_POST['yaGrabo'];
+             date_default_timezone_set('America/Bogota');
+             //$s_fecha  = date("Y-m-d",time());
+             //$s_fecha  = date("Y/m/d H:i:s");
+             $date_added=date("Y-m-d H:i:s");
+      
+             $conteo_acta                   = $_POST['conteo_acta'];
+             $conteo_porsesion              = $_POST['conteo_porsesion'];
+             $tipo_estudio                  = $_POST['tipo_estudio'];
+             $tipo_ruta                     = $_POST['tipo_ruta'];
+             $ot                            = $_POST['ot'];
+             $fecha_asignado_ot             = $_POST['fecha_asignado_ot'];
+             $tipo_documento                = $_POST['tipo_documento'];
+             $no_documento                  = $_POST['no_documento'];
+             $nombres_peticionario          = $_POST['nombres_peticionario'];
+             $apellidos_peticionario        = $_POST['apellidos_peticionario'];
+             $analista_riesgo               = $_POST['analista_riesgo'];
+             $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
+             $recomendacion_riesgo_premesa  = $_POST['recomendacion_riesgo_premesa'];
+             $consenso                      = $_POST['consenso'];
+             $detalle_consenso              = $_POST['detalle_consenso'];
+             $orden                         = $_POST['orden'];
+             $temporalidad                  = $_POST['temporalidad'];
+             $obs_temporalidad              = $_POST['obs_temporalidad'];
+             
+             $departamento                  = $_POST['departamento'];
+             $municipio                     = $_POST['municipio'];
+             $addressType                   = $_POST['addressType'];
+             $ruralType                     = $_POST['ruralType'];
+             $eltipodireccion               = $_POST['eltipodireccion'];
+             $nomtipodireccion              = $_POST['nomtipodireccion'];
+             $tipo_via                      = $_POST['tipo_via'];
+             $cuadrante                     = $_POST['cuadrante'];
+             $letra_via_generadora          = $_POST['letra_via_generadora'];
+             $sufijo                        = $_POST['sufijo'];
+             $letra_sufijo                  = $_POST['letra_sufijo'];
+             $numero_placa                  = $_POST['numero_placa'];
+             $cuadrante_numero_placa        = $_POST['cuadrante_numero_placa'];
+             $corregimiento_vereda          = $_POST['corregimiento_vereda'];
+             $direccion                     = $_POST['direccion'];
+             
+             $subpoblacion                  = $_POST['subpoblacion'];
+             $factor_diferencial            = $_POST['factor_diferencial'];
+             $motivacion                    = $_POST['motivacion'];
+             $obsadicionales_graerr         = $_POST['obsadicionales_graerr'];
+             $observaciones_smt             = $_POST['observaciones_smt'];
+             
+             echo '<br>';
+             echo "1.." . $conteo_acta;
+             echo '<br>';
+             echo "1.." . $conteo_porsesion;
+             echo '<br>';
+             echo "1.." . $tipo_estudio;
+             echo '<br>';
+             echo "1.." . $tipo_ruta;
+             echo '<br>';
+             echo "1.." . $ot;
+             echo '<br>';
+             echo "1.." . $fecha_asignado_ot;
+             echo '<br>';
+             echo "1.." . $tipo_documento;
+             echo '<br>';
+             echo "1.." . $no_documento;
+             echo '<br>';
+             echo "1.." . $nombres_peticionario;
+             echo '<br>';
+             echo "1.." . $apellidos_peticionario;
+             echo '<br>';
+             echo "1.." . $analista_riesgo;
+             echo '<br>';
+             echo "1.." . $recomendacion_medidas_premesa;
+             echo '<br>';
+             echo "1.." . $recomendacion_riesgo_premesa;
+             echo '<br>';
+             echo "1.." . $consenso;
+             echo '<br>';
+             echo "1.." . $detalle_consenso;
+             echo '<br>';
+             echo "1.." . $orden;
+             echo '<br>';
+             echo "1.." . $temporalidad;
+             echo '<br>';
+             echo "1.." . $obs_temporalidad;
+             echo '<br>';
+             
+             echo "1.." . $departamento;
+             echo '<br>';
+             echo "1.." . $municipio;
+             echo '<br>';
+             echo "1.." . $addressType;
+             echo '<br>';
+             echo "1.." . $ruralType;
+             echo '<br>';
+             echo "1.." . $eltipodireccion;
+             echo '<br>';
+             echo "1.." . $nomtipodireccion;
+             echo '<br>';
+             echo "1.." . $tipo_via;
+             echo '<br>';
+             echo "1.." . $cuadrante;
+             echo '<br>';
+             echo "1.." . $letra_via_generadora;
+             echo '<br>';
+             echo "1.." . $sufijo;
+             echo '<br>';
+             echo "1.." . $letra_sufijo;
+             echo '<br>';
+             echo "1.." . $numero_placa;
+             echo '<br>';
+             echo "1.." . $cuadrante_numero_placa;
+             echo '<br>';
+             echo "1.." . $corregimiento_vereda;
+             echo '<br>';
+             echo "1.." . $direccion;
+             echo '<br>';
+             
+             echo "1.." . $subpoblacion;
+             echo '<br>';
+             echo "1.." . $factor_diferencial;
+             echo '<br>';
+             echo "1.." . $motivacion;
+             echo '<br>';
+             echo "1.." . $obsadicionales_graerr;
+             echo '<br>';
+             echo "1.." . $observaciones_smt;
+             echo '<br>';
+             
+      }//GRABAR
       
     //============================= CONSULTA EL graerr_tipo_documento
     //============================================================================ 
@@ -665,7 +800,7 @@
                             <div class="col-sm-3" align="left">
                                <label for="no_documento">Número de Documento:</label>
                                <input type="text" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required  >
-                            </div>
+                            </div> 
                             
                             <div class="col-sm-3" align="left">
                                <label for="nombres_peticionario">Nombres del Peticionario:</label>
@@ -717,11 +852,11 @@
                                <label for="detalle_consenso">Detalle del Consenso:</label><br>
                                <textarea  style="text-transform:uppercase;" class="form-control" id="detalle_consenso" name="detalle_consenso" rows="3"> <?=$detalle_consenso?></textarea>
                             </div>
-                        </div> <!-- row -->
+                        </div> <!-- row --> 
                         
                         <div class="row" style="margin-top:5px;">    
                             <div class="col-sm-6" align="left">
-                               <label for="orden">Orden:</label>
+                               <label for="orden">Orden:</label> 
                                <input type="text" class="form-control" id="orden" name="orden"  value="<?=$orden?>" required >
                             </div>
                         </div> <!-- row -->    
@@ -736,13 +871,13 @@
                         </div>
                         
                         <div class="row" style="margin-top:5px;">    
-                            <div class="col-sm-12" align="left">
+                            <div class="col-sm-12" align="left"> 
                                <label for="obs_temporalidad">Observaciones Temporalidad:</label>
                                <textarea  style="text-transform:uppercase;" class="form-control" id="obs_temporalidad" name="obs_temporalidad" rows="3"> <?=$obs_temporalidad?></textarea>
                             </div>
                         </div> <!-- row -->   
                         
-                        <div class="row" style="margin-top:5px;">
+                        <div class="row" style="margin-top:5px;"> 
                             
                             <div class="col-sm-4" align="left"> 
                                 <label for="departamento">DEPARTAMENTO</label>
@@ -765,7 +900,7 @@
                                <input style ="display:none;" class="form-control" type="text" readonly value="<?=$municipio?>" name="municipio" id="municipio">                         
                                <input type="text" class="form-control" id="nommunicipio" name="nommunicipio" value="<?=$nommunicipio?> " placeholder="Municipio" readonly><br>  
                           </div>
-                        </div><!--- row --->     
+                        </div><!--- row --->       
                          
                          <div class="row" style="margin-top:5px;">  
                        <hr>
@@ -780,7 +915,7 @@
                                     </select>
                                 </div>
                            </div>
-                           
+                            
                            <div class="col-sm-6">
                                 <div id="ruralOptions" style="display: none;" >
                                      <label class="labelDireccion" for="ruralType">Tipo de rural:</label>
@@ -803,7 +938,7 @@
                                     </select>
                                 </div>
                             </div> 
-                       </div> <!--row-->        
+                       </div> <!--row-->       
                        
                        <div class="row" style="margin-top:5px;">  
                             <div class="col-sm-6">
@@ -838,7 +973,7 @@
                                    <label for="via_generadora">* No. inical placa:</label>
                                    <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora" value="<?=$via_generadora?>" oninput="concatenarDir();">
                             </div>
-                            
+                               
                             <div class="col-sm-2">
                                    <label  for="letra_via_generadora">Letra:</label>
                                     <select class="form-control" id="letra_via_generadora" name="letra_via_generadora" onchange="concatenarDir();">
@@ -877,7 +1012,7 @@
                                           </select>
                                       </div>
                                 </div>
-                                
+                                                                
                                 <div class="col-sm-8">
                                       <label for="complemento">Complemento:</label>
                                       <!--<textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1" oninput="concatenarDir();">  </textarea>-->
@@ -902,7 +1037,7 @@
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-6" align="left">
-                               <label for="subpoblacion">Poblacion:</label>
+                               <label for="subpoblacion">Poblacion:</label> 
                                <select <?=$active?> required class="form-control" name="subpoblacion" required>
                                  <?php echo $combo_subpoblacion; ?>
                               </select>
@@ -918,7 +1053,7 @@
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-12" align="left">
-                               <label for="motivacion">Motivacion:</label>
+                               <label for="motivacion">Motivacion:</label> 
                                <textarea  style="text-transform:uppercase;" class="form-control" id="motivacion" name="motivacion" rows="3"> <?=$motivacion?></textarea>
                             </div>
                         </div> <!-- row -->        
@@ -935,7 +1070,7 @@
                                <label for="observaciones_smt">Observaciones Adicionales MTSP:</label>
                                <textarea  style="text-transform:uppercase;" class="form-control" id="observaciones_smt" name="observaciones_smt" rows="3"> <?=$observaciones_smt?> </textarea>
                             </div> 
-                        </div> <!-- row -->     
+                        </div> <!-- row -->      
                        
                     </div> <!-- container -->    
                 </div> <!-- panel-body -->
