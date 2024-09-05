@@ -205,10 +205,6 @@
              $complemento                  = $row1['complemento'];
              
              
-             $sql   = "SELECT descripcion from graerr_tipo_estudio_riesgo where id = $tipo_estudio_riesgo";
-	         $stmt  = $pdo->query($sql);
-	         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
-             $tipo_estudio_riesgo = $row['descripcion'];
              
               if($consenso=="Si"){
                 $conS="selected"; 
