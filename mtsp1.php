@@ -161,14 +161,14 @@
             $no_documento           = $row['no_documento']; 
             $nombres_peticionario   = $row['nombres_peticionario']; 
             $apellidos_peticionario = $row['apellidos_peticionario']; 
-            $correo_electronico            = $_POST['correo_electronico'];
-            $no_de_contacto                = $_POST['no_de_contacto'];
+            $correo_electronico     = $row['correo_electronico'];
+            $no_de_contacto          = $row['no_de_contacto'];
             
             $analista_riesgo        = $row['analista_riesgo']; 
             $recomendacion_riesgo_premesa = $row['recomendacion_riesgo_premesa']; 
             $recomendacion_medidas_premesa = $row['recomendacion_medidas_premesa']; 
             $consenso               = $row['consenso']; 
-            $detalle_consenso       = $_POST['detalle_consenso'];
+            $detalle_consenso       = $row['detalle_consenso'];
             
             $orden                  = $row['orden']; 
             $temporalidad           = $row['temporalidad']; 
@@ -821,6 +821,23 @@
       $i++; 
     }
     
+    //============================= CONSULTA EL graerr_tipo_estudio_riesgo
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_tipo_estudio_riesgo order by descripcion');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_estudio_riesgo .=" <option value=''>".'- Seleccione el tipo de estudio de riesgo -'."</option>";
+      }
+      if ($line['id']==$tipo_estudio_riesgo)
+      {
+        $combo_tipo_estudio_riesgo .=" <option value='".$line['id']."' selected>".$line['descripcion']." </option>"; 
+      }
+      $combo_tipo_estudio_riesgo .=" <option value='".$line['id']."'>".$line['descripcion']."</option>"; 
+      $i++; 
+    }
    ?>
               <!-- Page Content Holder -->
               <div id="content">  
@@ -888,8 +905,10 @@
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-6" align="left">
-                               <label for="conteo_acta">Tipo de Estudio:</label>
-                               <input type="text" class="form-control" id="tipo_estudio_riesgo" name="tipo_estudio_riesgo"  value="<?=$tipo_estudio_riesgo?>" required  >
+                               <label for="tipo_estudio_riesgo">TIPO ESTUDIO DE RIESGO</label>
+                               <select <?=$active?> required class="form-control" name="tipo_estudio_riesgo">
+                                 <?php echo $combo_tipo_estudio_riesgo; ?>
+                               </select>
                             </div>
                            
                             <div class="col-sm-6" align="left">
