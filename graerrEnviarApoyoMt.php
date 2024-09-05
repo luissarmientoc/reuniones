@@ -59,21 +59,23 @@
       
              $s_registro                    = $row['registro'];
              $tipo_estudio_riesgo           = $row['tipo_estudio_riesgo'];
+             $tipo_ruta                     = $row['tipo_ruta'];
              $ot                            = $row['ot'];
              $fecha_asignado_ot             = $row['fecha_asignado_ot'];
              $tipo_documento                = $row['tipo_documento'];
              $no_documento                  = $row['no_documento'];
              $nombres_peticionario          = $row['nombres_peticionario'];
              $apellidos_peticionario        = $row['apellidos_peticionario'];
+             $correo_electronico            = $row['correo_electronico'];
+             $no_de_contacto                = $row['no_de_contacto'];
              $analista_riesgo               = $row['analista_riesgo'];
              $recomendacion_riesgo_premesa  = $row['recomendacion_riesgo_premesa'];
              $recomendacion_medidas_premesa = $row['recomendacion_medidas_premesa'];
              $departamento                  = $row['departamento'];
              $municipio                     = $row['municipio'];
-             $no_de_contacto                = $row['no_de_contacto'];
              $factor_diferencial            = $row['factor_diferencial'];
              $subpoblacion                  = $row['subpoblacion'];
-             $tipo_ruta                     = $row['tipo_ruta'];
+             
                
               $cuantos=0;
               $sql = "SELECT count(*) AS cuantos FROM mt_anexotecnico where registro=$s_registro";
@@ -110,23 +112,23 @@
              
              $s_registro                    = $_POST['registro'];
              $tipo_estudio_riesgo           = $_POST['tipo_estudio_riesgo'];
+             $tipo_ruta                     = $_POST['tipo_ruta'];
              $ot                            = $_POST['ot'];
              $fecha_asignado_ot             = $_POST['fecha_asignado_ot'];
              $tipo_documento                = $_POST['tipo_documento'];
              $no_documento                  = $_POST['no_documento'];
              $nombres_peticionario          = $_POST['nombres_peticionario'];
              $apellidos_peticionario        = $_POST['apellidos_peticionario'];
+             $correo_electronico            = $_POST['correo_electronico']; 
+             $no_de_contacto                = $_POST['no_de_contacto'];
              $analista_riesgo               = $_POST['analista_riesgo'];
              $recomendacion_riesgo_premesa  = $_POST['recomendacion_riesgo_premesa'];
              $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
              $departamento                  = $_POST['departamento'];
              $municipio                     = $_POST['municipio'];
-             $no_de_contacto                = $_POST['no_de_contacto'];
              $factor_diferencial            = $_POST['factor_diferencial'];
              $subpoblacion                  = $_POST['subpoblacion'];
              $obsadicionales_graerr         = $_POST['obsadicionales_graerr'];
-             $tipo_ruta                     = $_POST['tipo_ruta'];
-             
              
              // Preparar la consulta SQL para actualizar
              //variables que se actualizan en MT
@@ -159,23 +161,23 @@
                  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                  
                  $stmt = $pdo->prepare('INSERT INTO mt_anexotecnico (
-                        registro, conteo_acta, conteo_porsesion, tipo_estudio, ot,
-                        tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, analista_riesgo, 
-                        recomendacion_riesgo_premesa, recomendacion_medidas_premesa, consenso, orden, temporalidad, 
+                        registro, conteo_acta, conteo_porsesion, tipo_estudio, tipo_ruta, ot, fecha_asignado_ot, 
+                        tipo_documento, no_documento, nombres_peticionario, apellidos_peticionario, correo_electronico, no_de_contacto, analista_riesgo,
+                        recomendacion_riesgo_premesa, recomendacion_medidas_premesa, consenso, detalle_consenso, orden, temporalidad, 
                         obs_temporalidad, departamento, municipio, subpoblacion, factor_diferencial, 
-                        no_de_contacto, motivacion, obsadicionales_graerr, observaciones_smt, estado, fecha_estado, fecha_asignado_ot, tipo_ruta
-                       ) VALUES (?, ?, ?, ?, ?,
+                        motivacion, obsadicionales_graerr, observaciones_smt, estado, fecha_estado 
+                       ) VALUES (?, ?, ?, ?, ?, ?, ?,
+                                 ?, ?, ?, ?, ?, ?, ?,
+                                 ?, ?, ?, ?, ?, ?,
                                  ?, ?, ?, ?, ?,
-                                 ?, ?, ?, ?, ?,
-                                 ?, ?, ?, ?, ?,
-                                 ?, ?, ?, ?, ?, ?,?,?)');
+                                 ?, ?, ?, ?, ? )');
                   
                   $stmt->execute([
-                         $s_registro, $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $ot, 
-                         $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $analista_riesgo,
-                         $recomendacion_riesgo_premesa, $recomendacion_medidas_premesa, $consenso, $orden, $temporalidad,
+                         $s_registro, $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $tipo_ruta, $ot, $fecha_asignado_ot,
+                         $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $correo_electronico, $no_de_contacto, $analista_riesgo,
+                         $recomendacion_riesgo_premesa, $recomendacion_medidas_premesa, $consenso, $detalle_consenso, $orden, $temporalidad,
                          $obs_temporalidad, $departamento,$municipio, $subpoblacion, $factor_diferencial,
-                         $no_de_contacto, $motivacion, $obsadicionales_graerr, $observaciones_smt, $estado, $fecha_estado, $fecha_asignado_ot, $tipo_ruta
+                         $motivacion, $obsadicionales_graerr, $observaciones_smt, $estado, $fecha_estado
                   ]);    
                   
                   $mensaje=" <b>Atención!</b> Envio de Registro Exitoso ¡";     
@@ -446,23 +448,22 @@
              <div style="display:none">
               <input style="visibility:hidden" name= "registro" value="<?=$s_registro?>"/>
               <input style="visibility:hidden" name= "tipo_estudio_riesgo" value="<?=$tipo_estudio_riesgo?>"/>
+              <input style="visibility:hidden" name= "tipo_ruta" value="<?=$tipo_ruta?>"/>
               <input style="visibility:hidden" name= "ot" value="<?=$ot?>"/>
               <input style="visibility:hidden" name= "fecha_asignado_ot" value="<?=$fecha_asignado_ot?>"/>
               <input style="visibility:hidden" name= "tipo_documento" value="<?=$tipo_documento?>"/>
               <input style="visibility:hidden" name= "no_documento" value="<?=$no_documento?>"/>
               <input style="visibility:hidden" name= "nombres_peticionario" value="<?=$nombres_peticionario?>"/>
               <input style="visibility:hidden" name= "apellidos_peticionario" value="<?=$apellidos_peticionario?>"/>
+              <input style="visibility:hidden" name= "correo_electronico" value="<?=$correo_electronico?>"/>
+              <input style="visibility:hidden" name= "no_de_contacto" value="<?=$no_de_contacto?>"/>
               <input style="visibility:hidden" name= "analista_riesgo" value="<?=$analista_riesgo?>"/>
               <input style="visibility:hidden" name= "recomendacion_riesgo_premesa" value="<?=$recomendacion_riesgo_premesa?>"/>
               <input style="visibility:hidden" name= "recomendacion_medidas_premesa" value="<?=$recomendacion_medidas_premesa?>"/>
               <input style="visibility:hidden" name= "departamento" value="<?=$departamento?>"/>
               <input style="visibility:hidden" name= "municipio" value="<?=$municipio?>"/>
-              <input style="visibility:hidden" name= "no_de_contacto" value="<?=$no_de_contacto?>"/>
               <input style="visibility:hidden" name= "factor_diferencial" value="<?=$factor_diferencial?>"/>
               <input style="visibility:hidden" name= "subpoblacion" value="<?=$subpoblacion?>"/>
-              <input style="visibility:hidden" name= "tipo_ruta" value="<?=$tipo_ruta?>"/>
-              
-            
               
               <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
               <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
