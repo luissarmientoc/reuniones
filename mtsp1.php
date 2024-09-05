@@ -31,6 +31,16 @@
                    return false;
              }
              
+          function datoCiiu() {
+                 // Obtener el valor del select
+                 var cod = document.getElementById("id_ciudad").value;
+                 document.getElementById("municipio").value = cod;
+
+                 // Obtener el texto del select
+                 var combo = document.getElementById("id_ciudad");
+                 var selected = combo.options[combo.selectedIndex].text;
+                 document.getElementById("nommunicipio").value = selected;
+             }     
       </script>
   
    </head>
@@ -86,6 +96,127 @@
             $fecha_asignado_ot      = $row['fecha_asignado_ot']; 
             $tipo_ruta              = $row['tipo_ruta'];
       }
+      
+      
+    //============================= CONSULTA EL graerr_tipo_documento
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_tipo_documento order by tipo_documento');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_documento .=" <option value=''>".'- Seleccione el tipo de documento -'."</option>";
+      }
+      if ($line['id']==$tipo_documento)
+      {
+        $combo_tipo_documento .=" <option value='".$line['id']."' selected>".$line['tipo_documento']." </option>"; 
+      }
+      $combo_tipo_documento .=" <option value='".$line['id']."'>".$line['tipo_documento']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_analista_riesgo
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_analista_riesgo order by nombre_analista');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_analista_riesgo .=" <option value=''>".'- Seleccione el analista de riesgo -'."</option>";
+      }
+      if ($line['id']==$analista_riesgo)
+      {
+        $combo_analista_riesgo .=" <option value='".$line['id']."' selected>".$line['nombre_analista']." </option>"; 
+      }
+      $combo_analista_riesgo .=" <option value='".$line['id']."'>".$line['nombre_analista']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_recomendacion_premesa
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_recomendacion_premesa order by id');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_recomendacion_premesa .=" <option value=''>".'- Seleccione la recomendacion de premesa -'."</option>";
+      }
+      if ($line['id']==$recomendacion_medidas_premesa)
+      {
+        $combo_recomendacion_premesa .=" <option value='".$line['id']."' selected>".$line['descripcion']." </option>"; 
+      }
+      $combo_recomendacion_premesa .=" <option value='".$line['id']."'>".$line['descripcion']."</option>"; 
+      $i++; 
+    }
+    
+    
+    //============================= CONSULTA LOS DEPARTAMENTOS
+    //============================================================================ 
+    $stmt = $pdo->query('SELECT coddepto, nomdepto  FROM reu_municipios GROUP BY coddepto, nomdepto;');
+  
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $comboDepto .=" <option value=''>".'- Seleccione el departamento -'."</option>";
+      }
+      if ($line['coddepto']==$departamento)
+      {
+        $comboDepto .=" <option value='".$line['coddepto']."' selected>".$line['nomdepto']." </option>"; 
+      }
+      $comboDepto .=" <option value='".$line['coddepto']."'>".$line['nomdepto']."</option>"; 
+      $i++; 
+    }
+   
+    //TOMA EL NOMBRE DEL MUNICIPIO
+    //trae nombre del municipio
+    if ($municipio>0)
+    {
+	  $sqlDep       = "SELECT nommunicipio FROM reu_municipios where codmunicipio ='$municipio' and coddepto=$departamento";
+	  $stmtDep      = $pdo->query($sqlDep);
+	  $rowDep       = $stmtDep->fetch(PDO::FETCH_ASSOC);
+      $nommunicipio = $rowDep['nommunicipio'];
+    }
+    
+    //============================= CONSULTA EL graerr_poblacion
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_poblacion order by id');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_subpoblacion .=" <option value=''>".'- Seleccione la subpoblacion -'."</option>";
+      }
+      if ($line['id']==$subpoblacion)
+      {
+        $combo_subpoblacion .=" <option value='".$line['id']."' selected>".$line['descripcion']." </option>"; 
+      }
+      $combo_subpoblacion .=" <option value='".$line['id']."'>".$line['descripcion']."</option>"; 
+      $i++; 
+    }
+    
+    //============================= CONSULTA EL graerr_factor_diferencial
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_factor_diferencial order by factor_diferencial');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_factor_diferencial .=" <option value=''>".'- Seleccione el factor diferencial -'."</option>";
+      }
+      if ($line['id']==$factor_diferencial)
+      {
+        $combo_factor_diferencial .=" <option value='".$line['id']."' selected>".$line['factor_diferencial']." </option>"; 
+      }
+      $combo_factor_diferencial .=" <option value='".$line['id']."'>".$line['factor_diferencial']."</option>"; 
+      $i++; 
+    }
    ?>
               <!-- Page Content Holder -->
               <div id="content">  
@@ -171,7 +302,9 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
                                <label for="ot">Tipo de Documento:</label>
-                               <input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required  >
+                               <select <?=$active?> required class="form-control" name="tipo_documento" required>
+                                  <?php echo $combo_tipo_documento; ?>
+                               </select> 
                             </div>
                     
                             <div class="col-sm-3" align="left">
@@ -193,19 +326,23 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-6" align="left">
                                <label for="analista_riesgo">Analista de Riesgo:</label>
-                               <input type="text" class="form-control" id="analista_riesgo" name="analista_riesgo"  value="<?=$analista_riesgo?>" required readonly>
+                               <select <?=$active?> required class="form-control" name="analista_riesgo" required>
+                                  <?php echo $combo_analista_riesgo; ?>
+                               </select>
                             </div>
                             
                             <div class="col-sm-6" align="left">
                                <label for="analista_riesgo">Recomendacion Medidas de Premesa:</label>
-                               <input type="text" class="form-control" id="recomendacion_medidas_premesa" name="recomendacion_medidas_premesa"  value="<?=$recomendacion_medidas_premesa?>" required >
+                               <select <?=$active?>  class="form-control" name="recomendacion_medidas_premesa" required>
+                                  <?php echo $combo_recomendacion_premesa; ?>
+                               </select>
                             </div>
                         </div> <!-- row -->        
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-12" align="left">
                                <label for="recomendacion_riesgo_premesa">Recomendacion Riesgo de Premesa:</label>
-                               <input type="text" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa"  value="<?=$recomendacion_riesgo_premesa?>" required >
+                               <textarea  style="text-transform:uppercase;" class="form-recomendacion_riesgo_premesa" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa" rows="3"> <?=$recomendacion_riesgo_premesa?></textarea>
                             </div>
                         </div> <!-- row -->        
                         
@@ -232,16 +369,29 @@
                         </div> <!-- row -->   
                         
                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-3" align="left">
-                               <label for="departamento">Departamento:</label>
-                               <input type="text" class="form-control" id="departamento" name="departamento"  value="<?=$departamento?>" required >
-                            </div>
                             
-                            <div class="col-sm-3" align="left">
-                               <label for="municipio">Municipio:</label>
-                               <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required >
-                            </div>
-                         </div> <!-- row -->   
+                            <div class="col-sm-4" align="left"> 
+                                <label for="departamento">DEPARTAMENTO</label>
+                                <select class="form-control" id="departamento" name="departamento" onchange="loadCiudadD(this.value)">
+                                <!--<select required class="form-control" name="departments" id="departments" onchange="loadCities(this.value)">-->
+                                        <?php echo $comboDepto; ?>
+                                </select>
+                             <!-- <input type="text" class="form-control" id="departamento" name="departamento"required>-->
+                             <br><br>
+                          </div>
+                          
+                          <div class="col-sm-4">
+                               <b>Municipio:</b>  
+                               <div id="myDiv"> </div> 
+                          </div>
+                           
+                           
+                          <div class="col-sm-4">
+                              <b>Municipio: </b>     
+                               <input style ="display:none;" class="form-control" type="text" readonly value="<?=$municipio?>" name="municipio" id="municipio">                         
+                               <input type="text" class="form-control" id="nommunicipio" name="nommunicipio" value="<?=$nommunicipio?> " placeholder="Municipio" readonly><br>  
+                          </div>
+                        </div><!--- row --->     
                          
                          <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
@@ -259,12 +409,16 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
                                <label for="subpoblacion">Poblacion:</label>
-                               <input type="text" class="form-control" id="subpoblacion" name="subpoblacion"  value="<?=$subpoblacion?>" required  >
+                               <select <?=$active?> required class="form-control" name="subpoblacion" required>
+                                 <?php echo $combo_subpoblacion; ?>
+                              </select>
                             </div>
                             
                             <div class="col-sm-3" align="left">
                                <label for="factor_diferencial">Factor Diferencial:</label>
-                               <input type="text" class="form-control" id="factor_diferencial" name="factor_diferencial"  value="<?=$factor_diferencial?>" required >
+                               <select <?=$active?> required class="form-control" name="factor_diferencial">
+                                  <?php echo $combo_factor_diferencial; ?>
+                               </select>
                             </div>
                         </div> <!-- row -->       
                         
@@ -276,14 +430,15 @@
                             
                             <div class="col-sm-9" align="left">
                                <label for="motivacion">Observaciones Adicionales Graerr:</label>
+                               
                                <input type="text" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr"  value="<?=$obsadicionales_graerr?>" required >
                             </div>
                         </div> <!-- row -->     
                         
                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-9" align="left">
+                            <div class="col-sm-12" align="left">
                                <label for="observaciones_smt">Observaciones Adicionales MTSP:</label>
-                               <input type="text" class="form-control" id="observaciones_smt" name="observaciones_smt"  value="<?=$observaciones_smt?>" required >
+                               <textarea  style="text-transform:uppercase;" class="form-observaciones_smt" id="observaciones_smt" name="observaciones_smt" rows="3"> <?=$observaciones_smt?> </textarea>
                             </div> 
                         </div> <!-- row -->     
                        
@@ -306,7 +461,7 @@
                include("complemento.html");             
               ?>
               <!--- fin complemento -->
-   
+       <script type="text/javascript" src="buscarCiudad.js"></script>
       <!-- Bootstrap core JavaScript
       ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
