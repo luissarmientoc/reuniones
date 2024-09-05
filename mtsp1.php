@@ -142,16 +142,13 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-4" align="left">
                                <label for="conteo_acta">Conteo por acta:</label>
-                               <input type="text" class="form-control" id="conteo_acta" name="conteo_acta"  value="<?=$conteo_acta?>" required readonly>
+                               <input type="text" class="form-control" id="conteo_acta" name="conteo_acta"  value="<?=$conteo_acta?>" required>
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="conteo_porsesion">Conteo por sesión:</label>
-                               <input type="text" class="form-control" id="conteo_porsesion" name="conteo_porsesion"  value="<?=$conteo_porsesion?>" required readonly>
+                               <input type="text" class="form-control" id="conteo_porsesion" name="conteo_porsesion"  value="<?=$conteo_porsesion?>" required>
                            </div>
-                           <div class="col-sm-4" align="left">
-                               <label for="tipo_estudio">Conteo por sesión:</label>
-                               <input type="text" class="form-control" id="tipo_estudio" name="tipo_estudio"  value="<?=$tipo_estudio?>" required readonly>
-                           </div>
+                            
                         </div> <!-- row -->    
                         
                         <div class="row" style="margin-top:5px;">
@@ -199,28 +196,28 @@
                                <input type="text" class="form-control" id="analista_riesgo" name="analista_riesgo"  value="<?=$analista_riesgo?>" required readonly>
                             </div>
                             
-                            <div class="col-sm-6" align="left">
-                               <label for="recomendacion_riesgo_premesa">Recomendacion Riesgo de Premesa:</label>
-                               <input type="text" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa"  value="<?=$recomendacion_riesgo_premesa?>" required readonly>
+                            <div class="col-sm-12" align="left">
+                               <label for="analista_riesgo">Recomendacion Medidas de Premesa:</label>
+                               <input type="text" class="form-control" id="recomendacion_medidas_premesa" name="recomendacion_medidas_premesa"  value="<?=recomendacion_medidas_premesa?>" required >
                             </div>
                         </div> <!-- row -->        
                         
                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-12" align="left">
-                               <label for="analista_riesgo">Recomendacion Medidas de Premesa:</label>
-                               <input type="text" class="form-control" id="recomendacion_medidas_premesa" name="recomendacion_medidas_premesa"  value="<?=recomendacion_medidas_premesa?>" required readonly>
+                            <div class="col-sm-6" align="left">
+                               <label for="recomendacion_riesgo_premesa">Recomendacion Riesgo de Premesa:</label>
+                               <input type="text" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa"  value="<?=$recomendacion_riesgo_premesa?>" required >
                             </div>
                         </div> <!-- row -->        
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
                                <label for="consenso">Consenso:</label>
-                               <input type="text" class="form-control" id="consenso" name="consenso"  value="<?=$consenso?>" required readonly>
+                               <input type="text" class="form-control" id="consenso" name="consenso"  value="<?=$consenso?>" required >
                             </div>
                             
                             <div class="col-sm-3" align="left">
                                <label for="orden">Orden:</label>
-                               <input type="text" class="form-control" id="orden" name="orden"  value="<?=$orden?>" required readonly>
+                               <input type="text" class="form-control" id="orden" name="orden"  value="<?=$orden?>" required >
                             </div>
                             
                             <div class="col-sm-3" align="left">
@@ -237,24 +234,24 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
                                <label for="departamento">Departamento:</label>
-                               <input type="text" class="form-control" id="departamento" name="departamento"  value="<?=$departamento?>" required readonly>
+                               <input type="text" class="form-control" id="departamento" name="departamento"  value="<?=$departamento?>" required >
                             </div>
                             
                             <div class="col-sm-3" align="left">
                                <label for="municipio">Municipio:</label>
-                               <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required readonly>
+                               <input type="text" class="form-control" id="municipio" name="municipio"  value="<?=$municipio?>" required >
                             </div>
                          </div> <!-- row -->   
                          
                          <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
                                <label for="direccion">Dirección:</label>
-                               <input type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required readonly>
+                               <input type="text" class="form-control" id="direccion" name="direccion"  value="<?=$direccion?>" required >
                             </div>
                             
                             <div class="col-sm-3" align="left">
                                <label for="no_de_contacto">Contacto:</label>
-                               <input type="text" class="form-control" id="no_de_contacto" name="no_de_contacto"  value="<?=$no_de_contacto?>" required readonly>
+                               <input type="text" class="form-control" id="no_de_contacto" name="no_de_contacto"  value="<?=$no_de_contacto?>" required >
                             </div>
                             
                         </div> <!-- row -->       
@@ -267,26 +264,26 @@
                             
                             <div class="col-sm-3" align="left">
                                <label for="factor_diferencial">Factor Diferencial:</label>
-                               <input type="text" class="form-control" id="factor_diferencial" name="factor_diferencial"  value="<?=$factor_diferencial?>" required readonly>
+                               <input type="text" class="form-control" id="factor_diferencial" name="factor_diferencial"  value="<?=$factor_diferencial?>" required >
                             </div>
                         </div> <!-- row -->       
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
                                <label for="motivacion">Motivacion:</label>
-                               <input type="text" class="form-control" id="motivacion" name="motivacion"  value="<?=$motivacion?>" required readonly>
+                               <input type="text" class="form-control" id="motivacion" name="motivacion"  value="<?=$motivacion?>" required >
                             </div>
                             
                             <div class="col-sm-9" align="left">
                                <label for="motivacion">Observaciones Adicionales Graerr:</label>
-                               <input type="text" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr"  value="<?=$obsadicionales_graerr?>" required readonly>
+                               <input type="text" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr"  value="<?=$obsadicionales_graerr?>" required >
                             </div>
                         </div> <!-- row -->     
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-9" align="left">
                                <label for="observaciones_smt">Observaciones Adicionales MTSP:</label>
-                               <input type="text" class="form-control" id="observaciones_smt" name="observaciones_smt"  value="<?=$observaciones_smt?>" required readonly>
+                               <input type="text" class="form-control" id="observaciones_smt" name="observaciones_smt"  value="<?=$observaciones_smt?>" required >
                             </div> 
                         </div> <!-- row -->     
                        
@@ -304,7 +301,11 @@
                 
             </form>    
    
-   
+             <!--- complemento -->
+              <?php
+               include("complemento.html");             
+              ?>
+              <!--- fin complemento -->
    
       <!-- Bootstrap core JavaScript
       ================================================== -->
