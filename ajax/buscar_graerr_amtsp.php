@@ -247,7 +247,7 @@
 		    include 'pagination.php'; //include pagination file
 		    //paginación variables
 		    $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-		    $per_page = 10; //cuantos registros desea mostrar
+		    $per_page = 1; //cuantos registros desea mostrar
 		    $adjacents  = 4; //gap entre paginas despues del número de adyacentes
 		    $offset = ($page - 1) * $per_page;
 		
@@ -271,10 +271,10 @@
 				    <th>No.Registro</th>
 					<th>OT</th>
 					<th>Fecha UNP</th>
-					<th>Fecha GRAERR</th>
 					<th>Documento</th>
 					<th COLSPAN="2">Peticionario / Colectivo</th> 
 					<th>Ruta</th>
+					<th>Estado</th>
 					<th class='text-center' colspan="4">Acciones</th>
         <?php    
                     $sql="SELECT * FROM  $sTable $sWhere OFFSET $offset LIMIT $per_page";
@@ -287,6 +287,11 @@
 						$apellidos_peticionario=$row['apellidos_peticionario'];
 						$ot=$row['ot'];
 						$tipo_ruta=$row['tipo_ruta'];
+						$estado=$row['estado'];
+						
+						if($estado==1){
+						    $s_estado="Enviado a MTSP";
+						}
 						
 						//trae estado solicitud
 						//$sqlSol    = "select * from graerr_estado_solicitud where id=$estado_solicitud";
@@ -311,6 +316,7 @@
   					       <td><?php echo $nombres_peticionario; ?></td>
   					       <td><?php echo $apellidos_peticionario; ?></td>
   					       <td><?php echo $ruta; ?></td>
+  					       <td><?php echo $s_estado; ?></td>
  
 					       <td class='text-center'>
 					         <a href="mtsp1.php?LA=<?=$lVDX?>" class='btn btn-default' title='Editar registro' ><i class="glyphicon glyphicon-edit"></i></a> 
