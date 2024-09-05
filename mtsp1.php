@@ -610,6 +610,7 @@
     if ($municipio>0)
     {
 	  $sqlDep       = "SELECT nommunicipio FROM reu_municipios where codmunicipio ='$municipio' and coddepto=$departamento";
+	  echo "el dep.." .$sqlDep;
 	  $stmtDep      = $pdo->query($sqlDep);
 	  $rowDep       = $stmtDep->fetch(PDO::FETCH_ASSOC);
       $nommunicipio = $rowDep['nommunicipio'];
