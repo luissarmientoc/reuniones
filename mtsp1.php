@@ -146,7 +146,7 @@
                            </div>
                            <div class="col-sm-4" align="left">
                                <label for="conteo_porsesion">Conteo por sesión:</label>
-                               <input type="text" class="form-control" id="conteo_porsesion" name="conteo_porsesion"  value="<?=$conteo_porsesion?>" required>
+                               <input type="text" class="form-control" id="conteo_porsesion" name="conteo_porsesion"  value="<?=$conteo_porsesion?>"  >
                            </div>
                             
                         </div> <!-- row -->    
@@ -154,39 +154,39 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-4" align="left">
                                <label for="conteo_acta">Tipo de Estudio:</label>
-                               <input type="text" class="form-control" id="tipo_estudio" name="tipo_estudio"  value="<?=$tipo_estudio?>" required readonly>
+                               <input type="text" class="form-control" id="tipo_estudio" name="tipo_estudio"  value="<?=$tipo_estudio?>" required  >
                             </div>
                            
                             <div class="col-sm-4" align="left">
                                <label for="$ot">OT:</label>
-                               <input type="text" class="form-control" id="ot" name="ot"  value="<?=$ot?>" required readonly>
+                               <input type="text" class="form-control" id="ot" name="ot"  value="<?=$ot?>" required  >
                             </div>
                            
                             <div class="col-sm-4" align="left">
                                <label for="fecha_asignado_ot">Fecha de Asgnación de OT:</label>
-                               <input type="text" class="form-control" id="fecha_asignado_ot" name="fecha_asignado_ot"  value="<?=$fecha_asignado_ot?>" required readonly>
+                               <input type="text" class="form-control" id="fecha_asignado_ot" name="fecha_asignado_ot"  value="<?=$fecha_asignado_ot?>" required  >
                             </div>
                         </div> <!-- row -->    
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
                                <label for="ot">Tipo de Documento:</label>
-                               <input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required readonly>
+                               <input type="text" class="form-control" id="tipo_documento" name="tipo_documento"  value="<?=$tipo_documento?>" required  >
                             </div>
                     
                             <div class="col-sm-3" align="left">
                                <label for="no_documento">Número de Documento:</label>
-                               <input type="text" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required readonly>
+                               <input type="text" class="form-control" id="no_documento" name="no_documento"  value="<?=$no_documento?>" required  >
                             </div>
                             
                             <div class="col-sm-3" align="left">
                                <label for="nombres_peticionario">Nombres del Peticionario:</label>
-                               <input type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required readonly>
+                               <input type="text" class="form-control" id="nombres_peticionario" name="nombres_peticionario"  value="<?=$nombres_peticionario?>" required  >
                             </div>
                             
                              <div class="col-sm-3" align="left">
                                <label for="apellidos_peticionario">Apellidos del Peticionario:</label>
-                               <input type="text" class="form-control" id="apellidos_peticionario" name="apellidos_peticionario"  value="<?=$apellidos_peticionario?>" required readonly>
+                               <input type="text" class="form-control" id="apellidos_peticionario" name="apellidos_peticionario"  value="<?=$apellidos_peticionario?>" required  >
                             </div>
                         </div> <!-- row -->    
                         
@@ -196,14 +196,14 @@
                                <input type="text" class="form-control" id="analista_riesgo" name="analista_riesgo"  value="<?=$analista_riesgo?>" required readonly>
                             </div>
                             
-                            <div class="col-sm-12" align="left">
+                            <div class="col-sm-6" align="left">
                                <label for="analista_riesgo">Recomendacion Medidas de Premesa:</label>
-                               <input type="text" class="form-control" id="recomendacion_medidas_premesa" name="recomendacion_medidas_premesa"  value="<?=recomendacion_medidas_premesa?>" required >
+                               <input type="text" class="form-control" id="recomendacion_medidas_premesa" name="recomendacion_medidas_premesa"  value="<?=$recomendacion_medidas_premesa?>" required >
                             </div>
                         </div> <!-- row -->        
                         
                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-6" align="left">
+                            <div class="col-sm-12" align="left">
                                <label for="recomendacion_riesgo_premesa">Recomendacion Riesgo de Premesa:</label>
                                <input type="text" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa"  value="<?=$recomendacion_riesgo_premesa?>" required >
                             </div>
@@ -222,12 +222,12 @@
                             
                             <div class="col-sm-3" align="left">
                                <label for="orden">Temporalidad:</label>
-                               <input type="text" class="form-control" id="temporalidad" name="temporalidad"  value="<?=$temporalidad?>" required readonly>
+                               <input type="text" class="form-control" id="temporalidad" name="temporalidad"  value="<?=$temporalidad?>" required  >
                             </div>
                             
                             <div class="col-sm-3" align="left">
                                <label for="obs_temporalidad">Observaciones Temporalidad:</label>
-                               <input type="text" class="form-control" id="obs_temporalidad" name="obs_temporalidad"  value="<?=$obs_temporalidad?>" required readonly>
+                               <input type="text" class="form-control" id="obs_temporalidad" name="obs_temporalidad"  value="<?=$obs_temporalidad?>" required  >
                             </div>
                         </div> <!-- row -->   
                         
@@ -259,7 +259,7 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
                                <label for="subpoblacion">Poblacion:</label>
-                               <input type="text" class="form-control" id="subpoblacion" name="subpoblacion"  value="<?=$subpoblacion?>" required readonly>
+                               <input type="text" class="form-control" id="subpoblacion" name="subpoblacion"  value="<?=$subpoblacion?>" required  >
                             </div>
                             
                             <div class="col-sm-3" align="left">
