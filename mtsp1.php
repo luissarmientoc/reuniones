@@ -341,7 +341,7 @@
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-12" align="left">
-                               <label for="recomendacion_riesgo_premesa">Recomendacion Riesgo de Premesa:</label>
+                               <label for="recomendacion_riesgo_premesa">Recomendacion Riesgo de Premesa:</label><br>
                                <textarea  style="text-transform:uppercase;" class="form-recomendacion_riesgo_premesa" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa" rows="3"> <?=$recomendacion_riesgo_premesa?></textarea>
                             </div>
                         </div> <!-- row -->        
@@ -430,8 +430,7 @@
                             
                             <div class="col-sm-9" align="left">
                                <label for="motivacion">Observaciones Adicionales Graerr:</label>
-                               
-                               <input type="text" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr"  value="<?=$obsadicionales_graerr?>" required >
+                               <textarea  style="text-transform:uppercase;" class="form-obsadicionales_graerr" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="3"> <?=$obsadicionales_graerr?></textarea>
                             </div>
                         </div> <!-- row -->     
                         
