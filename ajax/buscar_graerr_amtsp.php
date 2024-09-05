@@ -312,24 +312,8 @@
   					       <td><?php echo $fecha_recepcion_unp; ?></td>
   					       <td><?php echo $fecha_recepcion_graerr; ?></td>
   					       <td><?php echo number_format($no_documento); ?></td>
-  					       <?php
-  					         if ($tipo_ruta==1)
-  					         {
-  					       ?>
-  					            <td><?php echo $nombres_peticionario; ?></td>
-  					            <td><?php echo $apellidos_peticionario; ?></td>
-  					       <?php
-  					         }
-  					       ?>
-  					       
-  					       <?php
-  					         if ($tipo_ruta==2)
-  					         {
-  					       ?>
-  					            <td colspan="2"><?php echo $nombre_colectivo; ?></td>
-  					       <?php
-  					         }
-  					       ?>
+  					       <td><?php echo $nombres_peticionario; ?></td>
+  					       <td><?php echo $apellidos_peticionario; ?></td>
   					       <td><?php echo $ruta; ?></td>
  
 					       <td class='text-center'>
