@@ -342,27 +342,29 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-12" align="left">
                                <label for="recomendacion_riesgo_premesa">Recomendacion Riesgo de Premesa:</label><br>
-                               <textarea  style="text-transform:uppercase;" class="form-recomendacion_riesgo_premesa" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa" rows="3"> <?=$recomendacion_riesgo_premesa?></textarea>
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="recomendacion_riesgo_premesa" name="recomendacion_riesgo_premesa" rows="3"> <?=$recomendacion_riesgo_premesa?></textarea>
                             </div>
                         </div> <!-- row -->        
                         
                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-3" align="left">
+                            <div class="col-sm-6" align="left">
                                <label for="consenso">Consenso:</label>
                                <input type="text" class="form-control" id="consenso" name="consenso"  value="<?=$consenso?>" required >
                             </div>
                             
-                            <div class="col-sm-3" align="left">
+                            <div class="col-sm-6" align="left">
                                <label for="orden">Orden:</label>
                                <input type="text" class="form-control" id="orden" name="orden"  value="<?=$orden?>" required >
                             </div>
-                            
+                        </div> <!-- row -->    
+                        
+                        <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
                                <label for="orden">Temporalidad:</label>
                                <input type="text" class="form-control" id="temporalidad" name="temporalidad"  value="<?=$temporalidad?>" required  >
                             </div>
                             
-                            <div class="col-sm-3" align="left">
+                            <div class="col-sm-9" align="left">
                                <label for="obs_temporalidad">Observaciones Temporalidad:</label>
                                <input type="text" class="form-control" id="obs_temporalidad" name="obs_temporalidad"  value="<?=$obs_temporalidad?>" required  >
                             </div>
@@ -407,14 +409,14 @@
                         </div> <!-- row -->       
                         
                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-3" align="left">
+                            <div class="col-sm-6" align="left">
                                <label for="subpoblacion">Poblacion:</label>
                                <select <?=$active?> required class="form-control" name="subpoblacion" required>
                                  <?php echo $combo_subpoblacion; ?>
                               </select>
                             </div>
                             
-                            <div class="col-sm-3" align="left">
+                            <div class="col-sm-6" align="left">
                                <label for="factor_diferencial">Factor Diferencial:</label>
                                <select <?=$active?> required class="form-control" name="factor_diferencial">
                                   <?php echo $combo_factor_diferencial; ?>
@@ -427,17 +429,19 @@
                                <label for="motivacion">Motivacion:</label>
                                <input type="text" class="form-control" id="motivacion" name="motivacion"  value="<?=$motivacion?>" required >
                             </div>
-                            
-                            <div class="col-sm-9" align="left">
+                        </div> <!-- row -->        
+                        
+                        <div class="row" style="margin-top:5px;">    
+                            <div class="col-sm-12" align="left">
                                <label for="motivacion">Observaciones Adicionales Graerr:</label>
-                               <textarea  style="text-transform:uppercase;" class="form-obsadicionales_graerr" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="3"> <?=$obsadicionales_graerr?></textarea>
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="obsadicionales_graerr" name="obsadicionales_graerr" rows="3"> <?=$obsadicionales_graerr?></textarea>
                             </div>
                         </div> <!-- row -->     
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-12" align="left">
                                <label for="observaciones_smt">Observaciones Adicionales MTSP:</label>
-                               <textarea  style="text-transform:uppercase;" class="form-observaciones_smt" id="observaciones_smt" name="observaciones_smt" rows="3"> <?=$observaciones_smt?> </textarea>
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="observaciones_smt" name="observaciones_smt" rows="3"> <?=$observaciones_smt?> </textarea>
                             </div> 
                         </div> <!-- row -->     
                        
@@ -452,7 +456,6 @@
          
                 <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
                 <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
-                
             </form>    
    
              <!--- complemento -->
