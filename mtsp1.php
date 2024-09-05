@@ -217,6 +217,25 @@
       $combo_factor_diferencial .=" <option value='".$line['id']."'>".$line['factor_diferencial']."</option>"; 
       $i++; 
     }
+    
+    //============================= CONSULTA EL graerr_tipo_ruta
+    //============================================================================ 
+    $stmt = $pdo->query('select * from graerr_tipo_ruta order by tipo_ruta');
+    $i=0;
+     while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_tipo_ruta .=" <option value=''>".'- Seleccione el tipo de ruta -'."</option>";
+      }
+      if ($line['id']==$tipo_ruta)
+      {
+        $combo_tipo_ruta .=" <option value='".$line['id']."' selected>".$line['tipo_ruta']." </option>"; 
+      }
+      $combo_tipo_ruta .=" <option value='".$line['id']."'>".$line['tipo_ruta']."</option>"; 
+      $i++; 
+    }
+    
    ?>
               <!-- Page Content Holder -->
               <div id="content">  
@@ -271,11 +290,11 @@
                     <div class="container-fluid" style="margin-bottom:10px;">
                         
                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-4" align="left">
+                            <div class="col-sm-6" align="left">
                                <label for="conteo_acta">Conteo por acta:</label>
                                <input type="text" class="form-control" id="conteo_acta" name="conteo_acta"  value="<?=$conteo_acta?>" required>
                            </div>
-                           <div class="col-sm-4" align="left">
+                           <div class="col-sm-6" align="left">
                                <label for="conteo_porsesion">Conteo por sesión:</label>
                                <input type="text" class="form-control" id="conteo_porsesion" name="conteo_porsesion"  value="<?=$conteo_porsesion?>"  >
                            </div>
@@ -283,17 +302,26 @@
                         </div> <!-- row -->    
                         
                         <div class="row" style="margin-top:5px;">
-                            <div class="col-sm-4" align="left">
+                            <div class="col-sm-6" align="left">
                                <label for="conteo_acta">Tipo de Estudio:</label>
                                <input type="text" class="form-control" id="tipo_estudio" name="tipo_estudio"  value="<?=$tipo_estudio?>" required  >
                             </div>
                            
-                            <div class="col-sm-4" align="left">
+                            <div class="col-sm-6" align="left">
+                              <label for="tipo_ruta">TIPO DE RUTA</label>
+                               <select <?=$active?> required class="form-control" id="tipo_ruta" name="tipo_ruta">
+                                 <?php echo $combo_tipo_ruta; ?>
+                               </select>
+                           </div>
+                        </div> <!-- row -->    
+                        
+                        <div class="row" style="margin-top:5px;">
+                            <div class="col-sm-6" align="left">
                                <label for="$ot">OT:</label>
                                <input type="text" class="form-control" id="ot" name="ot"  value="<?=$ot?>" required  >
                             </div>
                            
-                            <div class="col-sm-4" align="left">
+                            <div class="col-sm-6" align="left">
                                <label for="fecha_asignado_ot">Fecha de Asgnación de OT:</label>
                                <input type="text" class="form-control" id="fecha_asignado_ot" name="fecha_asignado_ot"  value="<?=$fecha_asignado_ot?>" required  >
                             </div>
