@@ -316,6 +316,7 @@
              $nomtipodireccion              = $_POST['nomtipodireccion'];
              $tipo_via                      = $_POST['tipo_via'];
              $cuadrante                     = $_POST['cuadrante'];
+             $via_generadora                = $_POST['via_generadora'];
              $letra_via_generadora          = $_POST['letra_via_generadora'];
              $sufijo                        = $_POST['sufijo'];
              $letra_sufijo                  = $_POST['letra_sufijo'];
@@ -341,7 +342,6 @@
                 $sufS="selected"; 
                 $sufN="";
              }
-             
              
              if($consenso=="Si"){
                 $conS="selected"; 
