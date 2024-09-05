@@ -97,7 +97,7 @@
 		    include 'pagination.php'; //include pagination file
 		    //paginación variables
 		    $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-		    $per_page = 1; //cuantos registros desea mostrar
+		    $per_page = 10; //cuantos registros desea mostrar
 		    $adjacents  = 4; //gap entre paginas despues del número de adyacentes
 		    $offset = ($page - 1) * $per_page;
 		
