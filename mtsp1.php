@@ -187,6 +187,11 @@
             $tipo_ruta              = $row['tipo_ruta'];
             
             //trae los datos e la direccion
+             $sql = "select direccion from graerr_formulario_b where registro=$registro";
+             $stmt = $pdo->query($sql);
+             $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+             $direccion = $row['direccion'];                     
+             
              $sql1 = "select * from graerr_direccion where registro=$registro";
              $stmt1 = $pdo->query($sql1);
              $row1  = $stmt1->fetch(PDO::FETCH_ASSOC);
@@ -318,7 +323,6 @@
              $apellidos_peticionario        = $_POST['apellidos_peticionario'];
              $correo_electronico            = $_POST['correo_electronico'];
              $no_de_contacto                = $_POST['no_de_contacto'];
-             
              
              $analista_riesgo               = $_POST['analista_riesgo'];
              $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
@@ -610,7 +614,6 @@
     if ($municipio>0)
     {
 	  $sqlDep       = "SELECT nommunicipio FROM reu_municipios where codmunicipio ='$municipio' and coddepto=$departamento";
-	  echo "el dep.." .$sqlDep;
 	  $stmtDep      = $pdo->query($sqlDep);
 	  $rowDep       = $stmtDep->fetch(PDO::FETCH_ASSOC);
       $nommunicipio = $rowDep['nommunicipio'];
