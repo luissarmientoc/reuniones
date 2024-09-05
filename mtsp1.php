@@ -617,7 +617,7 @@
                         
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-3" align="left">
-                               <label for="orden">Temporalidad:</label> $combo_ano
+                               <label for="orden">Temporalidad:</label> 
                                <select class="form-control" id="temporalidad" name="temporalidad">
                                     <?php echo $combo_ano; ?>
                                 </select>
@@ -625,9 +625,9 @@
                         </div>
                         
                         <div class="row" style="margin-top:5px;">    
-                            <div class="col-sm-9" align="left">
+                            <div class="col-sm-12" align="left">
                                <label for="obs_temporalidad">Observaciones Temporalidad:</label>
-                               <input type="text" class="form-control" id="obs_temporalidad" name="obs_temporalidad"  value="<?=$obs_temporalidad?>" required  >
+                               <textarea  style="text-transform:uppercase;" class="form-control" id="obs_temporalidad" name="obs_temporalidad" rows="3"> <?=$obs_temporalidad?></textarea>
                             </div>
                         </div> <!-- row -->   
                         
