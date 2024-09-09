@@ -359,7 +359,7 @@
              $estado=2;
              $fecha_estado = date("Y-m-d H:i:s");
              
-              $sql   = "SELECT descripcion from graerr_tipo_estudio_riesgo where id = $tipo_estudio_riesgo";
+             $sql   = "SELECT descripcion from graerr_tipo_estudio_riesgo where id = $tipo_estudio_riesgo";
 	         $stmt  = $pdo->query($sql);
 	         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
              $tipo_estudio_riesgo = $row['descripcion'];
@@ -533,8 +533,94 @@
              echo "38.." . $observaciones_smt;
              echo '<br>';
              
+             try {
+                    // Conectar a la base de datos
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                    // Preparar la consulta SQL para actualizar
+                    $stmt = $pdo->prepare('
+                    UPDATE mt_anexotecnico
+                    SET  conteo_acta = ?, conteo_porsesion = ?, tipo_estudio_riesgo = ?, tipo_ruta = ?, ot = ?, fecha_asignado_ot  = ?,
+                       tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, correo_electronico = ?, no_de_contacto = ?,
+                       analista_riesgo = ?, recomendacion_medidas_premesa = ?, recomendacion_riesgo_premesa = ?, consenso = ?, detalle_consenso = ?,  orden = ?,
+                       temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?, addressType = ?, ruralType = ?,
+                       subpoblacion = ?, factor_diferencial = ?, motivacion = ?, obsadicionales_graerr = ?, observaciones_smt = ?, estado = ?, fecha_estad = ?
+                     WHERE registro = ?
+                    ');      
+              
+                    // Ejecutar la consulta con los valores correspondientes
+                    $stmt->execute([
+                        $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $tipo_ruta, $ot, $fecha_asignado_ot,
+                        $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $correo_electronico, $no_de_contacto,
+                        $analista_riesgo, $recomendacion_medidas_premesa, $recomendacion_riesgo_premesa, $consenso, $detalle_consenso,  $orden,
+                        $temporalidad, $obs_temporalidad, $departamento, $municipio, $addressType, $ruralType, 
+                        $subpoblacion, $factor_diferencial, $motivacion, $obsadicionales_graerr, $observaciones_smt , $estado, $fecha_estad,
+                    $registro  // El ID del registro que se actualiza
+                   ]);
+                $mensaje=" <b>Atención!</b> Actualización del anexo exitosa";
+                //echo "Datos actualizados correctamente.";
+            } catch (PDOException $e) {
+                  echo "Error al actualizar los datos del anexo: " . $e->getMessage();
+            }
+            
+            try {
+               $stmt1 = $pdo->prepare('
+               UPDATE graerr_direccion
+               SET addresstype = ?,
+                   ruraltype = ?,
+                   urbanotype = ?,
+                   tipo_via = ?,
+                   cuadrante = ?,
+                   via_generadora = ?,
+                   letra_via_generadora = ?,
+                   sufijo = ?,
+                   letra_sufijo  = ?,
+                   numero_placa = ?,
+                   cuadrante_numero_placa = ?,
+                   complemento = ?
+                  WHERE registro = ?
+               ');
+
+                $stmt1->execute([
+                    $addressType,
+                    $ruralType,
+                    $urbanoType,
+                    $tipo_via,
+                    $cuadrante,
+                    $via_generadora,
+                    $letra_via_generadora,
+                    $sufijo,
+                    $letra_sufijo,
+                    $numero_placa,
+                    $cuadrante_numero_placa,
+                    $complemento,
+                  $registro  // El ID del registro que se actualiza
+                ]);
+               //$mensaje=" <b>Atención!</b> Actualización exitosa";
+               //echo "Datos actualizados correctamente.";
+            } catch (PDOException $e) {
+                echo "Error al actualizar los datos de direccion 1: " . $e->getMessage();
+            }
+            
+            try {
+               $stmt2 = $pdo->prepare('
+                    UPDATE graerr_formulario_b
+                    SET direccion = ?, 
+                    WHERE registro = ?
+                   ');
+                   
+                $stmt1->execute([
+                    $direccion,
+                    $registro
+                ]);    
+            } catch (PDOException $e) {
+                echo "Error al actualizar los datos de direccion 2: " . $e->getMessage();
+            } 
+             
+             
+            $s_tocoBoton = "S";       
       }//GRABAR
-      
+         
     //============================= CONSULTA EL graerr_tipo_documento
     //============================================================================ 
     $stmt = $pdo->query('select * from graerr_tipo_documento order by tipo_documento');
