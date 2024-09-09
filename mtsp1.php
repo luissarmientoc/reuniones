@@ -162,7 +162,7 @@
             $nombres_peticionario   = $row['nombres_peticionario']; 
             if ($nombres_peticionario=='')
             {
-             $nombres_peticionario="N/A)";
+             $nombres_peticionario="N/A";
             }
             $apellidos_peticionario = $row['apellidos_peticionario']; 
             $correo_electronico     = $row['correo_electronico'];
@@ -361,7 +361,7 @@ try {
     // Preparar la consulta SQL para actualizar
     $stmt = $pdo->prepare('
         UPDATE mt_anexotecnico
-        SET conteo_acta = ?, conteo_porsesion = ?, tipo_estudio_riesgo = ?, tipo_ruta = ?, ot = ?, fecha_asignado_ot = ?,
+        SET conteo_acta = ?, conteo_porsesion = ?, tipo_estudio = ?, tipo_ruta = ?, ot = ?, fecha_asignado_ot = ?,
             tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, correo_electronico = ?, no_de_contacto = ?,
             analista_riesgo = ?, recomendacion_medidas_premesa = ?, recomendacion_riesgo_premesa = ?, consenso = ?, detalle_consenso = ?, orden = ?,
             temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?, 
