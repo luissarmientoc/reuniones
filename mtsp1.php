@@ -32,16 +32,16 @@
          $pdo = new PDO($dsn);
          
           try {
-         $conteo_acta="LOS DEPENDENCIAD2";
-         $conteo_porsesio=1;
+         $nombre="LOS DEPENDENCIA";
+         $laId=1;
       
          $stmt = $pdo->prepare('
                        UPDATE reu_dependencias
-                       SET  nombredependencia = ?, iddependencia = ?  ');   
+                       SET  nombredependencia = ?, iddependencia = ?');   
         
         // Ejecutar la consulta con los valores correspondientes
         $stmt->execute([
-        $conteo_acta, $conteo_porsesio
+        $nombre, $laId
                    ]);
           echo "Datos actualizados correctamente.";
             } catch (PDOException $e) {
