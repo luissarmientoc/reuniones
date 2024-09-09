@@ -30,6 +30,8 @@
       include("navbar.php");
       // Crear una nueva instancia de conexión PDO
          $pdo = new PDO($dsn);
+         
+          try {
          $conteo_acta="LOS DEPENDENCIAD2";
          $conteo_porsesio=1;
       
@@ -41,6 +43,10 @@
         $stmt->execute([
         $conteo_acta, $conteo_porsesio
                    ]);
-                       
+          echo "Datos actualizados correctamente.";
+            } catch (PDOException $e) {
+                  echo "Error al actualizar los datos del anexo: " . $e->getMessage();
+            }
+          
        
     ?>   
