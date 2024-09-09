@@ -564,6 +564,7 @@
                   echo "Error al actualizar los datos del anexo: " . $e->getMessage();
             }
             
+            /*
             try {
                $stmt1 = $pdo->prepare('
                UPDATE graerr_direccion
@@ -617,7 +618,7 @@
             } catch (PDOException $e) {
                 echo "Error al actualizar los datos de direccion 2: " . $e->getMessage();
             } 
-             
+            */ 
              
             $s_tocoBoton = "S";       
       }//GRABAR
