@@ -1334,17 +1334,15 @@
         
         
         try {
-                   
-	           
-                 $stmt1 = $pdo->prepare('INSERT INTO graerr_direccion (
-                                    registro, addresstype, ruraltype, urbanotype, tipo_via, cuadrante, 
-                                    num_via_principal, letra_via_principal, prefijo_bis_via_principal, via_generadora, letra_via_generadora, 
-                                    sufijo, letra_sufijo, numero_placa, cuadrante_numero_placa, complemento
-                                    ) VALUES (?, ?, ?, ?, ?, ?,
-                                              ?, ?, ?, ?, ?, 
-                                              ?, ?, ?, ?, ?)'); 
-                
-                $stmt1->execute([
+                $stmt1 = $pdo->prepare('
+                INSERT INTO graerr_direccion (
+                    registro, addresstype, ruraltype, urbanotype, tipo_via, num_via_principal, 
+                    letra_via_principal, prefijo_bis_via_principal, cuadrante, via_generadora, letra_via_generadora, 
+                    sufijo, letra_sufijo, numero_placa, cuadrante_numero_placa, complemento
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            '); 
+
+            $stmt1->execute([
                 $registro,
                 $addressType,
                 $ruralType,
@@ -1358,10 +1356,11 @@
                 $letra_via_generadora,
                 $sufijo,
                 $letra_sufijo,
-                $numero_placa,
+                $numero_placa,            
                 $cuadrante_numero_placa,
                 $complemento
             ]);
+
             
         } catch (PDOException $e) {
             echo "Error al insertar los datos de la direccion: " . $e->getMessage();
