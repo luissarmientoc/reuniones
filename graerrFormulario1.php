@@ -2230,7 +2230,8 @@
                                       </select>
                                    </div> 
                             </div>
-                       
+                            
+                       <div class="row" style="margin-top:5px;"> 
                             <div class="col-sm-2">
                                    <label for="via_generadora">* No. inical placa:</label>
                                    <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora" value="<?=$via_generadora?>" oninput="concatenarDir();">
