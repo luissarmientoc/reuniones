@@ -146,8 +146,7 @@
                     //if (urbanoType) {
                     //    concatenatedInfo += concatenatedInfo ? ` ${urbanoType}` : `${urbanoType}`;
                     //}
-                    
-                    
+
                     if (tipo_via) {
                         concatenatedInfo += concatenatedInfo ? ` ${tipo_via}` : `${tipo_via}`;
                     }
@@ -1827,6 +1826,27 @@
       $i++; 
     }
 
+    //LETRA VIA PRINCIPAL
+    $stmt = $pdo->query('SELECT letra  FROM graerr_bas_alfabeto order by letra');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_letra_via_principal .=" <option value=''>".'- Seleccione la letra -'."</option>";
+      }
+      if ($line['letra']==$letra_via_principa)
+      {
+        $combo_letra_via_principal .=" <option value='".$line['letra']."' selected>".$line['letra']." </option>"; 
+      }
+      
+       $combo_letra_via_principal .=" <option value='".$line['letra']."'>".$line['letra']."</ano>"; 
+      $i++; 
+    }
+
+
+
+
     //============================= CUADRANTE
     //============================================================================ 
     $stmt = $pdo->query('SELECT cuadrante  FROM graerr_bas_cuadrante order by cuadrante');
@@ -2189,9 +2209,8 @@
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" id="nomtipodireccion" name="nomtipodireccion" value="<?=$nomtipodireccion?> " placeholder="Tipo dirección" readonly><br>  
                             </div>
-                                
-                            
                        </div> <!--row-->
+                       
 
                        <div class="row" style="margin-top:5px;"> 
                             <div class="col-sm-2">
@@ -2214,7 +2233,7 @@
                             </div> 
                             
                             <div class="col-sm-2">
-                                       <label  for="prefijo_bis_via_principal">Sufijo:</label> 
+                                       <label  for="prefijo_bis_via_principal">Prefijo:</label> 
                                        <select class="form-control" id="prefijo_bis_via_principal" name="prefijo_bis_via_principal" onchange="concatenarDir();">
                                           <!-- Opciones del A a la Z -->
                                           <option value="" <?=$prevgfN?>>Seleccione el Prefijo vía principal</option>
