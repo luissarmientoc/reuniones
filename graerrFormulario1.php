@@ -756,9 +756,9 @@
              $ruralType                    = $_POST['ruralType'];
              $urbanoType                   = $_POST['urbanoType'];
              $tipo_via                     = $_POST['tipo_via'];
-             $num_via_principal             = $row1['num_via_principal'];
-             $letra_via_principal           = $row1['letra_via_principal'];
-             $prefijo_bis_via_principal     = $row1['prefijo_bis_via_principal'];
+             $num_via_principal             = $_POST['num_via_principal'];
+             $letra_via_principal           = $_POST['letra_via_principal'];
+             $prefijo_bis_via_principal     = $_POST['prefijo_bis_via_principal'];
              $cuadrante                    = $_POST['cuadrante'];
              $via_generadora               = $_POST['via_generadora'];
              $letra_via_generadora         = $_POST['letra_via_generadora']; 
