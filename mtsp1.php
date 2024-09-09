@@ -160,6 +160,10 @@
             $tipo_documento         = $row['tipo_documento'];
             $no_documento           = $row['no_documento']; 
             $nombres_peticionario   = $row['nombres_peticionario']; 
+            if ($nombres_peticionario=='')
+            {
+             $nombres_peticionario="N/A)";
+            }
             $apellidos_peticionario = $row['apellidos_peticionario']; 
             $correo_electronico     = $row['correo_electronico'];
             $no_de_contacto          = $row['no_de_contacto'];
@@ -299,6 +303,94 @@
                 }
              } 
       }
+      
+      
+       if(isset($_POST['grabar']))
+    {    
+try {
+    // Conectar a la base de datos
+    $pdo = new PDO($dsn);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Recoger los datos del formulario
+    $s_registro = $_POST['registro'];
+    $conteo_acta = $_POST['conteo_acta'];
+    $conteo_porsesion = $_POST['conteo_porsesion'];
+    $tipo_estudio_riesgo = $_POST['tipo_estudio_riesgo'];
+    $tipo_ruta = $_POST['tipo_ruta'];
+    $ot = $_POST['ot'];
+    $fecha_asignado_ot = $_POST['fecha_asignado_ot'];
+    $tipo_documento = $_POST['tipo_documento'];
+    $no_documento = $_POST['no_documento'];
+    $nombres_peticionario = $_POST['nombres_peticionario'];
+    $apellidos_peticionario = $_POST['apellidos_peticionario'];
+    $correo_electronico = $_POST['correo_electronico'];
+    $no_de_contacto = $_POST['no_de_contacto'];
+    $analista_riesgo = $_POST['analista_riesgo'];
+    $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
+    $recomendacion_riesgo_premesa = $_POST['recomendacion_riesgo_premesa'];
+    $consenso = $_POST['consenso'];
+    $detalle_consenso = $_POST['detalle_consenso'];
+    $orden = $_POST['orden'];
+    $temporalidad = $_POST['temporalidad'];
+    $obs_temporalidad = $_POST['obs_temporalidad'];
+    $departamento = $_POST['departamento'];
+    $municipio = $_POST['municipio'];
+    $addressType = $_POST['addressType'];
+    $ruralType = $_POST['ruralType'];
+    $eltipodireccion = $_POST['eltipodireccion'];
+    $nomtipodireccion = $_POST['nomtipodireccion'];
+    $tipo_via = $_POST['tipo_via'];
+    $cuadrante = $_POST['cuadrante'];
+    $via_generadora = $_POST['via_generadora'];
+    $letra_via_generadora = $_POST['letra_via_generadora'];
+    $sufijo = $_POST['sufijo'];
+    $letra_sufijo = $_POST['letra_sufijo'];
+    $numero_placa = $_POST['numero_placa'];
+    $cuadrante_numero_placa = $_POST['cuadrante_numero_placa'];
+    $corregimiento_vereda = $_POST['corregimiento_vereda'];
+    $direccion = $_POST['direccion'];
+    $subpoblacion = $_POST['subpoblacion'];
+    $factor_diferencial = $_POST['factor_diferencial'];
+    $motivacion = $_POST['motivacion'];
+    $obsadicionales_graerr = $_POST['obsadicionales_graerr'];
+    $observaciones_smt = $_POST['observaciones_smt'];
+    $estado = 2;
+    $fecha_estado = date("Y-m-d H:i:s");
+
+    // Preparar la consulta SQL para actualizar
+    $stmt = $pdo->prepare('
+        UPDATE mt_anexotecnico
+        SET conteo_acta = ?, conteo_porsesion = ?, tipo_estudio_riesgo = ?, tipo_ruta = ?, ot = ?, fecha_asignado_ot = ?,
+            tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, correo_electronico = ?, no_de_contacto = ?,
+            analista_riesgo = ?, recomendacion_medidas_premesa = ?, recomendacion_riesgo_premesa = ?, consenso = ?, detalle_consenso = ?, orden = ?,
+            temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?, 
+            addressType = ?, ruralType = ?, eltipodireccion = ?, nomtipodireccion = ?, tipo_via = ?, cuadrante = ?, via_generadora = ?, letra_via_generadora = ?, 
+            sufijo = ?, letra_sufijo = ?, numero_placa = ?, cuadrante_numero_placa = ?, corregimiento_vereda = ?, direccion = ?,
+            subpoblacion = ?, factor_diferencial = ?, motivacion = ?, obsadicionales_graerr = ?, observaciones_smt = ?, estado = ?, fecha_estado = ?
+        WHERE registro = ?
+    ');
+
+    // Ejecutar la consulta con los valores correspondientes
+    $stmt->execute([
+        $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $tipo_ruta, $ot, $fecha_asignado_ot,
+        $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $correo_electronico, $no_de_contacto,
+        $analista_riesgo, $recomendacion_medidas_premesa, $recomendacion_riesgo_premesa, $consenso, $detalle_consenso, $orden,
+        $temporalidad, $obs_temporalidad, $departamento, $municipio, 
+        $addressType, $ruralType, $eltipodireccion, $nomtipodireccion, $tipo_via, $cuadrante, $via_generadora, $letra_via_generadora, 
+        $sufijo, $letra_sufijo, $numero_placa, $cuadrante_numero_placa, $corregimiento_vereda, $direccion,
+        $subpoblacion, $factor_diferencial, $motivacion, $obsadicionales_graerr, $observaciones_smt, $estado, $fecha_estado,
+        $s_registro
+    ]);
+
+    echo "Datos actualizados correctamente.";
+} catch (PDOException $e) {
+    echo "Error al actualizar los datos: " . $e->getMessage();
+}
+
+
+      } // grabar
+      
       
       
     //============================= CONSULTA EL graerr_tipo_documento
@@ -772,7 +864,7 @@
                         <div class="row" style="margin-top:5px;">
                             <div class="col-sm-6" align="left">
                                <label for="orden">Temporalidad:</label> 
-                               <select class="form-control" id="temporalidad" name="temporalidad">
+                               <select class="form-control" id="temporalidad" name="temporalidad" required>
                                     <?php echo $combo_ano; ?>
                                 </select>
                             </div>
