@@ -606,7 +606,7 @@
             try {
                $stmt2 = $pdo->prepare('
                     UPDATE graerr_formulario_b
-                    SET direccion = ?, 
+                    SET direccion = ? 
                     WHERE registro = ?
                    ');
                    
