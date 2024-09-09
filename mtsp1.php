@@ -541,10 +541,10 @@
                     $stmt = $pdo->prepare('
                     UPDATE mt_anexotecnico
                     SET  conteo_acta = ?, conteo_porsesion = ?, tipo_estudio = ?, tipo_ruta = ?, ot = ?, fecha_asignado_ot  = ?,
-                       tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, correo_electronico = ?, no_de_contacto = ?,
-                       analista_riesgo = ?, recomendacion_medidas_premesa = ?, recomendacion_riesgo_premesa = ?, consenso = ?, detalle_consenso = ?,  orden = ?,
-                       temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?, addressType = ?, ruralType = ?,
-                       subpoblacion = ?, factor_diferencial = ?, motivacion = ?, obsadicionales_graerr = ?, observaciones_smt = ?, estado = ?, fecha_estad = ?
+                         tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, correo_electronico = ?, no_de_contacto = ?,
+                         analista_riesgo = ?, recomendacion_medidas_premesa = ?, recomendacion_riesgo_premesa = ?, consenso = ?, detalle_consenso = ?,  orden = ?,
+                         temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?, 
+                         subpoblacion = ?, factor_diferencial = ?, motivacion = ?, obsadicionales_graerr = ?, observaciones_smt = ?, estado = ?, fecha_estad = ?
                      WHERE registro = ?
                     ');      
               
@@ -553,7 +553,7 @@
                         $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $tipo_ruta, $ot, $fecha_asignado_ot,
                         $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $correo_electronico, $no_de_contacto,
                         $analista_riesgo, $recomendacion_medidas_premesa, $recomendacion_riesgo_premesa, $consenso, $detalle_consenso,  $orden,
-                        $temporalidad, $obs_temporalidad, $departamento, $municipio, $addressType, $ruralType, 
+                        $temporalidad, $obs_temporalidad, $departamento, $municipio, 
                         $subpoblacion, $factor_diferencial, $motivacion, $obsadicionales_graerr, $observaciones_smt , $estado, $fecha_estad,
                     $registro  // El ID del registro que se actualiza
                    ]);
