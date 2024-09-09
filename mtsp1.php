@@ -536,7 +536,7 @@
              
              try {
                     // Conectar a la base de datos
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                  //  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                     // Preparar la consulta SQL para actualizar
                     $stmt = $pdo->prepare('
