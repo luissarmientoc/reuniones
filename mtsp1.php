@@ -1045,13 +1045,34 @@
                             
                        </div> <!--row-->
                        
-                       <div class="row" style="margin-top:5px;"> 
+                        <div class="row" style="margin-top:5px;"> 
                             <div class="col-sm-2">
                                 <label for="tipo_via">* Tipo de vía:</label>
                                 <select <?=$active?> required class="form-control" id="tipo_via" name="tipo_via" onchange="concatenarDir();">
                                     <?=$combo_tipo_via?>
                                 </select>
                             </div>
+                            
+                             <div class="col-sm-2">
+                                   <label for="num_via_principal">* No. Vía principal:</label>
+                                   <input required type="number" class="form-control" id="num_via_principal" name="num_via_principal" min="0" place holder="Vía Principal" value="<?=$num_via_principal?>" oninput="concatenarDir();">
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                   <label  for="letra_via_principal">Letra:</label>
+                                    <select class="form-control" id="letra_via_principal" name="letra_via_principal" onchange="concatenarDir();">
+                                       <?php echo $combo_letra_via_principal;?>
+                                    </select>
+                            </div> 
+                            
+                            <div class="col-sm-2">
+                                       <label  for="prefijo_bis_via_principal">Prefijo:</label> 
+                                       <select class="form-control" id="prefijo_bis_via_principal" name="prefijo_bis_via_principal" onchange="concatenarDir();">
+                                          <!-- Opciones del A a la Z -->
+                                          <option value="" <?=$prevgfN?>>Seleccione el Prefijo vía principal</option>
+                                          <option value="Bis" <?=$prevgfS?> >Bis</option>
+                                        </select>          
+                            </div>    
                             
                             <div class="col-sm-2">
                                    <label for="cuadrante_tipo_via">Cuadrante:</label> 
@@ -1061,13 +1082,15 @@
                                       </select>
                                    </div> 
                             </div>
-                       
+                        </div> <!-- row -->
+                        
+                       <div class="row" style="margin-top:5px;"> 
                             <div class="col-sm-2">
                                    <label for="via_generadora">* No. inical placa:</label>
                                    <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora" value="<?=$via_generadora?>" oninput="concatenarDir();">
                             </div>
-                               
-                            <div class="col-sm-2">
+                            
+                                <div class="col-sm-2">
                                    <label  for="letra_via_generadora">Letra:</label>
                                     <select class="form-control" id="letra_via_generadora" name="letra_via_generadora" onchange="concatenarDir();">
                                        <?php echo $combo_via_generadora;?>
@@ -1105,11 +1128,11 @@
                                           </select>
                                       </div>
                                 </div>
-                                                                
+                                
                                 <div class="col-sm-8">
                                       <label for="complemento">Complemento:</label>
                                       <!--<textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1" oninput="concatenarDir();">  </textarea>-->
-                                      <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>"  oninput="concatenarDir();">
+                                      <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required oninput="concatenarDir();">
                                 </div>
                          <hr>
                        </div> <!--row-->
