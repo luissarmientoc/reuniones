@@ -1168,25 +1168,7 @@
              $numero_placa                 = $row1['numero_placa'];
              $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
              $complemento                  = $row1['complemento'];
-            
-            
-            registro int4 NOT NULL,
-	addresstype varchar(60) NULL,
-	ruraltype varchar(60) NULL,	
-	urbanotype varchar(60) NULL,
-	tipo_via varchar(5) NOT NULL,
-	num_via_principal int4 NOT NULL,
-	letra_via_principal varchar(2) NULL,
-	prefijo_bis_via_principal varchar(5) NULL,
-	cuadrante varchar(15) NULL,
-    via_generadora int4 NOT NULL,
-	letra_via_generadora varchar(2) NULL,
-	sufijo varchar(5) NULL,
-	letra_sufijo varchar(2) NULL,	
-	numero_placa int4 NOT NULL,
-	cuadrante_numero_placa varchar(15) NOT NULL,
-	complemento text NULL,	
-	
+           
         try {
            $stmt1 = $pdo->prepare('
            UPDATE graerr_direccion
