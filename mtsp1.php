@@ -43,11 +43,14 @@
              }   
              
           function concatenarDir() {
-                
                     // const addressType = document.getElementById('addressType').value;
                    // const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
                    // const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
                     const tipo_via = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
+                    const num_via_principal = document.getElementById('num_via_principal') ? document.getElementById('num_via_principal').value : '';
+                    const letra_via_principal = document.getElementById('letra_via_principal') ? document.getElementById('letra_via_principal').value : '';
+                    const prefijo_bis_via_principal = document.getElementById('prefijo_bis_via_principal') ? document.getElementById('prefijo_bis_via_principal').value : '';
+                    
                     const cuadrante = document.getElementById('cuadrante') ? document.getElementById('cuadrante').value : '';
                     const via_generadora = document.getElementById('via_generadora') ? document.getElementById('via_generadora').value : '';
                     const letra_via_generadora = document.getElementById('letra_via_generadora') ? document.getElementById('letra_via_generadora').value : '';
@@ -74,10 +77,23 @@
                     //if (urbanoType) {
                     //    concatenatedInfo += concatenatedInfo ? ` ${urbanoType}` : `${urbanoType}`;
                     //}
-                    
+
                     if (tipo_via) {
                         concatenatedInfo += concatenatedInfo ? ` ${tipo_via}` : `${tipo_via}`;
                     }
+                    
+                    if (num_via_principal) {
+                        concatenatedInfo += concatenatedInfo ? ` ${num_via_principal}` : `${num_via_principal}`;
+                    }
+                    
+                    if (letra_via_principal) {
+                        concatenatedInfo += concatenatedInfo ? ` ${letra_via_principal}` : `${letra_via_principal}`;
+                    }
+                    
+                    if (prefijo_bis_via_principal) {
+                        concatenatedInfo += concatenatedInfo ? ` ${prefijo_bis_via_principal}` : `${prefijo_bis_via_principal}`;
+                    }
+                    
                     
                     if (cuadrante) {
                         concatenatedInfo += cuadrante ? ` ${cuadrante}` : `${cuadrante}`;
@@ -121,7 +137,7 @@
                        // alert(concatenatedInfo);
                         document.getElementById('direccion').value = concatenatedInfo;
                     }
-             }     
+             }       
       </script>
   
    </head>
@@ -204,6 +220,9 @@
              $ruralType                    = $row1['ruraltype'];
              $urbanoType                   = $row1['urbanotype'];
              $tipo_via                     = $row1['tipo_via'];
+             $num_via_principal             = $row1['num_via_principal'];
+             $letra_via_principal           = $row1['letra_via_principal'];
+             $prefijo_bis_via_principal     = $row1['prefijo_bis_via_principal'];
              $cuadrante                    = $row1['cuadrante'];
              $via_generadora               = $row1['via_generadora'];
              $letra_via_generadora         = $row1['letra_via_generadora']; 
@@ -223,7 +242,18 @@
                 $conN="selected";  
              }
              
-            //SUFIJO Y DATOS DE DIRECCION
+            //prefijo Y DATOS DE DIRECCION
+            if ($prefijo_bis_via_principal==""){
+                $prevgfN="selected";
+                $prevgfS="";
+             }
+             else
+             {
+                $prevgfS="selected"; 
+                $prevgfN="";
+             }
+             
+             //SUFIJO Y DATOS DE DIRECCION
             if ($sufijo==""){
                 $sufN="selected";
                 $sufS="";
@@ -306,86 +336,153 @@
       
       
        if(isset($_POST['grabar']))
-    {    
-try {
-    // Conectar a la base de datos
-    $pdo = new PDO($dsn);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+       {    
+        try {
+           // Conectar a la base de datos
+           $pdo = new PDO($dsn);
+           $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Recoger los datos del formulario
-    $s_registro = $_POST['registro'];
-    $conteo_acta = $_POST['conteo_acta'];
-    $conteo_porsesion = $_POST['conteo_porsesion'];
-    $tipo_estudio_riesgo = $_POST['tipo_estudio_riesgo'];
-    $tipo_ruta = $_POST['tipo_ruta'];
-    $ot = $_POST['ot'];
-    $fecha_asignado_ot = $_POST['fecha_asignado_ot'];
-    $tipo_documento = $_POST['tipo_documento'];
-    $no_documento = $_POST['no_documento'];
-    $nombres_peticionario = $_POST['nombres_peticionario'];
-    $apellidos_peticionario = $_POST['apellidos_peticionario'];
-    $correo_electronico = $_POST['correo_electronico'];
-    $no_de_contacto = $_POST['no_de_contacto'];
-    $analista_riesgo = $_POST['analista_riesgo'];
-    $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
-    $recomendacion_riesgo_premesa = $_POST['recomendacion_riesgo_premesa'];
-    $consenso = $_POST['consenso'];
-    $detalle_consenso = $_POST['detalle_consenso'];
-    $orden = $_POST['orden'];
-    $temporalidad = $_POST['temporalidad'];
-    $obs_temporalidad = $_POST['obs_temporalidad'];
-    $departamento = $_POST['departamento'];
-    $municipio = $_POST['municipio'];
-    $addressType = $_POST['addressType'];
-    $ruralType = $_POST['ruralType'];
-    $eltipodireccion = $_POST['eltipodireccion'];
-    $nomtipodireccion = $_POST['nomtipodireccion'];
-    $tipo_via = $_POST['tipo_via'];
-    $cuadrante = $_POST['cuadrante'];
-    $via_generadora = $_POST['via_generadora'];
-    $letra_via_generadora = $_POST['letra_via_generadora'];
-    $sufijo = $_POST['sufijo'];
-    $letra_sufijo = $_POST['letra_sufijo'];
-    $numero_placa = $_POST['numero_placa'];
-    $cuadrante_numero_placa = $_POST['cuadrante_numero_placa'];
-    $corregimiento_vereda = $_POST['corregimiento_vereda'];
-    $direccion = $_POST['direccion'];
-    $subpoblacion = $_POST['subpoblacion'];
-    $factor_diferencial = $_POST['factor_diferencial'];
-    $motivacion = $_POST['motivacion'];
-    $obsadicionales_graerr = $_POST['obsadicionales_graerr'];
-    $observaciones_smt = $_POST['observaciones_smt'];
-    $estado = 2;
-    $fecha_estado = date("Y-m-d H:i:s");
+           // Recoger los datos del formulario
+           $s_registro = $_POST['registro'];
+           $conteo_acta = $_POST['conteo_acta'];
+           $conteo_porsesion = $_POST['conteo_porsesion'];
+           $tipo_estudio_riesgo = $_POST['tipo_estudio_riesgo'];
+           $tipo_ruta = $_POST['tipo_ruta'];
+           $ot = $_POST['ot'];
+           $fecha_asignado_ot = $_POST['fecha_asignado_ot'];
+           $tipo_documento = $_POST['tipo_documento'];
+           $no_documento = $_POST['no_documento'];
+           $nombres_peticionario = $_POST['nombres_peticionario'];
+           $apellidos_peticionario = $_POST['apellidos_peticionario'];
+           $correo_electronico = $_POST['correo_electronico'];
+           $no_de_contacto = $_POST['no_de_contacto'];
+           $analista_riesgo = $_POST['analista_riesgo'];
+           $recomendacion_medidas_premesa = $_POST['recomendacion_medidas_premesa'];
+           $recomendacion_riesgo_premesa = $_POST['recomendacion_riesgo_premesa'];
+           $consenso = $_POST['consenso'];
+           $detalle_consenso = $_POST['detalle_consenso'];
+           $orden = $_POST['orden'];
+           $temporalidad = $_POST['temporalidad'];
+           $obs_temporalidad = $_POST['obs_temporalidad'];
+           $departamento = $_POST['departamento'];
+           $municipio = $_POST['municipio'];
+           
+           $addressType = $_POST['addressType'];
+           $ruralType = $_POST['ruralType'];
+           $eltipodireccion = $_POST['eltipodireccion'];
+           $nomtipodireccion = $_POST['nomtipodireccion'];
+           
+           
+           $tipo_via = $_POST['tipo_via'];
+           $num_via_principal             = $_POST['num_via_principal'];
+           $letra_via_principal           = $_POST['letra_via_principal'];
+           $prefijo_bis_via_principal     = $_POST['prefijo_bis_via_principal'];
+           $cuadrante = $_POST['cuadrante'];
+           $via_generadora = $_POST['via_generadora'];
+           $letra_via_generadora = $_POST['letra_via_generadora'];
+           $sufijo = $_POST['sufijo'];
+           $letra_sufijo = $_POST['letra_sufijo'];
+           $numero_placa = $_POST['numero_placa'];
+           $cuadrante_numero_placa = $_POST['cuadrante_numero_placa'];
+           $corregimiento_vereda = $_POST['corregimiento_vereda'];
+           $direccion = $_POST['direccion'];
+           
+           $subpoblacion = $_POST['subpoblacion'];
+           $factor_diferencial = $_POST['factor_diferencial'];
+           $motivacion = $_POST['motivacion'];
+           $obsadicionales_graerr = $_POST['obsadicionales_graerr'];
+           $observaciones_smt = $_POST['observaciones_smt'];
+           $estado = 2;
+           $fecha_estado = date("Y-m-d H:i:s");
+           
+           // Preparar la consulta SQL para actualizar
+           $stmt = $pdo->prepare('
+               UPDATE mt_anexotecnico
+               SET conteo_acta = ?, conteo_porsesion = ?, tipo_estudio = ?, tipo_ruta = ?, ot = ?, fecha_asignado_ot = ?,
+                   tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, correo_electronico = ?, no_de_contacto = ?,
+                   analista_riesgo = ?, recomendacion_medidas_premesa = ?, recomendacion_riesgo_premesa = ?, consenso = ?, detalle_consenso = ?, orden = ?,
+                   temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?,  
+                   subpoblacion = ?, factor_diferencial = ?, motivacion = ?, obsadicionales_graerr = ?, observaciones_smt = ?, estado = ?, fecha_estado = ?
+               WHERE registro = ?
+           ');
 
-    // Preparar la consulta SQL para actualizar
-    $stmt = $pdo->prepare('
-        UPDATE mt_anexotecnico
-        SET conteo_acta = ?, conteo_porsesion = ?, tipo_estudio = ?, tipo_ruta = ?, ot = ?, fecha_asignado_ot = ?,
-            tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, correo_electronico = ?, no_de_contacto = ?,
-            analista_riesgo = ?, recomendacion_medidas_premesa = ?, recomendacion_riesgo_premesa = ?, consenso = ?, detalle_consenso = ?, orden = ?,
-            temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?,  
-            subpoblacion = ?, factor_diferencial = ?, motivacion = ?, obsadicionales_graerr = ?, observaciones_smt = ?, estado = ?, fecha_estado = ?
-        WHERE registro = ?
-    ');
+           // Ejecutar la consulta con los valores correspondientes
+           $stmt->execute([
+               $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $tipo_ruta, $ot, $fecha_asignado_ot,
+               $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $correo_electronico, $no_de_contacto,
+               $analista_riesgo, $recomendacion_medidas_premesa, $recomendacion_riesgo_premesa, $consenso, $detalle_consenso, $orden,
+               $temporalidad, $obs_temporalidad, $departamento, $municipio,   
+               $subpoblacion, $factor_diferencial, $motivacion, $obsadicionales_graerr, $observaciones_smt, $estado, $fecha_estado,
+               $s_registro
+           ]);
 
-    // Ejecutar la consulta con los valores correspondientes
-    $stmt->execute([
-        $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $tipo_ruta, $ot, $fecha_asignado_ot,
-        $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $correo_electronico, $no_de_contacto,
-        $analista_riesgo, $recomendacion_medidas_premesa, $recomendacion_riesgo_premesa, $consenso, $detalle_consenso, $orden,
-        $temporalidad, $obs_temporalidad, $departamento, $municipio,   
-        $subpoblacion, $factor_diferencial, $motivacion, $obsadicionales_graerr, $observaciones_smt, $estado, $fecha_estado,
-        $s_registro
-    ]);
+           echo "Datos actualizados correctamente.";
+       } catch (PDOException $e) {
+           echo "Error al actualizar los datos: " . $e->getMessage();
+       }
+               
+            try {
+           $stmt1 = $pdo->prepare('
+           UPDATE graerr_direccion
+           SET addresstype = ?,
+               ruraltype = ?,
+               urbanotype = ?,
+               tipo_via = ?,
+               num_via_principal = ?,
+	           letra_via_principal = ?,
+	           prefijo_bis_via_principal = ?,
+               cuadrante = ?,
+               via_generadora = ?,
+               letra_via_generadora = ?,
+               sufijo = ?,
+               letra_sufijo  = ?,
+               numero_placa = ?,
+               cuadrante_numero_placa = ?,
+               complemento = ?
+              WHERE registro = ?
+           ');
 
-    echo "Datos actualizados correctamente.";
-} catch (PDOException $e) {
-    echo "Error al actualizar los datos: " . $e->getMessage();
-}
-
-
-      } // grabar
+            $stmt1->execute([
+                $addressType,
+                $ruralType,
+                $urbanoType,
+                $tipo_via,
+                $num_via_principal,
+	            $letra_via_principal,
+	            $prefijo_bis_via_principal,
+                $cuadrante,
+                $via_generadora,
+                $letra_via_generadora,
+                $sufijo,
+                $letra_sufijo,
+                $numero_placa,
+                $cuadrante_numero_placa,
+                $complemento,
+              $registro  // El ID del registro que se actualiza
+            ]);
+           //$mensaje=" <b>Atención!</b> Actualización exitosa";
+           //echo "Datos actualizados correctamente.";
+        } catch (PDOException $e) {
+            echo "Error al actualizar los datos de direccion: " . $e->getMessage();
+        }
+            
+            try {
+               $stmt2 = $pdo->prepare('
+                    UPDATE graerr_formulario_b
+                    SET direccion = ? 
+                    WHERE registro = ?
+                   ');
+                   
+                $stmt2->execute([
+                    $direccion,
+                    $registro
+                ]);    
+            } catch (PDOException $e) {
+                echo "Error al actualizar los datos de direccion 2: " . $e->getMessage();
+            } 
+             
+            $s_tocoBoton = "S";     
+     } // grabar
       
       
       
