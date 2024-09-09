@@ -209,8 +209,6 @@
              $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
              $complemento                  = $row1['complemento'];
              
-             
-             
               if($consenso=="Si"){
                 $conS="selected"; 
                 $conN=""; 
@@ -310,10 +308,12 @@
              //$s_fecha  = date("Y-m-d",time());
              //$s_fecha  = date("Y/m/d H:i:s");
              $date_added=date("Y-m-d H:i:s");
+             
+             $s_registro                    = $_POST['registro'];
       
              $conteo_acta                   = $_POST['conteo_acta'];
              $conteo_porsesion              = $_POST['conteo_porsesion'];
-             $tipo_estudio_riesgo           = $_POST['tipo_estudio:riesgo'];
+             $tipo_estudio_riesgo           = $_POST['tipo_estudio_riesgo'];
              $tipo_ruta                     = $_POST['tipo_ruta'];
              $ot                            = $_POST['ot'];
              $fecha_asignado_ot             = $_POST['fecha_asignado_ot'];
@@ -540,7 +540,7 @@
                     // Preparar la consulta SQL para actualizar
                     $stmt = $pdo->prepare('
                     UPDATE mt_anexotecnico
-                    SET  conteo_acta = ?, conteo_porsesion = ?, tipo_estudio_riesgo = ?, tipo_ruta = ?, ot = ?, fecha_asignado_ot  = ?,
+                    SET  conteo_acta = ?, conteo_porsesion = ?, tipo_estudio = ?, tipo_ruta = ?, ot = ?, fecha_asignado_ot  = ?,
                        tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, correo_electronico = ?, no_de_contacto = ?,
                        analista_riesgo = ?, recomendacion_medidas_premesa = ?, recomendacion_riesgo_premesa = ?, consenso = ?, detalle_consenso = ?,  orden = ?,
                        temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?, addressType = ?, ruralType = ?,
@@ -1244,7 +1244,7 @@
                                 <div class="col-sm-8">
                                       <label for="complemento">Complemento:</label>
                                       <!--<textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1" oninput="concatenarDir();">  </textarea>-->
-                                      <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required oninput="concatenarDir();">
+                                      <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>"  oninput="concatenarDir();">
                                 </div>
                          <hr>
                        </div> <!--row-->
@@ -1323,6 +1323,8 @@
          
                 <input style="visibility:hidden" name="yaGrabo" id="yaGrabo" value="<?=$s_yaGrabo?>"/>
                 <input style="visibility:hidden" name="existe" id="existe" value="<?=$s_existe?>"/>
+                <input style="visibility:hidden" name="registro" id="registro" value="<?=$s_registro?>"/>
+                
             </form>    
    
              <!--- complemento -->
