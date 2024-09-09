@@ -389,7 +389,7 @@
              }
              else
              {
-                $prefijo_bis_via_principal="selected"; 
+                $prevgS="selected"; 
                 $prevgN="";
              }
              
@@ -776,9 +776,10 @@
              }
              else
              {
-                $prefijo_bis_via_principal="selected"; 
+                $prevgS="selected"; 
                 $prevgN="";
              }
+             
              //SUFIJO
              if ($sufijo==""){
                 $sufN="selected";
@@ -1146,22 +1147,6 @@
             echo "Error al actualizar los datos de formulario: " . $e->getMessage();
         }
          
-              $addressType                  = $row1['addresstype'];                     
-             $ruralType                    = $row1['ruraltype'];
-             $urbanoType                   = $row1['urbanotype'];
-             $tipo_via                     = $row1['tipo_via'];
-             $num_via_principal             = $row1['num_via_principal'];
-             $letra_via_principal           = $row1['letra_via_principal'];
-             $prefijo_bis_via_principal     = $row1['prefijo_bis_via_principal'];
-             $cuadrante                    = $row1['cuadrante'];
-             $via_generadora               = $row1['via_generadora'];
-             $letra_via_generadora         = $row1['letra_via_generadora']; 
-             $sufijo                       = $row1['sufijo'];
-             $letra_sufijo                 = $row1['letra_sufijo'];
-             $numero_placa                 = $row1['numero_placa'];
-             $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
-             $complemento                  = $row1['complemento'];
-           
         try {
            $stmt1 = $pdo->prepare('
            UPDATE graerr_direccion
