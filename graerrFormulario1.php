@@ -112,11 +112,14 @@
              }
              
              function concatenarDir() {
-                
                     // const addressType = document.getElementById('addressType').value;
                    // const ruralType = document.getElementById('ruralType') ? document.getElementById('ruralType').value : '';
                    // const urbanoType = document.getElementById('urbanoType') ? document.getElementById('urbanoType').value : '';
                     const tipo_via = document.getElementById('tipo_via') ? document.getElementById('tipo_via').value : '';
+                    const num_via_principal = document.getElementById('num_via_principal') ? document.getElementById('num_via_principal').value : '';
+                    const letra_via_principal = document.getElementById('letra_via_principal') ? document.getElementById('letra_via_principal').value : '';
+                    const prefijo_bis_via_principal = document.getElementById('prefijo_bis_via_principal') ? document.getElementById('prefijo_bis_via_principal').value : '';
+                    
                     const cuadrante = document.getElementById('cuadrante') ? document.getElementById('cuadrante').value : '';
                     const via_generadora = document.getElementById('via_generadora') ? document.getElementById('via_generadora').value : '';
                     const letra_via_generadora = document.getElementById('letra_via_generadora') ? document.getElementById('letra_via_generadora').value : '';
@@ -144,13 +147,28 @@
                     //    concatenatedInfo += concatenatedInfo ? ` ${urbanoType}` : `${urbanoType}`;
                     //}
                     
+                    
                     if (tipo_via) {
                         concatenatedInfo += concatenatedInfo ? ` ${tipo_via}` : `${tipo_via}`;
                     }
                     
+                    if (num_via_principal) {
+                        concatenatedInfo += concatenatedInfo ? ` ${num_via_principal}` : `${num_via_principal}`;
+                    }
+                    
+                    if (letra_via_principal) {
+                        concatenatedInfo += concatenatedInfo ? ` ${letra_via_principal}` : `${letra_via_principal}`;
+                    }
+                    
+                    if (prefijo_bis_via_principal) {
+                        concatenatedInfo += concatenatedInfo ? ` ${prefijo_bis_via_principal}` : `${prefijo_bis_via_principal}`;
+                    }
+                    
+                    
                     if (cuadrante) {
                         concatenatedInfo += cuadrante ? ` ${cuadrante}` : `${cuadrante}`;
                     }
+                    
                     
                     if (via_generadora) {
                         concatenatedInfo += concatenatedInfo ? ` ${via_generadora}` : `${via_generadora}`;
@@ -184,18 +202,12 @@
                        concatenatedInfo += concatenatedInfo ? ` ${corregimiento_vereda}` : `${corregimiento_vereda}`;
                    }
 
-
-
                     // Si concatenatedInfo no está vacío, muestra la alerta
                     if (concatenatedInfo) {
                        // alert(concatenatedInfo);
                         document.getElementById('direccion').value = concatenatedInfo;
                     }
-                    
-                    
-                    
-                    
-             }
+             }  
           </script>
 
           <style>
@@ -358,6 +370,9 @@
              $ruralType                    = $row1['ruraltype'];
              $urbanoType                   = $row1['urbanotype'];
              $tipo_via                     = $row1['tipo_via'];
+             $num_via_principal             = $row1['num_via_principal'];
+             $letra_via_principal           = $row1['letra_via_principal'];
+             $prefijo_bis_via_principal     = $row1['prefijo_bis_via_principal'];
              $cuadrante                    = $row1['cuadrante'];
              $via_generadora               = $row1['via_generadora'];
              $letra_via_generadora         = $row1['letra_via_generadora']; 
@@ -366,6 +381,18 @@
              $numero_placa                 = $row1['numero_placa'];
              $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
              $complemento                  = $row1['complemento'];
+            
+            
+            //prefijo Y DATOS DE DIRECCION
+            if ($prefijo==""){
+                $prevgN="selected";
+                $prevgS="";
+             }
+             else
+             {
+                $prevgS="selected"; 
+                $prevgN="";
+             }
              
             //SUFIJO Y DATOS DE DIRECCION
             if ($sufijo==""){
@@ -2165,7 +2192,7 @@
                                 
                             
                        </div> <!--row-->
-                       
+
                        <div class="row" style="margin-top:5px;"> 
                             <div class="col-sm-2">
                                 <label for="tipo_via">* Tipo de vía:</label>
@@ -2173,6 +2200,27 @@
                                     <?=$combo_tipo_via?>
                                 </select>
                             </div>
+                            
+                             <div class="col-sm-2">
+                                   <label for="num_via_principal">* No. Vía principal:</label>
+                                   <input required type="number" class="form-control" id="num_via_principal" name="num_via_principal" min="0" place holder="Vía Principal" value="<?=$num_via_principal?>" oninput="concatenarDir();">
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                   <label  for="letra_via_principal">Letra:</label>
+                                    <select class="form-control" id="letra_via_principal" name="letra_via_principal" onchange="concatenarDir();">
+                                       <?php echo $combo_letra_via_principal;?>
+                                    </select>
+                            </div> 
+                            
+                            <div class="col-sm-2">
+                                       <label  for="prefijo_bis_via_principal">Sufijo:</label> 
+                                       <select class="form-control" id="prefijo_bis_via_principal" name="prefijo_bis_via_principal" onchange="concatenarDir();">
+                                          <!-- Opciones del A a la Z -->
+                                          <option value="" <?=$prevgfN?>>Seleccione el Prefijo vía principal</option>
+                                          <option value="Bis" <?=$prevgfS?> >Bis</option>
+                                        </select>          
+                            </div>    
                             
                             <div class="col-sm-2">
                                    <label for="cuadrante_tipo_via">Cuadrante:</label> 
@@ -2188,7 +2236,7 @@
                                    <input required type="number" class="form-control" id="via_generadora" name="via_generadora" min="0" place holder="Vía Generadora" value="<?=$via_generadora?>" oninput="concatenarDir();">
                             </div>
                             
-                            <div class="col-sm-2">
+                                <div class="col-sm-2">
                                    <label  for="letra_via_generadora">Letra:</label>
                                     <select class="form-control" id="letra_via_generadora" name="letra_via_generadora" onchange="concatenarDir();">
                                        <?php echo $combo_via_generadora;?>
