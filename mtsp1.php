@@ -544,7 +544,7 @@
                          tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, correo_electronico = ?, no_de_contacto = ?,
                          analista_riesgo = ?, recomendacion_medidas_premesa = ?, recomendacion_riesgo_premesa = ?, consenso = ?, detalle_consenso = ?,  orden = ?,
                          temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?, 
-                         subpoblacion = ?, factor_diferencial = ?, motivacion = ?, obsadicionales_graerr = ?, observaciones_smt = ?, estado = ?, fecha_estad = ?
+                         subpoblacion = ?, factor_diferencial = ?, motivacion = ?, obsadicionales_graerr = ?, observaciones_smt = ?, estado = ?, fecha_estado = ?
                      WHERE registro = ?
                     ');      
               
@@ -554,7 +554,7 @@
                         $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $correo_electronico, $no_de_contacto,
                         $analista_riesgo, $recomendacion_medidas_premesa, $recomendacion_riesgo_premesa, $consenso, $detalle_consenso,  $orden,
                         $temporalidad, $obs_temporalidad, $departamento, $municipio, 
-                        $subpoblacion, $factor_diferencial, $motivacion, $obsadicionales_graerr, $observaciones_smt , $estado, $fecha_estad,
+                        $subpoblacion, $factor_diferencial, $motivacion, $obsadicionales_graerr, $observaciones_smt , $estado, $fecha_estado,
                     $registro  // El ID del registro que se actualiza
                    ]);
                 $mensaje=" <b>Atención!</b> Actualización del anexo exitosa";
