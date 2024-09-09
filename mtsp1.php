@@ -416,7 +416,7 @@
                $s_registro
            ]);
 
-           echo "Datos actualizados correctamente.";
+           //echo "Datos actualizados correctamente.";
        } catch (PDOException $e) {
            echo "Error al actualizar los datos: " . $e->getMessage();
        }
@@ -477,6 +477,10 @@
                     $direccion,
                     $registro
                 ]);    
+                
+                
+                 $mensaje=" <b>Atención!</b> Actualización exitosa";
+                
             } catch (PDOException $e) {
                 echo "Error al actualizar los datos de direccion 2: " . $e->getMessage();
             } 
@@ -1150,7 +1154,7 @@
                                 <div class="col-sm-8">
                                       <label for="complemento">Complemento:</label>
                                       <!--<textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1" oninput="concatenarDir();">  </textarea>-->
-                                      <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required oninput="concatenarDir();">
+                                      <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>"  oninput="concatenarDir();">
                                 </div>
                          <hr>
                        </div> <!--row-->

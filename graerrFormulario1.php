@@ -381,19 +381,16 @@
              $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
              $complemento                  = $row1['complemento'];
              
-             
-             echo "ww." . $prefijo_bis_via_principal;
-             echo '<br>';
-                                          
+              
             //prefijo Y DATOS DE DIRECCION
             if ($prefijo_bis_via_principal==""){
-                $prevgFN="selected";
-                $prevgFS="";
+                $prevgfN="selected";
+                $prevgfS="";
              }
              else
              {
-                $prevgFS="selected"; 
-                $prevgFN="";
+                $prevgfS="selected"; 
+                $prevgfN="";
              }
              
             //SUFIJO Y DATOS DE DIRECCION
@@ -2322,7 +2319,7 @@
                                 <div class="col-sm-8">
                                       <label for="complemento">Complemento:</label>
                                       <!--<textarea  style="text-transform:uppercase;" class="form-control" id="complemento" name="complemento" rows="1" oninput="concatenarDir();">  </textarea>-->
-                                      <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>" required oninput="concatenarDir();">
+                                      <input  style="text-transform:uppercase;" type="text" class="form-control" id="corregimiento_vereda" name="corregimiento_vereda" value="<?=$corregimiento_vereda?>"  oninput="concatenarDir();">
                                 </div>
                          <hr>
                        </div> <!--row-->
