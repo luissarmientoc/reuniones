@@ -752,6 +752,24 @@
        $combo_letra_sufijo .=" <option value='".$line['letra']."'>".$line['letra']."</ano>"; 
       $i++; 
     }
+    
+     //LETRA VIA PRINCIPAL
+    $stmt = $pdo->query('SELECT letra  FROM graerr_bas_alfabeto order by letra');
+    $i=0;
+    while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) 
+    {
+      if ($i==0)
+      {
+        $combo_letra_via_principal .=" <option value=''>".'- Seleccione la letra -'."</option>";
+      }
+      if ($line['letra']==$letra_via_principal)
+      {
+        $combo_letra_via_principal .=" <option value='".$line['letra']."' selected>".$line['letra']." </option>"; 
+      }
+      
+       $combo_letra_via_principal .=" <option value='".$line['letra']."'>".$line['letra']."</ano>"; 
+      $i++; 
+    }
 
     //============================= CUADRANTE
     //============================================================================ 
