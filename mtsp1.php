@@ -610,7 +610,7 @@
                     WHERE registro = ?
                    ');
                    
-                $stmt1->execute([
+                $stmt2->execute([
                     $direccion,
                     $registro
                 ]);    
