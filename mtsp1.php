@@ -359,11 +359,12 @@
              $estado=2;
              $fecha_estado = date("Y-m-d H:i:s");
              
+             /*
              $sql   = "SELECT descripcion from graerr_tipo_estudio_riesgo where id = $tipo_estudio_riesgo";
 	         $stmt  = $pdo->query($sql);
 	         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
              $tipo_estudio_riesgo = $row['descripcion'];
-             
+             */
              if ($sufijo==""){
                 $sufN="selected";
                 $sufS="";
