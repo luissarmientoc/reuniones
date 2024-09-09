@@ -364,9 +364,7 @@ try {
         SET conteo_acta = ?, conteo_porsesion = ?, tipo_estudio = ?, tipo_ruta = ?, ot = ?, fecha_asignado_ot = ?,
             tipo_documento = ?, no_documento = ?, nombres_peticionario = ?, apellidos_peticionario = ?, correo_electronico = ?, no_de_contacto = ?,
             analista_riesgo = ?, recomendacion_medidas_premesa = ?, recomendacion_riesgo_premesa = ?, consenso = ?, detalle_consenso = ?, orden = ?,
-            temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?, 
-            addressType = ?, ruralType = ?, eltipodireccion = ?, nomtipodireccion = ?, tipo_via = ?, cuadrante = ?, via_generadora = ?, letra_via_generadora = ?, 
-            sufijo = ?, letra_sufijo = ?, numero_placa = ?, cuadrante_numero_placa = ?, corregimiento_vereda = ?, direccion = ?,
+            temporalidad = ?, obs_temporalidad = ?, departamento = ?, municipio = ?, direccion = ?,
             subpoblacion = ?, factor_diferencial = ?, motivacion = ?, obsadicionales_graerr = ?, observaciones_smt = ?, estado = ?, fecha_estado = ?
         WHERE registro = ?
     ');
@@ -376,9 +374,7 @@ try {
         $conteo_acta, $conteo_porsesion, $tipo_estudio_riesgo, $tipo_ruta, $ot, $fecha_asignado_ot,
         $tipo_documento, $no_documento, $nombres_peticionario, $apellidos_peticionario, $correo_electronico, $no_de_contacto,
         $analista_riesgo, $recomendacion_medidas_premesa, $recomendacion_riesgo_premesa, $consenso, $detalle_consenso, $orden,
-        $temporalidad, $obs_temporalidad, $departamento, $municipio, 
-        $addressType, $ruralType, $eltipodireccion, $nomtipodireccion, $tipo_via, $cuadrante, $via_generadora, $letra_via_generadora, 
-        $sufijo, $letra_sufijo, $numero_placa, $cuadrante_numero_placa, $corregimiento_vereda, $direccion,
+        $temporalidad, $obs_temporalidad, $departamento, $municipio,  $direccion,
         $subpoblacion, $factor_diferencial, $motivacion, $obsadicionales_graerr, $observaciones_smt, $estado, $fecha_estado,
         $s_registro
     ]);
