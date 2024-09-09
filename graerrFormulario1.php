@@ -381,16 +381,17 @@
              $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
              $complemento                  = $row1['complemento'];
              
-            
+             
+                                          
             //prefijo Y DATOS DE DIRECCION
             if ($prefijo_bis_via_principal==""){
-                $prevgN="selected";
-                $prevgS="";
+                $prevgFN="selected";
+                $prevgFS="";
              }
              else
              {
-                $prevgS="selected"; 
-                $prevgN="";
+                $prevgFS="selected"; 
+                $prevgFN="";
              }
              
             //SUFIJO Y DATOS DE DIRECCION
@@ -767,17 +768,16 @@
              $numero_placa                 = $_POST['numero_placa'];
              $cuadrante_numero_placa       = $_POST['cuadrante_numero_placa'];
              $complemento                  = strtoupper($_POST['corregimiento_vereda']);
-             
-             
+       
              //prefijo Y DATOS DE DIRECCION
             if ($prefijo_bis_via_principal==""){
-                $prevgN="selected";
-                $prevgS="";
+                $prevgfN="selected";
+                $prevgfS="";
              }
              else
              {
-                $prevgS="selected"; 
-                $prevgN="";
+                $prevgfS="selected"; 
+                $prevgfN="";
              }
              
              //SUFIJO
@@ -1154,9 +1154,9 @@
                ruraltype = ?,
                urbanotype = ?,
                tipo_via = ?,
-               num_via_principal,
-	           letra_via_principal,
-	           prefijo_bis_via_principal,
+               num_via_principal = ?,
+	           letra_via_principal = ?,
+	           prefijo_bis_via_principal = ?,
                cuadrante = ?,
                via_generadora = ?,
                letra_via_generadora = ?,
