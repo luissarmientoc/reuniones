@@ -2249,7 +2249,8 @@
                                       </select>
                                    </div> 
                             </div>
-                            
+                        </div> <!-- row -->
+                        
                        <div class="row" style="margin-top:5px;"> 
                             <div class="col-sm-2">
                                    <label for="via_generadora">* No. inical placa:</label>
