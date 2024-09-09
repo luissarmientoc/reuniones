@@ -756,6 +756,9 @@
              $ruralType                    = $_POST['ruralType'];
              $urbanoType                   = $_POST['urbanoType'];
              $tipo_via                     = $_POST['tipo_via'];
+             $num_via_principal             = $row1['num_via_principal'];
+             $letra_via_principal           = $row1['letra_via_principal'];
+             $prefijo_bis_via_principal     = $row1['prefijo_bis_via_principal'];
              $cuadrante                    = $_POST['cuadrante'];
              $via_generadora               = $_POST['via_generadora'];
              $letra_via_generadora         = $_POST['letra_via_generadora']; 
@@ -764,6 +767,20 @@
              $numero_placa                 = $_POST['numero_placa'];
              $cuadrante_numero_placa       = $_POST['cuadrante_numero_placa'];
              $complemento                  = strtoupper($_POST['corregimiento_vereda']);
+             
+             
+            //prefijo Y DATOS DE DIRECCION
+            if ($prefijo==""){
+                $prevgN="selected";
+                $prevgS="";
+             }
+             else
+             {
+                $prevgS="selected"; 
+                $prevgN="";
+             }
+             
+             
              
              //SUFIJO
              if ($sufijo==""){
@@ -1132,6 +1149,44 @@
             echo "Error al actualizar los datos de formulario: " . $e->getMessage();
         }
         
+        
+        
+        
+             
+              $addressType                  = $row1['addresstype'];                     
+             $ruralType                    = $row1['ruraltype'];
+             $urbanoType                   = $row1['urbanotype'];
+             $tipo_via                     = $row1['tipo_via'];
+             $num_via_principal             = $row1['num_via_principal'];
+             $letra_via_principal           = $row1['letra_via_principal'];
+             $prefijo_bis_via_principal     = $row1['prefijo_bis_via_principal'];
+             $cuadrante                    = $row1['cuadrante'];
+             $via_generadora               = $row1['via_generadora'];
+             $letra_via_generadora         = $row1['letra_via_generadora']; 
+             $sufijo                       = $row1['sufijo'];
+             $letra_sufijo                 = $row1['letra_sufijo'];
+             $numero_placa                 = $row1['numero_placa'];
+             $cuadrante_numero_placa       = $row1['cuadrante_numero_placa'];
+             $complemento                  = $row1['complemento'];
+            
+            
+            registro int4 NOT NULL,
+	addresstype varchar(60) NULL,
+	ruraltype varchar(60) NULL,	
+	urbanotype varchar(60) NULL,
+	tipo_via varchar(5) NOT NULL,
+	num_via_principal int4 NOT NULL,
+	letra_via_principal varchar(2) NULL,
+	prefijo_bis_via_principal varchar(5) NULL,
+	cuadrante varchar(15) NULL,
+    via_generadora int4 NOT NULL,
+	letra_via_generadora varchar(2) NULL,
+	sufijo varchar(5) NULL,
+	letra_sufijo varchar(2) NULL,	
+	numero_placa int4 NOT NULL,
+	cuadrante_numero_placa varchar(15) NOT NULL,
+	complemento text NULL,	
+	
         try {
            $stmt1 = $pdo->prepare('
            UPDATE graerr_direccion
@@ -1139,6 +1194,9 @@
                ruraltype = ?,
                urbanotype = ?,
                tipo_via = ?,
+               num_via_principal,
+	           letra_via_principal,
+	           prefijo_bis_via_principal,
                cuadrante = ?,
                via_generadora = ?,
                letra_via_generadora = ?,
@@ -1155,6 +1213,9 @@
                 $ruralType,
                 $urbanoType,
                 $tipo_via,
+                $num_via_principal,
+	            $letra_via_principal,
+	            $prefijo_bis_via_principal,
                 $cuadrante,
                 $via_generadora,
                 $letra_via_generadora,
@@ -1291,9 +1352,10 @@
         
         
         try {
-                
+                   
+	           
                  $stmt1 = $pdo->prepare('INSERT INTO graerr_direccion (
-                                    registro, addresstype, ruraltype, urbanotype, tipo_via,cuadrante, via_generadora, letra_via_generadora, 
+                                    registro, addresstype, ruraltype, urbanotype, tipo_via,cuadrante, num_via_principal, letra_via_principal, prefijo_bis_via_principal, via_generadora, letra_via_generadora, 
                                     sufijo, letra_sufijo, numero_placa, cuadrante_numero_placa, complemento
                                     ) VALUES (?, ?, 
                                               ?, ?, 
@@ -1309,6 +1371,9 @@
                 $ruralType,
                 $urbanoType,
                 $tipo_via,
+                $num_via_principal, 
+                $letra_via_principal, 
+                $prefijo_bis_via_principal,
                 $cuadrante,
                 $via_generadora,
                 $letra_via_generadora,
