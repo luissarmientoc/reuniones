@@ -382,6 +382,8 @@
              $complemento                  = $row1['complemento'];
              
              
+             echo "ww." . $prefijo_bis_via_principal;
+             echo '<br>';
                                           
             //prefijo Y DATOS DE DIRECCION
             if ($prefijo_bis_via_principal==""){
