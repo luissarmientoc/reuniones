@@ -536,8 +536,10 @@
              
              try {
                     // Conectar a la base de datos
-                  //  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                   // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                    
+                 
                     // Preparar la consulta SQL para actualizar
                     $stmt = $pdo->prepare('
                     UPDATE mt_anexotecnico
@@ -559,7 +561,7 @@
                     $registro  // El ID del registro que se actualiza
                    ]);
                 $mensaje=" <b>Atención!</b> Actualización del anexo exitosa";
-                //echo "Datos actualizados correctamente.";
+                echo "Datos actualizados correctamente.";
             } catch (PDOException $e) {
                   echo "Error al actualizar los datos del anexo: " . $e->getMessage();
             }
